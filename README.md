@@ -34,9 +34,9 @@ In any case, just read this. Probably you're going to find something new for you
 console.log('hello, world!') // > hello, world!
 ```
 
-## `[]` is truly, but not `true`
+## `[]` is truthy, but not `true`
 
-An array is a truthy value, however, it's not equal `true`.
+An array is a truthy value, however, it's not equal to `true`.
 
 ```js
 !![]       // -> true
@@ -45,21 +45,21 @@ An array is a truthy value, however, it's not equal `true`.
 
 ### 💡 Explanation:
 
-Here are liks to the corresponding sections in the ECMA-262 specification:
+Here are links to the corresponding sections in the ECMA-262 specification:
 
 * [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 * [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 ## `null` is falsy, but not `false`
 
-Despite the fact that `null` is falsy value, it's not equal `false`.
+Despite the fact that `null` is falsy value, it's not equal to `false`.
 
 ```js
 !!null        // -> false
 null == false // -> false
 ```
 
-At the same time, other falsy values, like `0` or `''` are equal `false`.
+At the same time, other falsy values, like `0` or `''` are equal to `false`.
 
 ```js
 0 == false  // -> true
@@ -382,8 +382,7 @@ function template(strings, ...keys) {
   // do something with strings and keys…
 }
 ```
-
-This is the magic behind famous library called [💅 styled-components](https://www.styled-components.com/), which is popular in React-community.
+This is the [magic behind](http://mxstbr.blog/2016/11/styled-components-magic-explained/) famous library called [💅 styled-components](https://www.styled-components.com/), which is popular in React community.
 
 Link to the specification:
 
