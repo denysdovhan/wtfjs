@@ -127,7 +127,7 @@ Corresponding sections:
 * [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 * [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
 
-## `<!--` is a valid comment
+## HTML comments are valid in JavaScript
 
 You will be impressed, but `<!--` (which is known as HTML comment) is a valid comment in JavaScript.
 
@@ -138,7 +138,11 @@ You will be impressed, but `<!--` (which is known as HTML comment) is a valid co
 
 ### 💡 Explanation:
 
-TODO
+Impressed? HTML-like comments were intended to allow browsers that didn't understand the `<script>` tag to degrade gracefully. These browsers, eg. Netscape 1.x are no longer popular. So there is really no point in putting HTML comments in your script tags anymore.
+
+Since Node.js is based on V8 engine, HTML-like comments are supported in the Node.js runtime too. Moreover, they're a part of specification:
+
+* [**B.1.3** HTML-like Comments](https://www.ecma-international.org/ecma-262/#sec-html-like-comments)
 
 ## `NaN` is ~~not~~ a number
 
