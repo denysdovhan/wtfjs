@@ -265,11 +265,15 @@ true  > 1 // true -> 1
 1     > 1 // -> false
 ```
 
-We can fix this with _Greater than or equal operator (`>=`)_. TODO(add link to spec):
+We can fix this with _Greater than or equal operator (`>=`)_:
 
 ```js
 3 > 2 >= 1 // true
 ```
+
+Read more about Relational operators in the specification:
+
+* [**12.10** Relational Operators](https://www.ecma-international.org/ecma-262/#sec-relational-operators)
 
 ## Funny addition
 
@@ -301,7 +305,11 @@ String  + Boolean -> concatenation
 String  + String  -> concatenation
 ```
 
-What about the rest examples? A `toString` method is being implicitly called for `[]` and `{}` before addition. TODO
+What about the rest examples? A `ToPrimitive` and `ToString` methods are being implicitly called for `[]` and `{}` before addition. Read more about evaluation process in the specification:
+
+* [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
+* [**7.1.1** ToPrimitive(`input` [,`PreferredType`])](https://www.ecma-international.org/ecma-262/#sec-toprimitive)
+* [**7.1.12** ToString(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tostring)
 
 ## Strings aren't instances of `String`
 
@@ -335,6 +343,10 @@ Object? What's that?
 new String('str') // -> [String: 'str']
 ```
 
+More information about the String constructor in the specification:
+
+* [**21.1.1** The String Constructor](https://www.ecma-international.org/ecma-262/#sec-string-constructor)
+
 ## Calling functions with backticks
 
 Let's declare a function which logs all params into the console:
@@ -363,7 +375,7 @@ f`true is ${true}, false is ${false}, array is ${[1,2,3]}`
 
 ### 💡 Explanation:
 
-Well, this is not magic at all if you're familiar with _Tagged template literals_ TODO(link to spec). In the example above, `f` function is a tag for template literal. Tags before template literal allow you to parse template literals with a function. The first argument of a tag function contains an array of string values. The remaining arguments are related to the expressions. Example:
+Well, this is not magic at all if you're familiar with _Tagged template literals_. In the example above, `f` function is a tag for template literal. Tags before template literal allow you to parse template literals with a function. The first argument of a tag function contains an array of string values. The remaining arguments are related to the expressions. Example:
 
 ```js
 function template(strings, ...keys) {
@@ -371,7 +383,11 @@ function template(strings, ...keys) {
 }
 ```
 
-This is the magic behind famous library called styled-components, which is popular in React-community.
+This is the magic behind famous library called [💅 styled-components](https://www.styled-components.com/), which is popular in React-community.
+
+Link to the specification:
+
+* [**12.3.7** Tagged Templates](https://www.ecma-international.org/ecma-262/#sec-tagged-templates)
 
 ## A `constructor` property
 
