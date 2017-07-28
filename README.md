@@ -8,11 +8,6 @@ At the same time, all we know that JavaScript is a quite funny language with tri
 
 The primary goal of this list is to collect some crazy examples and explain how they work, if possible.
 
-## Table of contents
-
-- foo
-- bar
-
 ## Motivation
 
 just for fun.
@@ -33,8 +28,7 @@ Interview questions.
 console.log('hello, world!') // > hello, world!
 ```
 
-
-### `[]` is truly, but not `true`
+## `[]` is truly, but not `true`
 
 An array is a truthy value, however, it's not equal `true`.
 
@@ -43,9 +37,11 @@ An array is a truthy value, however, it's not equal `true`.
 [] == true // -> false
 ```
 
-**Explanation:** TODO
+### 💡 Explanation:
 
-### `null` is falsy, but not `false`
+TODO
+
+## `null` is falsy, but not `false`
 
 Despite the fact that `null` is falsy value, it's not equal `false`.
 
@@ -61,9 +57,11 @@ At the same time, other falsy values, like `0` or `''` are equal `false`.
 '' == false // -> true
 ```
 
-**Explanation:** TODO
+### 💡 Explanation:
 
-### `undefined` and `Number`
+TODO
+
+## `undefined` and `Number`
 
 If we don't pass any argument into a `Number` constructor, we'll get `0`. `undefined` is a value assigned to formal arguments which there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
 
@@ -72,9 +70,11 @@ Number()          // -> 0
 Number(undefined) // -> NaN
 ```
 
-**Explanation:** TODO
+### 💡 Explanation:
 
-### Math with `true` and `false`
+TODO
+
+## Math with `true` and `false`
 
 We can coerce values to numbers with `Number` constructor. It's quite obvious that `true` will be coerced to `1`:
 
@@ -95,9 +95,11 @@ true + true // -> 2
 (true + true) * (true + true) - true // -> 3
 ```
 
-**Explanation:** TODO
+### 💡 Explanation:
 
-### `<!--` is a valid comment
+TODO
+
+## `<!--` is a valid comment
 
 You will be impressed, but `<!--` (which is known as HTML comment) is a valid comment in JavaScript.
 
@@ -106,9 +108,11 @@ You will be impressed, but `<!--` (which is known as HTML comment) is a valid co
 <!-- valid comment too
 ```
 
-**Explanation:** TODO
+### 💡 Explanation:
 
-### `NaN` is ~~not~~ a number
+TODO
+
+## `NaN` is ~~not~~ a number
 
 Despite the fact that type of `NaN` is a `'number'`, `NaN` is not instance of number
 
@@ -117,16 +121,20 @@ typeof NaN            // -> 'number'
 NaN instanceof Number // -> false
 ```
 
-**Explanation:** TODO
+### 💡 Explanation:
 
-### `[]` and `null` are objects
+TODO
+
+## `[]` and `null` are objects
 
 ```js
 typeof []   // -> 'object'
 typeof null // -> 'object'
 ```
 
-**Explanation:** TODO. However, you can check this using `toString` method.
+### 💡 Explanation:
+
+TODO. However, you can check this using `toString` method.
 
 ```js
 Object.prototype.toString.call([])
@@ -139,16 +147,18 @@ Object.prototype.toString.call(null)
 // -> '[object Null]'
 ```
 
-### Magicaly increasing numbers
+## Magicaly increasing numbers
 
 ```js
 999999999999999  // -> 999999999999999
 9999999999999999 // -> 10000000000000000
 ```
 
-**Explanation:** TODO
+### 💡 Explanation:
 
-### Precision of `0.1 + 0.2`
+TODO
+
+## Precision of `0.1 + 0.2`
 
 Well known joke from JavaScript. An addition of `0.1` and `0.2` is deadly precise:
 
@@ -156,9 +166,11 @@ Well known joke from JavaScript. An addition of `0.1` and `0.2` is deadly precis
 0.1 + 0.2 // -> 0.30000000000000004
 ```
 
-**Explanation:** TODO
+### 💡 Explanation:
 
-### Patching numbers
+TODO
+
+## Patching numbers
 
 You can add own methods to wrapper objects like `Number` or `String`.
 
@@ -175,16 +187,20 @@ Number.prototype.isOne = function () {
 
 However, it's not recommended if the behavior of defined method is not a part of the specification.
 
-**Explanation:** TODO
+### 💡 Explanation:
 
-### Comparation of there numbers
+TODO
+
+## Comparation of there numbers
 
 ```js
 1 < 2 < 3 // -> true
 3 > 2 > 1 // -> false
 ```
 
-**Explanation:** Why does this work that way? Well, the problem is in the first part of an expression. Here's how it works:
+### 💡 Explanation:
+
+Why does this work that way? Well, the problem is in the first part of an expression. Here's how it works:
 
 ```js
 1 < 2 < 3 // 1 < 2 -> true
@@ -202,7 +218,7 @@ We can fix this with _Greater than or equal operator (`>=`)_. TODO(add link to s
 3 > 2 >= 1 // true
 ```
 
-### Funny addition
+## Funny addition
 
 Often the results of an addition operation in JavaScript might be quite unexpectable. Consider these examples:
 
@@ -219,7 +235,9 @@ Often the results of an addition operation in JavaScript might be quite unexpect
 {} + {} // -> '[object Object][object Object]'
 ```
 
-**Explanation:** What's happening in the first four examples? Here's a small table to understand addition in JavaScript:
+### 💡 Explanation:
+
+What's happening in the first four examples? Here's a small table to understand addition in JavaScript:
 
 ```
 Number  + Number  -> addition
@@ -232,7 +250,7 @@ String  + String  -> concatenation
 
 What about the rest examples? A `toString` method is being implicitly called for `[]` and `{}` before addition. TODO
 
-### Strings aren't instances of `String`
+## Strings aren't instances of `String`
 
 ```js
 'str' // -> 'str'
@@ -240,7 +258,8 @@ typeof 'str' // -> 'string'
 'str' instanceof String // -> false
 ```
 
-**Explanation:**
+### 💡 Explanation:
+
 
 The `String` construnctor returns a string:
 
@@ -263,7 +282,7 @@ Object? What's that?
 new String('str') // -> [String: 'str']
 ```
 
-### Calling functions with backticks
+## Calling functions with backticks
 
 Let's declare a function which logs all params into the console:
 
@@ -289,7 +308,9 @@ f`true is ${true}, false is ${false}, array is ${[1,2,3]}`
 // ->   [ 1, 2, 3 ] ]
 ```
 
-**Explanation:** Well, this is not magic at all if you're familiar with _Tagged template literals_ TODO(link to spec). In the example above, `f` function is a tag for template literal. Tags before template literal allow you to parse template literals with a function. The first argument of a tag function contains an array of string values. The remaining arguments are related to the expressions. Example:
+### 💡 Explanation:
+
+Well, this is not magic at all if you're familiar with _Tagged template literals_ TODO(link to spec). In the example above, `f` function is a tag for template literal. Tags before template literal allow you to parse template literals with a function. The first argument of a tag function contains an array of string values. The remaining arguments are related to the expressions. Example:
 
 ```js
 function template(strings, ...keys) {
@@ -299,14 +320,16 @@ function template(strings, ...keys) {
 
 This is the magic behind famous library called styled-components, which is popular in React-community.
 
-### A `constructor` property
+## A `constructor` property
 
 ```js
 const c = 'constructor'
 c[c][c]('console.log("WTF?")')() // > WTF?
 ```
 
-**Explanation:** Let's consider this example step-by-step:
+### 💡 Explanation:
+
+Let's consider this example step-by-step:
 
 ```js
 // Declare a new constant which is a string 'constructor'
@@ -330,13 +353,15 @@ c[c][c]('console.log("WTF?")') // -> [Function: anonymous]
 c[c][c]('console.log("WTF?")')() // > WTF
 ```
 
-### Object as a key of object's property
+## Object as a key of object's property
 
 ```js
 { [{}]: {} } // -> { '[object Object]': {} }
 ```
 
-**Explanation:** Why does this work so? Here we're using a _Computed property name_ TODO(add link to spec). When you pass an object between those brackets, it coerces object to a string, so we get a property key `'[object Object]'` and value `{}`.
+### 💡 Explanation:
+
+Why does this work so? Here we're using a _Computed property name_ TODO(add link to spec). When you pass an object between those brackets, it coerces object to a string, so we get a property key `'[object Object]'` and value `{}`.
 
 The same way we can make brackets hell like this:
 
@@ -351,7 +376,7 @@ The same way we can make brackets hell like this:
 // }
 ```
 
-### Accessing prototypes with `__proto__`
+## Accessing prototypes with `__proto__`
 
 As we know, primitives don't have prototypes. However, if we try to get a value of `__proto__` for primitives, we would get this:
 
@@ -359,7 +384,9 @@ As we know, primitives don't have prototypes. However, if we try to get a value 
 (1).__proto__.__proto__.__proto__ // -> null
 ```
 
-**Explanation:** It happens because of when primitive doesn't have a prototype, it will be wrapped in a wrapper object. So, spet-by-step:
+### 💡 Explanation:
+
+It happens because of when primitive doesn't have a prototype, it will be wrapped in a wrapper object. So, spet-by-step:
 
 ```js
 (1).__proto__ // -> [Number: 0]
@@ -369,7 +396,7 @@ As we know, primitives don't have prototypes. However, if we try to get a value 
 
 TODO(add more comprehensive explanation)
 
-### ``` `${{Object}}` ```
+## ``` `${{Object}}` ```
 
 What the result of the expression below?
 
@@ -383,9 +410,11 @@ The answer is:
 // -> '[object Object]'
 ```
 
-**Explanation:** We defined an object with a property `Object` using _Shorthand property notation_ TODO(add link to spec). Then we've passed this object to the template literal, so the `toString` method calls for that object. That's why we get string `'[object Object]'`.
+### 💡 Explanation:
 
-### Destructoring with default values
+We defined an object with a property `Object` using _Shorthand property notation_ TODO(add link to spec). Then we've passed this object to the template literal, so the `toString` method calls for that object. That's why we get string `'[object Object]'`.
+
+## Destructoring with default values
 
 Consider this example:
 
@@ -399,9 +428,11 @@ The example above is a great task for an interview. What the value of `y`? The a
 // -> 1
 ```
 
-**Explanation:** TODO
+### 💡 Explanation:
 
-### Dots and spreading
+TODO
+
+## Dots and spreading
 
 Interesting examples could be composed with spreading of arrays. Consider this:
 
@@ -409,7 +440,9 @@ Interesting examples could be composed with spreading of arrays. Consider this:
 [...[...'...']].lenght // -> 3
 ```
 
-**Explanation:** Why `3`? When we use spread operator TODO(link to spec), the `@@iterator` method calls, and the returned iterator is used to obtain the values to be iterated. The default iterator for string spreads string by character. After spreading, we're packing this characters into an array. Then spreading this array again and packing back to the array.
+### 💡 Explanation:
+
+Why `3`? When we use spread operator TODO(link to spec), the `@@iterator` method calls, and the returned iterator is used to obtain the values to be iterated. The default iterator for string spreads string by character. After spreading, we're packing this characters into an array. Then spreading this array again and packing back to the array.
 
 A `'...'` string consists with three `.`, so the length of resulting array will be `3`.
 
@@ -431,7 +464,7 @@ Obviously, we can spread and wrap the elements of array as many times as we want
 // and so on …
 ```
 
-### Labels
+## Labels
 
 Not so many programmers know about labels in JavaScript. They are kind of interesting:
 
@@ -446,19 +479,23 @@ foo: {
 // -> undefined
 ```
 
-**Explanation:** The labeled statement is used with `break` or `continue` statements. You can use a label to identify a loop, and then use the `break` or `continue` statements to indicate whether a program should interrupt the loop or continue its execution.
+### 💡 Explanation:
+
+The labeled statement is used with `break` or `continue` statements. You can use a label to identify a loop, and then use the `break` or `continue` statements to indicate whether a program should interrupt the loop or continue its execution.
 
 In the example above, we identify a label `foo`. Then `console.log('first');` executes and then we interrupt execution.
 
-### Nested labels
+## Nested labels
 
 ```js
 a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
 ```
 
-**Explanation:** TODO
+### 💡 Explanation:
 
-### Insidious `try..catch`
+TODO
+
+## Insidious `try..catch`
 
 What will this expression return? `2` or `3`?
 
@@ -474,4 +511,6 @@ What will this expression return? `2` or `3`?
 
 The answer is `3`. Surprised?
 
-**Explanation:** TODO
+### 💡 Explanation:
+
+TODO
