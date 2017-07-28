@@ -83,7 +83,16 @@ Number(undefined) // -> NaN
 
 ### 💡 Explanation:
 
-TODO
+According to the specification:
+
+1. If no arguments were passed to this function invocation, let `n` be `+0`.
+2. Else, let `n` be ? `ToNumber(value)`.
+3. In case with `undefined`, `ToNumber(undefined)` should return `NaN`.
+
+Here's a corresponding section:
+
+* [**20.1.1** The Number Constructor](https://www.ecma-international.org/ecma-262/#sec-number-constructor)
+* [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
 
 ## Math with `true` and `false`
 
