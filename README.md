@@ -151,7 +151,7 @@ Since Node.js is based on V8 engine, HTML-like comments are supported in the Nod
 
 ## `NaN` is ~~not~~ a number
 
-Despite the fact that type of `NaN` is a `'number'`, `NaN` is not instance of number
+Despite the fact that type of `NaN` is a `'number'`, `NaN` is not instance of number:
 
 ```js
 typeof NaN            // -> 'number'
@@ -160,7 +160,10 @@ NaN instanceof Number // -> false
 
 ### 💡 Explanation:
 
-TODO
+Explanations of how `typeof` and `instanceof` operators work:
+
+* [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
+* [**12.10.4** Runtime Semantics: InstanceofOperator(`O`,`C`)](https://www.ecma-international.org/ecma-262/#sec-instanceofoperator)
 
 ## `[]` and `null` are objects
 
@@ -171,7 +174,13 @@ typeof null // -> 'object'
 
 ### 💡 Explanation:
 
-TODO. However, you can check this using `toString` method.
+The behavior of `typeof` operator is defined in this section of the specification:
+
+* [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
+
+According to the specifications, the `typeof` operator returns a string according to [Table 35: `typeof` Operator Results](https://www.ecma-international.org/ecma-262/#table-35). For `null`, ordinary, standard exotic and non-standard exotic objects which does not implement `[[Call]]` it returns string `"object"`.
+
+However, you can check the type of object using `toString` method.
 
 ```js
 Object.prototype.toString.call([])
