@@ -533,7 +533,7 @@ With the example above:
 Interesting examples could be composed with spreading of arrays. Consider this:
 
 ```js
-[...[...'...']].lenght // -> 3
+[...[...'...']].length // -> 3
 ```
 
 ### 💡 Explanation:
