@@ -96,11 +96,23 @@ Here's a corresponding section:
 
 ## Math with `true` and `false`
 
+Let's do some math:
+
+```js
+true + true // -> 2
+(true + true) * (true + true) - true // -> 3
+```
+
+Hmmm… 🤔
+
+### 💡 Explanation:
+
 We can coerce values to numbers with `Number` constructor. It's quite obvious that `true` will be coerced to `1`:
 
 ```js
 Number(true) // -> 1
 ```
+
 
 The unary plus operator attempts to convert its value into a number. It can convert string representations of integers and floats, as well as the non-string values `true`, `false`, and `null`. If it cannot parse a particular value, it will evaluate to `NaN`. That means we can coerce `true` to `1` easier:
 
@@ -108,18 +120,11 @@ The unary plus operator attempts to convert its value into a number. It can conv
 +true // -> 1
 ```
 
-Hmmm… 🤔 Then probably we can do some math with `true`:
-
-```js
-true + true // -> 2
-(true + true) * (true + true) - true // -> 3
-```
-
-### 💡 Explanation:
-
 When you're performing addition or multiplication, `ToNumber` method invokes. In according to the specification, this method returns:
 
 > If `argument` is **true**, return **1**. If `argument` is **false**, return **+0**.
+
+That's why we can add boolean values as regular numbers and get correct results.
 
 Corresponding sections:
 
