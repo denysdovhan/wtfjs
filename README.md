@@ -74,7 +74,7 @@ The explanation is the same as for previous example. Here's a corresponding link
 
 ## `undefined` and `Number`
 
-If we don't pass any argument into a `Number` constructor, we'll get `0`. `undefined` is a value assigned to formal arguments which there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
+If we don't pass any argument into the `Number` constructor, we'll get `0`. `undefined` is a value assigned to formal arguments which there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
 
 ```js
 Number()          // -> 0
@@ -421,6 +421,11 @@ c[c][c]('console.log("WTF?")') // -> [Function: anonymous]
 c[c][c]('console.log("WTF?")')() // > WTF
 ```
 
+An `Object.prototype.constructor` returns a reference to the `Object` constructor function that created the instance object. In case with strings it is `String`, in case with numbers it is `Number` and so on.
+
+* [`Object.prototype.constructor`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor) at MDN
+* [**19.1.3.1** Object.prototype.constructor](https://www.ecma-international.org/ecma-262/#sec-object.prototype.constructor)
+
 ## Object as a key of object's property
 
 ```js
@@ -444,6 +449,10 @@ The same way we can make brackets hell like this:
 // }
 ```
 
+Read more about object litarals here:
+
+* [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
+
 ## Accessing prototypes with `__proto__`
 
 As we know, primitives don't have prototypes. However, if we try to get a value of `__proto__` for primitives, we would get this:
@@ -454,7 +463,7 @@ As we know, primitives don't have prototypes. However, if we try to get a value 
 
 ### 💡 Explanation:
 
-It happens because of when primitive doesn't have a prototype, it will be wrapped in a wrapper object. So, spet-by-step:
+It happens because of when primitive doesn't have a prototype, it will be wrapped in a wrapper object using `ToObject` method. So, spet-by-step:
 
 ```js
 (1).__proto__ // -> [Number: 0]
@@ -462,7 +471,10 @@ It happens because of when primitive doesn't have a prototype, it will be wrappe
 (1).__proto__.__proto__.__proto__ // -> null
 ```
 
-TODO(add more comprehensive explanation)
+Here is more information about `__proto__`:
+
+* [**B.2.2.1** Object.prototype.__proto__](https://www.ecma-international.org/ecma-262/#sec-object.prototype.__proto__)
+* [**7.1.13** ToObject(`argument`)](https://www.ecma-international.org/ecma-262/#sec-toobject)
 
 ## ``` `${{Object}}` ```
 
@@ -480,7 +492,10 @@ The answer is:
 
 ### 💡 Explanation:
 
-We defined an object with a property `Object` using _Shorthand property notation_ TODO(add link to spec). Then we've passed this object to the template literal, so the `toString` method calls for that object. That's why we get string `'[object Object]'`.
+We defined an object with a property `Object` using _Shorthand property notation_. Then we've passed this object to the template literal, so the `toString` method calls for that object. That's why we get string `'[object Object]'`.
+
+* [**12.2.9** Template Literals](https://www.ecma-international.org/ecma-262/#sec-template-literals)
+* [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 
 ## Destructoring with default values
 
@@ -498,7 +513,20 @@ The example above is a great task for an interview. What the value of `y`? The a
 
 ### 💡 Explanation:
 
-TODO
+```js
+let x, { x: y = 1 } = { x }; y;
+//  ↑       ↑           ↑    ↑
+//  1       3           2    4
+```
+
+With the example above:
+
+1. We declare `x` with no value, so it's `undefined`.
+2. Then we pack the value of `x` into the object property `x`.
+3. Then we extract the value of `x` using destructuring and want to assign this value to the `y`. If the value is not defined, then we're gonna use `1` as the default value.
+4. Return the value of `y`.
+
+* [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 
 ## Dots and spreading
 
@@ -553,6 +581,11 @@ The labeled statement is used with `break` or `continue` statements. You can use
 
 In the example above, we identify a label `foo`. Then `console.log('first');` executes and then we interrupt execution.
 
+Read more about labels in JavaScript:
+
+* [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
+* [Labeled statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
+
 ## Nested labels
 
 ```js
@@ -561,7 +594,11 @@ a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
 
 ### 💡 Explanation:
 
-TODO
+Like in the case with previous example follow these links:
+
+* [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
+* [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
+* [Labeled statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
 
 ## Insidious `try..catch`
 
@@ -581,7 +618,7 @@ The answer is `3`. Surprised?
 
 ### 💡 Explanation:
 
-TODO
+* [**13.15** The `try` Statement](https://www.ecma-international.org/ecma-262/#sec-try-statement)
 
 # License
 
