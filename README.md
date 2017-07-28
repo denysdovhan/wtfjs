@@ -74,7 +74,7 @@ The explanation is the same as for previous example. Here's a corresponding link
 
 ## `undefined` and `Number`
 
-If we don't pass any argument into a `Number` constructor, we'll get `0`. `undefined` is a value assigned to formal arguments which there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
+If we don't pass any argument into the `Number` constructor, we'll get `0`. `undefined` is a value assigned to formal arguments which there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
 
 ```js
 Number()          // -> 0
@@ -364,7 +364,7 @@ function template(strings, ...keys) {
 }
 ```
 
-This is the magic behind famous library called styled-components, which is popular in React-community.
+This is the [magic behind](http://mxstbr.blog/2016/11/styled-components-magic-explained/) famous library called styled-components, which is popular in React community.
 
 ## A `constructor` property
 
