@@ -1,4 +1,4 @@
-# What the f*ck JavaScript?
+# What the f*ck JavaScript? [![CC 4.0][cc-image]][cc-url]
 
 > A list of funny and tricky examples of JavaScript.
 
@@ -6,23 +6,29 @@ JavaScript is a great language. It has a simple syntax, large ecosystem and, wha
 
 At the same time, all we know that JavaScript is a quite funny language with tricky parts. Some of them can quickly turn our everyday job into hell, some of them can make us laugh out loud.
 
-The primary goal of this list is to collect some crazy examples and explain how they work, if possible.
+# Motivation
 
-## Motivation
+> Just for fun
+>
+> &mdash; _[**“Just for Fun: The Story of an Accidental Revolutionary”**](https://en.m.wikipedia.org/wiki/Just_for_Fun), Linus Torvalds_
 
-just for fun.
+The primary goal of this list is to collect some crazy examples and explain how they work, if possible. Just because it's fun to learn something that we didn't know before.
 
-Interview questions.
+If you are a beginner, you can use this notes to get deeper dive into the JavaScript. I hope this notes will motivate you to spend more time reading the specification.
 
-## Notation
+If you are a professional developer, you can consider these examples as a great resource for interview questions and quizzes for newcomers in your company. At the same time, these examples would be handy while preparing for the interview.
 
-`// ->` is used to show the result of an expression. For example:
+In any case, just read this. Probably you're going to find something new for yourself.
+
+# Notation
+
+**`// ->`** is used to show the result of an expression. For example:
 
 ```js
 1 + 1 // -> 2
 ```
 
-`// >` means the result of `console.log` and other output. For example:
+**`// >`** means the result of `console.log` or other output. For example:
 
 ```js
 console.log('hello, world!') // > hello, world!
@@ -39,7 +45,10 @@ An array is a truthy value, however, it's not equal `true`.
 
 ### 💡 Explanation:
 
-TODO
+Here are liks to the corresponding sections in the ECMA-262 specification:
+
+* [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
+* [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 ## `null` is falsy, but not `false`
 
@@ -59,7 +68,9 @@ At the same time, other falsy values, like `0` or `''` are equal `false`.
 
 ### 💡 Explanation:
 
-TODO
+The explanation is the same as for previous example. Here's a corresponding link:
+
+* [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 ## `undefined` and `Number`
 
@@ -514,3 +525,12 @@ The answer is `3`. Surprised?
 ### 💡 Explanation:
 
 TODO
+
+# License
+
+[![CC 4.0][cc-image]][cc-url]
+
+&copy; [Denys Dovhan](http://denysdovhan.com)
+
+[cc-url]: http://creativecommons.org/licenses/by/4.0/
+[cc-image]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg?style=flat-square
