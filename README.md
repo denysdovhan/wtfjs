@@ -117,7 +117,15 @@ true + true // -> 2
 
 ### 💡 Explanation:
 
-TODO
+When you're performing addition or multiplication, `ToNumber` method invokes. In according to the specification, this method returns:
+
+> If `argument` is **true**, return **1**. If `argument` is **false**, return **+0**.
+
+Corresponding sections:
+
+* [**12.5.6** Unary `+` Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
+* [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
+* [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
 
 ## `<!--` is a valid comment
 
