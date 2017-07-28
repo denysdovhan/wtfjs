@@ -202,7 +202,10 @@ Object.prototype.toString.call(null)
 
 ### 💡 Explanation:
 
-TODO
+This is caused by IEEE 754-2008 standard for Binary Floating-Point Arithmetic. Read more:
+
+* [**6.1.6** The Number Type](https://www.ecma-international.org/ecma-262/#sec-ecmascript-language-types-number-type)
+* [IEEE 754](https://en.m.wikipedia.org/wiki/IEEE_754) on Wikipedia
 
 ## Precision of `0.1 + 0.2`
 
@@ -214,7 +217,11 @@ Well known joke from JavaScript. An addition of `0.1` and `0.2` is deadly precis
 
 ### 💡 Explanation:
 
-TODO
+The answer for the [”Is floating point math broken?”](https://stackoverflow.com/questions/588004/is-floating-point-math-broken) question on StackOverflow:
+
+> The constants `0.2` and `0.3` in your program will also be approximations to their true values. It happens that the closest `double` to `0.2` is larger than the rational number `0.2` but that the closest `double` to `0.3` is smaller than the rational number `0.3`. The sum of `0.1` and `0.2` winds up being larger than the rational number `0.3` and hence disagreeing with the constant in your code.
+
+This problem is so known that even there is a website called [0.30000000000000004.com](http://0.30000000000000004.com/).
 
 ## Patching numbers
 
@@ -231,11 +238,11 @@ Number.prototype.isOne = function () {
 (7).isOne() // -> false
 ```
 
-However, it's not recommended if the behavior of defined method is not a part of the specification.
-
 ### 💡 Explanation:
 
-TODO
+Obviously, you can extend `Number` object like any other object in JavaScript. However, it's not recommended if the behavior of defined method is not a part of the specification. Here is the list of `Number`'s properties:
+
+* [**20.1** Number Objects](https://www.ecma-international.org/ecma-262/#sec-number-objects)
 
 ## Comparation of there numbers
 
