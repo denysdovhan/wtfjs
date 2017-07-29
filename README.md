@@ -15,6 +15,7 @@ At the same time, all we know that JavaScript is a quite funny language with tri
 - [Examples](#examples)
   - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
   - [`null` is falsy, but not `false`](#null-is-falsy-but-not-false)
+  - [function is not function](#function-is-not-function)
   - [`undefined` and `Number`](#undefined-and-number)
   - [Math with `true` and `false`](#math-with-true-and-false)
   - [HTML comments are valid in JavaScript](#html-comments-are-valid-in-javascript)
@@ -37,6 +38,7 @@ At the same time, all we know that JavaScript is a quite funny language with tri
   - [Nested labels](#nested-labels)
   - [Insidious `try..catch`](#insidious-trycatch)
   - [A generator which yields itself](#a-generator-which-yields-itself)
+  - [A class of class](#a-class-of-class)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -108,6 +110,26 @@ At the same time, other falsy values, like `0` or `''` are equal to `false`.
 The explanation is the same as for previous example. Here's a corresponding link:
 
 * [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+
+## function is not function
+
+> ⚠️ A bug present in V8 v5.5 or lower (Node.js <=7) ⚠️
+
+All you know about noisy _undefined is not a function_. What about this?
+
+```js
+// Declare a class which extends null
+class Foo extends null {}
+// -> [Function: Foo]
+
+new Foo instanceof null
+// > TypeError: function is not a function
+// >     at … … …
+```
+
+### 💡 Explanation:
+
+This is not a part of the specification. That's just a bug and now it's fixed, so there's shouldn't be a problem with this in future.
 
 ## `undefined` and `Number`
 
@@ -691,8 +713,7 @@ To understand why this works that way, read these sections of the specification:
 * [**25** Control Abstraction Objects](https://www.ecma-international.org/ecma-262/#sec-control-abstraction-objects)
 * [**25.3** Generator Objects](https://www.ecma-international.org/ecma-262/#sec-generator-objects)
 
-
-### A class of class
+## A class of class
 
 Consider this obfuscated syntax playing:
 
