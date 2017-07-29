@@ -4,7 +4,8 @@
   "description": "A list of funny and tricky examples of JavaScript.",
   "scripts": {
     "postpublish": "git push --follow-tags",
-    "precommit": "doctoc --github --title '# Table of Contents' --maxlevel 2 README.md"
+    "precommit": "npm run toc && git add README.md",
+    "toc": "doctoc --github --title '# Table of Contents' --maxlevel 2 README.md"
   },
   "repository": {
     "type": "git",
