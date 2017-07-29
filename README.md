@@ -71,6 +71,13 @@ In any case, just read this. Probably you're going to find something new for you
 console.log('hello, world!') // > hello, world!
 ```
 
+**`//`** is just a comment for explanations. Example:
+
+```js
+// Assigning a function to foo constant
+const foo = function () {}
+```
+
 # 👀 Examples
 
 ## `[]` is truthy, but not `true`
