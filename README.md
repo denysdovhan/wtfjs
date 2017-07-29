@@ -12,6 +12,7 @@ At the same time, all we know that JavaScript is a quite funny language with tri
 
 - [Motivation](#motivation)
 - [Notation](#notation)
+- [Examples](#examples)
   - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
   - [`null` is falsy, but not `false`](#null-is-falsy-but-not-false)
   - [`undefined` and `Number`](#undefined-and-number)
@@ -66,6 +67,8 @@ In any case, just read this. Probably you're going to find something new for you
 ```js
 console.log('hello, world!') // > hello, world!
 ```
+
+# Examples
 
 ## `[]` is truthy, but not `true`
 
