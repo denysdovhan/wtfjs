@@ -6,6 +6,39 @@ JavaScript is a great language. It has a simple syntax, large ecosystem and, wha
 
 At the same time, all we know that JavaScript is a quite funny language with tricky parts. Some of them can quickly turn our everyday job into hell, some of them can make us laugh out loud.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+# Table of Contents
+
+- [Motivation](#motivation)
+- [Notation](#notation)
+  - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
+  - [`null` is falsy, but not `false`](#null-is-falsy-but-not-false)
+  - [`undefined` and `Number`](#undefined-and-number)
+  - [Math with `true` and `false`](#math-with-true-and-false)
+  - [HTML comments are valid in JavaScript](#html-comments-are-valid-in-javascript)
+  - [`NaN` is ~~not~~ a number](#nan-is-not-a-number)
+  - [`[]` and `null` are objects](#-and-null-are-objects)
+  - [Magicaly increasing numbers](#magicaly-increasing-numbers)
+  - [Precision of `0.1 + 0.2`](#precision-of-01--02)
+  - [Patching numbers](#patching-numbers)
+  - [Comparation of there numbers](#comparation-of-there-numbers)
+  - [Funny addition](#funny-addition)
+  - [Strings aren't instances of `String`](#strings-arent-instances-of-string)
+  - [Calling functions with backticks](#calling-functions-with-backticks)
+  - [A `constructor` property](#a-constructor-property)
+  - [Object as a key of object's property](#object-as-a-key-of-objects-property)
+  - [Accessing prototypes with `__proto__`](#accessing-prototypes-with-__proto__)
+  - [``` `${{Object}}` ```](#-object-)
+  - [Destructoring with default values](#destructoring-with-default-values)
+  - [Dots and spreading](#dots-and-spreading)
+  - [Labels](#labels)
+  - [Nested labels](#nested-labels)
+  - [Insidious `try..catch`](#insidious-trycatch)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Motivation
 
 > Just for fun
