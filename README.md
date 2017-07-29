@@ -317,8 +317,8 @@ Read more about Relational operators in the specification:
 Often the results of an addition operation in JavaScript might be quite unexpectable. Consider these examples:
 
 ```js
- 3  - 1    // -> 2
- 3  + 1    // -> 4
+ 3  - 1  // -> 2
+ 3  + 1  // -> 4
 '3' - 1  // -> 2
 '3' + 1  // -> '31'
 
@@ -690,6 +690,42 @@ To understand why this works that way, read these sections of the specification:
 
 * [**25** Control Abstraction Objects](https://www.ecma-international.org/ecma-262/#sec-control-abstraction-objects)
 * [**25.3** Generator Objects](https://www.ecma-international.org/ecma-262/#sec-generator-objects)
+
+
+### A class of class
+
+Consider this obfuscated syntax playing:
+
+```js
+(typeof (new (class { class () {} }))) // -> 'object'
+```
+
+It seems like we're declaring a class inside of class. Should be and error, however, we get an `'object'` string.
+
+### 💡 Explanation:
+
+Since ECMAScript 5 era, _keywords_ are allowed as _property names_. So think about it as about this simple object example:
+
+```js
+const foo = {
+  class: function() {}
+};
+```
+
+And ES6 standardized shorthand method definitions. Also, classes might be anonymous. So if we drop `: function` part, we're going to get:
+
+```js
+class {
+  class() {}
+}
+```
+
+The result of a default class is always a simple object. And its typeof should return `'object'`.
+
+Read more here:
+
+* [**14.3** Method Definitions](https://www.ecma-international.org/ecma-262/#sec-method-definitions)
+* [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
 
 # License
 
