@@ -10,9 +10,9 @@ At the same time, all we know that JavaScript is a quite funny language with tri
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 # Table of Contents
 
-- [Motivation](#motivation)
-- [Notation](#notation)
-- [Examples](#examples)
+- [💪🏻 Motivation](#-motivation)
+- [✍🏻 Notation](#-notation)
+- [👀 Examples](#-examples)
   - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
   - [`null` is falsy, but not `false`](#null-is-falsy-but-not-false)
   - [function is not function](#function-is-not-function)
@@ -39,11 +39,11 @@ At the same time, all we know that JavaScript is a quite funny language with tri
   - [Insidious `try..catch`](#insidious-trycatch)
   - [A generator which yields itself](#a-generator-which-yields-itself)
   - [A class of class](#a-class-of-class)
-- [License](#license)
+- [🎓 License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Motivation
+# 💪🏻 Motivation
 
 > Just for fun
 >
@@ -57,7 +57,7 @@ If you are a professional developer, you can consider these examples as a great 
 
 In any case, just read this. Probably you're going to find something new for yourself.
 
-# Notation
+# ✍🏻 Notation
 
 **`// ->`** is used to show the result of an expression. For example:
 
@@ -71,7 +71,7 @@ In any case, just read this. Probably you're going to find something new for you
 console.log('hello, world!') // > hello, world!
 ```
 
-# Examples
+# 👀 Examples
 
 ## `[]` is truthy, but not `true`
 
@@ -748,7 +748,7 @@ Read more here:
 * [**14.3** Method Definitions](https://www.ecma-international.org/ecma-262/#sec-method-definitions)
 * [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
 
-# License
+# 🎓 License
 
 [![CC 4.0][cc-image]][cc-url]
 
