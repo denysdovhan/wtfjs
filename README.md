@@ -36,6 +36,7 @@ At the same time, all we know that JavaScript is a quite funny language with tri
   - [Labels](#labels)
   - [Nested labels](#nested-labels)
   - [Insidious `try..catch`](#insidious-trycatch)
+  - [A generator which yields itself](#a-generator-which-yields-itself)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -655,6 +656,40 @@ The answer is `3`. Surprised?
 ### 💡 Explanation:
 
 * [**13.15** The `try` Statement](https://www.ecma-international.org/ecma-262/#sec-try-statement)
+
+## A generator which yields itself
+
+Consider this example with a generator which yields itself:
+
+```js
+(function* f() { yield f })().next()
+// -> { value: [GeneratorFunction: f], done: false }
+```
+
+As you see, the returned value is an object with `value` equal `f`. In that case, we can do something like this:
+
+```js
+(function* f() { yield f })().next().value().next()
+// -> { value: [GeneratorFunction: f], done: false }
+
+// and again
+(function* f() { yield f })().next().value().next().value().next()
+// -> { value: [GeneratorFunction: f], done: false }
+
+// and again
+(function* f() { yield f })().next().value().next().value().next().value().next()
+// -> { value: [GeneratorFunction: f], done: false }
+
+// and so on
+// …
+```
+
+### 💡 Explanation:
+
+To understand why this works that way, read these sections of the specification:
+
+* [**25** Control Abstraction Objects](https://www.ecma-international.org/ecma-262/#sec-control-abstraction-objects)
+* [**25.3** Generator Objects](https://www.ecma-international.org/ecma-262/#sec-generator-objects)
 
 # License
 
