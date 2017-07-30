@@ -14,6 +14,7 @@ At the same time, all we know that JavaScript is a quite funny language with tri
 - [✍🏻 Notation](#-notation)
 - [👀 Examples](#-examples)
   - [`[]` is equal `![]`](#-is-equal-)
+  - [fooNaN](#foonan)
   - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
   - [`null` is falsy, but not `false`](#null-is-falsy-but-not-false)
   - [function is not function](#function-is-not-function)
@@ -95,6 +96,20 @@ Array is equal not array:
 
 * [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 * [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+
+## fooNaN
+
+An old-school joke in JavaScript:
+
+```js
+"foo" + + "bar" // -> 'fooNaN'
+```
+
+### 💡 Explanation:
+
+The expression is evaluted as `'foo' + (+'bar')`, which converts `'bar'` to not a number.
+
+* [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 
 ## `[]` is truthy, but not `true`
 
