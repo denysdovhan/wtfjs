@@ -38,6 +38,7 @@ At the same time, all we know that JavaScript is a quite funny language with tri
   - [Labels](#labels)
   - [Nested labels](#nested-labels)
   - [Insidious `try..catch`](#insidious-trycatch)
+  - [Is this multiple inheritance?](#is-this-multiple-inheritance)
   - [A generator which yields itself](#a-generator-which-yields-itself)
   - [A class of class](#a-class-of-class)
 - [🎓 License](#-license)
@@ -705,6 +706,23 @@ The answer is `3`. Surprised?
 ### 💡 Explanation:
 
 * [**13.15** The `try` Statement](https://www.ecma-international.org/ecma-262/#sec-try-statement)
+
+## Is this multiple inheritance?
+
+Take a look at the example below:
+
+```js
+new (class F extends (String, Array) { }) // -> F []
+```
+
+Is this a multiple inheritance? Nope.
+
+### 💡 Explanation:
+
+The interesting part is the value of the `extends` clause (`(String, Array)`). The grouping operator always returns its last argument, so the `(String, Array)` is actually just `Array`. That means we've just created a class which extends `Array`.
+
+* [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
+* [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
 
 ## A generator which yields itself
 
