@@ -18,13 +18,17 @@ Original idea of WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux
 - [✍🏻 Notation](#-notation)
 - [👀 Examples](#-examples)
   - [`[]` is equal `![]`](#-is-equal-)
+  - [true is false](#true-is-false)
   - [fooNaN](#foonan)
   - [`NaN` is not a `NaN`](#nan-is-not-a-nan)
+  - [It's a fail](#its-a-fail)
   - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
   - [`null` is falsy, but not `false`](#null-is-falsy-but-not-false)
   - [Minimal value is greater than zero](#minimal-value-is-greater-than-zero)
   - [function is not function](#function-is-not-function)
+  - [Adding arrays](#adding-arrays)
   - [`undefined` and `Number`](#undefined-and-number)
+  - [`parseInt` is a bad guy](#parseint-is-a-bad-guy)
   - [Math with `true` and `false`](#math-with-true-and-false)
   - [HTML comments are valid in JavaScript](#html-comments-are-valid-in-javascript)
   - [`NaN` is ~~not~~ a number](#nan-is-not-a-number)
@@ -33,7 +37,7 @@ Original idea of WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux
   - [Precision of `0.1 + 0.2`](#precision-of-01--02)
   - [Patching numbers](#patching-numbers)
   - [Comparation of there numbers](#comparation-of-there-numbers)
-  - [Funny addition](#funny-addition)
+  - [Funny math](#funny-math)
   - [Addition of RegExps](#addition-of-regexps)
   - [Strings aren't instances of `String`](#strings-arent-instances-of-string)
   - [Calling functions with backticks](#calling-functions-with-backticks)
@@ -105,6 +109,28 @@ Array is equal not array:
 * [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 * [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
+## true is false
+
+```js
+!!'false' ==  !!'true'  // -> true
+!!'false' === !!'true' // -> true
+```
+
+### 💡 Explanation:
+
+Consider this step-by-step:
+
+```js
+true == 'true'    // -> true
+false == 'false'  // -> false
+
+// 'false' is not empty string, so it's truthy value
+!!'false' // -> true
+!!'true'  // -> true
+```
+
+* [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+
 ## fooNaN
 
 An old-school joke in JavaScript:
@@ -136,6 +162,38 @@ The specification strictly defines the logic behind this behavior:
 >     3. … … …
 >
 > &mdash; [**7.2.14** Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)
+
+## It's a fail
+
+You would not believe, but …
+
+```js
+(![]+[])[+[]]+(![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]
+// -> 'fail'
+```
+
+### 💡 Explanation:
+
+Breaking that mass of symbols into pieces we notices, that the following patten occurs often:
+
+```js
+(![]+[]) // -> 'false'
+![]      // -> false
+```
+
+So we try adding `[]` to `false`. But through a number of internal function calls (`binary + Operator` -> `ToPrimitive` -> `[[DefaultValue]]`) we end up with converting the right operand to a string:
+
+```js
+(![]+[].toString()) // 'false'
+```
+
+Thinking of a string as an array we can access its first character via `[0]`:
+
+```js
+'false'[0] // -> 'f'
+```
+
+Now, the rest is obvious and can figure out it by yourself!
 
 ## `[]` is truthy, but not `true`
 
@@ -257,6 +315,59 @@ Here's a corresponding section:
 * [**20.1.1** The Number Constructor](https://www.ecma-international.org/ecma-262/#sec-number-constructor)
 * [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
 
+## `parseInt` is a bad guy
+
+`parseInt` is famous by his quirks:
+
+```js
+parseInt('f*ck');     // -> NaN
+parseInt('f*ck', 16); // -> 15
+```
+
+**💡 Explanation:** This happens because `parseInt` will continue parsing character-by-character until it hits a character it doesn't know. The `f` in `'fuck'` is hexadecimal `15`.
+
+Parsing `Infinity` to integer is something…
+
+```js
+//
+parseInt('Infinity', 10) // -> NaN
+// ...
+parseInt('Infinity', 18) // -> NaN...
+parseInt('Infinity', 19) // -> 18
+// ...
+parseInt('Infinity', 23) // -> 18...
+parseInt('Infinity', 24) // -> 151176378
+// ...
+parseInt('Infinity', 29) // -> 385849803
+parseInt('Infinity', 30) // -> 13693557269
+// ...
+parseInt('Infinity', 34) // -> 28872273981
+parseInt('Infinity', 35) // -> 1201203301724
+parseInt('Infinity', 36) // -> 1461559270678...
+parseInt('Infinity', 37) // -> NaN
+```
+
+Be careful with parsing `null` too:
+
+```js
+parseInt(null, 24) // -> 23
+```
+
+**💡 Explanation:**
+
+> It's converting `null` to the string `"null"` and trying to convert it. For radixes 0 through 23, there are no numerals it can convert, so it returns NaN. At 24, `"n"`, the 14th letter, is added to the numeral system. At 31, `"u"`, the 21st letter, is added and the entire string can be decoded. At 37 on there is no longer any valid numeral set that can be generated and `NaN` is returned.
+>
+> &mdash; [“parseInt(null, 24) === 23… wait, what?”](https://stackoverflow.com/questions/6459758/parseintnull-24-23-wait-what) at StackOverflow
+
+Don't forget about octals:
+
+```js
+parseInt('06'); // 6
+parseInt('08'); // 0
+```
+
+**💡 Explanation:** This is because `parseInt` accepts a second argument for radix. If it is not supplied and the string starts with a `0` it will be parsed as an octal number.
+
 ## Math with `true` and `false`
 
 Let's do some math:
@@ -333,6 +444,9 @@ Explanations of how `typeof` and `instanceof` operators work:
 ```js
 typeof []   // -> 'object'
 typeof null // -> 'object'
+
+// however
+null instanceof Object // false
 ```
 
 ### 💡 Explanation:
@@ -438,9 +552,9 @@ Read more about Relational operators in the specification:
 
 * [**12.10** Relational Operators](https://www.ecma-international.org/ecma-262/#sec-relational-operators)
 
-## Funny addition
+## Funny math
 
-Often the results of an addition operation in JavaScript might be quite unexpectable. Consider these examples:
+Often the results of an arithmetic operations in JavaScript might be quite unexpectable. Consider these examples:
 
 ```js
  3  - 1  // -> 2
@@ -453,6 +567,12 @@ Often the results of an addition operation in JavaScript might be quite unexpect
 {} + [] // -> 0
 [] + {} // -> '[object Object]'
 {} + {} // -> '[object Object][object Object]'
+
+'222' - -'111' // -> 333
+
+[4] * [4]       // -> 16
+[] * []         // -> 0
+[4, 4] * [4, 4] // NaN
 ```
 
 ### 💡 Explanation:
