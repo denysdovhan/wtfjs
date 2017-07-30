@@ -115,6 +115,24 @@ The expression is evaluted as `'foo' + (+'bar')`, which converts `'bar'` to not 
 
 * [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 
+## `NaN` is not a `NaN`
+
+```js
+NaN === NaN // -> false
+```
+
+### 💡 Explanation:
+
+The specification strictly defines the logic behind this behavior:
+
+> 1. If `Type(x)` is different from `Type(y)`, return **false**.
+> 2. If `Type(x)` is Number, then
+>     1. If `x` is **NaN**, return **false**.
+>     2. If `y` is **NaN**, return **false**.
+>     3. … … …
+>
+> &mdash; [**7.2.14** Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)
+
 ## `[]` is truthy, but not `true`
 
 An array is a truthy value, however, it's not equal to `true`.
