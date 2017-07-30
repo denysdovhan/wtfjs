@@ -475,7 +475,6 @@ typeof 'str' // -> 'string'
 
 ### 💡 Explanation:
 
-
 The `String` construnctor returns a string:
 
 ```js
@@ -541,6 +540,21 @@ This is the [magic behind](http://mxstbr.blog/2016/11/styled-components-magic-ex
 Link to the specification:
 
 * [**12.3.7** Tagged Templates](https://www.ecma-international.org/ecma-262/#sec-tagged-templates)
+
+## Call call call
+
+> Found by [@cramforce](http://twitter.com/cramforce)
+
+```js
+console.log.call.call.call.call.call.apply(a => a, [1, 2])
+```
+
+### 💡 Explanation:
+
+Attention, it could break your mind! Try to reproduce this code in your head: we're applying the `call` method using `apply` method. Read more:
+
+* [**19.2.3.3** Function.prototype.call(`thisArg`, ...`args`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.call)
+* [**19.2.3.1 ** Function.prototype.apply(`thisArg`, `argArray`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.apply)
 
 ## A `constructor` property
 
