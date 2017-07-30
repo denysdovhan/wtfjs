@@ -13,6 +13,7 @@ At the same time, all we know that JavaScript is a quite funny language with tri
 - [💪🏻 Motivation](#-motivation)
 - [✍🏻 Notation](#-notation)
 - [👀 Examples](#-examples)
+  - [`[]` is equal `![]`](#-is-equal-)
   - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
   - [`null` is falsy, but not `false`](#null-is-falsy-but-not-false)
   - [function is not function](#function-is-not-function)
@@ -79,6 +80,19 @@ const foo = function () {}
 ```
 
 # 👀 Examples
+
+## `[]` is equal `![]`
+
+Array is equal not array:
+
+```js
+[] == ![] // -> true
+```
+
+### 💡 Explanation:
+
+* [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
+* [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 ## `[]` is truthy, but not `true`
 
@@ -558,7 +572,13 @@ The answer is:
 
 ### 💡 Explanation:
 
-We defined an object with a property `Object` using _Shorthand property notation_. Then we've passed this object to the template literal, so the `toString` method calls for that object. That's why we get string `'[object Object]'`.
+We defined an object with a property `Object` using _Shorthand property notation_:
+
+```js
+{ Object: Object }
+```
+
+Then we've passed this object to the template literal, so the `toString` method calls for that object. That's why we get string `'[object Object]'`.
 
 * [**12.2.9** Template Literals](https://www.ecma-international.org/ecma-262/#sec-template-literals)
 * [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
