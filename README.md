@@ -41,6 +41,7 @@ At the same time, all we know that JavaScript is a quite funny language with tri
   - [Is this multiple inheritance?](#is-this-multiple-inheritance)
   - [A generator which yields itself](#a-generator-which-yields-itself)
   - [A class of class](#a-class-of-class)
+  - [Non-coercible objects](#non-coercible-objects)
 - [🎓 License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -792,6 +793,57 @@ Read more here:
 
 * [**14.3** Method Definitions](https://www.ecma-international.org/ecma-262/#sec-method-definitions)
 * [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
+
+## Non-coercible objects
+
+With well-known symbols, there's a way to get rid of type coertion. Take a look:
+
+```js
+function nonCoercible(val) {
+  if (val == null) {
+    throw TypeError('nonCoercible should not be called with null or undefined')
+  }
+
+  const res = Object(val)
+
+  res[Symbol.toPrimitive] = () => {
+    throw TypeError('Trying to coerce non-coercible object')
+  }
+
+  return res
+}
+```
+
+Now we can use this like this:
+
+```js
+// objects
+const foo = nonCoercible({foo: 'foo'})
+
+foo * 10      // -> TypeError: Trying to coerce non-coercible object
+foo + 'evil'  // -> TypeError: Trying to coerce non-coercible object
+
+// strings
+const bar = nonCoercible('bar')
+
+bar + '1'                 // -> TypeError: Trying to coerce non-coercible object
+bar.toString() + 1        // -> bar1
+bar === 'bar'             // -> false
+bar.toString() === 'bar'  // -> true
+bar == 'bar'              // -> TypeError: Trying to coerce non-coercible object
+
+// numbers
+const baz = nonCoercible(1)
+
+baz == 1             // -> TypeError: Trying to coerce non-coercible object
+baz === 1            // -> false
+baz.valueOf() === 1  // -> true
+```
+
+### 💡 Explanation:
+
+* [A gist by Sergey Rubanov](https://gist.github.com/chicoxyzzy/5dd24608e886adf5444499896dff1197)
+* [**6.1.5.1** Well-Known Symbols](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
 
 # 🎓 License
 
