@@ -171,6 +171,24 @@ The explanation is the same as for previous example. Here's a corresponding link
 
 * [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
+## Minimal value is greater than zero
+
+`Number.MIN_VALUE` is the smallest number, which is greater than zero:
+
+```js
+Number.MIN_VALUE > 0 // -> true
+```
+
+### 💡 Explanation:
+
+> `Number.MIN_VALUE` is `5e-324`, i.e. the smallest positive number that can be represented within float precision, i.e. that's as close as you can get to zero. It defines the best resolution floats give you.
+>
+> Now the overall smallest value is `Number.NEGATIVE_INFINITY` although that's not really numeric in the strict sense.
+>
+> &mdash; [“Why is `0` less than `Number.MIN_VALUE` in JavaScript?”](https://stackoverflow.com/questions/26614728/why-is-0-less-than-number-min-value-in-javascript) at StackOverflow
+
+* [**20.1.2.9** Number.MIN_VALUE](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
+
 ## function is not function
 
 > ⚠️ A bug present in V8 v5.5 or lower (Node.js <=7) ⚠️
