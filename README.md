@@ -448,6 +448,23 @@ What about the rest examples? A `ToPrimitive` and `ToString` methods are being i
 * [**7.1.1** ToPrimitive(`input` [,`PreferredType`])](https://www.ecma-international.org/ecma-262/#sec-toprimitive)
 * [**7.1.12** ToString(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tostring)
 
+## Addition of RegExps
+
+Did you know you can add numbers like this?
+
+```js
+// Patch a toString method
+RegExp.prototype.toString = function() {
+  return this.source
+}
+
+/7/ - /5/ // -> 2
+```
+
+### 💡 Explanation:
+
+* [**21.2.5.10** get RegExp.prototype.source](https://www.ecma-international.org/ecma-262/#sec-get-regexp.prototype.source)
+
 ## Strings aren't instances of `String`
 
 ```js
