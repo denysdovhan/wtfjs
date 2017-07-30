@@ -21,7 +21,7 @@
     "handbook"
   ],
   "author": "Denys Dovhan <denysdovhan@gmail.com> (http://denysdovhan.com)",
-  "license": "CC-BY-4.0",
+  "license": "WTFPL 2.0",
   "bugs": {
     "url": "https://github.com/denysdovhan/wtfjs/issues"
   },

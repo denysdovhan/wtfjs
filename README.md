@@ -1,4 +1,4 @@
-# What the f*ck JavaScript? [![CC 4.0][cc-image]][cc-url]
+# What the f*ck JavaScript? [![CC 4.0][license-image]][license-url]
 
 > A list of funny and tricky examples of JavaScript.
 
@@ -862,9 +862,9 @@ baz.valueOf() === 1  // -> true
 
 # 🎓 License
 
-[![CC 4.0][cc-image]][cc-url]
+[![CC 4.0][license-image]][license-url]
 
 &copy; [Denys Dovhan](http://denysdovhan.com)
 
-[cc-url]: http://creativecommons.org/licenses/by/4.0/
-[cc-image]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg?style=flat-square
+[license-url]: http://www.wtfpl.net
+[license-image]: https://img.shields.io/badge/License-WTFPL%202.0-lightgrey.svg?style=flat-square
