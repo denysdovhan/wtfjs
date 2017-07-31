@@ -45,7 +45,7 @@ Original idea of WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux
   - [A `constructor` property](#a-constructor-property)
   - [Object as a key of object's property](#object-as-a-key-of-objects-property)
   - [Accessing prototypes with `__proto__`](#accessing-prototypes-with-__proto__)
-  - [``` `${{Object}}` ```](#-object-)
+  - [``` `${{Object}}` ```](#object)
   - [Destructoring with default values](#destructoring-with-default-values)
   - [Dots and spreading](#dots-and-spreading)
   - [Labels](#labels)
