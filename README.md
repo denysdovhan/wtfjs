@@ -166,7 +166,7 @@ The specification strictly defines the logic behind this behavior:
 Following the definition of `NaN` from the IEEE:
 
 > Four mutually exclusive relations are possible: less than, equal, greater than, and unordered. The last case arises when at least one operand is NaN. Every NaN shall compare unordered with everything, including itself.
-> 
+>
 > &mdash; [“What is the rationale for all comparisons returning false for IEEE754 NaN values?”](https://stackoverflow.com/questions/1565164/1573715#1573715) at StackOverflow
 
 ## It's a fail
@@ -754,7 +754,7 @@ An `Object.prototype.constructor` returns a reference to the `Object` constructo
 
 ### 💡 Explanation:
 
-Why does this work so? Here we're using a _Computed property name_ TODO(add link to spec). When you pass an object between those brackets, it coerces object to a string, so we get a property key `'[object Object]'` and value `{}`.
+Why does this work so? Here we're using a _Computed property name_. When you pass an object between those brackets, it coerces object to a string, so we get a property key `'[object Object]'` and value `{}`.
 
 The same way we can make brackets hell like this:
 
@@ -769,9 +769,10 @@ The same way we can make brackets hell like this:
 // }
 ```
 
-Read more about object litarals here:
+Read more about object literals here:
 
 * [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
+* [**12.2.6** Object Initializer](http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer)
 
 ## Accessing prototypes with `__proto__`
 
