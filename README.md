@@ -36,7 +36,7 @@ Original idea of WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux
   - [Magicaly increasing numbers](#magicaly-increasing-numbers)
   - [Precision of `0.1 + 0.2`](#precision-of-01--02)
   - [Patching numbers](#patching-numbers)
-  - [Comparation of three numbers](#comparation-of-three-numbers)
+  - [Comparison of three numbers](#comparison-of-three-numbers)
   - [Funny math](#funny-math)
   - [Addition of RegExps](#addition-of-regexps)
   - [Strings aren't instances of `String`](#strings-arent-instances-of-string)
@@ -521,7 +521,7 @@ Obviously, you can extend `Number` object like any other object in JavaScript. H
 
 * [**20.1** Number Objects](https://www.ecma-international.org/ecma-262/#sec-number-objects)
 
-## Comparation of three numbers
+## Comparison of three numbers
 
 ```js
 1 < 2 < 3 // -> true
