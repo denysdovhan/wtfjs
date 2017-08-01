@@ -33,7 +33,7 @@ Original idea of WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux
   - [HTML comments are valid in JavaScript](#html-comments-are-valid-in-javascript)
   - [`NaN` is ~~not~~ a number](#nan-is-not-a-number)
   - [`[]` and `null` are objects](#-and-null-are-objects)
-  - [Magicaly increasing numbers](#magicaly-increasing-numbers)
+  - [Magically increasing numbers](#magically-increasing-numbers)
   - [Precision of `0.1 + 0.2`](#precision-of-01--02)
   - [Patching numbers](#patching-numbers)
   - [Comparison of three numbers](#comparison-of-three-numbers)
@@ -476,26 +476,31 @@ Object.prototype.toString.call(null)
 // -> '[object Null]'
 ```
 
-## Magicaly increasing numbers
+## Magically increasing numbers
 
 ```js
 999999999999999  // -> 999999999999999
 9999999999999999 // -> 10000000000000000
+
+10000000000000000 // -> 10000000000000000
+10000000000000000 + 1 // -> 10000000000000000
+10000000000000000 + 1.1 // -> 10000000000000002
 ```
 
 ### 💡 Explanation:
 
-This is caused by IEEE 754-2008 standard for Binary Floating-Point Arithmetic. Read more:
+This is caused by IEEE 754-2008 standard for Binary Floating-Point Arithmetic. At this scale, it rounds to the nearest even number. Read more:
 
 * [**6.1.6** The Number Type](https://www.ecma-international.org/ecma-262/#sec-ecmascript-language-types-number-type)
 * [IEEE 754](https://en.m.wikipedia.org/wiki/IEEE_754) on Wikipedia
 
 ## Precision of `0.1 + 0.2`
 
-Well known joke from JavaScript. An addition of `0.1` and `0.2` is deadly precise:
+Well-known joke. An addition of `0.1` and `0.2` is deadly precise:
 
 ```js
 0.1 + 0.2 // -> 0.30000000000000004
+(0.1 + 0.2) === 0.3 // -> false
 ```
 
 ### 💡 Explanation:
@@ -504,7 +509,7 @@ The answer for the [”Is floating point math broken?”](https://stackoverflow.
 
 > The constants `0.2` and `0.3` in your program will also be approximations to their true values. It happens that the closest `double` to `0.2` is larger than the rational number `0.2` but that the closest `double` to `0.3` is smaller than the rational number `0.3`. The sum of `0.1` and `0.2` winds up being larger than the rational number `0.3` and hence disagreeing with the constant in your code.
 
-This problem is so known that even there is a website called [0.30000000000000004.com](http://0.30000000000000004.com/).
+This problem is so known that even there is a website called [0.30000000000000004.com](http://0.30000000000000004.com/). It occurs in every language that uses floating-point math, not just JavaScript.
 
 ## Patching numbers
 
