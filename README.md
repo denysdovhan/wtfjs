@@ -783,7 +783,7 @@ As we know, primitives don't have prototypes. However, if we try to get a value 
 
 ### 💡 Explanation:
 
-It happens because of when primitive doesn't have a prototype, it will be wrapped in a wrapper object using `ToObject` method. So, spet-by-step:
+It happens because of when primitive doesn't have a prototype, it will be wrapped in a wrapper object using `ToObject` method. So, step-by-step:
 
 ```js
 (1).__proto__ // -> [Number: 0]
