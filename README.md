@@ -330,7 +330,7 @@ parseInt('f*ck');     // -> NaN
 parseInt('f*ck', 16); // -> 15
 ```
 
-**💡 Explanation:** This happens because `parseInt` will continue parsing character-by-character until it hits a character it doesn't know. The `f` in `'fuck'` is hexadecimal `15`.
+**💡 Explanation:** This happens because `parseInt` will continue parsing character-by-character until it hits a character it doesn't know. The `f` in `'f*ck'` is hexadecimal `15`.
 
 Parsing `Infinity` to integer is something…
 
