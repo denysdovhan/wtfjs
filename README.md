@@ -4,9 +4,9 @@
 
 JavaScript is a great language. It has a simple syntax, large ecosystem and, what is the most important, great community.
 
-At the same time, all we know that JavaScript is a quite funny language with tricky parts. Some of them can quickly turn our everyday job into hell, some of them can make us laugh out loud.
+At the same time, all we know that JavaScript is quite a funny language with tricky parts. Some of them can quickly turn our everyday job into hell, some of them can make us laugh out loud.
 
-Original idea of WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux). This list is highly inspired by his talk [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
+The original idea for WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux). This list is highly inspired by his talk [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
 [![dotJS 2012 - Brian Leroux - WTFJS](https://img.youtube.com/vi/et8xNAc2ic8/0.jpg)](https://www.youtube.com/watch?v=et8xNAc2ic8)
 
@@ -67,11 +67,11 @@ Original idea of WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux
 
 The primary goal of this list is to collect some crazy examples and explain how they work, if possible. Just because it's fun to learn something that we didn't know before.
 
-If you are a beginner, you can use this notes to get deeper dive into the JavaScript. I hope this notes will motivate you to spend more time reading the specification.
+If you are a beginner, you can use these notes to get a deeper dive into the JavaScript. I hope these notes will motivate you to spend more time reading the specification.
 
-If you are a professional developer, you can consider these examples as a great resource for interview questions and quizzes for newcomers in your company. At the same time, these examples would be handy while preparing for the interview.
+If you are a professional developer, you can consider these examples as a great resource for interview questions and quizzes for newcomers in your company. At the same time, these examples can come in handy while preparing for an interview.
 
-In any case, just read this. Probably you're going to find something new for yourself.
+In any case, just read this. You're probably going to find something new.
 
 # ✍🏻 Notation
 
