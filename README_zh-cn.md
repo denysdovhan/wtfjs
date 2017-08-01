@@ -50,7 +50,7 @@ WTFJS的原创思想属于 [Brian Leroux](https://twitter.com/brianleroux). 这�
   - [点 和 解构](#dots-and-spreading)
   - [标签](#labels)
   - [嵌套标签](#nested-labels)
-  - [隐藏的 `try..catch`](#insidious-trycatch)
+  - [阴险的 `try..catch`](#insidious-trycatch)
   - [这是多重继承吗？](#is-this-multiple-inheritance)
   - [A generator which yields itself](#a-generator-which-yields-itself)
   - [A class of class](#a-class-of-class)
@@ -302,8 +302,6 @@ new Foo instanceof null
 ```
 
 ## `undefined` 和 `Number`
-
-If we don't pass any argument into the `Number` constructor, we'll get `0`. `undefined` is a value assigned to formal arguments which there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
 
 如果我们不把任何参数传递到 `Number` 构造函数中，我们将得到 `0` 。`undefined` 是一个赋值形参，没有实际的参数，所以您可能期望 `NaN` 将 `undefined` 作为参数的值。然而，当我们通过 `undefined` ，我们将得到 `NaN` 。
 
@@ -807,13 +805,13 @@ c[c][c]('console.log("WTF?")')() // > WTF
 
 ## ``` `${{Object}}` ```
 
-What the result of the expression below?
+下面的表达结果如何？
 
 ```js
 `${{Object}}`
 ```
 
-The answer is:
+答案是：
 
 ```js
 // -> '[object Object]'
@@ -822,25 +820,27 @@ The answer is:
 ### 💡 说明:
 
 We defined an object with a property `Object` using _Shorthand property notation_:
+我们使用速记属性符号表示法定义了一个具有 `Object` 属性的对象：
 
 ```js
 { Object: Object }
 ```
 
-Then we've passed this object to the template literal, so the `toString` method calls for that object. That's why we get string `'[object Object]'`.
+然后我们将该对象传递给模板文字，因此 `toString` 方法调用该对象。 这就是为什么我们得到字符串 `'[object Object]'` 。
+
 
 * [**12.2.9** Template Literals](https://www.ecma-international.org/ecma-262/#sec-template-literals)
 * [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 
-## Destructoring with default values
+## 使用默认值进行结构化
 
-Consider this example:
+思考这个例子：
 
 ```js
 let x, { x: y = 1 } = { x }; y;
 ```
 
-The example above is a great task for an interview. What the value of `y`? The answer is:
+上面的例子是访问的一个很好的任务。 `y` 有什么值？ 答案是：
 
 ```js
 // -> 1
@@ -854,18 +854,18 @@ let x, { x: y = 1 } = { x }; y;
 //  1       3           2    4
 ```
 
-With the example above:
+以上示例：
 
-1. We declare `x` with no value, so it's `undefined`.
-2. Then we pack the value of `x` into the object property `x`.
-3. Then we extract the value of `x` using destructuring and want to assign this value to the `y`. If the value is not defined, then we're gonna use `1` as the default value.
-4. Return the value of `y`.
+1. 我们声明 `x` 没有赋值，所以它是'undefined`。
+2. 然后我们将 `x` 的值打包到对象属性 `x` 中。
+3. 然后我们使用解构来提取 `x` 的值，并且要将这个值分配给 `y`。 如果未定义该值，那么我们将使用 `1` 作为默认值。
+4. 返回 `y` 的值。
 
 * [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 
-## Dots and spreading
+## 点 和 解构
 
-Interesting examples could be composed with spreading of arrays. Consider this:
+有趣的例子可以由阵列的扩展组成。 考虑这个：
 
 ```js
 [...[...'...']].length // -> 3
@@ -873,11 +873,11 @@ Interesting examples could be composed with spreading of arrays. Consider this:
 
 ### 💡 说明:
 
-Why `3`? When we use spread operator TODO(link to spec), the `@@iterator` method calls, and the returned iterator is used to obtain the values to be iterated. The default iterator for string spreads string by character. After spreading, we're packing this characters into an array. Then spreading this array again and packing back to the array.
+为什么是3？当我们使用扩展运算符 TODO链接到规范）时，`@@iterator` 方法调用，而返回的迭代器用于获取要迭代的值。字符串的默认迭代器按字符传播字符串。传播之后，我们把这些字符打包成一个数组。然后再展开这个数组并打包回数组
 
-A `'...'` string consists with three `.`, so the length of resulting array will be `3`.
+一个 `'...'` 字符串包含 `.` ，所以结果数组的长度将' 3 '。
 
-Now, step-by-step:
+现在，一步一步的看
 
 ```js
 [...'...']             // -> [ '.', '.', '.' ]
@@ -885,7 +885,7 @@ Now, step-by-step:
 [...[...'...']].length // -> 3
 ```
 
-Obviously, we can spread and wrap the elements of array as many times as we want:
+显然，我们可以像我们想要的那样传播和包装数组的元素：
 
 ```js
 [...'...']                 // -> [ '.', '.', '.' ]
@@ -895,9 +895,9 @@ Obviously, we can spread and wrap the elements of array as many times as we want
 // and so on …
 ```
 
-## Labels
+## 标签
 
-Not so many programmers know about labels in JavaScript. They are kind of interesting:
+很多程序员不知道JavaScript中的标签。 但它们很实用
 
 ```js
 foo: {
@@ -912,16 +912,16 @@ foo: {
 
 ### 💡 说明:
 
-The labeled statement is used with `break` or `continue` statements. You can use a label to identify a loop, and then use the `break` or `continue` statements to indicate whether a program should interrupt the loop or continue its execution.
+带标签的语句与 `break` 或 `continue` 语句一起使用。 您可以使用标签来标识循环，然后使用 `break` 或 `continue` 语句来指示程序是否应该中断循环或继续执行它。
 
-In the example above, we identify a label `foo`. Then `console.log('first');` executes and then we interrupt execution.
+在上面的例子中，我们识别一个标签 `foo` 。 然后 `console.log（'first'）;` 执行，然后中断执行。
 
-Read more about labels in JavaScript:
+详细了解JavaScript中的标签：
 
-* [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
-* [Labeled statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
+* [**13.13** 标签语句 ](https://tc39.github.io/ecma262/#sec-labelled-statements)
+* [标签语句](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
 
-## Nested labels
+## 嵌套标签
 
 ```js
 a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
@@ -929,15 +929,15 @@ a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
 
 ### 💡 说明:
 
-Like in the case with previous example follow these links:
+像以前的例子一样，请遵循以下链接：
 
-* [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
-* [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
-* [Labeled statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
+* [**12.16** 逗号运算符(`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
+* [**13.13** 标签语句](https://tc39.github.io/ecma262/#sec-labelled-statements)
+* [标签语句](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
 
-## Insidious `try..catch`
+## 阴险的 `try..catch`
 
-What will this expression return? `2` or `3`?
+这个表达将返回什么？ `2` 或 `3`？
 
 ```js
 (() => {
@@ -949,39 +949,39 @@ What will this expression return? `2` or `3`?
 })()
 ```
 
-The answer is `3`. Surprised?
+答案是3。惊讶吗？
 
 ### 💡 说明:
 
-* [**13.15** The `try` Statement](https://www.ecma-international.org/ecma-262/#sec-try-statement)
+* [**13.15** `try`声明 ](https://www.ecma-international.org/ecma-262/#sec-try-statement)
 
-## Is this multiple inheritance?
+## 这是多重继承吗？
 
-Take a look at the example below:
+看下面的例子：
 
 ```js
 new (class F extends (String, Array) { }) // -> F []
 ```
 
-Is this a multiple inheritance? Nope.
+这是多重继承吗？ 不。
 
 ### 💡 说明:
 
-The interesting part is the value of the `extends` clause (`(String, Array)`). The grouping operator always returns its last argument, so the `(String, Array)` is actually just `Array`. That means we've just created a class which extends `Array`.
+有趣的部分是 `extends` 子句的值（ `（String，Array）` ）。 分组运算符总是返回其最后一个参数，所以 `（String，Array）` 实际上只是 `Array`。 这意味着我们刚刚创建了一个扩展 `Array` 的类。
 
-* [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
-* [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
+* [**14.5** 类定义 ](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
+* [**12.16** 逗号运算符 (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
 
 ## A generator which yields itself
 
-Consider this example with a generator which yields itself:
+考虑一下这个例子，它产生了一个生成器：
 
 ```js
 (function* f() { yield f })().next()
 // -> { value: [GeneratorFunction: f], done: false }
 ```
 
-As you see, the returned value is an object with `value` equal `f`. In that case, we can do something like this:
+如您所见，返回的值是一个值等于 `f` 的对象。那样的话，我们可以做这样的事情：
 
 ```js
 (function* f() { yield f })().next().value().next()
@@ -1001,24 +1001,24 @@ As you see, the returned value is an object with `value` equal `f`. In that case
 
 ### 💡 说明:
 
-To understand why this works that way, read these sections of the specification:
+要理解为什么这样工作，请阅读规范的这些部分：
 
 * [**25** Control Abstraction Objects](https://www.ecma-international.org/ecma-262/#sec-control-abstraction-objects)
 * [**25.3** Generator Objects](https://www.ecma-international.org/ecma-262/#sec-generator-objects)
 
-## A class of class
+## 内部类
 
-Consider this obfuscated syntax playing:
+考虑这个混淆的语法游戏：
 
 ```js
 (typeof (new (class { class () {} }))) // -> 'object'
 ```
 
-It seems like we're declaring a class inside of class. Should be and error, however, we get an `'object'` string.
+似乎我们在类内部声明了一个类。应该和错误，然而，我们得到一个 `'object'` 字符串。
 
 ### 💡 说明:
 
-Since ECMAScript 5 era, _keywords_ are allowed as _property names_. So think about it as about this simple object example:
+ECMAScript 5时代以来，关键字允许访问属性。所以请考虑一下这个简单的对象示例：
 
 ```js
 const foo = {
@@ -1026,7 +1026,7 @@ const foo = {
 };
 ```
 
-And ES6 standardized shorthand method definitions. Also, classes might be anonymous. So if we drop `: function` part, we're going to get:
+和6标准速记方法定义。此外，类可能是匿名的。因此，如果我们放弃 `函数` 部分，我们将得到：
 
 ```js
 class {
@@ -1034,16 +1034,16 @@ class {
 }
 ```
 
-The result of a default class is always a simple object. And its typeof should return `'object'`.
+默认类的结果总是一个简单的对象。其类型应返回 `'object'` 。
 
-Read more here:
+在这里阅读更多
 
 * [**14.3** Method Definitions](https://www.ecma-international.org/ecma-262/#sec-method-definitions)
 * [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
 
-## Non-coercible objects
+## 非强制对象
 
-With well-known symbols, there's a way to get rid of type coertion. Take a look:
+有着名的符号，有一种方法可以摆脱类型的强制。 看一看：
 
 ```js
 function nonCoercible(val) {
@@ -1061,7 +1061,7 @@ function nonCoercible(val) {
 }
 ```
 
-Now we can use this like this:
+现在我们可以这样使用：
 
 ```js
 // objects
