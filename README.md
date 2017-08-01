@@ -431,11 +431,10 @@ Since Node.js is based on V8 engine, HTML-like comments are supported in the Nod
 
 ## `NaN` is ~~not~~ a number
 
-Despite the fact that type of `NaN` is a `'number'`, `NaN` is not instance of number:
+Type of `NaN` is a `'number'`:
 
 ```js
 typeof NaN            // -> 'number'
-NaN instanceof Number // -> false
 ```
 
 ### 💡 Explanation:
