@@ -199,7 +199,7 @@ Thinking of a string as an array we can access its first character via `[0]`:
 'false'[0] // -> 'f'
 ```
 
-Now, the rest is obvious and can figure out it by yourself!
+The Rest is obvious, but the `i` is tricky.  The `i` in fail is grabbed from generating the string `'falseundefined'` and grabbing index `['10']`
 
 ## `[]` is truthy, but not `true`
 
