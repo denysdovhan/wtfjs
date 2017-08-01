@@ -461,7 +461,7 @@ The behavior of `typeof` operator is defined in this section of the specificatio
 
 * [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
 
-According to the specifications, the `typeof` operator returns a string according to [Table 35: `typeof` Operator Results](https://www.ecma-international.org/ecma-262/#table-35). For `null`, ordinary, standard exotic and non-standard exotic objects which does not implement `[[Call]]` it returns string `"object"`.
+According to the specifications, the `typeof` operator returns a string according to [Table 35: `typeof` Operator Results](https://www.ecma-international.org/ecma-262/#table-35). For `null`, ordinary, standard exotic and non-standard exotic objects which do not implement `[[Call]]` it returns string `"object"`.
 
 However, you can check the type of object using `toString` method.
 
@@ -476,7 +476,7 @@ Object.prototype.toString.call(null)
 // -> '[object Null]'
 ```
 
-## Magicaly increasing numbers
+## Magically increasing numbers
 
 ```js
 999999999999999  // -> 999999999999999
@@ -769,7 +769,7 @@ The same way we can make brackets hell like this:
 // }
 ```
 
-Read more about object litarals here:
+Read more about object literals here:
 
 * [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 
@@ -823,7 +823,7 @@ Then we've passed this object to the template literal, so the `toString` method 
 * [**12.2.9** Template Literals](https://www.ecma-international.org/ecma-262/#sec-template-literals)
 * [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 
-## Destructoring with default values
+## Destructuring with default values
 
 Consider this example:
 
@@ -1034,7 +1034,7 @@ Read more here:
 
 ## Non-coercible objects
 
-With well-known symbols, there's a way to get rid of type coertion. Take a look:
+With well-known symbols, there's a way to get rid of type coercion. Take a look:
 
 ```js
 function nonCoercible(val) {
