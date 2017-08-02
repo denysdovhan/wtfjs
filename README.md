@@ -2,6 +2,8 @@
 
 > A list of funny and tricky examples of JavaScript.
 
+[中文版](./README.md)
+
 JavaScript is a great language. It has a simple syntax, large ecosystem and, what is the most important, great community.
 
 At the same time, all we know that JavaScript is a quite funny language with tricky parts. Some of them can quickly turn our everyday job into hell, some of them can make us laugh out loud.
