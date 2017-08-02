@@ -180,7 +180,7 @@ You would not believe, but …
 
 ### 💡 Explanation:
 
-Breaking that mass of symbols into pieces we notices, that the following pattern occurs often:
+Breaking that mass of symbols into pieces we notice, that the following pattern occurs often:
 
 ```js
 (![]+[]) // -> 'false'
