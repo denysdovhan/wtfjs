@@ -20,6 +20,7 @@ Original idea of WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux
 - [✍🏻 Notation](#-notation)
 - [👀 Examples](#-examples)
   - [`[]` is equal `![]`](#-is-equal-)
+  - [`true` is not equal `![]`, but not equal `[]` too](#-true-is-not-equal-but-not-equal-too-)
   - [true is false](#true-is-false)
   - [fooNaN](#foonan)
   - [`NaN` is not a `NaN`](#nan-is-not-a-nan)
@@ -110,6 +111,35 @@ Array is equal not array:
 
 * [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 * [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+
+## `true` is not equal `![]`, but not equal `[]` too
+Array is not equal `true`, but not Array is not equal `true` too;
+Array is equal `false`, not Array is equal `false` too:
+
+```js 
+true == [] // -> false
+true == ![] // -> false
+
+false == [] // -> true 
+false == ![] // -> true
+```
+### 💡 Explanation:
+
+> The comparison x == y, where x and y are values, produces true or false. Such a comparison is performed as follows:
+
+> If Type(x) is the same as Type(y), then
+> Return the result of performing Strict Equality Comparison x === y.
+> If x is null and y is undefined, return true.
+> If x is undefined and y is null, return true.
+> If Type(x) is Number and Type(y) is String, return the result of the comparison x == ToNumber(y).
+> If Type(x) is String and Type(y) is Number, return the result of the comparison ToNumber(x) == y.
+> If Type(x) is Boolean, return the result of the comparison ToNumber(x) == y.
+> If Type(y) is Boolean, return the result of the comparison x == ToNumber(y).
+> If Type(x) is either String, Number, or Symbol and Type(y) is Object, return the result of the comparison x == ToPrimitive(y).
+> If Type(x) is Object and Type(y) is either String, Number, or Symbol, return the result of the comparison ToPrimitive(x) == y.
+> Return false.
+> [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+
 
 ## true is false
 
