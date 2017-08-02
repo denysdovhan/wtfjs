@@ -2,7 +2,7 @@
 
 > A list of funny and tricky examples of JavaScript.
 
-[中文版](./README.md)
+[中文版](./README-zh-cn.md)
 
 JavaScript is a great language. It has a simple syntax, large ecosystem and, what is the most important, great community.
 
