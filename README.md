@@ -125,17 +125,49 @@ false == ![] // -> true
 ```
 ### 💡 Explanation:
 
-> 1. If `Type(x)` is the same as `Type(y)`, then
->   Return the result of performing Strict Equality Comparison x === y.
->   1. If x is null and y is undefined, return **true**.
->   2. If x is undefined and y is null, return **true**.
->   3. If `Type(x)` is Number and `Type(y)` is String, return the result of the comparison x == ToNumber(y).
->   4. If `Type(x)` is String and `Type(y)` is Number, return the result of the comparison ToNumber(x) == y.
->   5. If `Type(x)` is Boolean, return the result of the comparison ToNumber(x) == y.
->   6. If `Type(y)` is Boolean, return the result of the comparison x == ToNumber(y).
->   7. ... ... ...
->
-> &mdash; [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+```js
+true == [] // -> false
+true == ![] // -> false
+
+// According to the specification
+
+true == [] // -> false
+
+toNumber(true) // -> 1
+toNumber([])  // -> 0
+
+1 == 0 // -> false
+
+true == ![] // -> false
+
+![] // -> false
+
+true == false // -> false
+
+```
+
+```js
+false == [] // -> true 
+false == ![] // -> true
+
+// According to the specification
+
+false == [] // -> true
+
+toNumber(false) // -> 0
+toNumber([])  // -> 0
+
+0 == 0 // -> true
+
+false == ![] // -> false
+
+![] // -> false
+
+false == false // -> true
+
+```
+
+* [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 
 ## true is false
