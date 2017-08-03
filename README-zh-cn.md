@@ -4,7 +4,7 @@
 
 基于个人理解加google翻译，如有问题请指正，谢谢。
 
-JavaScript是一种伟大的语言。 它有一个简单的语法，有着大的生态系统，什么是最重要的？伟大的社区。
+JavaScript是一种很好的语言。它有一个简单的语法，庞大的生态系统，以及最重要，最伟大的社区。
 
 同时，我们都知道，JavaScript是一个非常有趣的语言，具有棘手的部分。 他们中的一些可以迅速将我们的日常工作变成地狱，有些可以让我们大声笑起来。
 
@@ -16,47 +16,47 @@ WTFJS的原创思想属于 [Brian Leroux](https://twitter.com/brianleroux). 这�
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 # 目录
 
-- [💪🏻 动机](#-motivation)
-- [✍🏻 符号](#-notation)
-- [👀 例子](#-examples)
-  - [`[]` 等于 `![]`](#-is-equal-)
-  - [true is false](#true-is-false)
+- [💪🏻 动机](#-动机)
+- [✍🏻 符号](#-符号)
+- [👀 例子](#-例子)
+  - [`[]` 等于 `![]`](#-等于-)
+  - [true is false](#true-是-false)
   - [fooNaN](#foonan)
-  - [`NaN` 不是一个 `NaN`](#nan-is-not-a-nan)
-  - [It's a fail](#its-a-fail)
-  - [`[]` 本身是true, 但又不等于 `true`](#-is-truthy-but-not-true)
-  - [`null` 本身是false, 但又不等于 `false`](#null-is-falsy-but-not-false)
-  - [最小值大于零](#minimal-value-is-greater-than-zero)
-  - [函数又不是函数](#function-is-not-function)
-  - [数组相加](#adding-arrays)
-  - [`undefined` 和 `Number`](#undefined-and-number)
-  - [`parseInt` 是一个坏蛋 ](#parseint-is-a-bad-guy)
-  - [数学计算中 `true` 和 `false`](#math-with-true-and-false)
-  - [HTML注释在JavaScript中有效](#html-comments-are-valid-in-javascript)
-  - [`NaN` ~~不是~~ 一个数值](#nan-is-not-a-number)
-  - [`[]` 和 `null` 都是对戏那个](#-and-null-are-objects)
-  - [神奇的数字](#magicaly-increasing-numbers)
-  - [精度问题 `0.1 + 0.2`](#precision-of-01--02)
-  - [修复数字](#patching-numbers)
-  - [三个数字的比较](#comparison-of-three-numbers)
-  - [有趣的数学](#funny-math)
-  - [添加正则表达式](#addition-of-regexps)
-  - [字符串不是 `String` 的实例](#strings-arent-instances-of-string)
-  - [用反引号调用函数](#calling-functions-with-backticks)
-  - [调用 调用 调用](#call-call-call)
-  - [一个 `constructor` 属性](#a-constructor-property)
-  - [将对象做为另一个对象的key](#object-as-a-key-of-objects-property)
-  - [用`__proto__`访问原型](#accessing-prototypes-with-__proto__)
+  - [`NaN` 不是一个 `NaN`](#nan-不是一个-nan)
+  - [It's a fail](#它是fail)
+  - [`[]` 本身是true, 但又不等于 `true`](#-是-true-但它不等于-true)
+  - [`null` 本身是false, 但又不等于 `false`](#null-是false-但又不等于-false)
+  - [最小值大于零](#最小值大于零)
+  - [函数又不是函数](#函数又不是函数)
+  - [数组相加](#数组相加)
+  - [`undefined` 和 `Number`](#undefined-和-number)
+  - [`parseInt` 是一个坏蛋 ](#parseint-是一个坏蛋)
+  - [数学计算中 `true` 和 `false`](#true-和-false-数学运算)
+  - [HTML注释在JavaScript中有效](#html注释在javascript中有效)
+  - [`NaN` ~~不是~~ 一个数值](#nan-不是一个数值)
+  - [`[]` 和 `null` 都是对戏那个](#-和-null-是对象)
+  - [神奇的数字](#神奇多位的数字)
+  - [精度问题 `0.1 + 0.2`](#01--02-精度计算)
+  - [修复数字](#扩展数字的方法)
+  - [三个数字的比较](#三个数字的比较)
+  - [有趣的数学](#有趣的数学)
+  - [添加正则表达式](#扩展正则)
+  - [字符串不是 `String` 的实例](#字符串不是-string-的实例)
+  - [用反引号调用函数](#用反引号调用函数)
+  - [调用 调用 调用](#调用-调用-调用)
+  - [一个 `constructor` 属性](#一个constructor属性)
+  - [将对象做为另一个对象的key](#将对象做为另一个对象的key)
+  - [用`__proto__`访问原型](#访问原型-__proto__)
   - [``` `${{Object}}` ```](#-object-)
-  - [使用默认值进行结构化](#destructoring-with-default-values)
-  - [点 和 解构](#dots-and-spreading)
-  - [标签](#labels)
-  - [嵌套标签](#nested-labels)
-  - [阴险的 `try..catch`](#insidious-trycatch)
-  - [这是多重继承吗？](#is-this-multiple-inheritance)
+  - [使用默认值进行结构化](#使用默认值进行结构化)
+  - [点 和 解构](#点-和-解构)
+  - [标签](#标签)
+  - [嵌套标签](#嵌套标签)
+  - [阴险的 `try..catch`](#阴险的-trycatch)
+  - [这是多重继承吗？](#这是多重继承吗)
   - [A generator which yields itself](#a-generator-which-yields-itself)
-  - [A class of class](#a-class-of-class)
-  - [非强制对象](#non-coercible-objects)
+  - [一个类的类](#一个类的类)
+  - [非强制对象](#非强制对象)
 - [🎓 License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -610,7 +610,7 @@ String  + String  -> concatenation
 
 ## 扩展正则
 
-你知道你可以做这样数学运算吗？
+你知道可以做这样的运算吗？
 
 ```js
 // Patch a toString method
@@ -762,7 +762,7 @@ c[c][c]('console.log("WTF?")')() // > WTF
 
 为什么这样工作？ 这里我们使用 _计算属性的名称_ TODO（添加链接到spec）。 当这些方括号之间传递一个对象时，它会将对象强制转换成一个字符串，所以我们得到一个属性键 `[object Object]` 和 值是 `{}` 。
 
-同样的方式，我们可以使括号的地狱像这样：
+同样的，我们也可以这样:
 
 ```js
 ({[{}]:{[{}]:{}}})[{}][{}] // -> {}
@@ -1004,7 +1004,7 @@ new (class F extends (String, Array) { }) // -> F []
 * [**25** Control Abstraction Objects](https://www.ecma-international.org/ecma-262/#sec-control-abstraction-objects)
 * [**25.3** Generator Objects](https://www.ecma-international.org/ecma-262/#sec-generator-objects)
 
-## 内部类
+## 一个类的类
 
 考虑这个混淆的语法游戏：
 
