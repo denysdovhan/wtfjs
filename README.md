@@ -125,15 +125,15 @@ false == ![] // -> true
 ```
 ### 💡 Explanation:
 
-> If `Type(x)` is the same as `Type(y)`, then
+> 1. If `Type(x)` is the same as `Type(y)`, then
 >   Return the result of performing Strict Equality Comparison x === y.
->   If x is null and y is undefined, return **true**.
->   If x is undefined and y is null, return **true**.
->   If `Type(x)` is Number and `Type(y)` is String, return the result of the comparison x == ToNumber(y).
->   If `Type(x)` is String and `Type(y)` is Number, return the result of the comparison ToNumber(x) == y.
->   If `Type(x)` is Boolean, return the result of the comparison ToNumber(x) == y.
->   If `Type(y)` is Boolean, return the result of the comparison x == ToNumber(y).
->   ... ... ...
+>   1. If x is null and y is undefined, return **true**.
+>   2. If x is undefined and y is null, return **true**.
+>   3. If `Type(x)` is Number and `Type(y)` is String, return the result of the comparison x == ToNumber(y).
+>   4. If `Type(x)` is String and `Type(y)` is Number, return the result of the comparison ToNumber(x) == y.
+>   5. If `Type(x)` is Boolean, return the result of the comparison ToNumber(x) == y.
+>   6. If `Type(y)` is Boolean, return the result of the comparison x == ToNumber(y).
+>   7. ... ... ...
 >
 > &mdash; [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
