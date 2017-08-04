@@ -291,8 +291,8 @@ The concatenation happens. Step-by-step it looks like this:
 
 ```js
 [1, 2, 3] + [4, 5, 6]
-// joining
-[1, 2, 3].join() + [4, 5, 6].join()
+// call toString()
+[1, 2, 3].toString() + [4, 5, 6].toString()
 // concatenation
 '1,2,3' + '4,5,6'
 // ->
