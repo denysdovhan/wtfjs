@@ -51,6 +51,7 @@ Original idea of WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux
   - [Labels](#labels)
   - [Nested labels](#nested-labels)
   - [Insidious `try..catch`](#insidious-trycatch)
+  - [Asynchronous `try..catch`](#asynchronous-trycatch)
   - [Is this multiple inheritance?](#is-this-multiple-inheritance)
   - [A generator which yields itself](#a-generator-which-yields-itself)
   - [A class of class](#a-class-of-class)
@@ -950,6 +951,26 @@ The answer is `3`. Surprised?
 ### 💡 Explanation:
 
 * [**13.15** The `try` Statement](https://www.ecma-international.org/ecma-262/#sec-try-statement)
+
+## Asynchronous `try..catch`
+
+What message will `console.log` output?
+
+```js
+try {
+  setTimeout(function() { 
+    throw new Error('Something is going wrong..')
+  }, 1000)
+} catch (error) {
+  console.log(error)
+}
+```
+
+There will be `Uncaught Error: Something is going wrong..`
+
+### 💡 Explanation:
+
+Exceptions are only a synchronous mechanism.
 
 ## Is this multiple inheritance?
 
