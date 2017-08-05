@@ -564,7 +564,7 @@ Read more about Relational operators in the specification:
 
 ## Funny math
 
-Often the results of an arithmetic operations in JavaScript might be quite unexpectable. Consider these examples:
+Often the results of arithmetic operations in JavaScript might be quite unexpected. Consider these examples:
 
 ```js
  3  - 1  // -> 2
@@ -598,7 +598,7 @@ String  + Boolean -> concatenation
 String  + String  -> concatenation
 ```
 
-What about the rest examples? A `ToPrimitive` and `ToString` methods are being implicitly called for `[]` and `{}` before addition. Read more about evaluation process in the specification:
+What about other examples? A `ToPrimitive` and `ToString` methods are being implicitly called for `[]` and `{}` before addition. Read more about evaluation process in the specification:
 
 * [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 * [**7.1.1** ToPrimitive(`input` [,`PreferredType`])](https://www.ecma-international.org/ecma-262/#sec-toprimitive)
@@ -691,7 +691,7 @@ function template(strings, ...keys) {
   // do something with strings and keys…
 }
 ```
-This is the [magic behind](http://mxstbr.blog/2016/11/styled-components-magic-explained/) famous library called [💅 styled-components](https://www.styled-components.com/), which is popular in React community.
+This is the [magic behind](http://mxstbr.blog/2016/11/styled-components-magic-explained/) famous library called [💅 styled-components](https://www.styled-components.com/), which is popular in the React community.
 
 Link to the specification:
 
@@ -707,7 +707,7 @@ console.log.call.call.call.call.call.apply(a => a, [1, 2])
 
 ### 💡 Explanation:
 
-Attention, it could break your mind! Try to reproduce this code in your head: we're applying the `call` method using `apply` method. Read more:
+Attention, it could break your mind! Try to reproduce this code in your head: we're applying the `call` method using the `apply` method. Read more:
 
 * [**19.2.3.3** Function.prototype.call(`thisArg`, ...`args`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.call)
 * [**19.2.3.1 ** Function.prototype.apply(`thisArg`, `argArray`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.apply)
@@ -758,9 +758,9 @@ An `Object.prototype.constructor` returns a reference to the `Object` constructo
 
 ### 💡 Explanation:
 
-Why does this work so? Here we're using a _Computed property name_. When you pass an object between those brackets, it coerces object to a string, so we get a property key `'[object Object]'` and value `{}`.
+Why does this work so? Here we're using a _Computed property name_. When you pass an object between those brackets, it coerces object to a string, so we get the property key `'[object Object]'` and the value `{}`.
 
-The same way we can make brackets hell like this:
+We can make "brackets hell" like this:
 
 ```js
 ({[{}]:{[{}]:{}}})[{}][{}] // -> {}
@@ -788,7 +788,7 @@ As we know, primitives don't have prototypes. However, if we try to get a value 
 
 ### 💡 Explanation:
 
-It happens because of when primitive doesn't have a prototype, it will be wrapped in a wrapper object using `ToObject` method. So, step-by-step:
+This happens because when something doesn't have a prototype, it will be wrapped into a wrapper object using the `ToObject` method. So, step-by-step:
 
 ```js
 (1).__proto__ // -> [Number: 0]
@@ -803,7 +803,7 @@ Here is more information about `__proto__`:
 
 ## ``` `${{Object}}` ```
 
-What the result of the expression below?
+What is the result of the expression below?
 
 ```js
 `${{Object}}`
@@ -823,7 +823,7 @@ We defined an object with a property `Object` using _Shorthand property notation
 { Object: Object }
 ```
 
-Then we've passed this object to the template literal, so the `toString` method calls for that object. That's why we get string `'[object Object]'`.
+Then we've passed this object to the template literal, so the `toString` method calls for that object. That's why we get the string `'[object Object]'`.
 
 * [**12.2.9** Template Literals](https://www.ecma-international.org/ecma-262/#sec-template-literals)
 * [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
@@ -854,7 +854,7 @@ With the example above:
 
 1. We declare `x` with no value, so it's `undefined`.
 2. Then we pack the value of `x` into the object property `x`.
-3. Then we extract the value of `x` using destructuring and want to assign this value to the `y`. If the value is not defined, then we're gonna use `1` as the default value.
+3. Then we extract the value of `x` using destructuring and want to assign it to `y`. If the value is not defined, then we're going to use `1` as the default value.
 4. Return the value of `y`.
 
 * [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
@@ -869,9 +869,9 @@ Interesting examples could be composed with spreading of arrays. Consider this:
 
 ### 💡 Explanation:
 
-Why `3`? When we use spread operator TODO(link to spec), the `@@iterator` method calls, and the returned iterator is used to obtain the values to be iterated. The default iterator for string spreads string by character. After spreading, we're packing this characters into an array. Then spreading this array again and packing back to the array.
+Why `3`? When we use the spread operator TODO(link to spec), the `@@iterator` method is called, and the returned iterator is used to obtain the values to be iterated. The default iterator for string spreads a string into characters. After spreading, we pack these characters into an array. Then we spread this array again and pack it back to an array.
 
-A `'...'` string consists with three `.`, so the length of resulting array will be `3`.
+A `'...'` string consists with three `.` characters, so the length of resulting array is `3`.
 
 Now, step-by-step:
 
@@ -881,7 +881,7 @@ Now, step-by-step:
 [...[...'...']].length // -> 3
 ```
 
-Obviously, we can spread and wrap the elements of array as many times as we want:
+Obviously, we can spread and wrap the elements of an array as many times as we want:
 
 ```js
 [...'...']                 // -> [ '.', '.', '.' ]
@@ -910,7 +910,7 @@ foo: {
 
 The labeled statement is used with `break` or `continue` statements. You can use a label to identify a loop, and then use the `break` or `continue` statements to indicate whether a program should interrupt the loop or continue its execution.
 
-In the example above, we identify a label `foo`. Then `console.log('first');` executes and then we interrupt execution.
+In the example above, we identify a label `foo`. After that `console.log('first');` executes and then we interrupt the execution.
 
 Read more about labels in JavaScript:
 
@@ -925,7 +925,7 @@ a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
 
 ### 💡 Explanation:
 
-Like in the case with previous example follow these links:
+Similar to previous examples, follow these links:
 
 * [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
 * [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
@@ -963,21 +963,21 @@ Is this a multiple inheritance? Nope.
 
 ### 💡 Explanation:
 
-The interesting part is the value of the `extends` clause (`(String, Array)`). The grouping operator always returns its last argument, so the `(String, Array)` is actually just `Array`. That means we've just created a class which extends `Array`.
+The interesting part is the value of the `extends` clause (`(String, Array)`). The grouping operator always returns its last argument, so `(String, Array)` is actually just `Array`. That means we've just created a class which extends `Array`.
 
 * [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
 * [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
 
 ## A generator which yields itself
 
-Consider this example with a generator which yields itself:
+Consider this example of a generator which yields itself:
 
 ```js
 (function* f() { yield f })().next()
 // -> { value: [GeneratorFunction: f], done: false }
 ```
 
-As you see, the returned value is an object with `value` equal `f`. In that case, we can do something like this:
+As you can see, the returned value is an object with its `value` equal to `f`. In that case, we can do something like this:
 
 ```js
 (function* f() { yield f })().next().value().next()
@@ -1010,7 +1010,7 @@ Consider this obfuscated syntax playing:
 (typeof (new (class { class () {} }))) // -> 'object'
 ```
 
-It seems like we're declaring a class inside of class. Should be and error, however, we get an `'object'` string.
+It seems like we're declaring a class inside of class. Should be and error, however, we get the string `'object'`.
 
 ### 💡 Explanation:
 
@@ -1022,7 +1022,7 @@ const foo = {
 };
 ```
 
-And ES6 standardized shorthand method definitions. Also, classes might be anonymous. So if we drop `: function` part, we're going to get:
+And ES6 standardized shorthand method definitions. Also, classes can be anonymous. So if we drop `: function` part, we're going to get:
 
 ```js
 class {
