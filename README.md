@@ -2,9 +2,9 @@
 
 > A list of funny and tricky examples of JavaScript.
 
-JavaScript is a great language. It has a simple syntax, large ecosystem and, what is the most important, great community.
+JavaScript is a great language. It has a simple syntax, large ecosystem and, what is most important, a great community.
 
-At the same time, all we know that JavaScript is quite a funny language with tricky parts. Some of them can quickly turn our everyday job into hell, some of them can make us laugh out loud.
+At the same time, we all know that JavaScript is quite a funny language with tricky parts. Some of them can quickly turn our everyday job into hell, some of them can make us laugh out loud.
 
 The original idea for WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux). This list is highly inspired by his talk [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
@@ -67,7 +67,7 @@ The original idea for WTFJS belongs to [Brian Leroux](https://twitter.com/brianl
 
 The primary goal of this list is to collect some crazy examples and explain how they work, if possible. Just because it's fun to learn something that we didn't know before.
 
-If you are a beginner, you can use these notes to get a deeper dive into the JavaScript. I hope these notes will motivate you to spend more time reading the specification.
+If you are a beginner, you can use these notes to get a deeper dive into JavaScript. I hope these notes will motivate you to spend more time reading the specification.
 
 If you are a professional developer, you can consider these examples as a great resource for interview questions and quizzes for newcomers in your company. At the same time, these examples can come in handy while preparing for an interview.
 
