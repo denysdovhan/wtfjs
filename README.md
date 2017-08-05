@@ -261,7 +261,7 @@ Number.MIN_VALUE > 0 // -> true
 
 > ⚠️ A bug present in V8 v5.5 or lower (Node.js <=7) ⚠️
 
-All you know about noisy _undefined is not a function_. What about this?
+All of you know about the annoying _undefined is not a function_, but what about this?
 
 ```js
 // Declare a class which extends null
@@ -275,7 +275,7 @@ new Foo instanceof null
 
 ### 💡 Explanation:
 
-This is not a part of the specification. That's just a bug and now it's fixed, so there's shouldn't be a problem with this in future.
+This is not a part of the specification. It's just a bug that has now been fixed, so there shouldn't be a problem with it in the future.
 
 ## Adding arrays
 
@@ -287,7 +287,7 @@ What if you try to add two arrays?
 
 ### 💡 Explanation:
 
-The concatenation happens. Step-by-step it looks like this:
+The concatenation happens. Step-by-step, it looks like this:
 
 ```js
 [1, 2, 3] + [4, 5, 6]
@@ -301,7 +301,7 @@ The concatenation happens. Step-by-step it looks like this:
 
 ## `undefined` and `Number`
 
-If we don't pass any argument into the `Number` constructor, we'll get `0`. `undefined` is a value assigned to formal arguments which there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
+If we don't pass any arguments into the `Number` constructor, we'll get `0`. The value `undefined` is assigned to formal arguments when there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
 
 ```js
 Number()          // -> 0
@@ -312,25 +312,25 @@ Number(undefined) // -> NaN
 
 According to the specification:
 
-1. If no arguments were passed to this function invocation, let `n` be `+0`.
+1. If no arguments were passed to this function's invocation, let `n` be `+0`.
 2. Else, let `n` be ? `ToNumber(value)`.
-3. In case with `undefined`, `ToNumber(undefined)` should return `NaN`.
+3. In case of `undefined`, `ToNumber(undefined)` should return `NaN`.
 
-Here's a corresponding section:
+Here's the corresponding section:
 
 * [**20.1.1** The Number Constructor](https://www.ecma-international.org/ecma-262/#sec-number-constructor)
 * [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
 
 ## `parseInt` is a bad guy
 
-`parseInt` is famous by his quirks:
+`parseInt` is famous by its quirks:
 
 ```js
 parseInt('f*ck');     // -> NaN
 parseInt('f*ck', 16); // -> 15
 ```
 
-**💡 Explanation:** This happens because `parseInt` will continue parsing character-by-character until it hits a character it doesn't know. The `f` in `'f*ck'` is hexadecimal `15`.
+**💡 Explanation:** This happens because `parseInt` will continue parsing character-by-character until it hits a character it doesn't know. The `f` in `'f*ck'` is the hexadecimal digit `15`.
 
 Parsing `Infinity` to integer is something…
 
@@ -387,7 +387,7 @@ Hmmm… 🤔
 
 ### 💡 Explanation:
 
-We can coerce values to numbers with `Number` constructor. It's quite obvious that `true` will be coerced to `1`:
+We can coerce values to numbers with the `Number` constructor. It's quite obvious that `true` will be coerced to `1`:
 
 ```js
 Number(true) // -> 1
@@ -400,7 +400,7 @@ The unary plus operator attempts to convert its value into a number. It can conv
 +true // -> 1
 ```
 
-When you're performing addition or multiplication, `ToNumber` method invokes. In according to the specification, this method returns:
+When you're performing addition or multiplication, the `ToNumber` method is invoked. According to the specification, this method returns:
 
 > If `argument` is **true**, return **1**. If `argument` is **false**, return **+0**.
 
@@ -425,7 +425,7 @@ You will be impressed, but `<!--` (which is known as HTML comment) is a valid co
 
 Impressed? HTML-like comments were intended to allow browsers that didn't understand the `<script>` tag to degrade gracefully. These browsers, e.g. Netscape 1.x are no longer popular. So there is really no point in putting HTML comments in your script tags anymore.
 
-Since Node.js is based on V8 engine, HTML-like comments are supported in the Node.js runtime too. Moreover, they're a part of specification:
+Since Node.js is based on the V8 engine, HTML-like comments are supported by the Node.js runtime too. Moreover, they're a part of the specification:
 
 * [**B.1.3** HTML-like Comments](https://www.ecma-international.org/ecma-262/#sec-html-like-comments)
 
@@ -460,9 +460,9 @@ The behavior of `typeof` operator is defined in this section of the specificatio
 
 * [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
 
-According to the specifications, the `typeof` operator returns a string according to [Table 35: `typeof` Operator Results](https://www.ecma-international.org/ecma-262/#table-35). For `null`, ordinary, standard exotic and non-standard exotic objects which do not implement `[[Call]]` it returns string `"object"`.
+According to the specification, the `typeof` operator returns a string according to [Table 35: `typeof` Operator Results](https://www.ecma-international.org/ecma-262/#table-35). For `null`, ordinary, standard exotic and non-standard exotic objects, which do not implement `[[Call]]`, it returns the string `"object"`.
 
-However, you can check the type of object using `toString` method.
+However, you can check the type of an object by using the `toString` method.
 
 ```js
 Object.prototype.toString.call([])
@@ -495,7 +495,7 @@ This is caused by IEEE 754-2008 standard for Binary Floating-Point Arithmetic. A
 
 ## Precision of `0.1 + 0.2`
 
-Well-known joke. An addition of `0.1` and `0.2` is deadly precise:
+A well-known joke. An addition of `0.1` and `0.2` is deadly precise:
 
 ```js
 0.1 + 0.2 // -> 0.30000000000000004
@@ -508,11 +508,11 @@ The answer for the [”Is floating point math broken?”](https://stackoverflow.
 
 > The constants `0.2` and `0.3` in your program will also be approximations to their true values. It happens that the closest `double` to `0.2` is larger than the rational number `0.2` but that the closest `double` to `0.3` is smaller than the rational number `0.3`. The sum of `0.1` and `0.2` winds up being larger than the rational number `0.3` and hence disagreeing with the constant in your code.
 
-This problem is so known that even there is a website called [0.30000000000000004.com](http://0.30000000000000004.com/). It occurs in every language that uses floating-point math, not just JavaScript.
+This problem is so known that there is even a website called [0.30000000000000004.com](http://0.30000000000000004.com/). It occurs in every language that uses floating-point math, not just JavaScript.
 
 ## Patching numbers
 
-You can add own methods to wrapper objects like `Number` or `String`.
+You can add your own methods to wrapper objects like `Number` or `String`.
 
 ```js
 Number.prototype.isOne = function () {
