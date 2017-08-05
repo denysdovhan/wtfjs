@@ -141,7 +141,7 @@ An old-school joke in JavaScript:
 
 ### 💡 Explanation:
 
-The expression is evaluted as `'foo' + (+'bar')`, which converts `'bar'` to not a number.
+The expression is evaluated as `'foo' + (+'bar')`, which converts `'bar'` to not a number.
 
 * [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 
@@ -180,7 +180,11 @@ You would not believe, but …
 
 ### 💡 Explanation:
 
+<<<<<<< HEAD
 By breaking that mass of symbols into pieces, we notice that the following patten occurs often:
+=======
+Breaking that mass of symbols into pieces we notice, that the following pattern occurs often:
+>>>>>>> 2b6a835a4a9620e0d118ba83a56c753d8d61b26b
 
 ```js
 (![]+[]) // -> 'false'
@@ -291,8 +295,8 @@ The concatenation happens. Step-by-step it looks like this:
 
 ```js
 [1, 2, 3] + [4, 5, 6]
-// joining
-[1, 2, 3].join() + [4, 5, 6].join()
+// call toString()
+[1, 2, 3].toString() + [4, 5, 6].toString()
 // concatenation
 '1,2,3' + '4,5,6'
 // ->
@@ -423,7 +427,7 @@ You will be impressed, but `<!--` (which is known as HTML comment) is a valid co
 
 ### 💡 Explanation:
 
-Impressed? HTML-like comments were intended to allow browsers that didn't understand the `<script>` tag to degrade gracefully. These browsers, eg. Netscape 1.x are no longer popular. So there is really no point in putting HTML comments in your script tags anymore.
+Impressed? HTML-like comments were intended to allow browsers that didn't understand the `<script>` tag to degrade gracefully. These browsers, e.g. Netscape 1.x are no longer popular. So there is really no point in putting HTML comments in your script tags anymore.
 
 Since Node.js is based on V8 engine, HTML-like comments are supported in the Node.js runtime too. Moreover, they're a part of specification:
 
