@@ -81,13 +81,13 @@ In any case, just read this. You're probably going to find something new.
 1 + 1 // -> 2
 ```
 
-**`// >`** means the result of `console.log` or other output. For example:
+**`// >`** means the result of `console.log` or another output. For example:
 
 ```js
 console.log('hello, world!') // > hello, world!
 ```
 
-**`//`** is just a comment for explanations. Example:
+**`//`** is just a comment used for explanations. Example:
 
 ```js
 // Assigning a function to foo constant
@@ -180,14 +180,14 @@ You would not believe, but …
 
 ### 💡 Explanation:
 
-Breaking that mass of symbols into pieces we notices, that the following patten occurs often:
+By breaking that mass of symbols into pieces, we notice that the following patten occurs often:
 
 ```js
 (![]+[]) // -> 'false'
 ![]      // -> false
 ```
 
-So we try adding `[]` to `false`. But through a number of internal function calls (`binary + Operator` -> `ToPrimitive` -> `[[DefaultValue]]`) we end up with converting the right operand to a string:
+So we try adding `[]` to `false`. But due to a number of internal function calls (`binary + Operator` -> `ToPrimitive` -> `[[DefaultValue]]`) we end up converting the right operand to a string:
 
 ```js
 (![]+[].toString()) // 'false'
@@ -199,7 +199,7 @@ Thinking of a string as an array we can access its first character via `[0]`:
 'false'[0] // -> 'f'
 ```
 
-The Rest is obvious, but the `i` is tricky.  The `i` in fail is grabbed from generating the string `'falseundefined'` and grabbing index `['10']`
+The rest is obvious, but the `i` is tricky. The `i` in `fail` is grabbed by generating the string `'falseundefined'` and grabbing the element on index `['10']`
 
 ## `[]` is truthy, but not `true`
 
@@ -219,7 +219,7 @@ Here are links to the corresponding sections in the ECMA-262 specification:
 
 ## `null` is falsy, but not `false`
 
-Despite the fact that `null` is falsy value, it's not equal to `false`.
+Despite the fact that `null` is a falsy value, it's not equal to `false`.
 
 ```js
 !!null        // -> false
@@ -235,7 +235,7 @@ At the same time, other falsy values, like `0` or `''` are equal to `false`.
 
 ### 💡 Explanation:
 
-The explanation is the same as for previous example. Here's a corresponding link:
+The explanation is the same as for previous example. Here's the corresponding link:
 
 * [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
@@ -249,9 +249,9 @@ Number.MIN_VALUE > 0 // -> true
 
 ### 💡 Explanation:
 
-> `Number.MIN_VALUE` is `5e-324`, i.e. the smallest positive number that can be represented within float precision, i.e. that's as close as you can get to zero. It defines the best resolution floats give you.
+> `Number.MIN_VALUE` is `5e-324`, i.e. the smallest positive number that can be represented within float precision, i.e. that's as close as you can get to zero. It defines the best resolution that floats can give you.
 >
-> Now the overall smallest value is `Number.NEGATIVE_INFINITY` although that's not really numeric in the strict sense.
+> Now the overall smallest value is `Number.NEGATIVE_INFINITY` although it's not really numeric in a strict sense.
 >
 > &mdash; [“Why is `0` less than `Number.MIN_VALUE` in JavaScript?”](https://stackoverflow.com/questions/26614728/why-is-0-less-than-number-min-value-in-javascript) at StackOverflow
 
