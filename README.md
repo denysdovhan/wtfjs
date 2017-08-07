@@ -34,7 +34,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
 - [👀 Examples](#-examples)
   - [`[]` is equal `![]`](#-is-equal-)
   - [true is false](#true-is-false)
-  - [fooNaN](#foonan)
+  - [baNaNa](#banana)
   - [`NaN` is not a `NaN`](#nan-is-not-a-nan)
   - [It's a fail](#its-a-fail)
   - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
@@ -61,7 +61,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [Object as a key of object's property](#object-as-a-key-of-objects-property)
   - [Accessing prototypes with `__proto__`](#accessing-prototypes-with-__proto__)
   - [``` `${{Object}}` ```](#-object-)
-  - [Destructoring with default values](#destructoring-with-default-values)
+  - [Destructuring with default values](#destructuring-with-default-values)
   - [Dots and spreading](#dots-and-spreading)
   - [Labels](#labels)
   - [Nested labels](#nested-labels)
@@ -146,12 +146,16 @@ false == 'false'  // -> false
 
 * [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## fooNaN
-
-An old-school joke in JavaScript:
+## baNaNa
 
 ```js
-"foo" + + "bar" // -> 'fooNaN'
+'b' + 'a' + + 'a' + 'a'
+```
+
+This is an old-school joke in JavaScript, but remastered. Here's the original one:
+
+```js
+'foo' + + 'bar' // -> 'fooNaN'
 ```
 
 ### 💡 Explanation:
