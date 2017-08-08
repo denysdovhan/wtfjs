@@ -1107,6 +1107,53 @@ baz.valueOf() === 1  // -> true
 * [A gist by Sergey Rubanov](https://gist.github.com/chicoxyzzy/5dd24608e886adf5444499896dff1197)
 * [**6.1.5.1** Well-Known Symbols](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
 
+## Tricky arrow function:
+
+consider this : 
+
+```
+let f = () => 10;
+console.log(f()) // > 10
+```
+
+Ok fine, what about this :
+
+```
+let f = () => {};
+console.log(f()) // > undefined
+```
+
+### 💡 Explanation:
+
+you might expect ```Object {}``` instead of ```undefined```, this is because the curly braces are part of the syntax of the arrow function so ```f``` will return undefined.
+
+## Tricky return:
+
+consider this : 
+
+```
+function a(){
+  return
+  {
+    b : 10;
+  }
+}
+
+console.log(a()); // > undefined
+```
+
+### 💡 Explanation:
+
+ ```return``` and the returned expression must be in the same line like this : 
+ 
+ ```
+ function a(){
+  return {
+    b : 10;
+  }
+}
+```
+ 
 # 🎓 License
 
 [![CC 4.0][license-image]][license-url]
