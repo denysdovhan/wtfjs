@@ -62,7 +62,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [A `constructor` property](#a-constructor-property)
   - [Object as a key of object's property](#object-as-a-key-of-objects-property)
   - [Accessing prototypes with `__proto__`](#accessing-prototypes-with-__proto__)
-  - [``` `${{Object}}` ```](#-object-)
+  - [``` `${{Object}}` ```](#object)
   - [Destructuring with default values](#destructuring-with-default-values)
   - [Dots and spreading](#dots-and-spreading)
   - [Labels](#labels)
