@@ -5,11 +5,11 @@
 
 > A list of funny and tricky JavaScript examples
 
-JavaScript is a great language. It has a simple syntax, large ecosystem and, what is the most important, great community.
+JavaScript is a great language. It has a simple syntax, large ecosystem and, what is most important, a great community.
 
-At the same time, all we know that JavaScript is a quite funny language with tricky parts. Some of them can quickly turn our everyday job into hell, some of them can make us laugh out loud.
+At the same time, we all know that JavaScript is quite a funny language with tricky parts. Some of them can quickly turn our everyday job into hell, some of them can make us laugh out loud.
 
-Original idea of WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux). This list is highly inspired by his talk [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
+The original idea for WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux). This list is highly inspired by his talk [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
 [![dotJS 2012 - Brian Leroux - WTFJS](https://img.youtube.com/vi/et8xNAc2ic8/0.jpg)](https://www.youtube.com/watch?v=et8xNAc2ic8)
 
@@ -82,11 +82,11 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
 
 The primary goal of this list is to collect some crazy examples and explain how they work, if possible. Just because it's fun to learn something that we didn't know before.
 
-If you are a beginner, you can use this notes to get deeper dive into the JavaScript. I hope this notes will motivate you to spend more time reading the specification.
+If you are a beginner, you can use these notes to get a deeper dive into JavaScript. I hope these notes will motivate you to spend more time reading the specification.
 
 If you are a professional developer, you can consider these examples as a great reference for all of the quirks and unexpected edges of our beloved JavaScript.
 
-In any case, just read this. Probably you're going to find something new for yourself.
+In any case, just read this. You're probably going to find something new.
 
 # ✍🏻 Notation
 
@@ -96,13 +96,13 @@ In any case, just read this. Probably you're going to find something new for you
 1 + 1 // -> 2
 ```
 
-**`// >`** means the result of `console.log` or other output. For example:
+**`// >`** means the result of `console.log` or another output. For example:
 
 ```js
 console.log('hello, world!') // > hello, world!
 ```
 
-**`//`** is just a comment for explanations. Example:
+**`//`** is just a comment used for explanations. Example:
 
 ```js
 // Assigning a function to foo constant
@@ -199,14 +199,14 @@ You would not believe, but …
 
 ### 💡 Explanation:
 
-Breaking that mass of symbols into pieces we notice, that the following pattern occurs often:
+By breaking that mass of symbols into pieces, we notice that the following pattern occurs often:
 
 ```js
 (![]+[]) // -> 'false'
 ![]      // -> false
 ```
 
-So we try adding `[]` to `false`. But through a number of internal function calls (`binary + Operator` -> `ToPrimitive` -> `[[DefaultValue]]`) we end up with converting the right operand to a string:
+So we try adding `[]` to `false`. But due to a number of internal function calls (`binary + Operator` -> `ToPrimitive` -> `[[DefaultValue]]`) we end up converting the right operand to a string:
 
 ```js
 (![]+[].toString()) // 'false'
@@ -218,7 +218,7 @@ Thinking of a string as an array we can access its first character via `[0]`:
 'false'[0] // -> 'f'
 ```
 
-The Rest is obvious, but the `i` is tricky.  The `i` in fail is grabbed from generating the string `'falseundefined'` and grabbing index `['10']`
+The rest is obvious, but the `i` is tricky. The `i` in `fail` is grabbed by generating the string `'falseundefined'` and grabbing the element on index `['10']`
 
 ## `[]` is truthy, but not `true`
 
@@ -238,7 +238,7 @@ Here are links to the corresponding sections in the ECMA-262 specification:
 
 ## `null` is falsy, but not `false`
 
-Despite the fact that `null` is falsy value, it's not equal to `false`.
+Despite the fact that `null` is a falsy value, it's not equal to `false`.
 
 ```js
 !!null        // -> false
@@ -254,7 +254,7 @@ At the same time, other falsy values, like `0` or `''` are equal to `false`.
 
 ### 💡 Explanation:
 
-The explanation is the same as for previous example. Here's a corresponding link:
+The explanation is the same as for previous example. Here's the corresponding link:
 
 * [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
@@ -268,9 +268,9 @@ Number.MIN_VALUE > 0 // -> true
 
 ### 💡 Explanation:
 
-> `Number.MIN_VALUE` is `5e-324`, i.e. the smallest positive number that can be represented within float precision, i.e. that's as close as you can get to zero. It defines the best resolution floats give you.
+> `Number.MIN_VALUE` is `5e-324`, i.e. the smallest positive number that can be represented within float precision, i.e. that's as close as you can get to zero. It defines the best resolution that floats can give you.
 >
-> Now the overall smallest value is `Number.NEGATIVE_INFINITY` although that's not really numeric in the strict sense.
+> Now the overall smallest value is `Number.NEGATIVE_INFINITY` although it's not really numeric in a strict sense.
 >
 > &mdash; [“Why is `0` less than `Number.MIN_VALUE` in JavaScript?”](https://stackoverflow.com/questions/26614728/why-is-0-less-than-number-min-value-in-javascript) at StackOverflow
 
@@ -280,7 +280,7 @@ Number.MIN_VALUE > 0 // -> true
 
 > ⚠️ A bug present in V8 v5.5 or lower (Node.js <=7) ⚠️
 
-All you know about noisy _undefined is not a function_. What about this?
+All of you know about the annoying _undefined is not a function_, but what about this?
 
 ```js
 // Declare a class which extends null
@@ -294,7 +294,7 @@ new Foo instanceof null
 
 ### 💡 Explanation:
 
-This is not a part of the specification. That's just a bug and now it's fixed, so there's shouldn't be a problem with this in future.
+This is not a part of the specification. It's just a bug that has now been fixed, so there shouldn't be a problem with it in the future.
 
 ## Adding arrays
 
@@ -306,7 +306,7 @@ What if you try to add two arrays?
 
 ### 💡 Explanation:
 
-The concatenation happens. Step-by-step it looks like this:
+The concatenation happens. Step-by-step, it looks like this:
 
 ```js
 [1, 2, 3] + [4, 5, 6]
@@ -320,7 +320,7 @@ The concatenation happens. Step-by-step it looks like this:
 
 ## `undefined` and `Number`
 
-If we don't pass any argument into the `Number` constructor, we'll get `0`. `undefined` is a value assigned to formal arguments which there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
+If we don't pass any arguments into the `Number` constructor, we'll get `0`. The value `undefined` is assigned to formal arguments when there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
 
 ```js
 Number()          // -> 0
@@ -331,25 +331,25 @@ Number(undefined) // -> NaN
 
 According to the specification:
 
-1. If no arguments were passed to this function invocation, let `n` be `+0`.
+1. If no arguments were passed to this function's invocation, let `n` be `+0`.
 2. Else, let `n` be ? `ToNumber(value)`.
-3. In case with `undefined`, `ToNumber(undefined)` should return `NaN`.
+3. In case of `undefined`, `ToNumber(undefined)` should return `NaN`.
 
-Here's a corresponding section:
+Here's the corresponding section:
 
 * [**20.1.1** The Number Constructor](https://www.ecma-international.org/ecma-262/#sec-number-constructor)
 * [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
 
 ## `parseInt` is a bad guy
 
-`parseInt` is famous by his quirks:
+`parseInt` is famous by its quirks:
 
 ```js
 parseInt('f*ck');     // -> NaN
 parseInt('f*ck', 16); // -> 15
 ```
 
-**💡 Explanation:** This happens because `parseInt` will continue parsing character-by-character until it hits a character it doesn't know. The `f` in `'f*ck'` is hexadecimal `15`.
+**💡 Explanation:** This happens because `parseInt` will continue parsing character-by-character until it hits a character it doesn't know. The `f` in `'f*ck'` is the hexadecimal digit `15`.
 
 Parsing `Infinity` to integer is something…
 
@@ -406,7 +406,7 @@ Hmmm… 🤔
 
 ### 💡 Explanation:
 
-We can coerce values to numbers with `Number` constructor. It's quite obvious that `true` will be coerced to `1`:
+We can coerce values to numbers with the `Number` constructor. It's quite obvious that `true` will be coerced to `1`:
 
 ```js
 Number(true) // -> 1
@@ -419,7 +419,7 @@ The unary plus operator attempts to convert its value into a number. It can conv
 +true // -> 1
 ```
 
-When you're performing addition or multiplication, `ToNumber` method invokes. In according to the specification, this method returns:
+When you're performing addition or multiplication, the `ToNumber` method is invoked. According to the specification, this method returns:
 
 > If `argument` is **true**, return **1**. If `argument` is **false**, return **+0**.
 
@@ -444,7 +444,7 @@ You will be impressed, but `<!--` (which is known as HTML comment) is a valid co
 
 Impressed? HTML-like comments were intended to allow browsers that didn't understand the `<script>` tag to degrade gracefully. These browsers, e.g. Netscape 1.x are no longer popular. So there is really no point in putting HTML comments in your script tags anymore.
 
-Since Node.js is based on V8 engine, HTML-like comments are supported in the Node.js runtime too. Moreover, they're a part of specification:
+Since Node.js is based on the V8 engine, HTML-like comments are supported by the Node.js runtime too. Moreover, they're a part of the specification:
 
 * [**B.1.3** HTML-like Comments](https://www.ecma-international.org/ecma-262/#sec-html-like-comments)
 
@@ -479,9 +479,9 @@ The behavior of `typeof` operator is defined in this section of the specificatio
 
 * [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
 
-According to the specifications, the `typeof` operator returns a string according to [Table 35: `typeof` Operator Results](https://www.ecma-international.org/ecma-262/#table-35). For `null`, ordinary, standard exotic and non-standard exotic objects which do not implement `[[Call]]` it returns string `"object"`.
+According to the specification, the `typeof` operator returns a string according to [Table 35: `typeof` Operator Results](https://www.ecma-international.org/ecma-262/#table-35). For `null`, ordinary, standard exotic and non-standard exotic objects, which do not implement `[[Call]]`, it returns the string `"object"`.
 
-However, you can check the type of object using `toString` method.
+However, you can check the type of an object by using the `toString` method.
 
 ```js
 Object.prototype.toString.call([])
@@ -514,7 +514,7 @@ This is caused by IEEE 754-2008 standard for Binary Floating-Point Arithmetic. A
 
 ## Precision of `0.1 + 0.2`
 
-Well-known joke. An addition of `0.1` and `0.2` is deadly precise:
+A well-known joke. An addition of `0.1` and `0.2` is deadly precise:
 
 ```js
 0.1 + 0.2 // -> 0.30000000000000004
@@ -527,11 +527,11 @@ The answer for the [”Is floating point math broken?”](https://stackoverflow.
 
 > The constants `0.2` and `0.3` in your program will also be approximations to their true values. It happens that the closest `double` to `0.2` is larger than the rational number `0.2` but that the closest `double` to `0.3` is smaller than the rational number `0.3`. The sum of `0.1` and `0.2` winds up being larger than the rational number `0.3` and hence disagreeing with the constant in your code.
 
-This problem is so known that even there is a website called [0.30000000000000004.com](http://0.30000000000000004.com/). It occurs in every language that uses floating-point math, not just JavaScript.
+This problem is so known that there is even a website called [0.30000000000000004.com](http://0.30000000000000004.com/). It occurs in every language that uses floating-point math, not just JavaScript.
 
 ## Patching numbers
 
-You can add own methods to wrapper objects like `Number` or `String`.
+You can add your own methods to wrapper objects like `Number` or `String`.
 
 ```js
 Number.prototype.isOne = function () {
@@ -583,7 +583,7 @@ Read more about Relational operators in the specification:
 
 ## Funny math
 
-Often the results of an arithmetic operations in JavaScript might be quite unexpectable. Consider these examples:
+Often the results of arithmetic operations in JavaScript might be quite unexpected. Consider these examples:
 
 ```js
  3  - 1  // -> 2
@@ -617,7 +617,7 @@ String  + Boolean -> concatenation
 String  + String  -> concatenation
 ```
 
-What about the rest examples? A `ToPrimitive` and `ToString` methods are being implicitly called for `[]` and `{}` before addition. Read more about evaluation process in the specification:
+What about other examples? A `ToPrimitive` and `ToString` methods are being implicitly called for `[]` and `{}` before addition. Read more about evaluation process in the specification:
 
 * [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 * [**7.1.1** ToPrimitive(`input` [,`PreferredType`])](https://www.ecma-international.org/ecma-262/#sec-toprimitive)
@@ -710,7 +710,7 @@ function template(strings, ...keys) {
   // do something with strings and keys…
 }
 ```
-This is the [magic behind](http://mxstbr.blog/2016/11/styled-components-magic-explained/) famous library called [💅 styled-components](https://www.styled-components.com/), which is popular in React community.
+This is the [magic behind](http://mxstbr.blog/2016/11/styled-components-magic-explained/) famous library called [💅 styled-components](https://www.styled-components.com/), which is popular in the React community.
 
 Link to the specification:
 
@@ -726,7 +726,7 @@ console.log.call.call.call.call.call.apply(a => a, [1, 2])
 
 ### 💡 Explanation:
 
-Attention, it could break your mind! Try to reproduce this code in your head: we're applying the `call` method using `apply` method. Read more:
+Attention, it could break your mind! Try to reproduce this code in your head: we're applying the `call` method using the `apply` method. Read more:
 
 * [**19.2.3.3** Function.prototype.call(`thisArg`, ...`args`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.call)
 * [**19.2.3.1 ** Function.prototype.apply(`thisArg`, `argArray`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.apply)
@@ -777,9 +777,9 @@ An `Object.prototype.constructor` returns a reference to the `Object` constructo
 
 ### 💡 Explanation:
 
-Why does this work so? Here we're using a _Computed property name_. When you pass an object between those brackets, it coerces object to a string, so we get a property key `'[object Object]'` and value `{}`.
+Why does this work so? Here we're using a _Computed property name_. When you pass an object between those brackets, it coerces object to a string, so we get the property key `'[object Object]'` and the value `{}`.
 
-The same way we can make brackets hell like this:
+We can make "brackets hell" like this:
 
 ```js
 ({[{}]:{[{}]:{}}})[{}][{}] // -> {}
@@ -807,7 +807,7 @@ As we know, primitives don't have prototypes. However, if we try to get a value 
 
 ### 💡 Explanation:
 
-It happens because of when primitive doesn't have a prototype, it will be wrapped in a wrapper object using `ToObject` method. So, step-by-step:
+This happens because when something doesn't have a prototype, it will be wrapped into a wrapper object using the `ToObject` method. So, step-by-step:
 
 ```js
 (1).__proto__ // -> [Number: 0]
@@ -822,7 +822,7 @@ Here is more information about `__proto__`:
 
 ## ``` `${{Object}}` ```
 
-What the result of the expression below?
+What is the result of the expression below?
 
 ```js
 `${{Object}}`
@@ -842,7 +842,7 @@ We defined an object with a property `Object` using _Shorthand property notation
 { Object: Object }
 ```
 
-Then we've passed this object to the template literal, so the `toString` method calls for that object. That's why we get string `'[object Object]'`.
+Then we've passed this object to the template literal, so the `toString` method calls for that object. That's why we get the string `'[object Object]'`.
 
 * [**12.2.9** Template Literals](https://www.ecma-international.org/ecma-262/#sec-template-literals)
 * [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
@@ -873,7 +873,7 @@ With the example above:
 
 1. We declare `x` with no value, so it's `undefined`.
 2. Then we pack the value of `x` into the object property `x`.
-3. Then we extract the value of `x` using destructuring and want to assign this value to the `y`. If the value is not defined, then we're gonna use `1` as the default value.
+3. Then we extract the value of `x` using destructuring and want to assign it to `y`. If the value is not defined, then we're going to use `1` as the default value.
 4. Return the value of `y`.
 
 * [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
@@ -888,9 +888,9 @@ Interesting examples could be composed with spreading of arrays. Consider this:
 
 ### 💡 Explanation:
 
-Why `3`? When we use spread operator TODO(link to spec), the `@@iterator` method calls, and the returned iterator is used to obtain the values to be iterated. The default iterator for string spreads string by character. After spreading, we're packing this characters into an array. Then spreading this array again and packing back to the array.
+Why `3`? When we use the spread operator TODO(link to spec), the `@@iterator` method is called, and the returned iterator is used to obtain the values to be iterated. The default iterator for string spreads a string into characters. After spreading, we pack these characters into an array. Then we spread this array again and pack it back to an array.
 
-A `'...'` string consists with three `.`, so the length of resulting array will be `3`.
+A `'...'` string consists with three `.` characters, so the length of resulting array is `3`.
 
 Now, step-by-step:
 
@@ -900,7 +900,7 @@ Now, step-by-step:
 [...[...'...']].length // -> 3
 ```
 
-Obviously, we can spread and wrap the elements of array as many times as we want:
+Obviously, we can spread and wrap the elements of an array as many times as we want:
 
 ```js
 [...'...']                 // -> [ '.', '.', '.' ]
@@ -929,7 +929,7 @@ foo: {
 
 The labeled statement is used with `break` or `continue` statements. You can use a label to identify a loop, and then use the `break` or `continue` statements to indicate whether a program should interrupt the loop or continue its execution.
 
-In the example above, we identify a label `foo`. Then `console.log('first');` executes and then we interrupt execution.
+In the example above, we identify a label `foo`. After that `console.log('first');` executes and then we interrupt the execution.
 
 Read more about labels in JavaScript:
 
@@ -944,7 +944,7 @@ a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
 
 ### 💡 Explanation:
 
-Like in the case with previous example follow these links:
+Similar to previous examples, follow these links:
 
 * [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
 * [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
@@ -982,21 +982,21 @@ Is this a multiple inheritance? Nope.
 
 ### 💡 Explanation:
 
-The interesting part is the value of the `extends` clause (`(String, Array)`). The grouping operator always returns its last argument, so the `(String, Array)` is actually just `Array`. That means we've just created a class which extends `Array`.
+The interesting part is the value of the `extends` clause (`(String, Array)`). The grouping operator always returns its last argument, so `(String, Array)` is actually just `Array`. That means we've just created a class which extends `Array`.
 
 * [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
 * [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
 
 ## A generator which yields itself
 
-Consider this example with a generator which yields itself:
+Consider this example of a generator which yields itself:
 
 ```js
 (function* f() { yield f })().next()
 // -> { value: [GeneratorFunction: f], done: false }
 ```
 
-As you see, the returned value is an object with `value` equal `f`. In that case, we can do something like this:
+As you can see, the returned value is an object with its `value` equal to `f`. In that case, we can do something like this:
 
 ```js
 (function* f() { yield f })().next().value().next()
@@ -1029,7 +1029,7 @@ Consider this obfuscated syntax playing:
 (typeof (new (class { class () {} }))) // -> 'object'
 ```
 
-It seems like we're declaring a class inside of class. Should be and error, however, we get an `'object'` string.
+It seems like we're declaring a class inside of class. Should be and error, however, we get the string `'object'`.
 
 ### 💡 Explanation:
 
@@ -1041,7 +1041,7 @@ const foo = {
 };
 ```
 
-And ES6 standardized shorthand method definitions. Also, classes might be anonymous. So if we drop `: function` part, we're going to get:
+And ES6 standardized shorthand method definitions. Also, classes can be anonymous. So if we drop `: function` part, we're going to get:
 
 ```js
 class {
