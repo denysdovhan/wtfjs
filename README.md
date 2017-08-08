@@ -391,12 +391,18 @@ Don't forget about octals:
 
 ```js
 parseInt('06'); // 6
-parseInt('08'); // 8 if support ECMAScript 5 
-parseInt('08'); // 0 if not support ECMAScript 5 
+parseInt('08'); // 8 if support ECMAScript 5
+parseInt('08'); // 0 if not support ECMAScript 5
 ```
 
 **💡 Explanation:** If the input string begins with "0", radix is eight (octal) or 10 (decimal). Exactly which radix is chosen is implementation-dependent. ECMAScript 5 specifies that 10 (decimal) is used, but not all browsers support this yet. For this reason always specify a radix when using `parseInt`.
 
+`parseInt` always convert input to string:
+
+```js
+parseInt({ toString: () => 2, valueOf: () => 1 }) // -> 2
+Number({ toString: () => 2, valueOf: () => 1 })   // -> 1
+```
 
 ## Math with `true` and `false`
 
