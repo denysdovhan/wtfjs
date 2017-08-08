@@ -84,7 +84,7 @@ The primary goal of this list is to collect some crazy examples and explain how 
 
 If you are a beginner, you can use this notes to get deeper dive into the JavaScript. I hope this notes will motivate you to spend more time reading the specification.
 
-If you are a professional developer, you can consider these examples as a great resource for interview questions and quizzes for newcomers in your company. At the same time, these examples would be handy while preparing for the interview.
+If you are a professional developer, you can consider these examples as a great reference for all of the quirks and unexpected edges of our beloved JavaScript.
 
 In any case, just read this. Probably you're going to find something new for yourself.
 
