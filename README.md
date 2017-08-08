@@ -772,8 +772,8 @@ c[c][c] // -> [Function: Function]
 c[c][c]('console.log("WTF?")') // -> [Function: anonymous]
 
 // And then call this anonymous function
-// The result is console-logging a string 'WTF'
-c[c][c]('console.log("WTF?")')() // > WTF
+// The result is console-logging a string 'WTF?'
+c[c][c]('console.log("WTF?")')() // > WTF?
 ```
 
 An `Object.prototype.constructor` returns a reference to the `Object` constructor function that created the instance object. In case with strings it is `String`, in case with numbers it is `Number` and so on.
