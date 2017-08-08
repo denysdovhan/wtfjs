@@ -70,8 +70,12 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [A generator which yields itself](#a-generator-which-yields-itself)
   - [A class of class](#a-class-of-class)
   - [Non-coercible objects](#non-coercible-objects)
+<<<<<<< HEAD
   - [Tricky arrow functions](#tricky-arrow-functions)
   - [Tricky return](#tricky-return)
+=======
+  - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
+>>>>>>> 32b7297ee247c6a804f209e6efed135a74ede374
 - [🎓 License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -1152,6 +1156,23 @@ You might expect `{}` instead of `undefined`. This is because the curly braces a
     b : 10
   }
 })() // -> { b: 10 }
+```
+
+## Accessing object properties with arrays
+
+```js
+var obj = { property: 1 }
+var array = ['property']
+
+obj[array] // -> 1
+```
+
+### 💡 Explanation:
+
+The brackets `[]` operator converts the expression passed `toString`. Converting an one-element array to string it's like converting the element to the string:
+
+```js
+['property'].toString() // -> 'property'`
 ```
 
 # 🎓 License
