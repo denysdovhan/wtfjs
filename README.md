@@ -42,7 +42,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [Minimal value is greater than zero](#minimal-value-is-greater-than-zero)
   - [function is not function](#function-is-not-function)
   - [Adding arrays](#adding-arrays)
-  - [`undefined` and `Number`](#undefined-and-number)
+  - [Trailing commas in array](#trailing-commas-in-array)
   - [`parseInt` is a bad guy](#parseint-is-a-bad-guy)
   - [Math with `true` and `false`](#math-with-true-and-false)
   - [HTML comments are valid in JavaScript](#html-comments-are-valid-in-javascript)
@@ -322,6 +322,21 @@ The concatenation happens. Step-by-step, it looks like this:
 '1,2,34,5,6'
 ```
 
+## Trailing commas in array
+
+You've created an array with 4 empty elements. Despite all, you'll get an arrary with three elements, because of trailing comas:
+
+```js
+let a = [,,,]
+a.length     // -> 3
+a.toString() // -> ',,'
+```
+
+### 💡 Explanation:
+
+> **Trailing commas** (sometimes called "final commas") can be useful when adding new elements, parameters, or properties to JavaScript code. If you want to add a new property, you can simply add a new line without modifying the previously last line if that line already uses a trailing comma. This makes version-control diffs cleaner and editing code might be less troublesome.
+>
+> &mdash; [Trailing commas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas) at MDN
 ## `undefined` and `Number`
 
 If we don't pass any arguments into the `Number` constructor, we'll get `0`. The value `undefined` is assigned to formal arguments when there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
