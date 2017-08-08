@@ -70,6 +70,8 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [A generator which yields itself](#a-generator-which-yields-itself)
   - [A class of class](#a-class-of-class)
   - [Non-coercible objects](#non-coercible-objects)
+  - [Tricky arrow functions](#tricky-arrow-functions)
+  - [Tricky return](#tricky-return)
 - [🎓 License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -1107,53 +1109,51 @@ baz.valueOf() === 1  // -> true
 * [A gist by Sergey Rubanov](https://gist.github.com/chicoxyzzy/5dd24608e886adf5444499896dff1197)
 * [**6.1.5.1** Well-Known Symbols](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
 
-## Tricky arrow function:
+## Tricky arrow functions
 
-consider this : 
+Consider the example below:
 
+```js
+let f = () => 10
+f() // -> 10
 ```
-let f = () => 10;
-console.log(f()) // > 10
-```
 
-Ok fine, what about this :
+Okay, fine, but what about this:
 
-```
-let f = () => {};
-console.log(f()) // > undefined
+```js
+let f = () => {}
+f() // -> undefined
 ```
 
 ### 💡 Explanation:
 
-you might expect ```Object {}``` instead of ```undefined```, this is because the curly braces are part of the syntax of the arrow function so ```f``` will return undefined.
+You might expect `{}` instead of `undefined`. This is because the curly braces are part of the syntax of the arrow functions, so `f` will return undefined.
 
-## Tricky return:
+## Tricky return
 
-consider this : 
+`return` statement is also tricky. Consider this:
 
-```
-function a(){
+```js
+(function () {
   return
   {
-    b : 10;
+    b : 10
   }
-}
-
-console.log(a()); // > undefined
+})() // -> undefined
 ```
 
 ### 💡 Explanation:
 
- ```return``` and the returned expression must be in the same line like this : 
- 
- ```
- function a(){
+`return` and the returned expression must be in the same line:
+
+```js
+(function () {
   return {
-    b : 10;
+    b : 10
   }
-}
+})() // -> { b: 10 }
 ```
- 
+
 # 🎓 License
 
 [![CC 4.0][license-image]][license-url]
