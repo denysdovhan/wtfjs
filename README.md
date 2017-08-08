@@ -70,12 +70,9 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [A generator which yields itself](#a-generator-which-yields-itself)
   - [A class of class](#a-class-of-class)
   - [Non-coercible objects](#non-coercible-objects)
-<<<<<<< HEAD
   - [Tricky arrow functions](#tricky-arrow-functions)
   - [Tricky return](#tricky-return)
-=======
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
->>>>>>> 32b7297ee247c6a804f209e6efed135a74ede374
 - [🎓 License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
