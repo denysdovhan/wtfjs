@@ -73,6 +73,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [Tricky arrow functions](#tricky-arrow-functions)
   - [Tricky return](#tricky-return)
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
+- [Other resources](#other-resources)
 - [🎓 License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -1194,6 +1195,12 @@ The brackets `[]` operator converts the expression passed `toString`. Converting
 ```js
 ['property'].toString() // -> 'property'`
 ```
+
+# Other resources
+
+* [wtfjs.com](http://wtfjs.com/) — a collection of those very special irregularities, inconsistencies and just plain painfully unintuitive moments for the language of the web.
+* [Wat](https://www.destroyallsoftware.com/talks/wat) — A lightning talk by Gary Bernhardt from CodeMash 2012
+* [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — Kyle Simpsons talk for Forward 2 attempts to “pull out the crazy” from JavaScript. He wants to help you produce cleaner, more elegant, more readable code, then inspire people to contribute to the open source community.
 
 # 🎓 License
 
