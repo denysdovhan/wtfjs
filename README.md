@@ -391,7 +391,8 @@ parseInt('06'); // 6
 parseInt('08'); // 8
 ```
 
-**💡 Explanation:** This is because `parseInt` accepts a second argument for radix. If it is not supplied and the string starts with a `0` it will be parsed as an octal number.
+**💡 Explanation:** If the input string begins with "0", radix is eight (octal) or 10 (decimal).  Exactly which radix is chosen is implementation-dependent.  ECMAScript 5 specifies that 10 (decimal) is used, but not all browsers support this yet.  For this reason always specify a radix when using parseInt.
+
 
 ## Math with `true` and `false`
 
