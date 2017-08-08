@@ -1172,6 +1172,21 @@ var array = ['property']
 obj[array] // -> 1
 ```
 
+What about pseudo-multidimensional arrays?
+
+```js
+var map = {}
+var x = 1
+var y = 2
+var z = 3
+
+map[[x, y, z]] = true
+map[[x + 10, y, z]] = true
+
+map["1,2,3"]  // -> true
+map["11,2,3"] // -> true
+```
+
 ### 💡 Explanation:
 
 The brackets `[]` operator converts the expression passed `toString`. Converting an one-element array to string it's like converting the element to the string:
