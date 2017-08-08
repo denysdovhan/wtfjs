@@ -43,6 +43,8 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [function is not function](#function-is-not-function)
   - [Adding arrays](#adding-arrays)
   - [Trailing commas in array](#trailing-commas-in-array)
+  - [Array equality is a monster](#array-equality-is-a-monster)
+  - [`undefined` and `Number`](#undefined-and-number)
   - [`parseInt` is a bad guy](#parseint-is-a-bad-guy)
   - [Math with `true` and `false`](#math-with-true-and-false)
   - [HTML comments are valid in JavaScript](#html-comments-are-valid-in-javascript)
@@ -337,6 +339,41 @@ a.toString() // -> ',,'
 > **Trailing commas** (sometimes called "final commas") can be useful when adding new elements, parameters, or properties to JavaScript code. If you want to add a new property, you can simply add a new line without modifying the previously last line if that line already uses a trailing comma. This makes version-control diffs cleaner and editing code might be less troublesome.
 >
 > &mdash; [Trailing commas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas) at MDN
+
+## Array equality is a monster
+
+Array equality is a monster in JS, think below:
+
+```js
+[] == ''   // -> true
+[] == 0    // -> true
+[''] == '' // -> true
+[0] == 0   // -> true
+[0] == ''  // -> false
+[''] == 0  // -> true
+
+[null] == ''      // true
+[null] == 0       // true
+[undefined] == '' // true
+[undefined] == 0  // true
+
+[[]] == 0  // true
+[[]] == '' // true
+
+[[[[[[]]]]]] == '' // true
+[[[[[[]]]]]] == 0  // true
+
+[[[[[[ null ]]]]]] == 0  // true
+[[[[[[ null ]]]]]] == '' // true
+
+[[[[[[ undefined ]]]]]] == 0  // true
+[[[[[[ undefined ]]]]]] == '' // true
+```
+
+### 💡 Explanation:
+
+You should be very careful for above! This is a complex examples, but it's described in  [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) section of the specification.
+
 ## `undefined` and `Number`
 
 If we don't pass any arguments into the `Number` constructor, we'll get `0`. The value `undefined` is assigned to formal arguments when there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
