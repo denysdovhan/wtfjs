@@ -70,6 +70,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [A generator which yields itself](#a-generator-which-yields-itself)
   - [A class of class](#a-class-of-class)
   - [Non-coercible objects](#non-coercible-objects)
+  - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
 - [🎓 License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -1106,6 +1107,22 @@ baz.valueOf() === 1  // -> true
 
 * [A gist by Sergey Rubanov](https://gist.github.com/chicoxyzzy/5dd24608e886adf5444499896dff1197)
 * [**6.1.5.1** Well-Known Symbols](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
+
+## Accessing object properties with arrays
+```js
+var obj = { property: 1 };
+
+var array = ['property'];
+
+obj[array] // -> 1
+```
+
+### Explanation
+The brackets `[]` operator converts the expression passed `toString`. Converting an 1-element array to string it's like
+converting the element to string:
+`['property'].toString() // -> 'property'`
+
+
 
 # 🎓 License
 
