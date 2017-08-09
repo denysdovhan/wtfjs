@@ -75,6 +75,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [Tricky arrow functions](#tricky-arrow-functions)
   - [Tricky return](#tricky-return)
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
+  - [Math.min() > Math.max()](#math-min-gt-max)
 - [Other resources](#other-resources)
 - [🎓 License](#-license)
 
@@ -1247,6 +1248,20 @@ The brackets `[]` operator converts the expression passed `toString`. Converting
 ```js
 ['property'].toString() // -> 'property'`
 ```
+
+## Math.min() > Math.max()?
+
+```js
+Math.min(1,4,7,2)  // -> 1
+Math.max(1,4,7,2) // -> 7
+Math.min() // -> Infinity
+Math.max() // -> -Infinity
+Math.min() > Math.max() // -> true
+```
+
+### 💡 Explanation:
+
+[Why is Math.max less than Math.min](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min)
 
 # Other resources
 
