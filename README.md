@@ -3,13 +3,10 @@
 [![WTFPL 2.0][license-image]][license-url]
 [![NPM version][npm-image]][npm-url]
 
-<<<<<<< HEAD
+
 [中文版](./README-zh-cn.md)
 
-JavaScript is a great language. It has a simple syntax, large ecosystem and, what is the most important, great community.
-=======
 > A list of funny and tricky JavaScript examples
->>>>>>> upstream/master
 
 JavaScript is a great language. It has a simple syntax, large ecosystem and, what is most important, a great community.
 

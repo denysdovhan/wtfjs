@@ -21,7 +21,7 @@ WTFJS的原创思想属于 [Brian Leroux](https://twitter.com/brianleroux). 这�
 - [👀 例子](#-例子)
   - [`[]` 等于 `![]`](#-等于-)
   - [true is false](#true-是-false)
-  - [fooNaN](#foonan)
+  - [baNaNa](#baNaNa)
   - [`NaN` 不是一个 `NaN`](#nan-不是一个-nan)
   - [It's a fail](#它是fail)
   - [`[]` 本身是true, 但又不等于 `true`](#-是-true-但它不等于-true)
@@ -133,7 +133,11 @@ false == 'false'  // -> false
 
 * [**7.2.13** 抽象相等比较 ](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## fooNaN
+## baNaNa
+
+```js
+'b' + 'a' + + 'a' + 'a'
+```
 
 用JavaScript写的老派笑话：
 
@@ -260,7 +264,7 @@ Number.MIN_VALUE > 0 // -> true
 
 * [**20.1.2.9** Number.MIN_VALUE](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
 
-## 函数又不是函数
+## 函数不是函数
 
 > ⚠️ V8 v5.5或更低版本中出现的Bug（Node.js <= 7） ⚠️
 
@@ -301,6 +305,55 @@ new Foo instanceof null
 // ->
 '1,2,34,5,6'
 ```
+# 数组中的逗号
+
+您已经创建了一个包含4个空元素的数组。尽管如此，你还是会得到一个有三个元素的，因为后面的逗号:
+
+```js
+let a = [,,,]
+a.length     // -> 3
+a.toString() // -> ',,'
+```
+### 💡 说明:
+
+> **尾逗号** (有时也称为“最后逗号”) 在向JavaScript代码中添加新元素、参数或属性时有用。如果您想添加一个新属性，您可以简单地添加一个新行，而不用修改以前的最后一行，如果该行已经使用了后面的逗号。这使得版本控制比较清洁和编辑代码可能不太麻烦。
+>
+> &mdash; [Trailing commas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas) at MDN
+
+## 数组相等是一个怪物
+
+数组进行相等比较是一个怪物，看下面的例子：
+
+```js
+[] == ''   // -> true
+[] == 0    // -> true
+[''] == '' // -> true
+[0] == 0   // -> true
+[0] == ''  // -> false
+[''] == 0  // -> true
+
+[null] == ''      // true
+[null] == 0       // true
+[undefined] == '' // true
+[undefined] == 0  // true
+
+[[]] == 0  // true
+[[]] == '' // true
+
+[[[[[[]]]]]] == '' // true
+[[[[[[]]]]]] == 0  // true
+
+[[[[[[ null ]]]]]] == 0  // true
+[[[[[[ null ]]]]]] == '' // true
+
+[[[[[[ undefined ]]]]]] == 0  // true
+[[[[[[ undefined ]]]]]] == '' // true
+```
+
+### 💡 说明:
+
+你应该非常小心，因为上面！这是一个复杂的例子，但它的描述  [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) 规范部分。
+
 
 ## `undefined` 和 `Number`
 
@@ -1089,6 +1142,90 @@ baz.valueOf() === 1  // -> true
 
 * [A gist by Sergey Rubanov](https://gist.github.com/chicoxyzzy/5dd24608e886adf5444499896dff1197)
 * [**6.1.5.1** Well-Known Symbols](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
+
+## 棘手的箭头功能
+
+考虑下面的例子:
+
+```js
+let f = () => 10
+f() // -> 10
+```
+
+好吧，但是这是怎么说的呢?
+
+```js
+let f = () => {}
+f() // -> undefined
+```
+
+### 💡 说明:
+
+你可以期待 `{}` 而不是 `undefined` 。这是因为花括号是箭头函数语法的一部分，所以f会返回未定义的。
+
+
+## 棘手的返回
+
+`return` 声明是很棘手的. 看下面的代码:
+
+```js
+(function () {
+  return
+  {
+    b : 10
+  }
+})() // -> undefined
+```
+
+### 💡 说明:
+
+`return` 一个表达式必须在同一行:
+
+```js
+(function () {
+  return {
+    b : 10
+  }
+})() // -> { b: 10 }
+```
+
+## 使用数组访问对象属性
+
+```js
+var obj = { property: 1 }
+var array = ['property']
+
+obj[array] // -> 1
+```
+那关于维多维数组创建对象呢？
+
+```js
+var map = {}
+var x = 1
+var y = 2
+var z = 3
+
+map[[x, y, z]] = true
+map[[x + 10, y, z]] = true
+
+map["1,2,3"]  // -> true
+map["11,2,3"] // -> true
+```
+
+### 💡 说明:
+
+括号操作符将传递给字符串的表达式转换为字符串。将一个元素数组转换为字符串，就像将元素转换为字符串:
+
+```js
+['property'].toString() // -> 'property'`
+```
+
+# 其他资源
+
+* [wtfjs.com](http://wtfjs.com/) — 这是一组非常特别的不规范，不一致的地方，以及那些对于网络语言来说非常痛苦的不直观的时刻。
+* [Wat](https://www.destroyallsoftware.com/talks/wat) — A lightning talk by Gary Bernhardt from CodeMash 2012
+* [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — 凯尔。辛普森一家谈到了前两次试图从JavaScript中“拉出疯狂”的尝试。他希望帮助您生成更干净、更优雅、更可读的代码，然后鼓励人们为开源社区做出贡献。
+* 
 
 # 🎓 License
 
