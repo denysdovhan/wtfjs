@@ -1245,7 +1245,7 @@ map["11,2,3"] // -> true
 The brackets `[]` operator converts the expression passed `toString`. Converting an one-element array to string it's like converting the element to the string:
 
 ```js
-['property'].toString() // -> 'property'`
+['property'].toString() // -> 'property'
 ```
 
 # Other resources
