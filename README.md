@@ -952,7 +952,7 @@ Interesting examples could be composed with spreading of arrays. Consider this:
 
 ### 💡 Explanation:
 
-Why `3`? When we use the spread operator TODO(link to spec), the `@@iterator` method is called, and the returned iterator is used to obtain the values to be iterated. The default iterator for string spreads a string into characters. After spreading, we pack these characters into an array. Then we spread this array again and pack it back to an array.
+Why `3`? When we use the [spread operator](http://www.ecma-international.org/ecma-262/6.0/#sec-array-initializer), the `@@iterator` method is called, and the returned iterator is used to obtain the values to be iterated. The default iterator for string spreads a string into characters. After spreading, we pack these characters into an array. Then we spread this array again and pack it back to an array.
 
 A `'...'` string consists with three `.` characters, so the length of resulting array is `3`.
 
