@@ -714,7 +714,7 @@ typeof 'str' // -> 'string'
 
 ### 💡 Explanation:
 
-The `String` construnctor returns a string:
+The `String` constructor returns a string:
 
 ```js
 typeof String('str')   // -> 'string'
