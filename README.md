@@ -326,7 +326,7 @@ The concatenation happens. Step-by-step, it looks like this:
 
 ## Trailing commas in array
 
-You've created an array with 4 empty elements. Despite all, you'll get an arrary with three elements, because of trailing comas:
+You've created an array with 4 empty elements. Despite all, you'll get an arrary with three elements, because of trailing commas:
 
 ```js
 let a = [,,,]
