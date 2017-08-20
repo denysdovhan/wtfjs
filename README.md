@@ -73,6 +73,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [A class of class](#a-class-of-class)
   - [Non-coercible objects](#non-coercible-objects)
   - [Tricky arrow functions](#tricky-arrow-functions)
+  - [`arguments` and arrow functions](#arguments-and-arrow-functions)
   - [Tricky return](#tricky-return)
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
 - [Other resources](#other-resources)
