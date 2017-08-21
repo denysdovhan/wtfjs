@@ -142,7 +142,7 @@ Array is equal not array:
 Consider this step-by-step:
 
 ```js
-true == 'true'    // -> true
+true == 'true'    // -> false
 false == 'false'  // -> false
 
 // 'false' is not empty string, so it's truthy value
@@ -463,6 +463,7 @@ Let's do some math:
 
 ```js
 true + true // -> 2
+true + 1 // -> 2
 (true + true) * (true + true) - true // -> 3
 ```
 
