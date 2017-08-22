@@ -142,7 +142,8 @@ Array is equal not array:
 Consider this step-by-step:
 
 ```js
-true == 'true'    // -> true
+// true is 'truthy' and represented by value 1 (number), 'true' in string form is NaN.
+true == 'true'    // -> false
 false == 'false'  // -> false
 
 // 'false' is not empty string, so it's truthy value
