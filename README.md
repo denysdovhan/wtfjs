@@ -267,11 +267,13 @@ The explanation is the same as for previous example. Here's the corresponding li
 
 ## `document.all` is an object, but it is undefined
 
+> ⚠️ It's a part of Browser API and wouldn't work in a Node.js environment ⚠️
+
 Despite the fact that `document.all` is an array-like object and it gives access to the DOM nodes in the page, it responds to the `typeof` function as `undefined`.
 
 ```js
 document.all instanceof Object // -> true
-typeof document.all // -> "undefined"
+typeof document.all // -> 'undefined'
 ```
 
 At the same time, `document.all` it's not equal to `undefined`.
