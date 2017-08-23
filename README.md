@@ -1200,7 +1200,7 @@ Consider the example below:
 let f = function(){
   return arguments;
 }
-f('a'); // -> ["a", callee: ƒ, ...]
+f('a'); // -> { '0': 'a' }
 ```
 
 Now, try do to the same with an arrow function:
