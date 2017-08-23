@@ -73,6 +73,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [A class of class](#a-class-of-class)
   - [Non-coercible objects](#non-coercible-objects)
   - [Tricky arrow functions](#tricky-arrow-functions)
+  - [`arguments` and arrow functions](#arguments-and-arrow-functions)
   - [Tricky return](#tricky-return)
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
 - [Other resources](#other-resources)
@@ -1191,6 +1192,35 @@ f() // -> undefined
 ### 💡 Explanation:
 
 You might expect `{}` instead of `undefined`. This is because the curly braces are part of the syntax of the arrow functions, so `f` will return undefined.
+
+## `arguments` and arrow functions
+
+Consider the example below:
+
+```js
+let f = function(){
+  return arguments;
+}
+f('a'); // -> { '0': 'a' }
+```
+
+Now, try do to the same with an arrow function:
+
+```js
+let f = () =>  arguments;
+f('a'); // -> Uncaught ReferenceError: arguments is not defined
+```
+
+### 💡 Explanation:
+
+Arrow functions are lightweight version of regular functions with a focus on being short and lexical `this`. At the same time arrow functions do not provide a binding for the `arguments` object. As a valid alternative use the `rest parameters` to achieve the same result:
+
+```js
+let f = (...args) => args;
+f('a');
+```
+
+* [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) at MDN.
 
 ## Tricky return
 
