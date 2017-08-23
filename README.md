@@ -39,6 +39,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [It's a fail](#its-a-fail)
   - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
   - [`null` is falsy, but not `false`](#null-is-falsy-but-not-false)
+  - [`document.all` is an object, but it's undefined](#document-all-is-an-object-but-it-is-undefined)
   - [Minimal value is greater than zero](#minimal-value-is-greater-than-zero)
   - [function is not function](#function-is-not-function)
   - [Adding arrays](#adding-arrays)
@@ -265,6 +266,38 @@ At the same time, other falsy values, like `0` or `''` are equal to `false`.
 The explanation is the same as for previous example. Here's the corresponding link:
 
 * [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+
+## `document.all` is an object, but it is undefined
+
+> ⚠️ It's a part of Browser API and wouldn't work in a Node.js environment ⚠️
+
+Despite the fact that `document.all` is an array-like object and it gives access to the DOM nodes in the page, it responds to the `typeof` function as `undefined`.
+
+```js
+document.all instanceof Object // -> true
+typeof document.all // -> 'undefined'
+```
+
+At the same time, `document.all` it's not equal to `undefined`.
+
+```js
+document.all === undefined // -> false
+document.all === null // -> false
+```
+
+But at the same time:
+
+```js
+document.all == null // -> true
+```
+
+### 💡 Explanation:
+
+> `document.all` used to be a way to access DOM elements, in particolar with old versions of IE. While it has never been a standard it was broadly used in the old age JS code. When the standard progress with new APIs (such `document.getElementById`) this API call became obsolete and the standard commitee had to decide what to do with it. Because of it's broad use they decided to keep the API but introduce a willful violation of the Javascript specification.  
+> The reason why it responds to `false` when using the [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) with `undefined` while `true` when using the [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) is due to the willful violation specification that explicitly allows that.
+>
+> &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec  
+> &mdash; [“Chapter 4 - ToBoolean - Falsy values”](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects) at YDKJS - Types & Grammar
 
 ## Minimal value is greater than zero
 
