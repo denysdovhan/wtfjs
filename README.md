@@ -172,6 +172,7 @@ This is an old-school joke in JavaScript, but remastered. Here's the original on
 The expression is evaluated as `'foo' + (+'bar')`, which converts `'bar'` to not a number.
 
 * [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
+* [12.5.6 Unary + Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
 
 ## `NaN` is not a `NaN`
 
@@ -293,10 +294,10 @@ document.all == null // -> true
 
 ### 💡 Explanation:
 
-> `document.all` used to be a way to access DOM elements, in particolar with old versions of IE. While it has never been a standard it was broadly used in the old age JS code. When the standard progress with new APIs (such `document.getElementById`) this API call became obsolete and the standard commitee had to decide what to do with it. Because of it's broad use they decided to keep the API but introduce a willful violation of the Javascript specification.  
+> `document.all` used to be a way to access DOM elements, in particolar with old versions of IE. While it has never been a standard it was broadly used in the old age JS code. When the standard progress with new APIs (such `document.getElementById`) this API call became obsolete and the standard commitee had to decide what to do with it. Because of it's broad use they decided to keep the API but introduce a willful violation of the Javascript specification.
 > The reason why it responds to `false` when using the [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) with `undefined` while `true` when using the [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) is due to the willful violation specification that explicitly allows that.
 >
-> &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec  
+> &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec
 > &mdash; [“Chapter 4 - ToBoolean - Falsy values”](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects) at YDKJS - Types & Grammar
 
 ## Minimal value is greater than zero
