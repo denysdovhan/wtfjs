@@ -77,6 +77,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [`arguments` and arrow functions](#arguments-and-arrow-functions)
   - [Tricky return](#tricky-return)
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
+  - [`Number.toFixed()` display different num](#accessing-object-properties-with-arrays)
 - [Other resources](#other-resources)
 - [🎓 License](#-license)
 
@@ -1311,6 +1312,23 @@ The brackets `[]` operator converts the expression passed `toString`. Converting
 ```js
 ['property'].toString() // -> 'property'
 ```
+
+## `Number.toFixed()` display different num
+
+```js
+0.7875.toFixed(3) 
+    //firefox:->0.787
+    //chrome:->0.787
+    //ie11:->0.788
+0.7876.toFixed(3)
+    //firefox:->0.788
+    //chrome:->0.788
+    //ie11:->0.788
+```
+
+### 💡 Explanation:
+View the firefox source, `tofixed` method is to convert the value of the conversion, not the standard implementation, please see ECMAScript `Number.prototype.toFixed`,
+
 
 # Other resources
 
