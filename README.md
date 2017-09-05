@@ -77,6 +77,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [`arguments` and arrow functions](#arguments-and-arrow-functions)
   - [Tricky return](#tricky-return)
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
+  - [Null and Relational Operators](#null-and-relational-operators)
 - [Other resources](#other-resources)
 - [🎓 License](#-license)
 
@@ -1312,6 +1313,22 @@ The brackets `[]` operator converts the expression passed `toString`. Converting
 ```js
 ['property'].toString() // -> 'property'
 ```
+
+## Null and Relational Operators
+
+```javascript
+null > 0; // false
+null == 0; // false
+
+null >= 0; // true
+```
+
+
+### 💡 Explanation:
+
+> tl;dr - if null < 0 false then null >= 0  is true
+
+You can find an indepth explanation for this [here](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274) :smile:
 
 # Other resources
 
