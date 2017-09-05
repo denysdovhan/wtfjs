@@ -1316,8 +1316,8 @@ The brackets `[]` operator converts the expression passed `toString`. Converting
 
 ## Null and Relational Operators
 
-```javascript
-null > 0; // false
+```js
+null > 0;  // false
 null == 0; // false
 
 null >= 0; // true
@@ -1326,9 +1326,7 @@ null >= 0; // true
 
 ### 💡 Explanation:
 
-> tl;dr - if null < 0 false then null >= 0  is true
-
-You can find an indepth explanation for this [here](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274) :smile:
+Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `true`. Read indepth explanation for this [here](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274).
 
 # Other resources
 
