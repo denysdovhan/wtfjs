@@ -78,7 +78,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [Tricky return](#tricky-return)
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
   - [Null and Relational Operators](#null-and-relational-operators)
-  - [`Number.toFixed()` display different num](#numbertofixed-display-different-num)
+  - [`Number.toFixed()` display different numbers](#numbertofixed-display-different-numbers)
 - [Other resources](#other-resources)
 - [🎓 License](#-license)
 
