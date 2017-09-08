@@ -79,6 +79,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
   - [Null and Relational Operators](#null-and-relational-operators)
   - [`Number.toFixed()` display different numbers](#numbertofixed-display-different-numbers)
+  - [`~` and `~~` operator](#-and--operator)
 - [Other resources](#other-resources)
 - [🎓 License](#-license)
 
@@ -1350,6 +1351,31 @@ View the FireFox source, `toFixed` method is to convert the value of the convers
 
 
 * [**20.1.3.3** Number.prototype.toFixed (`fractionDigits`)](https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed)
+
+
+### 💡 Explanation:
+
+## `~` and `~~` operator
+single tide ~ is usual usage as :`~n = -(n+1)`
+
+```
+~false === -1
+~true === -1
+~{} === -1
+~122 === -123
+~-124 === 123
+```
+double tide ~~ is used to convert some types to int.
+```
+~~[4] === 4
+~~true === 1
+~~false === 0
+~~0.32 === 0
+~~NaN === 0
+~~-123.321 === -123
+~~(10/3) === 3
+```
+
 
 # Other resources
 
