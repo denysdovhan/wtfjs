@@ -1379,6 +1379,10 @@ double tide ~~ is used to convert some types to int.
 
 ### 💡 Explanation:
 
+Performs the NOT operator on each bit. NOT a yields the inverted value (a.k.a. one's complement) of a. The truth table for the NOT operation is:
+
+[~ (Bitwise NOT)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#(Bitwise_NOT))
+
 
 # Other resources
 
