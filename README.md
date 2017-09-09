@@ -1356,6 +1356,7 @@ View the FireFox source, `toFixed` method is to convert the value of the convers
 ### 💡 Explanation:
 
 ## `~` and `~~` operator
+
 single tide ~ is usual usage as :`~n = -(n+1)`
 
 ```
@@ -1365,7 +1366,9 @@ single tide ~ is usual usage as :`~n = -(n+1)`
 ~122 === -123
 ~-124 === 123
 ```
+
 double tide ~~ is used to convert some types to int.
+
 ```
 ~~[4] === 4
 ~~true === 1
