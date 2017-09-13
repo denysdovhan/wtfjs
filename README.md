@@ -1283,6 +1283,11 @@ f('a');
 })() // -> { b: 10 }
 ```
 
+This is because of a concept called Automatic Semicolon Insertion, which automagically inserts semicolons after most newlines. In the first example, there is a semicolon inserted between the `return` statement and the object literal, so the function returns `undefined` and the object literal is never evaluated.
+
+* [**11.9.1** Rules of Automatic Semicolon Insertion](https://www.ecma-international.org/ecma-262/#sec-rules-of-automatic-semicolon-insertion)
+* [**13.10** The `return` Statement](https://www.ecma-international.org/ecma-262/#sec-return-statement)
+
 ## Accessing object properties with arrays
 
 ```js
