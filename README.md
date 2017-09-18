@@ -410,7 +410,7 @@ Array equality is a monster in JS, think below:
 
 ### 💡 Explanation:
 
-You should be very careful for above! This is a complex examples, but it's described in  [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) section of the specification.
+You should be very careful for the above examples! The behaviour is described in [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) section of the specification.
 
 ## `undefined` and `Number`
 
