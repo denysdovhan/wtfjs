@@ -1231,7 +1231,7 @@ You might expect `{}` instead of `undefined`. This is because the curly braces a
 
 ```js
 let f = () => ({})
-f() // {}
+f() // -> {}
 ```
 
 ## `arguments` and arrow functions
