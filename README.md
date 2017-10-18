@@ -1227,7 +1227,12 @@ f() // -> undefined
 
 ### 💡 Explanation:
 
-You might expect `{}` instead of `undefined`. This is because the curly braces are part of the syntax of the arrow functions, so `f` will return undefined.
+You might expect `{}` instead of `undefined`. This is because the curly braces are part of the syntax of the arrow functions, so `f` will return undefined. It is however possible to return the `{}` object directly from an arrow function, by enclosing the return value with brackets.
+
+```js
+let f = () => ({})
+f() // -> {}
+```
 
 ## `arguments` and arrow functions
 
