@@ -7,7 +7,7 @@
 
 JavaScript is a great language. It has a simple syntax, large ecosystem and, what is most important, a great community.
 
-At the same time, we all know that JavaScript is quite a funny language with tricky parts. Some of them can quickly turn our everyday job into hell, some of them can make us laugh out loud.
+At the same time, we all know that JavaScript is quite a funny language with tricky parts. Some of them can quickly turn our everyday job into hell, and some of them can make us laugh out loud.
 
 The original idea for WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux). This list is highly inspired by his talk [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
@@ -272,7 +272,7 @@ The explanation is the same as for previous example. Here's the corresponding li
 
 ## `document.all` is an object, but it is undefined
 
-> ⚠️ It's a part of Browser API and wouldn't work in a Node.js environment ⚠️
+> ⚠️ This is part of the Browser API and won't work in a Node.js environment ⚠️
 
 Despite the fact that `document.all` is an array-like object and it gives access to the DOM nodes in the page, it responds to the `typeof` function as `undefined`.
 
@@ -281,7 +281,7 @@ document.all instanceof Object // -> true
 typeof document.all // -> 'undefined'
 ```
 
-At the same time, `document.all` it's not equal to `undefined`.
+At the same time, `document.all` is not equal to `undefined`.
 
 ```js
 document.all === undefined // -> false
@@ -296,8 +296,8 @@ document.all == null // -> true
 
 ### 💡 Explanation:
 
-> `document.all` used to be a way to access DOM elements, in particolar with old versions of IE. While it has never been a standard it was broadly used in the old age JS code. When the standard progress with new APIs (such `document.getElementById`) this API call became obsolete and the standard commitee had to decide what to do with it. Because of it's broad use they decided to keep the API but introduce a willful violation of the Javascript specification.
-> The reason why it responds to `false` when using the [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) with `undefined` while `true` when using the [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) is due to the willful violation specification that explicitly allows that.
+> `document.all` used to be a way to access DOM elements, in particular with old versions of IE. While it has never been a standard it was broadly used in the old age JS code. When the standard progress with new APIs (such `document.getElementById`) this API call became obsolete and the standard committee had to decide what to do with it. Because of its broad use they decided to keep the API but introduce a willful violation of the JavaScript specification.
+> The reason why it responds to `false` when using the [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) with `undefined` while `true` when using the [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) is due to the willful violation of the specification that explicitly allows that.
 >
 > &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec
 > &mdash; [“Chapter 4 - ToBoolean - Falsy values”](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects) at YDKJS - Types & Grammar
@@ -320,7 +320,7 @@ Number.MIN_VALUE > 0 // -> true
 
 * [**20.1.2.9** Number.MIN_VALUE](https://www.ecma-international.org/ecma-262/#sec-number.min_value)
 
-## function is not function
+## function is not a function
 
 > ⚠️ A bug present in V8 v5.5 or lower (Node.js <=7) ⚠️
 
@@ -364,7 +364,7 @@ The concatenation happens. Step-by-step, it looks like this:
 
 ## Trailing commas in array
 
-You've created an array with 4 empty elements. Despite all, you'll get an arrary with three elements, because of trailing commas:
+You've created an array with 4 empty elements. Despite all, you'll get an array with three elements, because of trailing commas:
 
 ```js
 let a = [,,,]
@@ -380,7 +380,7 @@ a.toString() // -> ',,'
 
 ## Array equality is a monster
 
-Array equality is a monster in JS, think below:
+Array equality is a monster in JS, as you can see below:
 
 ```js
 [] == ''   // -> true
@@ -410,7 +410,7 @@ Array equality is a monster in JS, think below:
 
 ### 💡 Explanation:
 
-You should be very careful for the above examples! The behaviour is described in [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) section of the specification.
+You should watch very carefully for the above examples! The behaviour is described in section [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) of the specification.
 
 ## `undefined` and `Number`
 
@@ -1014,7 +1014,7 @@ Obviously, we can spread and wrap the elements of an array as many times as we w
 
 ## Labels
 
-Not so many programmers know about labels in JavaScript. They are kind of interesting:
+Not many programmers know about labels in JavaScript. They are kind of interesting:
 
 ```js
 foo: {
@@ -1131,11 +1131,11 @@ Consider this obfuscated syntax playing:
 (typeof (new (class { class () {} }))) // -> 'object'
 ```
 
-It seems like we're declaring a class inside of class. Should be and error, however, we get the string `'object'`.
+It seems like we're declaring a class inside of class. Should be an error, however, we get the string `'object'`.
 
 ### 💡 Explanation:
 
-Since ECMAScript 5 era, _keywords_ are allowed as _property names_. So think about it as about this simple object example:
+Since ECMAScript 5 era, _keywords_ are allowed as _property names_. So think about it as this simple object example:
 
 ```js
 const foo = {
@@ -1254,7 +1254,7 @@ f('a'); // -> Uncaught ReferenceError: arguments is not defined
 
 ### 💡 Explanation:
 
-Arrow functions are lightweight version of regular functions with a focus on being short and lexical `this`. At the same time arrow functions do not provide a binding for the `arguments` object. As a valid alternative use the `rest parameters` to achieve the same result:
+Arrow functions are a lightweight version of regular functions with a focus on being short and lexical `this`. At the same time arrow functions do not provide a binding for the `arguments` object. As a valid alternative use the `rest parameters` to achieve the same result:
 
 ```js
 let f = (...args) => args;
@@ -1319,7 +1319,7 @@ map["11,2,3"] // -> true
 
 ### 💡 Explanation:
 
-The brackets `[]` operator converts the expression passed `toString`. Converting an one-element array to string it's like converting the element to the string:
+The brackets `[]` operator converts the expression passed `toString`. Converting a one-element array to a string is like converting the element to the string:
 
 ```js
 ['property'].toString() // -> 'property'
@@ -1336,7 +1336,7 @@ null >= 0; // true
 
 ### 💡 Explanation:
 
-Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `true`. Read indepth explanation for this [here](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274).
+Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `true`. Read in-depth explanation for this [here](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274).
 
 ## `Number.toFixed()` display different numbers
 
@@ -1344,18 +1344,18 @@ Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `tr
 
 ```js
 0.7875.toFixed(3) 
-    // FireFox: -> 0.787
+    // Firefox: -> 0.787
     // Chrome: -> 0.787
     // IE11: -> 0.788
 0.7876.toFixed(3)
-    // FireFox: -> 0.788
+    // Firefox: -> 0.788
     // Chrome: -> 0.788
     // IE11: -> 0.788
 ```
 
 ### 💡 Explanation:
 
-View the FireFox source, `toFixed` method is to convert the value of the conversion, not the standard implementation.
+View the Firefox source, `toFixed` method is to convert the value of the conversion, not the standard implementation.
 
 
 
