@@ -150,7 +150,7 @@ Consider this step-by-step:
 true == 'true'    // -> false
 false == 'false'  // -> false
 
-// 'false' is not empty string, so it's truthy value
+// 'false' is not the empty string, so it's a truthy value
 !!'false' // -> true
 !!'true'  // -> true
 ```
@@ -296,7 +296,7 @@ document.all == null // -> true
 
 ### 💡 Explanation:
 
-> `document.all` used to be a way to access DOM elements, in particular with old versions of IE. While it has never been a standard it was broadly used in the old age JS code. When the standard progress with new APIs (such `document.getElementById`) this API call became obsolete and the standard committee had to decide what to do with it. Because of its broad use they decided to keep the API but introduce a willful violation of the JavaScript specification.
+> `document.all` used to be a way to access DOM elements, in particular with old versions of IE. While it has never been a standard it was broadly used in the old age JS code. When the standard progressed with new APIs (such as `document.getElementById`) this API call became obsolete and the standard commitee had to decide what to do with it. Because of its broad use they decided to keep the API but introduce a willful violation of the JavaScript specification.
 > The reason why it responds to `false` when using the [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) with `undefined` while `true` when using the [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) is due to the willful violation of the specification that explicitly allows that.
 >
 > &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec
@@ -648,7 +648,7 @@ Number.prototype.isOne = function () {
 
 ### 💡 Explanation:
 
-Obviously, you can extend `Number` object like any other object in JavaScript. However, it's not recommended if the behavior of defined method is not a part of the specification. Here is the list of `Number`'s properties:
+Obviously, you can extend the `Number` object like any other object in JavaScript. However, it's not recommended if the behavior of the defined method is not a part of the specification. Here is the list of `Number`'s properties:
 
 * [**20.1** Number Objects](https://www.ecma-international.org/ecma-262/#sec-number-objects)
 
@@ -1319,7 +1319,7 @@ map["11,2,3"] // -> true
 
 ### 💡 Explanation:
 
-The brackets `[]` operator converts the expression passed `toString`. Converting a one-element array to a string is like converting the element to the string:
+The brackets `[]` operator converts the passed expression using `toString`. Converting a one-element array to a string is akin to converting the contained element to the string:
 
 ```js
 ['property'].toString() // -> 'property'
