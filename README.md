@@ -142,6 +142,8 @@ Here is how this expression simplifies:
 true
 ```
 
+See also [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
+
 * [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 * [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
