@@ -1370,9 +1370,58 @@ Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `tr
 
 View the Firefox source, `toFixed` method is to convert the value of the conversion, not the standard implementation.
 
-
-
 * [**20.1.3.3** Number.prototype.toFixed (`fractionDigits`)](https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed)
+
+## Comparing `null` to `0`
+
+The following expressions seem to introduce a contradiction:
+
+```js
+null == 0 // -> false
+null >  0 // -> false
+null >= 0 // -> true
+```
+
+How can `null` be neither equal to nor greater than `0`, if `null >= 0` is actually `true`? (This also works with less than in the same way.)
+
+### 💡 Explanation:
+
+The way these three expressions are evaluated are all different and are responsible for producing this unexpected behavior.
+
+First, the abstract equality comparison `null == 0`. Normally, if this operator can't compare the values on either side properly, it converts both to numbers and compares the numbers. Then, you might expect the following behavior:
+
+```js
+// This is not what happens
+null == 0
++null == +0
+0 == 0
+true
+```
+
+However, according to a close reading of the spec, the number conversion doesn't actually happen on a side that is `null` or `undefined`. Therefore, if you have `null` on one side of the equal sign, the other side must be `null` or `undefined` for the expression to return `true`. Since this is not the case, `false` is returned.
+
+Next, the relational comparison `null > 0`. The algorithm here, unlike that of the abstract equality operator, *will* convert `null` to a number. Therefore, we get this behavior:
+
+```js
+null > 0
++null = +0
+0 > 0
+false
+```
+
+Finally, the relational comparison `null >= 0`. You could argue that this expression should be the result of `null > 0 || null == 0`; if this were the case, then the above results would mean that this would also be `false`. However, the `>=` operator in fact works in a very different way, which is basically to take the opposite of the `<` operator. Because our example with the greater than operator above also holds for the less than operator, that means this expression is actually evaluated like so:
+
+```js
+null >= 0
+!(null < 0)
+!(+null < +0)
+!(0 < 0)
+!(false)
+true
+```
+
+* [**7.2.12** Abstract Relational Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-relational-comparison)
+* [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 # Other resources
 
