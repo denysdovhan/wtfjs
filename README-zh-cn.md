@@ -1,6 +1,7 @@
 # What the f*ck JavaScript? 
 
 [![WTFPL 2.0][license-image]][license-url]
+
 [![NPM version][npm-image]][npm-url]
 
 > 一个有趣和棘手的JavaScript示例列表。
@@ -1392,7 +1393,7 @@ null >= 0; // true
 
 * [**20.1.3.3** Number.prototype.toFixed (`fractionDigits`)](https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed)
 
-## 比较 `null` to `0`
+## 比较`null` to `0`
 
 下面的表达式似乎有点矛盾：
 
