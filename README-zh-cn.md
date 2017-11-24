@@ -1,4 +1,7 @@
-# What the f*ck JavaScript? [![CC 4.0][license-image]][license-url]
+# What the f*ck JavaScript? 
+
+[![WTFPL 2.0][license-image]][license-url]
+[![NPM version][npm-image]][npm-url]
 
 > 一个有趣和棘手的JavaScript示例列表。
 
@@ -11,6 +14,13 @@ JavaScript是一种很好的语言。它有一个简单的语法，庞大的生�
 WTFJS的原创思想属于 [Brian Leroux](https://twitter.com/brianleroux). 这个列表受到他的讲话的高度启发 [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
 [![dotJS 2012 - Brian Leroux - WTFJS](https://img.youtube.com/vi/et8xNAc2ic8/0.jpg)](https://www.youtube.com/watch?v=et8xNAc2ic8)
+
+# npm 手稿
+你可以通过 `npm` 来安装。只要运行：
+```
+$ npm install -g wtfjs
+```
+你应该能够在命令行中运行`wtfjs`，这将打开手册并在你选择的`$PAGER`中，否则你也可以选择在这里阅读。
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -56,7 +66,15 @@ WTFJS的原创思想属于 [Brian Leroux](https://twitter.com/brianleroux). 这�
   - [这是多重继承吗？](#这是多重继承吗)
   - [A generator which yields itself](#a-generator-which-yields-itself)
   - [一个类的类](#一个类的类)
-  - [非强制对象](#非强制对象)
+  - [非强制转换对象](#非强制转换对象)
+  - [棘手的箭头功能](#棘手的箭头功能)
+  - [`arguments`和箭头函数](#arguments-和箭头函数)
+  - [棘手的返回](#棘手的返回)
+  - [使用数组访问对象属性](#使用数组访问对象属性)
+  - [Null和关系操作符](#空和关系操作符)
+  - [`Number.toFixed()` 显示不同的数字](#numbertofixed-显示不同的数字)
+  - [比较 `null` to `0`](#比较-null-to-0)
+- [其他资源](#其他资源)
 - [🎓 License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -1219,6 +1237,213 @@ map["11,2,3"] // -> true
 ```js
 ['property'].toString() // -> 'property'`
 ```
+
+
+## 棘手的箭头函数
+
+思考一下下面的例子：
+
+```js
+let f = () => 10
+f() // -> 10
+```
+
+好，很好，但是下面那个又输出什么？
+
+```js
+let f = () => {}
+f() // -> undefined
+```
+
+### 💡 说明:
+
+你可能会期望`{}`而不是`undefined`。这是因为花括号是箭头函数语法的一部分，所以 `f`将返回为定义。但是，可以直接从箭头函数中返回`{}`，采用括号括起来。
+
+```js
+let f = () => ({})
+f() // -> {}
+```
+
+## `arguments`和箭头函数
+
+思考一下下面的例子：
+
+```js
+let f = function(){
+  return arguments;
+}
+f('a'); // -> { '0': 'a' }
+```
+
+现在，试着用一个箭头函数来做同样的事情:
+
+```js
+let f = () =>  arguments;
+f('a'); // -> Uncaught ReferenceError: arguments is not defined
+```
+
+### 💡 说明:
+
+Arrow functions are a lightweight version of regular functions with a focus on being short and lexical `this`. At the same time arrow functions do not provide a binding for the `arguments` object. As a valid alternative use the `rest parameters` to achieve the same result:
+
+箭头函数是普通函数的轻量级版本，重点是简短和 `this` 上。与此同时，箭头函数不为 `arguments` 对象提供绑定。作为一个有效的替代使用 `rest parameters` 来达到相同的结果:
+
+```js
+let f = (...args) => args;
+f('a');
+```
+
+* [箭头函数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) at MDN.
+
+## 棘手的返回值
+
+`return` 也是很棘手。思考一下这个：
+
+```js
+(function () {
+  return
+  {
+    b : 10
+  }
+})() // -> undefined
+```
+
+### 💡 说明:
+
+`return` 返回的表达式必须在同一行：
+
+```js
+(function () {
+  return {
+    b : 10
+  }
+})() // -> { b: 10 }
+```
+
+这是因为一个概念叫自动分号，分号后，自动插入最新行。在第一个示例中，在`return`语句和对象文本之间插入一个分号，因此函数返回`undefined` 后面代码将不会被执行。
+
+* [**11.9.1** 自动分号插入规则](https://www.ecma-international.org/ecma-262/#sec-rules-of-automatic-semicolon-insertion)
+* [**13.10**  `return` 声明](https://www.ecma-international.org/ecma-262/#sec-return-statement)
+
+## 使用数组访问对象属性
+
+```js
+var obj = { property: 1 }
+var array = ['property']
+
+obj[array] // -> 1
+```
+
+伪多维数组呢？
+
+```js
+var map = {}
+var x = 1
+var y = 2
+var z = 3
+
+map[[x, y, z]] = true
+map[[x + 10, y, z]] = true
+
+map["1,2,3"]  // -> true
+map["11,2,3"] // -> true
+```
+
+### 💡 说明:
+
+方括号`[]`操作符使用`toString`进行转换，将一个元素数组转换为字符串:
+
+```js
+['property'].toString() // -> 'property'
+```
+
+## Null和关系运算符
+
+```js
+null > 0;  // false
+null == 0; // false
+
+null >= 0; // true
+```
+
+### 💡说明:
+
+长话短说，如果`null`小于`0`是`false`,那么`null >= 0`则是`true`。
+请阅读下面的详细解释[这里](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274).
+
+## `Number.toFixed()`显示不同的数字
+
+`Number.toFixed()` 在不同的浏览器中会表现得有点奇怪。看看这个例子:
+
+```js
+0.7875.toFixed(3) 
+    // Firefox: -> 0.787
+    // Chrome: -> 0.787
+    // IE11: -> 0.788
+0.7876.toFixed(3)
+    // Firefox: -> 0.788
+    // Chrome: -> 0.788
+    // IE11: -> 0.788
+```
+
+### 💡 说明:
+
+查看Firefox源码, `toFixed` 方法是转换的值，而不是标准的实现。
+
+* [**20.1.3.3** Number.prototype.toFixed (`fractionDigits`)](https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed)
+
+## 比较 `null` to `0`
+
+下面的表达式似乎有点矛盾：
+
+```js
+null == 0 // -> false
+null >  0 // -> false
+null >= 0 // -> true
+```
+
+`null`怎么既不等于也不大于`0`，如果`null >= 0` 实际上是 `true`? (这也适用于少于同样的方法。)
+
+### 💡 说明:
+
+执行这三个表达式的方式各不相同，并负责产生这种意外行为。
+首先，抽象相等比较`null == 0`。通常情况下，如果这个运算符不能正确地比较两边的值，则它将两个数字转换为数字，并对数字进行比较。然后，您可能会期望以下行为：
+
+```js
+// 事实并非如此
+null == 0
++null == +0
+0 == 0
+true
+```
+
+然而，根据对规范的仔细阅读，数字转换实际上并没有发生在`null` 或 `undefined`的一侧。因此，如果在等号的一侧有`null`，则另一侧的表达式必须为`null` 或 `undefined`，以返回 `true`。既然不是这样，就会返回false。
+
+Next, the relational comparison `null > 0`. The algorithm here, unlike that of the abstract equality operator, *will* convert `null` to a number. Therefore, we get this behavior:
+
+接下来，关系比较 `null > 0` 。这里的算法不同于抽象的相等运算符，将 `null` 转换为一个数字。因此，我们得到这样的行为:
+
+```js
+null > 0
++null = +0
+0 > 0
+false
+```
+
+最后，关系比较`null >= 0`。你可以认为这个表达式应该是 `null > 0 || null == 0` 的结果;如果是这样，那么以上的结果将意味着这也是`false`。然而，`>=`操作符实际上以一种非常不同的方式工作，这基本上与 `<` 操作符相反。因为我们的例子中，大于运算符的例子也适用于小于运算符，也就是说这个表达式的值是这样的:
+
+
+```js
+null >= 0
+!(null < 0)
+!(+null < +0)
+!(0 < 0)
+!(false)
+true
+```
+
+* [**7.2.12** 抽象的关系比较](https://www.ecma-international.org/ecma-262/#sec-abstract-relational-comparison)
+* [**7.2.13** 比较抽象的平等](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 # 其他资源
 
