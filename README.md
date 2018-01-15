@@ -77,7 +77,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [`arguments` and arrow functions](#arguments-and-arrow-functions)
   - [Tricky return](#tricky-return)
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
-  - [Math.min() > Math.max()?](#mathmin--mathmax)
+  - [`Math.min()` > `Math.max()`?](#mathmin--mathmax)
   - [Null and Relational Operators](#null-and-relational-operators)
   - [`Number.toFixed()` display different numbers](#numbertofixed-display-different-numbers)
   - [Comparing `null` to `0`](#comparing-null-to-0)
@@ -1374,7 +1374,7 @@ View the Firefox source, `toFixed` method is to convert the value of the convers
 
 * [**20.1.3.3** Number.prototype.toFixed (`fractionDigits`)](https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed)
 
-## Math.min() > Math.max()?
+## `Math.max()` less than `Math.min()`
 
 ```js
 Math.min(1,4,7,2)  // -> 1
