@@ -1374,7 +1374,6 @@ View the Firefox source, `toFixed` method is to convert the value of the convers
 
 * [**20.1.3.3** Number.prototype.toFixed (`fractionDigits`)](https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed)
 
-
 ## Math.min() > Math.max()?
 
 ```js
