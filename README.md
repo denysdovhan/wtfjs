@@ -1367,6 +1367,7 @@ Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `tr
     // Chrome: -> 0.788
     // IE11: -> 0.788
 ```
+
 ### 💡 Explanation:
 
 View the Firefox source, `toFixed` method is to convert the value of the conversion, not the standard implementation.
