@@ -77,6 +77,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [`arguments` and arrow functions](#arguments-and-arrow-functions)
   - [Tricky return](#tricky-return)
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
+  - [`Math.max()` less than `Math.min()`](#mathmax-less-than-mathmin)
   - [Null and Relational Operators](#null-and-relational-operators)
   - [`Number.toFixed()` display different numbers](#numbertofixed-display-different-numbers)
   - [Comparing `null` to `0`](#comparing-null-to-0)
@@ -1372,6 +1373,20 @@ Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `tr
 View the Firefox source, `toFixed` method is to convert the value of the conversion, not the standard implementation.
 
 * [**20.1.3.3** Number.prototype.toFixed (`fractionDigits`)](https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed)
+
+## `Math.max()` less than `Math.min()`
+
+```js
+Math.min(1,4,7,2)  // -> 1
+Math.max(1,4,7,2) // -> 7
+Math.min() // -> Infinity
+Math.max() // -> -Infinity
+Math.min() > Math.max() // -> true
+```
+
+### 💡 Explanation:
+
+* [Why is Math.max() less than Math.min()?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min) by Charlie Harvey
 
 ## Comparing `null` to `0`
 
