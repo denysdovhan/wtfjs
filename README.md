@@ -7,7 +7,7 @@
 
 JavaScript is a great language. It has a simple syntax, large ecosystem and, what is most important, a great community.
 
-At the same time, we all know that JavaScript is quite a funny language with tricky parts. Some of them can quickly turn our everyday job into hell, some of them can make us laugh out loud.
+At the same time, we all know that JavaScript is quite a funny language with tricky parts. Some of them can quickly turn our everyday job into hell, and some of them can make us laugh out loud.
 
 The original idea for WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux). This list is highly inspired by his talk [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
@@ -39,9 +39,9 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [It's a fail](#its-a-fail)
   - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
   - [`null` is falsy, but not `false`](#null-is-falsy-but-not-false)
-  - [`document.all` is an object, but it's undefined](#document-all-is-an-object-but-it-is-undefined)
+  - [`document.all` is an object, but it is undefined](#documentall-is-an-object-but-it-is-undefined)
   - [Minimal value is greater than zero](#minimal-value-is-greater-than-zero)
-  - [function is not function](#function-is-not-function)
+  - [function is not a function](#function-is-not-a-function)
   - [Adding arrays](#adding-arrays)
   - [Trailing commas in array](#trailing-commas-in-array)
   - [Array equality is a monster](#array-equality-is-a-monster)
@@ -78,6 +78,9 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [Tricky return](#tricky-return)
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
   - [Math.min() > Math.max()?](#mathmin--mathmax)
+  - [Null and Relational Operators](#null-and-relational-operators)
+  - [`Number.toFixed()` display different numbers](#numbertofixed-display-different-numbers)
+  - [Comparing `null` to `0`](#comparing-null-to-0)
 - [Other resources](#other-resources)
 - [🎓 License](#-license)
 
@@ -130,6 +133,19 @@ Array is equal not array:
 
 ### 💡 Explanation:
 
+The abstract equality operator converts both sides to numbers to compare them, and both sides become the number `0` for different reasons. Arrays are truthy, so on the right, the opposite of a truthy value is `false`, which is then coerced to `0`. On the left, however, an empty array is coerced to a number without becoming a boolean first, and empty arrays are coerced to `0`, despite being truthy.
+
+Here is how this expression simplifies:
+
+```js
++[] == +![]
+0 == +false
+0 == 0
+true
+```
+
+See also [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
+
 * [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 * [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
@@ -149,7 +165,7 @@ Consider this step-by-step:
 true == 'true'    // -> false
 false == 'false'  // -> false
 
-// 'false' is not empty string, so it's truthy value
+// 'false' is not the empty string, so it's a truthy value
 !!'false' // -> true
 !!'true'  // -> true
 ```
@@ -173,6 +189,7 @@ This is an old-school joke in JavaScript, but remastered. Here's the original on
 The expression is evaluated as `'foo' + (+'bar')`, which converts `'bar'` to not a number.
 
 * [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
+* [12.5.6 Unary + Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
 
 ## `NaN` is not a `NaN`
 
@@ -270,7 +287,7 @@ The explanation is the same as for previous example. Here's the corresponding li
 
 ## `document.all` is an object, but it is undefined
 
-> ⚠️ It's a part of Browser API and wouldn't work in a Node.js environment ⚠️
+> ⚠️ This is part of the Browser API and won't work in a Node.js environment ⚠️
 
 Despite the fact that `document.all` is an array-like object and it gives access to the DOM nodes in the page, it responds to the `typeof` function as `undefined`.
 
@@ -279,7 +296,7 @@ document.all instanceof Object // -> true
 typeof document.all // -> 'undefined'
 ```
 
-At the same time, `document.all` it's not equal to `undefined`.
+At the same time, `document.all` is not equal to `undefined`.
 
 ```js
 document.all === undefined // -> false
@@ -294,10 +311,10 @@ document.all == null // -> true
 
 ### 💡 Explanation:
 
-> `document.all` used to be a way to access DOM elements, in particolar with old versions of IE. While it has never been a standard it was broadly used in the old age JS code. When the standard progress with new APIs (such `document.getElementById`) this API call became obsolete and the standard commitee had to decide what to do with it. Because of it's broad use they decided to keep the API but introduce a willful violation of the Javascript specification.  
-> The reason why it responds to `false` when using the [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) with `undefined` while `true` when using the [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) is due to the willful violation specification that explicitly allows that.
+> `document.all` used to be a way to access DOM elements, in particular with old versions of IE. While it has never been a standard it was broadly used in the old age JS code. When the standard progressed with new APIs (such as `document.getElementById`) this API call became obsolete and the standard commitee had to decide what to do with it. Because of its broad use they decided to keep the API but introduce a willful violation of the JavaScript specification.
+> The reason why it responds to `false` when using the [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) with `undefined` while `true` when using the [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) is due to the willful violation of the specification that explicitly allows that.
 >
-> &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec  
+> &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec
 > &mdash; [“Chapter 4 - ToBoolean - Falsy values”](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects) at YDKJS - Types & Grammar
 
 ## Minimal value is greater than zero
@@ -318,7 +335,7 @@ Number.MIN_VALUE > 0 // -> true
 
 * [**20.1.2.9** Number.MIN_VALUE](https://www.ecma-international.org/ecma-262/#sec-number.min_value)
 
-## function is not function
+## function is not a function
 
 > ⚠️ A bug present in V8 v5.5 or lower (Node.js <=7) ⚠️
 
@@ -362,7 +379,7 @@ The concatenation happens. Step-by-step, it looks like this:
 
 ## Trailing commas in array
 
-You've created an array with 4 empty elements. Despite all, you'll get an arrary with three elements, because of trailing commas:
+You've created an array with 4 empty elements. Despite all, you'll get an array with three elements, because of trailing commas:
 
 ```js
 let a = [,,,]
@@ -378,7 +395,7 @@ a.toString() // -> ',,'
 
 ## Array equality is a monster
 
-Array equality is a monster in JS, think below:
+Array equality is a monster in JS, as you can see below:
 
 ```js
 [] == ''   // -> true
@@ -408,7 +425,7 @@ Array equality is a monster in JS, think below:
 
 ### 💡 Explanation:
 
-You should be very careful for above! This is a complex examples, but it's described in  [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) section of the specification.
+You should watch very carefully for the above examples! The behaviour is described in section [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) of the specification.
 
 ## `undefined` and `Number`
 
@@ -646,7 +663,7 @@ Number.prototype.isOne = function () {
 
 ### 💡 Explanation:
 
-Obviously, you can extend `Number` object like any other object in JavaScript. However, it's not recommended if the behavior of defined method is not a part of the specification. Here is the list of `Number`'s properties:
+Obviously, you can extend the `Number` object like any other object in JavaScript. However, it's not recommended if the behavior of the defined method is not a part of the specification. Here is the list of `Number`'s properties:
 
 * [**20.1** Number Objects](https://www.ecma-international.org/ecma-262/#sec-number-objects)
 
@@ -1012,7 +1029,7 @@ Obviously, we can spread and wrap the elements of an array as many times as we w
 
 ## Labels
 
-Not so many programmers know about labels in JavaScript. They are kind of interesting:
+Not many programmers know about labels in JavaScript. They are kind of interesting:
 
 ```js
 foo: {
@@ -1129,11 +1146,11 @@ Consider this obfuscated syntax playing:
 (typeof (new (class { class () {} }))) // -> 'object'
 ```
 
-It seems like we're declaring a class inside of class. Should be and error, however, we get the string `'object'`.
+It seems like we're declaring a class inside of class. Should be an error, however, we get the string `'object'`.
 
 ### 💡 Explanation:
 
-Since ECMAScript 5 era, _keywords_ are allowed as _property names_. So think about it as about this simple object example:
+Since ECMAScript 5 era, _keywords_ are allowed as _property names_. So think about it as this simple object example:
 
 ```js
 const foo = {
@@ -1225,7 +1242,12 @@ f() // -> undefined
 
 ### 💡 Explanation:
 
-You might expect `{}` instead of `undefined`. This is because the curly braces are part of the syntax of the arrow functions, so `f` will return undefined.
+You might expect `{}` instead of `undefined`. This is because the curly braces are part of the syntax of the arrow functions, so `f` will return undefined. It is however possible to return the `{}` object directly from an arrow function, by enclosing the return value with brackets.
+
+```js
+let f = () => ({})
+f() // -> {}
+```
 
 ## `arguments` and arrow functions
 
@@ -1247,7 +1269,7 @@ f('a'); // -> Uncaught ReferenceError: arguments is not defined
 
 ### 💡 Explanation:
 
-Arrow functions are lightweight version of regular functions with a focus on being short and lexical `this`. At the same time arrow functions do not provide a binding for the `arguments` object. As a valid alternative use the `rest parameters` to achieve the same result:
+Arrow functions are a lightweight version of regular functions with a focus on being short and lexical `this`. At the same time arrow functions do not provide a binding for the `arguments` object. As a valid alternative use the `rest parameters` to achieve the same result:
 
 ```js
 let f = (...args) => args;
@@ -1281,6 +1303,11 @@ f('a');
 })() // -> { b: 10 }
 ```
 
+This is because of a concept called Automatic Semicolon Insertion, which automagically inserts semicolons after most newlines. In the first example, there is a semicolon inserted between the `return` statement and the object literal, so the function returns `undefined` and the object literal is never evaluated.
+
+* [**11.9.1** Rules of Automatic Semicolon Insertion](https://www.ecma-international.org/ecma-262/#sec-rules-of-automatic-semicolon-insertion)
+* [**13.10** The `return` Statement](https://www.ecma-international.org/ecma-262/#sec-return-statement)
+
 ## Accessing object properties with arrays
 
 ```js
@@ -1307,11 +1334,45 @@ map["11,2,3"] // -> true
 
 ### 💡 Explanation:
 
-The brackets `[]` operator converts the expression passed `toString`. Converting an one-element array to string it's like converting the element to the string:
+The brackets `[]` operator converts the passed expression using `toString`. Converting a one-element array to a string is akin to converting the contained element to the string:
 
 ```js
 ['property'].toString() // -> 'property'
 ```
+
+## Null and Relational Operators
+
+```js
+null > 0;  // false
+null == 0; // false
+
+null >= 0; // true
+```
+
+### 💡 Explanation:
+
+Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `true`. Read in-depth explanation for this [here](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274).
+
+## `Number.toFixed()` display different numbers
+
+`Number.toFixed()` can behave a bit strange in different browsers. Check out this example:
+
+```js
+0.7875.toFixed(3) 
+    // Firefox: -> 0.787
+    // Chrome: -> 0.787
+    // IE11: -> 0.788
+0.7876.toFixed(3)
+    // Firefox: -> 0.788
+    // Chrome: -> 0.788
+    // IE11: -> 0.788
+```
+### 💡 Explanation:
+
+View the Firefox source, `toFixed` method is to convert the value of the conversion, not the standard implementation.
+
+* [**20.1.3.3** Number.prototype.toFixed (`fractionDigits`)](https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed)
+
 
 ## Math.min() > Math.max()?
 
@@ -1325,7 +1386,58 @@ Math.min() > Math.max() // -> true
 
 ### 💡 Explanation:
 
-[Why is Math.max less than Math.min](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min)
+* [Why is Math.max() less than Math.min()?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min) by Charlie Harvey
+
+## Comparing `null` to `0`
+
+The following expressions seem to introduce a contradiction:
+
+```js
+null == 0 // -> false
+null >  0 // -> false
+null >= 0 // -> true
+```
+
+How can `null` be neither equal to nor greater than `0`, if `null >= 0` is actually `true`? (This also works with less than in the same way.)
+
+### 💡 Explanation:
+
+The way these three expressions are evaluated are all different and are responsible for producing this unexpected behavior.
+
+First, the abstract equality comparison `null == 0`. Normally, if this operator can't compare the values on either side properly, it converts both to numbers and compares the numbers. Then, you might expect the following behavior:
+
+```js
+// This is not what happens
+null == 0
++null == +0
+0 == 0
+true
+```
+
+However, according to a close reading of the spec, the number conversion doesn't actually happen on a side that is `null` or `undefined`. Therefore, if you have `null` on one side of the equal sign, the other side must be `null` or `undefined` for the expression to return `true`. Since this is not the case, `false` is returned.
+
+Next, the relational comparison `null > 0`. The algorithm here, unlike that of the abstract equality operator, *will* convert `null` to a number. Therefore, we get this behavior:
+
+```js
+null > 0
++null = +0
+0 > 0
+false
+```
+
+Finally, the relational comparison `null >= 0`. You could argue that this expression should be the result of `null > 0 || null == 0`; if this were the case, then the above results would mean that this would also be `false`. However, the `>=` operator in fact works in a very different way, which is basically to take the opposite of the `<` operator. Because our example with the greater than operator above also holds for the less than operator, that means this expression is actually evaluated like so:
+
+```js
+null >= 0
+!(null < 0)
+!(+null < +0)
+!(0 < 0)
+!(false)
+true
+```
+
+* [**7.2.12** Abstract Relational Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-relational-comparison)
+* [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 # Other resources
 
