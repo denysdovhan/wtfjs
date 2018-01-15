@@ -77,7 +77,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [`arguments` and arrow functions](#arguments-and-arrow-functions)
   - [Tricky return](#tricky-return)
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
-  - [`Math.min()` > `Math.max()`?](#mathmin--mathmax)
+  - [`Math.max()` less than `Math.min()`](#mathmax-less-than-mathmin)
   - [Null and Relational Operators](#null-and-relational-operators)
   - [`Number.toFixed()` display different numbers](#numbertofixed-display-different-numbers)
   - [Comparing `null` to `0`](#comparing-null-to-0)
