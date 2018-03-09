@@ -1370,7 +1370,27 @@ Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `tr
 
 ### 💡 Explanation:
 
-View the Firefox source, `toFixed` method is to convert the value of the conversion, not the standard implementation.
+While your first instinct may be that IE11 is correct and Firefox/Chrome are wrong, the reality is that Firefox/Chrome are more directly obeying standards for numbers (IEEE-754 Floating Point), while IE11 is minutely disobeying them in (what is probably) an effort to give clearer results.
+
+You can see why this occurs with a few quick tests:
+
+```js
+// Confirm the odd result of rounding a 5 down
+0.7875.toFixed(3) // -> 0.787
+// It looks like it's just a 5 when you expand to the
+// limits of 64-bit (double-precision) float accuracy
+0.7875.toFixed(14) // -> 0.78750000000000
+// But what if you go beyond the limit?
+0.7875.toFixed(20) // -> 0.78749999999999997780
+```
+
+Floating point numbers are not stored as a list of decimal digits internally, but through a more complicated methodology that produces tiny inaccuracies that are usually rounded away by toString and similar calls, but are actually present internally.
+
+In this case, that "5" on the end was actually an extremely tiny fraction below a true 5. Rounding it at any reasonable length will render it as a 5... but it is actually not a 5 internally.
+
+IE11, however, will report the value input with only zeros appended to the end even in the toFixed(20) case, as it seems to be forcibly rounding the value to reduce the troubles from hardware limits.
+
+See for reference `NOTE 2` on the ECMA-262 definition for `toFixed`.
 
 * [**20.1.3.3** Number.prototype.toFixed (`fractionDigits`)](https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed)
 
