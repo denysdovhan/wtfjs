@@ -81,6 +81,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [Null and Relational Operators](#null-and-relational-operators)
   - [`Number.toFixed()` display different numbers](#numbertofixed-display-different-numbers)
   - [Comparing `null` to `0`](#comparing-null-to-0)
+  - [Same variable redeclaration](#same-variable-redeclaration)
 - [Other resources](#other-resources)
 - [🎓 License](#-license)
 
@@ -1438,6 +1439,30 @@ true
 
 * [**7.2.12** Abstract Relational Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-relational-comparison)
 * [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+
+## Same variable redeclaration
+
+JS allows to redeclare variables:
+
+```js
+a;
+a;
+// This is also valid
+a, a;
+```
+
+Works also in strict mode:
+
+```js
+var a, a, a;
+var a;
+var a;
+```
+### 💡 Explanation:
+
+All defenitions are merged into one definition.
+
+* [**13.3.2** Variable Statement](https://www.ecma-international.org/ecma-262/#sec-variable-statement)
 
 # Other resources
 
