@@ -511,6 +511,16 @@ parseInt({ toString: () => 2, valueOf: () => 1 }) // -> 2
 Number({ toString: () => 2, valueOf: () => 1 })   // -> 1
 ```
 
+Be careful while parsing floating point values
+
+```js
+parseInt(0.000001)  // -> 0
+parseInt(0.0000001) // -> 1
+parseInt(1/1999999) // -> 5
+```
+
+**💡 Explanation:** `ParseInt` takes a string argument and returns an integer of the specified radix. `ParseInt` also strips anything after and including the first non-digit in the string parameter. `0.000001` is converted to a string `"0.000001"` and the `parseInt` returns `0`. When `0.0000001` is converted to a string it is treated as `"1e-7"` and hence `parseInt` returns `1`. `1/1999999` is interpreted as `5.00000250000125e-7` and `parseInt` returns `5`.
+
 ## Math with `true` and `false`
 
 Let's do some math:
