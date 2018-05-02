@@ -74,6 +74,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
   - [A class of class](#a-class-of-class)
   - [Non-coercible objects](#non-coercible-objects)
   - [Tricky arrow functions](#tricky-arrow-functions)
+  - [Arrow functions can not be a constructor](#arrow-functions-can-not-be-a-constructor)
   - [`arguments` and arrow functions](#arguments-and-arrow-functions)
   - [Tricky return](#tricky-return)
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
@@ -1259,6 +1260,30 @@ You might expect `{}` instead of `undefined`. This is because the curly braces a
 let f = () => ({})
 f() // -> {}
 ```
+
+## Arrow functions can not be a constructor
+
+Consider the example below:
+
+```js
+let f = function () {
+  this.a = 1;
+}
+new f(); // -> { 'a': 1 }
+```
+
+Now, try do to the same with an arrow function:
+
+```js
+let f = () => {
+  this.a = 1;
+};
+new f(); // -> TypeError: f is not a constructor
+```
+
+### 💡 Explanation:
+
+Arrow functions cannot be used as constructors and will throw an error when used with new. Because has a lexical `this`, and do not have a `prototype` property, so it would not make much sense.
 
 ## `arguments` and arrow functions
 
