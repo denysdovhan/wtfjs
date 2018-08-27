@@ -13,14 +13,14 @@ const meow = require('meow');
 
 const cli = meow([
   'Usage',
-  '  bash-handbook',
+  '  wtfjs',
   '',
   'Options',
   '  --lang, -l  Translation language',
   '',
   'Examples',
-  '  bash-handbook',
-  '  bash-handbook --lang pt-br'
+  '  wtfjs',
+  '  wtfjs --lang pt-br'
 ], {
   string: [
     'lang'
