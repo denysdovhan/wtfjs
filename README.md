@@ -1,7 +1,11 @@
 # What the f*ck JavaScript?
 
 [![WTFPL 2.0][license-image]][license-url]
+
 [![NPM version][npm-image]][npm-url]
+
+
+[中文版](./README-zh-cn.md)
 
 > A list of funny and tricky JavaScript examples
 
@@ -33,6 +37,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
 - [✍🏻 Notation](#-notation)
 - [👀 Examples](#-examples)
   - [`[]` is equal `![]`](#-is-equal-)
+  - [`true` is not equal `![]`, but not equal `[]` too](#true-is-not-equal--but-not-equal--too)
   - [true is false](#true-is-false)
   - [baNaNa](#banana)
   - [`NaN` is not a `NaN`](#nan-is-not-a-nan)
@@ -150,6 +155,64 @@ See also [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
 
 * [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 * [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+
+## `true` is not equal `![]`, but not equal `[]` too
+Array is not equal `true`, but not Array is not equal `true` too;
+Array is equal `false`, not Array is equal `false` too:
+
+```js 
+true == [] // -> false
+true == ![] // -> false
+
+false == [] // -> true 
+false == ![] // -> true
+```
+### 💡 Explanation:
+
+```js
+true == [] // -> false
+true == ![] // -> false
+
+// According to the specification
+
+true == [] // -> false
+
+toNumber(true) // -> 1
+toNumber([])  // -> 0
+
+1 == 0 // -> false
+
+true == ![] // -> false
+
+![] // -> false
+
+true == false // -> false
+
+```
+
+```js
+false == [] // -> true 
+false == ![] // -> true
+
+// According to the specification
+
+false == [] // -> true
+
+toNumber(false) // -> 0
+toNumber([])  // -> 0
+
+0 == 0 // -> true
+
+false == ![] // -> false
+
+![] // -> false
+
+false == false // -> true
+
+```
+
+* [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+
 
 ## true is false
 
