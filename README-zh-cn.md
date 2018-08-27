@@ -1,7 +1,6 @@
 # What the f\*ck JavaScript?
 
 [![WTFPL 2.0][license-image]][license-url]
-
 [![NPM version][npm-image]][npm-url]
 
 > 一个有趣和棘手的 JavaScript 示例列表。
@@ -1515,3 +1514,5 @@ true;
 
 [license-url]: http://www.wtfpl.net
 [license-image]: https://img.shields.io/badge/License-WTFPL%202.0-lightgrey.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/wtfjs
+[npm-image]: https://img.shields.io/npm/v/wtfjs.svg?style=flat-square
