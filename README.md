@@ -1647,7 +1647,7 @@ All defenitions are merged into one definition.
 
 - [**13.3.2** Variable Statement](https://www.ecma-international.org/ecma-262/#sec-variable-statement)
 
-# Other resources
+# 📚 Other resources
 
 - [wtfjs.com](http://wtfjs.com/) — a collection of those very special irregularities, inconsistencies and just plain painfully unintuitive moments for the language of the web.
 - [Wat](https://www.destroyallsoftware.com/talks/wat) — A lightning talk by Gary Bernhardt from CodeMash 2012
