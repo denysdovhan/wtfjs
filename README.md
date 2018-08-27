@@ -1,11 +1,7 @@
 # What the f*ck JavaScript?
 
 [![WTFPL 2.0][license-image]][license-url]
-
 [![NPM version][npm-image]][npm-url]
-
-
-[中文版](./README-zh-cn.md)
 
 > A list of funny and tricky JavaScript examples
 
@@ -28,6 +24,16 @@ $ npm install -g wtfjs
 You should be able to run `wtfjs` at the command line now. This will open the manual in your selected `$PAGER`. Otherwise, you may continue reading on here.
 
 The source is available here: <https://github.com/denysdovhan/wtfjs>
+
+# Translations
+
+Currently, there are these translations of **wtfjs**:
+
+- [中文版](./README-zh-cn.md)
+
+[**Request another translation**][tr-request]
+
+[tr-request]: https://github.com/denysdovhan/wtfjs/issues/new?title=Translation%20Request:%20%5BPlease%20enter%20language%20here%5D&body=I%20am%20able%20to%20translate%20this%20language%20%5Byes/no%5D
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
