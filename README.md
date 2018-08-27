@@ -1,4 +1,4 @@
-# What the f*ck JavaScript?
+# What the f\*ck JavaScript?
 
 [![WTFPL 2.0][license-image]][license-url]
 [![NPM version][npm-image]][npm-url]
@@ -37,6 +37,7 @@ Currently, there are these translations of **wtfjs**:
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 # Table of Contents
 
 - [💪🏻 Motivation](#-motivation)
@@ -74,7 +75,7 @@ Currently, there are these translations of **wtfjs**:
   - [A `constructor` property](#a-constructor-property)
   - [Object as a key of object's property](#object-as-a-key-of-objects-property)
   - [Accessing prototypes with `__proto__`](#accessing-prototypes-with-__proto__)
-  - [``` `${{Object}}` ```](#-object-)
+  - [`` `${{Object}}` ``](#-object-)
   - [Destructuring with default values](#destructuring-with-default-values)
   - [Dots and spreading](#dots-and-spreading)
   - [Labels](#labels)
@@ -89,9 +90,9 @@ Currently, there are these translations of **wtfjs**:
   - [`arguments` and arrow functions](#arguments-and-arrow-functions)
   - [Tricky return](#tricky-return)
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
-  - [`Math.max()` less than `Math.min()`](#mathmax-less-than-mathmin)
   - [Null and Relational Operators](#null-and-relational-operators)
   - [`Number.toFixed()` display different numbers](#numbertofixed-display-different-numbers)
+  - [`Math.max()` less than `Math.min()`](#mathmax-less-than-mathmin)
   - [Comparing `null` to `0`](#comparing-null-to-0)
   - [Same variable redeclaration](#same-variable-redeclaration)
 - [Other resources](#other-resources)
@@ -118,20 +119,20 @@ In any case, just read this. You're probably going to find something new.
 **`// ->`** is used to show the result of an expression. For example:
 
 ```js
-1 + 1 // -> 2
+1 + 1; // -> 2
 ```
 
 **`// >`** means the result of `console.log` or another output. For example:
 
 ```js
-console.log('hello, world!') // > hello, world!
+console.log("hello, world!"); // > hello, world!
 ```
 
 **`//`** is just a comment used for explanations. Example:
 
 ```js
 // Assigning a function to foo constant
-const foo = function () {}
+const foo = function() {};
 ```
 
 # 👀 Examples
@@ -141,7 +142,7 @@ const foo = function () {}
 Array is equal not array:
 
 ```js
-[] == ![] // -> true
+[] == ![]; // -> true
 ```
 
 ### 💡 Explanation:
@@ -151,80 +152,79 @@ The abstract equality operator converts both sides to numbers to compare them, a
 Here is how this expression simplifies:
 
 ```js
-+[] == +![]
-0 == +false
-0 == 0
-true
++[] == +![];
+0 == +false;
+0 == 0;
+true;
 ```
 
 See also [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
 
-* [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
-* [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
+- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 ## `true` is not equal `![]`, but not equal `[]` too
+
 Array is not equal `true`, but not Array is not equal `true` too;
 Array is equal `false`, not Array is equal `false` too:
 
-```js 
-true == [] // -> false
-true == ![] // -> false
+```js
+true == []; // -> false
+true == ![]; // -> false
 
-false == [] // -> true 
-false == ![] // -> true
+false == []; // -> true
+false == ![]; // -> true
 ```
+
 ### 💡 Explanation:
 
 ```js
-true == [] // -> false
-true == ![] // -> false
+true == []; // -> false
+true == ![]; // -> false
 
 // According to the specification
 
-true == [] // -> false
+true == []; // -> false
 
-toNumber(true) // -> 1
-toNumber([])  // -> 0
+toNumber(true); // -> 1
+toNumber([]); // -> 0
 
-1 == 0 // -> false
+1 == 0; // -> false
 
-true == ![] // -> false
+true == ![]; // -> false
 
-![] // -> false
+![]; // -> false
 
-true == false // -> false
-
+true == false; // -> false
 ```
 
 ```js
-false == [] // -> true 
-false == ![] // -> true
+false == []; // -> true
+false == ![]; // -> true
 
 // According to the specification
 
-false == [] // -> true
+false == []; // -> true
 
-toNumber(false) // -> 0
-toNumber([])  // -> 0
+toNumber(false); // -> 0
+toNumber([]); // -> 0
 
-0 == 0 // -> true
+0 == 0; // -> true
 
-false == ![] // -> false
+false == ![]; // -> false
 
-![] // -> false
+![]; // -> false
 
-false == false // -> true
-
+false == false; // -> true
 ```
 
-* [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
-
+- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 ## true is false
 
 ```js
-!!'false' ==  !!'true'  // -> true
-!!'false' === !!'true' // -> true
+!!"false" == !!"true"; // -> true
+!!"false" === !!"true"; // -> true
 ```
 
 ### 💡 Explanation:
@@ -233,39 +233,39 @@ Consider this step-by-step:
 
 ```js
 // true is 'truthy' and represented by value 1 (number), 'true' in string form is NaN.
-true == 'true'    // -> false
-false == 'false'  // -> false
+true == "true"; // -> false
+false == "false"; // -> false
 
 // 'false' is not the empty string, so it's a truthy value
-!!'false' // -> true
-!!'true'  // -> true
+!!"false"; // -> true
+!!"true"; // -> true
 ```
 
-* [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 ## baNaNa
 
 ```js
-'b' + 'a' + + 'a' + 'a'
+"b" + "a" + +"a" + "a";
 ```
 
 This is an old-school joke in JavaScript, but remastered. Here's the original one:
 
 ```js
-'foo' + + 'bar' // -> 'fooNaN'
+"foo" + +"bar"; // -> 'fooNaN'
 ```
 
 ### 💡 Explanation:
 
 The expression is evaluated as `'foo' + (+'bar')`, which converts `'bar'` to not a number.
 
-* [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
-* [12.5.6 Unary + Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
+- [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
+- [12.5.6 Unary + Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
 
 ## `NaN` is not a `NaN`
 
 ```js
-NaN === NaN // -> false
+NaN === NaN; // -> false
 ```
 
 ### 💡 Explanation:
@@ -274,9 +274,9 @@ The specification strictly defines the logic behind this behavior:
 
 > 1. If `Type(x)` is different from `Type(y)`, return **false**.
 > 2. If `Type(x)` is Number, then
->     1. If `x` is **NaN**, return **false**.
->     2. If `y` is **NaN**, return **false**.
->     3. … … …
+>    1. If `x` is **NaN**, return **false**.
+>    2. If `y` is **NaN**, return **false**.
+>    3. … … …
 >
 > &mdash; [**7.2.14** Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)
 
@@ -291,7 +291,10 @@ Following the definition of `NaN` from the IEEE:
 You would not believe, but …
 
 ```js
-(![]+[])[+[]]+(![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]
+(![] + [])[+[]] +
+  (![] + [])[+!+[]] +
+  ([![]] + [][[]])[+!+[] + [+[]]] +
+  (![] + [])[!+[] + !+[]];
 // -> 'fail'
 ```
 
@@ -300,20 +303,20 @@ You would not believe, but …
 By breaking that mass of symbols into pieces, we notice that the following pattern occurs often:
 
 ```js
-(![]+[]) // -> 'false'
-![]      // -> false
+![] + []; // -> 'false'
+![]; // -> false
 ```
 
 So we try adding `[]` to `false`. But due to a number of internal function calls (`binary + Operator` -> `ToPrimitive` -> `[[DefaultValue]]`) we end up converting the right operand to a string:
 
 ```js
-(![]+[].toString()) // 'false'
+![] + [].toString(); // 'false'
 ```
 
 Thinking of a string as an array we can access its first character via `[0]`:
 
 ```js
-'false'[0] // -> 'f'
+"false"[0]; // -> 'f'
 ```
 
 The rest is obvious, but the `i` is tricky. The `i` in `fail` is grabbed by generating the string `'falseundefined'` and grabbing the element on index `['10']`
@@ -331,30 +334,30 @@ An array is a truthy value, however, it's not equal to `true`.
 
 Here are links to the corresponding sections in the ECMA-262 specification:
 
-* [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
-* [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
+- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 ## `null` is falsy, but not `false`
 
 Despite the fact that `null` is a falsy value, it's not equal to `false`.
 
 ```js
-!!null        // -> false
-null == false // -> false
+!!null; // -> false
+null == false; // -> false
 ```
 
 At the same time, other falsy values, like `0` or `''` are equal to `false`.
 
 ```js
-0 == false  // -> true
-'' == false // -> true
+0 == false; // -> true
+"" == false; // -> true
 ```
 
 ### 💡 Explanation:
 
 The explanation is the same as for previous example. Here's the corresponding link:
 
-* [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 ## `document.all` is an object, but it is undefined
 
@@ -363,21 +366,21 @@ The explanation is the same as for previous example. Here's the corresponding li
 Despite the fact that `document.all` is an array-like object and it gives access to the DOM nodes in the page, it responds to the `typeof` function as `undefined`.
 
 ```js
-document.all instanceof Object // -> true
-typeof document.all // -> 'undefined'
+document.all instanceof Object; // -> true
+typeof document.all; // -> 'undefined'
 ```
 
 At the same time, `document.all` is not equal to `undefined`.
 
 ```js
-document.all === undefined // -> false
-document.all === null // -> false
+document.all === undefined; // -> false
+document.all === null; // -> false
 ```
 
 But at the same time:
 
 ```js
-document.all == null // -> true
+document.all == null; // -> true
 ```
 
 ### 💡 Explanation:
@@ -393,7 +396,7 @@ document.all == null // -> true
 `Number.MIN_VALUE` is the smallest number, which is greater than zero:
 
 ```js
-Number.MIN_VALUE > 0 // -> true
+Number.MIN_VALUE > 0; // -> true
 ```
 
 ### 💡 Explanation:
@@ -404,7 +407,7 @@ Number.MIN_VALUE > 0 // -> true
 >
 > &mdash; [“Why is `0` less than `Number.MIN_VALUE` in JavaScript?”](https://stackoverflow.com/questions/26614728/why-is-0-less-than-number-min-value-in-javascript) at StackOverflow
 
-* [**20.1.2.9** Number.MIN_VALUE](https://www.ecma-international.org/ecma-262/#sec-number.min_value)
+- [**20.1.2.9** Number.MIN_VALUE](https://www.ecma-international.org/ecma-262/#sec-number.min_value)
 
 ## function is not a function
 
@@ -417,7 +420,7 @@ All of you know about the annoying _undefined is not a function_, but what about
 class Foo extends null {}
 // -> [Function: Foo]
 
-new Foo instanceof null
+new Foo() instanceof null;
 // > TypeError: function is not a function
 // >     at … … …
 ```
@@ -431,7 +434,7 @@ This is not a part of the specification. It's just a bug that has now been fixed
 What if you try to add two arrays?
 
 ```js
-[1, 2, 3] + [4, 5, 6]  // -> '1,2,34,5,6'
+[1, 2, 3] + [4, 5, 6]; // -> '1,2,34,5,6'
 ```
 
 ### 💡 Explanation:
@@ -439,13 +442,16 @@ What if you try to add two arrays?
 The concatenation happens. Step-by-step, it looks like this:
 
 ```js
-[1, 2, 3] + [4, 5, 6]
-// call toString()
-[1, 2, 3].toString() + [4, 5, 6].toString()
+[1, 2, 3] +
+  [4, 5, 6][
+    // call toString()
+    (1, 2, 3)
+  ].toString() +
+  [4, 5, 6].toString();
 // concatenation
-'1,2,3' + '4,5,6'
+"1,2,3" + "4,5,6";
 // ->
-'1,2,34,5,6'
+("1,2,34,5,6");
 ```
 
 ## Trailing commas in array
@@ -453,9 +459,9 @@ The concatenation happens. Step-by-step, it looks like this:
 You've created an array with 4 empty elements. Despite all, you'll get an array with three elements, because of trailing commas:
 
 ```js
-let a = [,,,]
-a.length     // -> 3
-a.toString() // -> ',,'
+let a = [, , ,];
+a.length; // -> 3
+a.toString(); // -> ',,'
 ```
 
 ### 💡 Explanation:
@@ -503,8 +509,8 @@ You should watch very carefully for the above examples! The behaviour is describ
 If we don't pass any arguments into the `Number` constructor, we'll get `0`. The value `undefined` is assigned to formal arguments when there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
 
 ```js
-Number()          // -> 0
-Number(undefined) // -> NaN
+Number(); // -> 0
+Number(undefined); // -> NaN
 ```
 
 ### 💡 Explanation:
@@ -517,16 +523,16 @@ According to the specification:
 
 Here's the corresponding section:
 
-* [**20.1.1** The Number Constructor](https://www.ecma-international.org/ecma-262/#sec-number-constructor)
-* [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
+- [**20.1.1** The Number Constructor](https://www.ecma-international.org/ecma-262/#sec-number-constructor)
+- [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
 
 ## `parseInt` is a bad guy
 
 `parseInt` is famous by its quirks:
 
 ```js
-parseInt('f*ck');     // -> NaN
-parseInt('f*ck', 16); // -> 15
+parseInt("f*ck"); // -> NaN
+parseInt("f*ck", 16); // -> 15
 ```
 
 **💡 Explanation:** This happens because `parseInt` will continue parsing character-by-character until it hits a character it doesn't know. The `f` in `'f*ck'` is the hexadecimal digit `15`.
@@ -535,27 +541,27 @@ Parsing `Infinity` to integer is something…
 
 ```js
 //
-parseInt('Infinity', 10) // -> NaN
+parseInt("Infinity", 10); // -> NaN
 // ...
-parseInt('Infinity', 18) // -> NaN...
-parseInt('Infinity', 19) // -> 18
+parseInt("Infinity", 18); // -> NaN...
+parseInt("Infinity", 19); // -> 18
 // ...
-parseInt('Infinity', 23) // -> 18...
-parseInt('Infinity', 24) // -> 151176378
+parseInt("Infinity", 23); // -> 18...
+parseInt("Infinity", 24); // -> 151176378
 // ...
-parseInt('Infinity', 29) // -> 385849803
-parseInt('Infinity', 30) // -> 13693557269
+parseInt("Infinity", 29); // -> 385849803
+parseInt("Infinity", 30); // -> 13693557269
 // ...
-parseInt('Infinity', 34) // -> 28872273981
-parseInt('Infinity', 35) // -> 1201203301724
-parseInt('Infinity', 36) // -> 1461559270678...
-parseInt('Infinity', 37) // -> NaN
+parseInt("Infinity", 34); // -> 28872273981
+parseInt("Infinity", 35); // -> 1201203301724
+parseInt("Infinity", 36); // -> 1461559270678...
+parseInt("Infinity", 37); // -> NaN
 ```
 
 Be careful with parsing `null` too:
 
 ```js
-parseInt(null, 24) // -> 23
+parseInt(null, 24); // -> 23
 ```
 
 **💡 Explanation:**
@@ -567,9 +573,9 @@ parseInt(null, 24) // -> 23
 Don't forget about octals:
 
 ```js
-parseInt('06'); // 6
-parseInt('08'); // 8 if support ECMAScript 5
-parseInt('08'); // 0 if not support ECMAScript 5
+parseInt("06"); // 6
+parseInt("08"); // 8 if support ECMAScript 5
+parseInt("08"); // 0 if not support ECMAScript 5
 ```
 
 **💡 Explanation:** If the input string begins with "0", radix is eight (octal) or 10 (decimal). Exactly which radix is chosen is implementation-dependent. ECMAScript 5 specifies that 10 (decimal) is used, but not all browsers support this yet. For this reason always specify a radix when using `parseInt`.
@@ -577,16 +583,16 @@ parseInt('08'); // 0 if not support ECMAScript 5
 `parseInt` always convert input to string:
 
 ```js
-parseInt({ toString: () => 2, valueOf: () => 1 }) // -> 2
-Number({ toString: () => 2, valueOf: () => 1 })   // -> 1
+parseInt({ toString: () => 2, valueOf: () => 1 }); // -> 2
+Number({ toString: () => 2, valueOf: () => 1 }); // -> 1
 ```
 
 Be careful while parsing floating point values
 
 ```js
-parseInt(0.000001)  // -> 0
-parseInt(0.0000001) // -> 1
-parseInt(1/1999999) // -> 5
+parseInt(0.000001); // -> 0
+parseInt(0.0000001); // -> 1
+parseInt(1 / 1999999); // -> 5
 ```
 
 **💡 Explanation:** `ParseInt` takes a string argument and returns an integer of the specified radix. `ParseInt` also strips anything after and including the first non-digit in the string parameter. `0.000001` is converted to a string `"0.000001"` and the `parseInt` returns `0`. When `0.0000001` is converted to a string it is treated as `"1e-7"` and hence `parseInt` returns `1`. `1/1999999` is interpreted as `5.00000250000125e-7` and `parseInt` returns `5`.
@@ -596,8 +602,13 @@ parseInt(1/1999999) // -> 5
 Let's do some math:
 
 ```js
-true + true // -> 2
-(true + true) * (true + true) - true // -> 3
+true +
+  true(
+    // -> 2
+    true + true
+  ) *
+    (true + true) -
+  true; // -> 3
 ```
 
 Hmmm… 🤔
@@ -607,14 +618,13 @@ Hmmm… 🤔
 We can coerce values to numbers with the `Number` constructor. It's quite obvious that `true` will be coerced to `1`:
 
 ```js
-Number(true) // -> 1
+Number(true); // -> 1
 ```
-
 
 The unary plus operator attempts to convert its value into a number. It can convert string representations of integers and floats, as well as the non-string values `true`, `false`, and `null`. If it cannot parse a particular value, it will evaluate to `NaN`. That means we can coerce `true` to `1` easier:
 
 ```js
-+true // -> 1
++true; // -> 1
 ```
 
 When you're performing addition or multiplication, the `ToNumber` method is invoked. According to the specification, this method returns:
@@ -625,9 +635,9 @@ That's why we can add boolean values as regular numbers and get correct results.
 
 Corresponding sections:
 
-* [**12.5.6** Unary `+` Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
-* [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
-* [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
+- [**12.5.6** Unary `+` Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
+- [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
+- [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
 
 ## HTML comments are valid in JavaScript
 
@@ -644,79 +654,83 @@ Impressed? HTML-like comments were intended to allow browsers that didn't unders
 
 Since Node.js is based on the V8 engine, HTML-like comments are supported by the Node.js runtime too. Moreover, they're a part of the specification:
 
-* [**B.1.3** HTML-like Comments](https://www.ecma-international.org/ecma-262/#sec-html-like-comments)
+- [**B.1.3** HTML-like Comments](https://www.ecma-international.org/ecma-262/#sec-html-like-comments)
 
 ## `NaN` is ~~not~~ a number
 
 Type of `NaN` is a `'number'`:
 
 ```js
-typeof NaN            // -> 'number'
+typeof NaN; // -> 'number'
 ```
 
 ### 💡 Explanation:
 
 Explanations of how `typeof` and `instanceof` operators work:
 
-* [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
-* [**12.10.4** Runtime Semantics: InstanceofOperator(`O`,`C`)](https://www.ecma-international.org/ecma-262/#sec-instanceofoperator)
+- [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
+- [**12.10.4** Runtime Semantics: InstanceofOperator(`O`,`C`)](https://www.ecma-international.org/ecma-262/#sec-instanceofoperator)
 
 ## `[]` and `null` are objects
 
 ```js
-typeof []   // -> 'object'
-typeof null // -> 'object'
+typeof []; // -> 'object'
+typeof null; // -> 'object'
 
 // however
-null instanceof Object // false
+null instanceof Object; // false
 ```
 
 ### 💡 Explanation:
 
 The behavior of `typeof` operator is defined in this section of the specification:
 
-* [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
+- [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
 
 According to the specification, the `typeof` operator returns a string according to [Table 35: `typeof` Operator Results](https://www.ecma-international.org/ecma-262/#table-35). For `null`, ordinary, standard exotic and non-standard exotic objects, which do not implement `[[Call]]`, it returns the string `"object"`.
 
 However, you can check the type of an object by using the `toString` method.
 
 ```js
-Object.prototype.toString.call([])
+Object.prototype.toString.call([]);
 // -> '[object Array]'
 
-Object.prototype.toString.call(new Date)
+Object.prototype.toString.call(new Date());
 // -> '[object Date]'
 
-Object.prototype.toString.call(null)
+Object.prototype.toString.call(null);
 // -> '[object Null]'
 ```
 
 ## Magically increasing numbers
 
 ```js
-999999999999999  // -> 999999999999999
-9999999999999999 // -> 10000000000000000
+999999999999999; // -> 999999999999999
+9999999999999999; // -> 10000000000000000
 
-10000000000000000       // -> 10000000000000000
-10000000000000000 + 1   // -> 10000000000000000
-10000000000000000 + 1.1 // -> 10000000000000002
+10000000000000000; // -> 10000000000000000
+10000000000000000 + 1; // -> 10000000000000000
+10000000000000000 + 1.1; // -> 10000000000000002
 ```
 
 ### 💡 Explanation:
 
 This is caused by IEEE 754-2008 standard for Binary Floating-Point Arithmetic. At this scale, it rounds to the nearest even number. Read more:
 
-* [**6.1.6** The Number Type](https://www.ecma-international.org/ecma-262/#sec-ecmascript-language-types-number-type)
-* [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) on Wikipedia
+- [**6.1.6** The Number Type](https://www.ecma-international.org/ecma-262/#sec-ecmascript-language-types-number-type)
+- [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) on Wikipedia
 
 ## Precision of `0.1 + 0.2`
 
 A well-known joke. An addition of `0.1` and `0.2` is deadly precise:
 
 ```js
-0.1 + 0.2 // -> 0.30000000000000004
-(0.1 + 0.2) === 0.3 // -> false
+0.1 +
+  0.2(
+    // -> 0.30000000000000004
+    0.1 + 0.2
+  ) ===
+  0.3; // -> false
 ```
 
 ### 💡 Explanation:
@@ -732,27 +746,31 @@ This problem is so known that there is even a website called [0.3000000000000000
 You can add your own methods to wrapper objects like `Number` or `String`.
 
 ```js
-Number.prototype.isOne = function () {
-  return Number(this) === 1
-}
+Number.prototype.isOne = function() {
+  return Number(this) === 1;
+};
 
-1.0.isOne() // -> true
-1..isOne()  // -> true
-2.0.isOne() // -> false
-(7).isOne() // -> false
+(1.0).isOne(); // -> true
+(1).isOne(); // -> true
+(2.0)
+  .isOne()(
+    // -> false
+    7
+  )
+  .isOne(); // -> false
 ```
 
 ### 💡 Explanation:
 
 Obviously, you can extend the `Number` object like any other object in JavaScript. However, it's not recommended if the behavior of the defined method is not a part of the specification. Here is the list of `Number`'s properties:
 
-* [**20.1** Number Objects](https://www.ecma-international.org/ecma-262/#sec-number-objects)
+- [**20.1** Number Objects](https://www.ecma-international.org/ecma-262/#sec-number-objects)
 
 ## Comparison of three numbers
 
 ```js
-1 < 2 < 3 // -> true
-3 > 2 > 1 // -> false
+1 < 2 < 3; // -> true
+3 > 2 > 1; // -> false
 ```
 
 ### 💡 Explanation:
@@ -760,24 +778,24 @@ Obviously, you can extend the `Number` object like any other object in JavaScrip
 Why does this work that way? Well, the problem is in the first part of an expression. Here's how it works:
 
 ```js
-1 < 2 < 3 // 1 < 2 -> true
-true  < 3 // true -> 1
-1     < 3 // -> true
+1 < 2 < 3; // 1 < 2 -> true
+true < 3; // true -> 1
+1 < 3; // -> true
 
-3 > 2 > 1 // 3 > 2 -> true
-true  > 1 // true -> 1
-1     > 1 // -> false
+3 > 2 > 1; // 3 > 2 -> true
+true > 1; // true -> 1
+1 > 1; // -> false
 ```
 
 We can fix this with _Greater than or equal operator (`>=`)_:
 
 ```js
-3 > 2 >= 1 // true
+3 > 2 >= 1; // true
 ```
 
 Read more about Relational operators in the specification:
 
-* [**12.10** Relational Operators](https://www.ecma-international.org/ecma-262/#sec-relational-operators)
+- [**12.10** Relational Operators](https://www.ecma-international.org/ecma-262/#sec-relational-operators)
 
 ## Funny math
 
@@ -817,9 +835,9 @@ String  + String  -> concatenation
 
 What about other examples? A `ToPrimitive` and `ToString` methods are being implicitly called for `[]` and `{}` before addition. Read more about evaluation process in the specification:
 
-* [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
-* [**7.1.1** ToPrimitive(`input` [,`PreferredType`])](https://www.ecma-international.org/ecma-262/#sec-toprimitive)
-* [**7.1.12** ToString(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tostring)
+- [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
+- [**7.1.1** ToPrimitive(`input` [,`PreferredType`])](https://www.ecma-international.org/ecma-262/#sec-toprimitive)
+- [**7.1.12** ToString(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tostring)
 
 ## Addition of RegExps
 
@@ -827,23 +845,24 @@ Did you know you can add numbers like this?
 
 ```js
 // Patch a toString method
-RegExp.prototype.toString = function() {
-  return this.source
-}
-
-/7/ - /5/ // -> 2
+RegExp.prototype.toString =
+  function() {
+    return this.source;
+  } /
+  7 /
+  -/5/; // -> 2
 ```
 
 ### 💡 Explanation:
 
-* [**21.2.5.10** get RegExp.prototype.source](https://www.ecma-international.org/ecma-262/#sec-get-regexp.prototype.source)
+- [**21.2.5.10** get RegExp.prototype.source](https://www.ecma-international.org/ecma-262/#sec-get-regexp.prototype.source)
 
 ## Strings aren't instances of `String`
 
 ```js
-'str' // -> 'str'
-typeof 'str' // -> 'string'
-'str' instanceof String // -> false
+"str"; // -> 'str'
+typeof "str"; // -> 'string'
+"str" instanceof String; // -> false
 ```
 
 ### 💡 Explanation:
@@ -851,27 +870,27 @@ typeof 'str' // -> 'string'
 The `String` constructor returns a string:
 
 ```js
-typeof String('str')   // -> 'string'
-String('str')          // -> 'str'
-String('str') == 'str' // -> true
+typeof String("str"); // -> 'string'
+String("str"); // -> 'str'
+String("str") == "str"; // -> true
 ```
 
 Let's try with a `new`:
 
 ```js
-new String('str') == 'str' // -> true
-typeof new String('str')   // -> 'object'
+new String("str") == "str"; // -> true
+typeof new String("str"); // -> 'object'
 ```
 
 Object? What's that?
 
 ```js
-new String('str') // -> [String: 'str']
+new String("str"); // -> [String: 'str']
 ```
 
 More information about the String constructor in the specification:
 
-* [**21.1.1** The String Constructor](https://www.ecma-international.org/ecma-262/#sec-string-constructor)
+- [**21.1.1** The String Constructor](https://www.ecma-international.org/ecma-262/#sec-string-constructor)
 
 ## Calling functions with backticks
 
@@ -879,20 +898,20 @@ Let's declare a function which logs all params into the console:
 
 ```js
 function f(...args) {
-  return args
+  return args;
 }
 ```
 
 No doubt, you know you can call this function like this:
 
 ```js
-f(1, 2, 3) // -> [ 1, 2, 3 ]
+f(1, 2, 3); // -> [ 1, 2, 3 ]
 ```
 
 But did you know you can call any function with backticks?
 
 ```js
-f`true is ${true}, false is ${false}, array is ${[1,2,3]}`
+f`true is ${true}, false is ${false}, array is ${[1, 2, 3]}`;
 // -> [ [ 'true is ', ', false is ', ', array is ', '' ],
 // ->   true,
 // ->   false,
@@ -908,32 +927,33 @@ function template(strings, ...keys) {
   // do something with strings and keys…
 }
 ```
+
 This is the [magic behind](http://mxstbr.blog/2016/11/styled-components-magic-explained/) famous library called [💅 styled-components](https://www.styled-components.com/), which is popular in the React community.
 
 Link to the specification:
 
-* [**12.3.7** Tagged Templates](https://www.ecma-international.org/ecma-262/#sec-tagged-templates)
+- [**12.3.7** Tagged Templates](https://www.ecma-international.org/ecma-262/#sec-tagged-templates)
 
 ## Call call call
 
 > Found by [@cramforce](http://twitter.com/cramforce)
 
 ```js
-console.log.call.call.call.call.call.apply(a => a, [1, 2])
+console.log.call.call.call.call.call.apply(a => a, [1, 2]);
 ```
 
 ### 💡 Explanation:
 
 Attention, it could break your mind! Try to reproduce this code in your head: we're applying the `call` method using the `apply` method. Read more:
 
-* [**19.2.3.3** Function.prototype.call(`thisArg`, ...`args`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.call)
-* [**19.2.3.1 ** Function.prototype.apply(`thisArg`, `argArray`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.apply)
+- [**19.2.3.3** Function.prototype.call(`thisArg`, ...`args`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.call)
+- [**19.2.3.1 ** Function.prototype.apply(`thisArg`, `argArray`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.apply)
 
 ## A `constructor` property
 
 ```js
-const c = 'constructor'
-c[c][c]('console.log("WTF?")')() // > WTF?
+const c = "constructor";
+c[c][c]('console.log("WTF?")')(); // > WTF?
 ```
 
 ### 💡 Explanation:
@@ -942,30 +962,30 @@ Let's consider this example step-by-step:
 
 ```js
 // Declare a new constant which is a string 'constructor'
-const c = 'constructor'
+const c = "constructor";
 
 // c is a string
-c // -> 'constructor'
+c; // -> 'constructor'
 
 // Getting a constructor of string
-c[c] // -> [Function: String]
+c[c]; // -> [Function: String]
 
 // Getting a constructor of constructor
-c[c][c] // -> [Function: Function]
+c[c][c]; // -> [Function: Function]
 
 // Call the Function constructor and pass
 // the body of new function as an argument
-c[c][c]('console.log("WTF?")') // -> [Function: anonymous]
+c[c][c]('console.log("WTF?")'); // -> [Function: anonymous]
 
 // And then call this anonymous function
 // The result is console-logging a string 'WTF?'
-c[c][c]('console.log("WTF?")')() // > WTF?
+c[c][c]('console.log("WTF?")')(); // > WTF?
 ```
 
 An `Object.prototype.constructor` returns a reference to the `Object` constructor function that created the instance object. In case with strings it is `String`, in case with numbers it is `Number` and so on.
 
-* [`Object.prototype.constructor`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor) at MDN
-* [**19.1.3.1** Object.prototype.constructor](https://www.ecma-international.org/ecma-262/#sec-object.prototype.constructor)
+- [`Object.prototype.constructor`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor) at MDN
+- [**19.1.3.1** Object.prototype.constructor](https://www.ecma-international.org/ecma-262/#sec-object.prototype.constructor)
 
 ## Object as a key of object's property
 
@@ -980,7 +1000,7 @@ Why does this work so? Here we're using a _Computed property name_. When you pas
 We can make "brackets hell" like this:
 
 ```js
-({[{}]:{[{}]:{}}})[{}][{}] // -> {}
+({ [{}]: { [{}]: {} } }[{}][{}]); // -> {}
 
 // structure:
 // {
@@ -992,15 +1012,15 @@ We can make "brackets hell" like this:
 
 Read more about object literals here:
 
-* [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
-* [**12.2.6** Object Initializer](http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer)
+- [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
+- [**12.2.6** Object Initializer](http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer)
 
 ## Accessing prototypes with `__proto__`
 
 As we know, primitives don't have prototypes. However, if we try to get a value of `__proto__` for primitives, we would get this:
 
 ```js
-(1).__proto__.__proto__.__proto__ // -> null
+(1).__proto__.__proto__.__proto__; // -> null
 ```
 
 ### 💡 Explanation:
@@ -1008,22 +1028,28 @@ As we know, primitives don't have prototypes. However, if we try to get a value 
 This happens because when something doesn't have a prototype, it will be wrapped into a wrapper object using the `ToObject` method. So, step-by-step:
 
 ```js
-(1).__proto__ // -> [Number: 0]
-(1).__proto__.__proto__ // -> {}
-(1).__proto__.__proto__.__proto__ // -> null
+(1)
+  .__proto__(
+    // -> [Number: 0]
+    1
+  )
+  .__proto__.__proto__(
+    // -> {}
+    1
+  ).__proto__.__proto__.__proto__; // -> null
 ```
 
 Here is more information about `__proto__`:
 
-* [**B.2.2.1** Object.prototype.__proto__](https://www.ecma-international.org/ecma-262/#sec-object.prototype.__proto__)
-* [**7.1.13** ToObject(`argument`)](https://www.ecma-international.org/ecma-262/#sec-toobject)
+- [**B.2.2.1** Object.prototype.**proto**](https://www.ecma-international.org/ecma-262/#sec-object.prototype.__proto__)
+- [**7.1.13** ToObject(`argument`)](https://www.ecma-international.org/ecma-262/#sec-toobject)
 
-## ``` `${{Object}}` ```
+## `` `${{Object}}` ``
 
 What is the result of the expression below?
 
 ```js
-`${{Object}}`
+`${{ Object }}`;
 ```
 
 The answer is:
@@ -1037,20 +1063,24 @@ The answer is:
 We defined an object with a property `Object` using _Shorthand property notation_:
 
 ```js
-{ Object: Object }
+{
+  Object: Object;
+}
 ```
 
 Then we've passed this object to the template literal, so the `toString` method calls for that object. That's why we get the string `'[object Object]'`.
 
-* [**12.2.9** Template Literals](https://www.ecma-international.org/ecma-262/#sec-template-literals)
-* [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
+- [**12.2.9** Template Literals](https://www.ecma-international.org/ecma-262/#sec-template-literals)
+- [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 
 ## Destructuring with default values
 
 Consider this example:
 
 ```js
-let x, { x: y = 1 } = { x }; y;
+let x,
+  { x: y = 1 } = { x };
+y;
 ```
 
 The example above is a great task for an interview. What the value of `y`? The answer is:
@@ -1062,7 +1092,9 @@ The example above is a great task for an interview. What the value of `y`? The a
 ### 💡 Explanation:
 
 ```js
-let x, { x: y = 1 } = { x }; y;
+let x,
+  { x: y = 1 } = { x };
+y;
 //  ↑       ↑           ↑    ↑
 //  1       3           2    4
 ```
@@ -1074,14 +1106,14 @@ With the example above:
 3. Then we extract the value of `x` using destructuring and want to assign it to `y`. If the value is not defined, then we're going to use `1` as the default value.
 4. Return the value of `y`.
 
-* [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
+- [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 
 ## Dots and spreading
 
 Interesting examples could be composed with spreading of arrays. Consider this:
 
 ```js
-[...[...'...']].length // -> 3
+[...[..."..."]].length; // -> 3
 ```
 
 ### 💡 Explanation:
@@ -1114,9 +1146,9 @@ Not many programmers know about labels in JavaScript. They are kind of interesti
 
 ```js
 foo: {
-  console.log('first');
+  console.log("first");
   break foo;
-  console.log('second');
+  console.log("second");
 }
 
 // > first
@@ -1131,8 +1163,8 @@ In the example above, we identify a label `foo`. After that `console.log('first'
 
 Read more about labels in JavaScript:
 
-* [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
-* [Labeled statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
+- [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
+- [Labeled statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
 
 ## Nested labels
 
@@ -1144,9 +1176,9 @@ a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
 
 Similar to previous examples, follow these links:
 
-* [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
-* [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
-* [Labeled statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
+- [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
+- [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
+- [Labeled statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
 
 ## Insidious `try..catch`
 
@@ -1159,21 +1191,21 @@ What will this expression return? `2` or `3`?
   } finally {
     return 3;
   }
-})()
+})();
 ```
 
 The answer is `3`. Surprised?
 
 ### 💡 Explanation:
 
-* [**13.15** The `try` Statement](https://www.ecma-international.org/ecma-262/#sec-try-statement)
+- [**13.15** The `try` Statement](https://www.ecma-international.org/ecma-262/#sec-try-statement)
 
 ## Is this multiple inheritance?
 
 Take a look at the example below:
 
 ```js
-new (class F extends (String, Array) { }) // -> F []
+new class F extends (String, Array) {}(); // -> F []
 ```
 
 Is this a multiple inheritance? Nope.
@@ -1182,30 +1214,55 @@ Is this a multiple inheritance? Nope.
 
 The interesting part is the value of the `extends` clause (`(String, Array)`). The grouping operator always returns its last argument, so `(String, Array)` is actually just `Array`. That means we've just created a class which extends `Array`.
 
-* [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
-* [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
+- [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
+- [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
 
 ## A generator which yields itself
 
 Consider this example of a generator which yields itself:
 
 ```js
-(function* f() { yield f })().next()
+(function* f() {
+  yield f;
+})().next();
 // -> { value: [GeneratorFunction: f], done: false }
 ```
 
 As you can see, the returned value is an object with its `value` equal to `f`. In that case, we can do something like this:
 
 ```js
-(function* f() { yield f })().next().value().next()
-// -> { value: [GeneratorFunction: f], done: false }
+(function* f() {
+  yield f;
+})()
+  .next()
+  .value()
+  .next()(
+    // -> { value: [GeneratorFunction: f], done: false }
 
-// and again
-(function* f() { yield f })().next().value().next().value().next()
-// -> { value: [GeneratorFunction: f], done: false }
+    // and again
+    function* f() {
+      yield f;
+    }
+  )()
+  .next()
+  .value()
+  .next()
+  .value()
+  .next()(
+    // -> { value: [GeneratorFunction: f], done: false }
 
-// and again
-(function* f() { yield f })().next().value().next().value().next().value().next()
+    // and again
+    function* f() {
+      yield f;
+    }
+  )()
+  .next()
+  .value()
+  .next()
+  .value()
+  .next()
+  .value()
+  .next();
 // -> { value: [GeneratorFunction: f], done: false }
 
 // and so on
@@ -1216,15 +1273,17 @@ As you can see, the returned value is an object with its `value` equal to `f`. I
 
 To understand why this works that way, read these sections of the specification:
 
-* [**25** Control Abstraction Objects](https://www.ecma-international.org/ecma-262/#sec-control-abstraction-objects)
-* [**25.3** Generator Objects](https://www.ecma-international.org/ecma-262/#sec-generator-objects)
+- [**25** Control Abstraction Objects](https://www.ecma-international.org/ecma-262/#sec-control-abstraction-objects)
+- [**25.3** Generator Objects](https://www.ecma-international.org/ecma-262/#sec-generator-objects)
 
 ## A class of class
 
 Consider this obfuscated syntax playing:
 
 ```js
-(typeof (new (class { class () {} }))) // -> 'object'
+typeof new class {
+  class() {}
+}(); // -> 'object'
 ```
 
 It seems like we're declaring a class inside of class. Should be an error, however, we get the string `'object'`.
@@ -1251,8 +1310,8 @@ The result of a default class is always a simple object. And its typeof should r
 
 Read more here:
 
-* [**14.3** Method Definitions](https://www.ecma-international.org/ecma-262/#sec-method-definitions)
-* [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
+- [**14.3** Method Definitions](https://www.ecma-international.org/ecma-262/#sec-method-definitions)
+- [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
 
 ## Non-coercible objects
 
@@ -1261,16 +1320,16 @@ With well-known symbols, there's a way to get rid of type coercion. Take a look:
 ```js
 function nonCoercible(val) {
   if (val == null) {
-    throw TypeError('nonCoercible should not be called with null or undefined')
+    throw TypeError("nonCoercible should not be called with null or undefined");
   }
 
-  const res = Object(val)
+  const res = Object(val);
 
   res[Symbol.toPrimitive] = () => {
-    throw TypeError('Trying to coerce non-coercible object')
-  }
+    throw TypeError("Trying to coerce non-coercible object");
+  };
 
-  return res
+  return res;
 }
 ```
 
@@ -1278,47 +1337,47 @@ Now we can use this like this:
 
 ```js
 // objects
-const foo = nonCoercible({foo: 'foo'})
+const foo = nonCoercible({ foo: "foo" });
 
-foo * 10      // -> TypeError: Trying to coerce non-coercible object
-foo + 'evil'  // -> TypeError: Trying to coerce non-coercible object
+foo * 10; // -> TypeError: Trying to coerce non-coercible object
+foo + "evil"; // -> TypeError: Trying to coerce non-coercible object
 
 // strings
-const bar = nonCoercible('bar')
+const bar = nonCoercible("bar");
 
-bar + '1'                 // -> TypeError: Trying to coerce non-coercible object
-bar.toString() + 1        // -> bar1
-bar === 'bar'             // -> false
-bar.toString() === 'bar'  // -> true
-bar == 'bar'              // -> TypeError: Trying to coerce non-coercible object
+bar + "1"; // -> TypeError: Trying to coerce non-coercible object
+bar.toString() + 1; // -> bar1
+bar === "bar"; // -> false
+bar.toString() === "bar"; // -> true
+bar == "bar"; // -> TypeError: Trying to coerce non-coercible object
 
 // numbers
-const baz = nonCoercible(1)
+const baz = nonCoercible(1);
 
-baz == 1             // -> TypeError: Trying to coerce non-coercible object
-baz === 1            // -> false
-baz.valueOf() === 1  // -> true
+baz == 1; // -> TypeError: Trying to coerce non-coercible object
+baz === 1; // -> false
+baz.valueOf() === 1; // -> true
 ```
 
 ### 💡 Explanation:
 
-* [A gist by Sergey Rubanov](https://gist.github.com/chicoxyzzy/5dd24608e886adf5444499896dff1197)
-* [**6.1.5.1** Well-Known Symbols](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
+- [A gist by Sergey Rubanov](https://gist.github.com/chicoxyzzy/5dd24608e886adf5444499896dff1197)
+- [**6.1.5.1** Well-Known Symbols](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
 
 ## Tricky arrow functions
 
 Consider the example below:
 
 ```js
-let f = () => 10
-f() // -> 10
+let f = () => 10;
+f(); // -> 10
 ```
 
 Okay, fine, but what about this:
 
 ```js
-let f = () => {}
-f() // -> undefined
+let f = () => {};
+f(); // -> undefined
 ```
 
 ### 💡 Explanation:
@@ -1326,8 +1385,8 @@ f() // -> undefined
 You might expect `{}` instead of `undefined`. This is because the curly braces are part of the syntax of the arrow functions, so `f` will return undefined. It is however possible to return the `{}` object directly from an arrow function, by enclosing the return value with brackets.
 
 ```js
-let f = () => ({})
-f() // -> {}
+let f = () => ({});
+f(); // -> {}
 ```
 
 ## Arrow functions can not be a constructor
@@ -1335,9 +1394,9 @@ f() // -> {}
 Consider the example below:
 
 ```js
-let f = function () {
+let f = function() {
   this.a = 1;
-}
+};
 new f(); // -> { 'a': 1 }
 ```
 
@@ -1359,17 +1418,17 @@ Arrow functions cannot be used as constructors and will throw an error when used
 Consider the example below:
 
 ```js
-let f = function(){
+let f = function() {
   return arguments;
-}
-f('a'); // -> { '0': 'a' }
+};
+f("a"); // -> { '0': 'a' }
 ```
 
 Now, try do to the same with an arrow function:
 
 ```js
-let f = () =>  arguments;
-f('a'); // -> Uncaught ReferenceError: arguments is not defined
+let f = () => arguments;
+f("a"); // -> Uncaught ReferenceError: arguments is not defined
 ```
 
 ### 💡 Explanation:
@@ -1378,22 +1437,22 @@ Arrow functions are a lightweight version of regular functions with a focus on b
 
 ```js
 let f = (...args) => args;
-f('a');
+f("a");
 ```
 
-* [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) at MDN.
+- [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) at MDN.
 
 ## Tricky return
 
 `return` statement is also tricky. Consider this:
 
 ```js
-(function () {
-  return
+(function() {
+  return;
   {
-    b : 10
+    b: 10;
   }
-})() // -> undefined
+})(); // -> undefined
 ```
 
 ### 💡 Explanation:
@@ -1401,40 +1460,40 @@ f('a');
 `return` and the returned expression must be in the same line:
 
 ```js
-(function () {
+(function() {
   return {
-    b : 10
-  }
-})() // -> { b: 10 }
+    b: 10
+  };
+})(); // -> { b: 10 }
 ```
 
 This is because of a concept called Automatic Semicolon Insertion, which automagically inserts semicolons after most newlines. In the first example, there is a semicolon inserted between the `return` statement and the object literal, so the function returns `undefined` and the object literal is never evaluated.
 
-* [**11.9.1** Rules of Automatic Semicolon Insertion](https://www.ecma-international.org/ecma-262/#sec-rules-of-automatic-semicolon-insertion)
-* [**13.10** The `return` Statement](https://www.ecma-international.org/ecma-262/#sec-return-statement)
+- [**11.9.1** Rules of Automatic Semicolon Insertion](https://www.ecma-international.org/ecma-262/#sec-rules-of-automatic-semicolon-insertion)
+- [**13.10** The `return` Statement](https://www.ecma-international.org/ecma-262/#sec-return-statement)
 
 ## Accessing object properties with arrays
 
 ```js
-var obj = { property: 1 }
-var array = ['property']
+var obj = { property: 1 };
+var array = ["property"];
 
-obj[array] // -> 1
+obj[array]; // -> 1
 ```
 
 What about pseudo-multidimensional arrays?
 
 ```js
-var map = {}
-var x = 1
-var y = 2
-var z = 3
+var map = {};
+var x = 1;
+var y = 2;
+var z = 3;
 
-map[[x, y, z]] = true
-map[[x + 10, y, z]] = true
+map[[x, y, z]] = true;
+map[[x + 10, y, z]] = true;
 
-map["1,2,3"]  // -> true
-map["11,2,3"] // -> true
+map["1,2,3"]; // -> true
+map["11,2,3"]; // -> true
 ```
 
 ### 💡 Explanation:
@@ -1442,13 +1501,13 @@ map["11,2,3"] // -> true
 The brackets `[]` operator converts the passed expression using `toString`. Converting a one-element array to a string is akin to converting the contained element to the string:
 
 ```js
-['property'].toString() // -> 'property'
+["property"].toString(); // -> 'property'
 ```
 
 ## Null and Relational Operators
 
 ```js
-null > 0;  // false
+null > 0; // false
 null == 0; // false
 
 null >= 0; // true
@@ -1463,14 +1522,14 @@ Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `tr
 `Number.toFixed()` can behave a bit strange in different browsers. Check out this example:
 
 ```js
-0.7875.toFixed(3) 
-    // Firefox: -> 0.787
-    // Chrome: -> 0.787
-    // IE11: -> 0.788
-0.7876.toFixed(3)
-    // Firefox: -> 0.788
-    // Chrome: -> 0.788
-    // IE11: -> 0.788
+(0.7875).toFixed(3);
+// Firefox: -> 0.787
+// Chrome: -> 0.787
+// IE11: -> 0.788
+(0.7876).toFixed(3);
+// Firefox: -> 0.788
+// Chrome: -> 0.788
+// IE11: -> 0.788
 ```
 
 ### 💡 Explanation:
@@ -1481,12 +1540,12 @@ You can see why this occurs with a few quick tests:
 
 ```js
 // Confirm the odd result of rounding a 5 down
-0.7875.toFixed(3) // -> 0.787
+(0.7875).toFixed(3); // -> 0.787
 // It looks like it's just a 5 when you expand to the
 // limits of 64-bit (double-precision) float accuracy
-0.7875.toFixed(14) // -> 0.78750000000000
+(0.7875).toFixed(14); // -> 0.78750000000000
 // But what if you go beyond the limit?
-0.7875.toFixed(20) // -> 0.78749999999999997780
+(0.7875).toFixed(20); // -> 0.78749999999999997780
 ```
 
 Floating point numbers are not stored as a list of decimal digits internally, but through a more complicated methodology that produces tiny inaccuracies that are usually rounded away by toString and similar calls, but are actually present internally.
@@ -1497,30 +1556,30 @@ IE11, however, will report the value input with only zeros appended to the end e
 
 See for reference `NOTE 2` on the ECMA-262 definition for `toFixed`.
 
-* [**20.1.3.3** Number.prototype.toFixed (`fractionDigits`)](https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed)
+- [**20.1.3.3** Number.prototype.toFixed (`fractionDigits`)](https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed)
 
 ## `Math.max()` less than `Math.min()`
 
 ```js
-Math.min(1,4,7,2)  // -> 1
-Math.max(1,4,7,2) // -> 7
-Math.min() // -> Infinity
-Math.max() // -> -Infinity
-Math.min() > Math.max() // -> true
+Math.min(1, 4, 7, 2); // -> 1
+Math.max(1, 4, 7, 2); // -> 7
+Math.min(); // -> Infinity
+Math.max(); // -> -Infinity
+Math.min() > Math.max(); // -> true
 ```
 
 ### 💡 Explanation:
 
-* [Why is Math.max() less than Math.min()?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min) by Charlie Harvey
+- [Why is Math.max() less than Math.min()?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min) by Charlie Harvey
 
 ## Comparing `null` to `0`
 
 The following expressions seem to introduce a contradiction:
 
 ```js
-null == 0 // -> false
-null >  0 // -> false
-null >= 0 // -> true
+null == 0; // -> false
+null > 0; // -> false
+null >= 0; // -> true
 ```
 
 How can `null` be neither equal to nor greater than `0`, if `null >= 0` is actually `true`? (This also works with less than in the same way.)
@@ -1533,15 +1592,14 @@ First, the abstract equality comparison `null == 0`. Normally, if this operator 
 
 ```js
 // This is not what happens
-null == 0
-+null == +0
-0 == 0
-true
+(null == 0 + null) == +0;
+0 == 0;
+true;
 ```
 
 However, according to a close reading of the spec, the number conversion doesn't actually happen on a side that is `null` or `undefined`. Therefore, if you have `null` on one side of the equal sign, the other side must be `null` or `undefined` for the expression to return `true`. Since this is not the case, `false` is returned.
 
-Next, the relational comparison `null > 0`. The algorithm here, unlike that of the abstract equality operator, *will* convert `null` to a number. Therefore, we get this behavior:
+Next, the relational comparison `null > 0`. The algorithm here, unlike that of the abstract equality operator, _will_ convert `null` to a number. Therefore, we get this behavior:
 
 ```js
 null > 0
@@ -1553,16 +1611,16 @@ false
 Finally, the relational comparison `null >= 0`. You could argue that this expression should be the result of `null > 0 || null == 0`; if this were the case, then the above results would mean that this would also be `false`. However, the `>=` operator in fact works in a very different way, which is basically to take the opposite of the `<` operator. Because our example with the greater than operator above also holds for the less than operator, that means this expression is actually evaluated like so:
 
 ```js
-null >= 0
-!(null < 0)
-!(+null < +0)
-!(0 < 0)
-!(false)
-true
+null >= 0;
+!(null < 0);
+!(+null < +0);
+!(0 < 0);
+!false;
+true;
 ```
 
-* [**7.2.12** Abstract Relational Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-relational-comparison)
-* [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.12** Abstract Relational Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-relational-comparison)
+- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 ## Same variable redeclaration
 
@@ -1582,17 +1640,18 @@ var a, a, a;
 var a;
 var a;
 ```
+
 ### 💡 Explanation:
 
 All defenitions are merged into one definition.
 
-* [**13.3.2** Variable Statement](https://www.ecma-international.org/ecma-262/#sec-variable-statement)
+- [**13.3.2** Variable Statement](https://www.ecma-international.org/ecma-262/#sec-variable-statement)
 
 # Other resources
 
-* [wtfjs.com](http://wtfjs.com/) — a collection of those very special irregularities, inconsistencies and just plain painfully unintuitive moments for the language of the web.
-* [Wat](https://www.destroyallsoftware.com/talks/wat) — A lightning talk by Gary Bernhardt from CodeMash 2012
-* [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — Kyle Simpsons talk for Forward 2 attempts to “pull out the crazy” from JavaScript. He wants to help you produce cleaner, more elegant, more readable code, then inspire people to contribute to the open source community.
+- [wtfjs.com](http://wtfjs.com/) — a collection of those very special irregularities, inconsistencies and just plain painfully unintuitive moments for the language of the web.
+- [Wat](https://www.destroyallsoftware.com/talks/wat) — A lightning talk by Gary Bernhardt from CodeMash 2012
+- [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — Kyle Simpsons talk for Forward 2 attempts to “pull out the crazy” from JavaScript. He wants to help you produce cleaner, more elegant, more readable code, then inspire people to contribute to the open source community.
 
 # 🎓 License
 
@@ -1602,6 +1661,5 @@ All defenitions are merged into one definition.
 
 [license-url]: http://www.wtfpl.net
 [license-image]: https://img.shields.io/badge/License-WTFPL%202.0-lightgrey.svg?style=flat-square
-
 [npm-url]: https://npmjs.org/package/wtfjs
 [npm-image]: https://img.shields.io/npm/v/wtfjs.svg?style=flat-square
