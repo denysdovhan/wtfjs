@@ -725,12 +725,9 @@ This is caused by IEEE 754-2008 standard for Binary Floating-Point Arithmetic. A
 A well-known joke. An addition of `0.1` and `0.2` is deadly precise:
 
 ```js
-0.1 +
-  0.2(
-    // -> 0.30000000000000004
-    0.1 + 0.2
-  ) ===
-  0.3; // -> false
+0.1 + 0.2 // -> 0.30000000000000004
+(0.1 + 0.2) === 0.3 // -> false
+parseInt(1/0.00001) == 100000 // -> false
 ```
 
 ### 💡 Explanation:
@@ -738,6 +735,8 @@ A well-known joke. An addition of `0.1` and `0.2` is deadly precise:
 The answer for the [”Is floating point math broken?”](https://stackoverflow.com/questions/588004/is-floating-point-math-broken) question on StackOverflow:
 
 > The constants `0.2` and `0.3` in your program will also be approximations to their true values. It happens that the closest `double` to `0.2` is larger than the rational number `0.2` but that the closest `double` to `0.3` is smaller than the rational number `0.3`. The sum of `0.1` and `0.2` winds up being larger than the rational number `0.3` and hence disagreeing with the constant in your code.
+
+because of the loss of precision while parsing floating point values, 1/0.00001 is interpreted as 99999.99999999999 and parseInt returns 99999, rather than 100000.
 
 This problem is so known that there is even a website called [0.30000000000000004.com](http://0.30000000000000004.com/). It occurs in every language that uses floating-point math, not just JavaScript.
 
