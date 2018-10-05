@@ -117,22 +117,22 @@ En cualquier caso, tan solo lee esto. Probablemente descubrirás algo nuevo.
 
 # ✍🏻 Notación
 
-**`// ->`** is used to show the result of an expression. For example:
+**`// ->`** es usado para mostrar el resultado de una expresión. Por ejemplo:
 
 ```js
 1 + 1; // -> 2
 ```
 
-**`// >`** means the result of `console.log` or another output. For example:
+**`// >`** significa el resultado de `console.log` o alguna otra salida. Por ejemplo:
 
 ```js
 console.log("hello, world!"); // > hello, world!
 ```
 
-**`//`** is just a comment used for explanations. Example:
+**`//`** es solo un comentario usado para aclaraciones. Ejemplo:
 
 ```js
-// Assigning a function to foo constant
+// Asignando una función a la constante foo
 const foo = function() {};
 ```
 
