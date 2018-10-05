@@ -170,10 +170,10 @@ Ver también [`[]` es truthy, pero no `true`](#-es-truthy-pero-no-true).
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## `true` is not equal `![]`, but not equal `[]` too
+## `true` no es igual a `![]`, pero tampoco igual a `[]`
 
-Array is not equal `true`, but not Array is not equal `true` too;
-Array is equal `false`, not Array is equal `false` too:
+Array no es igual a `true`, pero tampoco no array es igual a `true`;
+Array es igual a `false`, no Array es también igual a  `false`:
 
 ```js
 true == []; // -> false
@@ -183,13 +183,13 @@ false == []; // -> true
 false == ![]; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Explicación:
 
 ```js
 true == []; // -> false
 true == ![]; // -> false
 
-// According to the specification
+// Según la especificación
 
 true == []; // -> false
 
@@ -209,7 +209,7 @@ true == false; // -> false
 false == []; // -> true
 false == ![]; // -> true
 
-// According to the specification
+// Según la especificación
 
 false == []; // -> true
 
@@ -227,14 +227,14 @@ false == false; // -> true
 
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## true is false
+## true es false
 
 ```js
 !!"false" == !!"true"; // -> true
 !!"false" === !!"true"; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Explicación:
 
 Consider this step-by-step:
 
