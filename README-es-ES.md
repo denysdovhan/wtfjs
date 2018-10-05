@@ -136,21 +136,27 @@ console.log("hello, world!"); // > hello, world!
 const foo = function() {};
 ```
 
-# 👀 Examples
+# 📄 Notas de traducción
 
-## `[]` is equal `![]`
+** Los términos [`truthy`] (https://developer.mozilla.org/es/docs/Glossary/Truthy) y [`falsy`] (https://developer.mozilla.org/es/docs/Glossary/Falsy) no se traducirán al no encontrar en español equivalencia válida.
 
-Array is equal not array:
+** El término `coerced` se traducirá por coercido, que aunque la traducción mas usada sea coaccionado, coercido se parece mas al termino original.
+
+# 👀 Ejemplos
+
+## `[]` es igual a `![]`
+
+Array es igual a no array:
 
 ```js
 [] == ![]; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Explicación:
 
-The abstract equality operator converts both sides to numbers to compare them, and both sides become the number `0` for different reasons. Arrays are truthy, so on the right, the opposite of a truthy value is `false`, which is then coerced to `0`. On the left, however, an empty array is coerced to a number without becoming a boolean first, and empty arrays are coerced to `0`, despite being truthy.
+El operador de igualdad abstracto convierte los dos lados a numeros para poder compararlos, y ambos lados se convierten en el numero `0` por distintas razones. Los Arrays son truthy, así que en la derecha, lo contrario a un valor truthy es `false`, que es coercido a `0`. A la izquierda, sin embargo, un array vacío es coercido a un numero sin ser primero boolean, y los arrays vacios se coercen a `0`, a pesar de ser truthy.
 
-Here is how this expression simplifies:
+Así es como esta expresión se simplifica:
 
 ```js
 +[] == +![];
@@ -159,7 +165,7 @@ Here is how this expression simplifies:
 true;
 ```
 
-See also [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
+Ver también [`[]` es truthy, pero no `true`](#-es-truthy-pero-no-true).
 
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
