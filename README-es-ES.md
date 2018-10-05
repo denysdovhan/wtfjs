@@ -7,7 +7,7 @@
 
 JavaScript es un genial lenguage. Tiene una sintaxis simple, un largo ecosistema y lo que es mas importante, una genial comunidad.
 
-Al mismo tiempo, sabemos que Javascript es un lenguage divertido con partes dificiles. Mientras algunas de ellas pueden, de repente,  convertir nuestro trabajo diario en un infierno, otras nos hacen partirnos de risa.
+Al mismo tiempo, sabemos que Javascript es un lenguage divertido pero que tiene partes dificiles. Mientras algunas de ellas pueden, de repente, convertir nuestro trabajo diario en un infierno, otras nos hacen partirnos de risa.
 
 La idea original de WTFJS pertenece a [Brian Leroux](https://twitter.com/brianleroux). Esta lista está fuertemente inspirada en su charla  [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
@@ -21,37 +21,38 @@ Puedes instalar este manual usando `npm`. Simplemente ejecuta:
 $ npm install -g wtfjs
 ```
 
-You should be able to run `wtfjs` at the command line now. This will open the manual in your selected `$PAGER`. Otherwise, you may continue reading on here.
+Ahora tienes que ser capaz de ejecutar `wtfjs` en tu línea de comandos. Esto abrirá el manual en tu `$PAGER` seleccionado. Por otra parte, también puedes continuar leyendola aquí mismo.
 
-The source is available here: <https://github.com/denysdovhan/wtfjs>
+El código está disponible aquí: <https://github.com/denysdovhan/wtfjs>
 
-# Translations
+# Traducciones
 
-Currently, there are these translations of **wtfjs**:
+Actualmente, estan disponibles las siguientes traducciones de **wtfjs**:
 
 - [中文版](./README-zh-cn.md)
+- [Español](./README-es-ES.md)
 
-[**Request another translation**][tr-request]
+[**Pedir otra traducción**][tr-request]
 
 [tr-request]: https://github.com/denysdovhan/wtfjs/issues/new?title=Translation%20Request:%20%5BPlease%20enter%20language%20here%5D&body=I%20am%20able%20to%20translate%20this%20language%20%5Byes/no%5D
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-# Table of Contents
+# Índice de contenidos
 
-- [💪🏻 Motivation](#-motivation)
-- [✍🏻 Notation](#-notation)
-- [👀 Examples](#-examples)
-  - [`[]` is equal `![]`](#-is-equal-)
-  - [`true` is not equal `![]`, but not equal `[]` too](#true-is-not-equal--but-not-equal--too)
-  - [true is false](#true-is-false)
+- [💪🏻 Motivación](#-motivation)
+- [✍🏻 Notación](#-notation)
+- [👀 Ejemplos](#-examples)
+  - [`[]` es igual a `![]`](#-is-equal-)
+  - [`true` no es igual a `![]`, pero no igual a `[]` tampoco](#true-is-not-equal--but-not-equal--too)
+  - [true es false](#true-is-false)
   - [baNaNa](#banana)
-  - [`NaN` is not a `NaN`](#nan-is-not-a-nan)
-  - [It's a fail](#its-a-fail)
-  - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
-  - [`null` is falsy, but not `false`](#null-is-falsy-but-not-false)
-  - [`document.all` is an object, but it is undefined](#documentall-is-an-object-but-it-is-undefined)
+  - [`NaN` no es un `NaN`](#nan-is-not-a-nan)
+  - [Es un fail](#its-a-fail)
+  - [`[]` is veraz, pero no `true`](#-is-truthy-but-not-true)
+  - [`null` es falsable, pero no `false`](#null-is-falsy-but-not-false)
+  - [`document.all` es un object, pero es undefined](#documentall-is-an-object-but-it-is-undefined)
   - [Minimal value is greater than zero](#minimal-value-is-greater-than-zero)
   - [function is not a function](#function-is-not-a-function)
   - [Adding arrays](#adding-arrays)
@@ -100,21 +101,21 @@ Currently, there are these translations of **wtfjs**:
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# 💪🏻 Motivation
+# 💪🏻 Motivación
 
-> Just for fun
+> Solo por diversión
 >
 > &mdash; _[**“Just for Fun: The Story of an Accidental Revolutionary”**](https://en.wikipedia.org/wiki/Just_for_Fun), Linus Torvalds_
 
-The primary goal of this list is to collect some crazy examples and explain how they work, if possible. Just because it's fun to learn something that we didn't know before.
+El principal objetivo de esta lista es recoger algunos ejemplos locos y explicar como funcionan, si es que eso es posible. Solo porque es divertido aprender cosas que no sabiamos antes.
 
-If you are a beginner, you can use these notes to get a deeper dive into JavaScript. I hope these notes will motivate you to spend more time reading the specification.
+Si eres un principiante, puedes usar estos apuntes para entrar mas profundo en JavaScript. Espero que esatas notas te motiven a pasar mas tiempo leyendo la especificación.
 
-If you are a professional developer, you can consider these examples as a great reference for all of the quirks and unexpected edges of our beloved JavaScript.
+Si eres un programador profesional, puedes considerar estos ejemplos como una buena referencia para todas las peculiaridades y comportamientos inesperados de nuestro querido JavaScript.
 
-In any case, just read this. You're probably going to find something new.
+En cualquier caso, tan solo lee esto. Probablemente descubrirás algo nuevo.
 
-# ✍🏻 Notation
+# ✍🏻 Notación
 
 **`// ->`** is used to show the result of an expression. For example:
 
