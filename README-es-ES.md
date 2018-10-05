@@ -236,14 +236,14 @@ false == false; // -> true
 
 ### 💡 Explicación:
 
-Consider this step-by-step:
+Considera este paso-a-paso:
 
 ```js
-// true is 'truthy' and represented by value 1 (number), 'true' in string form is NaN.
+// true es 'truthy' y representado por el valor 1 (number), 'true' en formato string es NaN.
 true == "true"; // -> false
 false == "false"; // -> false
 
-// 'false' is not the empty string, so it's a truthy value
+// 'false' no es un string vacío, por lo que es un valor truthy
 !!"false"; // -> true
 !!"true"; // -> true
 ```
@@ -256,15 +256,15 @@ false == "false"; // -> false
 "b" + "a" + +"a" + "a";
 ```
 
-This is an old-school joke in JavaScript, but remastered. Here's the original one:
+Esta es una broma old-school de Javascript pero remasterizada. Aquí esta la original:
 
 ```js
 "foo" + +"bar"; // -> 'fooNaN'
 ```
 
-### 💡 Explanation:
+### 💡 Explicación:
 
-The expression is evaluated as `'foo' + (+'bar')`, which converts `'bar'` to not a number.
+La expresión es evaluada como `'foo' + (+'bar')`, lo que convierte `'bar'` en un not a number (NaN).
 
 - [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 - [12.5.6 Unary + Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
