@@ -6,7 +6,7 @@
   "scripts": {
     "precommit": "lint-staged",
     "postpublish": "git push --follow-tags",
-    "toc": "doctoc --github --title '# Table of Contents' --maxlevel 2 README.md",
+    "toc": "doctoc --github --title '# Table of Contents' --maxlevel 2 README-es-ES.md",
     "format": "prettier --write '*.{json,md}' 'wtfjs'"
   },
   "repository": {

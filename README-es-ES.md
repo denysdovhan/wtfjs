@@ -5,9 +5,9 @@
 
 > Una lista de ejemplos divertidos y curiosos de JavaScript
 
-JavaScript es un genial lenguage. Tiene una sintaxis simple, un largo ecosistema y lo que es mas importante, una genial comunidad.
+JavaScript es un lenguage genial. Tiene una sintaxis simple, un gran ecosistema y lo que es mas importante, una genial comunidad.
 
-Al mismo tiempo, sabemos que Javascript es un lenguage divertido pero que tiene partes dificiles. Mientras algunas de ellas pueden, de repente, convertir nuestro trabajo diario en un infierno, otras nos hacen partirnos de risa.
+Sabemos que Javascript es un lenguage divertido pero que, al mismo tempo, tiene partes dificiles. Mientras algunas de ellas pueden, de repente, convertir nuestro trabajo diario en un infierno, otras nos hacen partirnos de risa.
 
 La idea original de WTFJS pertenece a [Brian Leroux](https://twitter.com/brianleroux). Esta lista está fuertemente inspirada en su charla  [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
@@ -38,21 +38,21 @@ Actualmente, estan disponibles las siguientes traducciones de **wtfjs**:
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+# Table of Contents
 
-# Índice de contenidos
-
-- [💪🏻 Motivación](#-motivation)
-- [✍🏻 Notación](#-notation)
-- [👀 Ejemplos](#-examples)
-  - [`[]` es igual a `![]`](#-is-equal-)
-  - [`true` no es igual a `![]`, pero no igual a `[]` tampoco](#true-is-not-equal--but-not-equal--too)
-  - [true es false](#true-is-false)
+- [💪🏻 Motivación](#-motivaci%C3%B3n)
+- [✍🏻 Notación](#-notaci%C3%B3n)
+- [📄 Notas de traducción](#-notas-de-traducci%C3%B3n)
+- [👀 Ejemplos](#-ejemplos)
+  - [`[]` es igual a `![]`](#-es-igual-a-)
+  - [`true` no es igual a `![]`, pero tampoco igual a `[]`](#true-no-es-igual-a--pero-tampoco-igual-a-)
+  - [true es false](#true-es-false)
   - [baNaNa](#banana)
-  - [`NaN` no es un `NaN`](#nan-is-not-a-nan)
-  - [Es un fail](#its-a-fail)
-  - [`[]` is veraz, pero no `true`](#-is-truthy-but-not-true)
-  - [`null` es falsable, pero no `false`](#null-is-falsy-but-not-false)
-  - [`document.all` es un object, pero es undefined](#documentall-is-an-object-but-it-is-undefined)
+  - [`NaN` no es un `NaN`](#nan-no-es-un-nan)
+  - [Es un fail](#es-un-fail)
+  - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
+  - [`null` is falsy, but not `false`](#null-is-falsy-but-not-false)
+  - [`document.all` is an object, but it is undefined](#documentall-is-an-object-but-it-is-undefined)
   - [Minimal value is greater than zero](#minimal-value-is-greater-than-zero)
   - [function is not a function](#function-is-not-a-function)
   - [Adding arrays](#adding-arrays)
@@ -96,7 +96,7 @@ Actualmente, estan disponibles las siguientes traducciones de **wtfjs**:
   - [`Math.max()` less than `Math.min()`](#mathmax-less-than-mathmin)
   - [Comparing `null` to `0`](#comparing-null-to-0)
   - [Same variable redeclaration](#same-variable-redeclaration)
-- [Other resources](#other-resources)
+- [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -307,7 +307,7 @@ Parece increíble pero …
 
 ### 💡 Explicación:
 
-By breaking that mass of symbols into pieces, we notice that the following pattern occurs often:
+Descomponiendo esta amalgama de simbolos en bloques, nos damos cuenta que el siguiente patrón ocurre a menudo:
 
 ```js
 ![] + []; // -> 'false'
@@ -320,13 +320,13 @@ So we try adding `[]` to `false`. But due to a number of internal function calls
 ![] + [].toString(); // 'false'
 ```
 
-Thinking of a string as an array we can access its first character via `[0]`:
+Pensando en un string como un array, podemos acceder a su primer caracter via `[0]`:
 
 ```js
 "false"[0]; // -> 'f'
 ```
 
-The rest is obvious, but the `i` is tricky. The `i` in `fail` is grabbed by generating the string `'falseundefined'` and grabbing the element on index `['10']`
+El resto es obvio, aunque la `i` es mas dificil. La `i` de `fail` se obtiene de la generació del string `'falseundefined'` y cogiendola del elemento con el índice `['10']`
 
 ## `[]` is truthy, but not `true`
 
@@ -344,7 +344,7 @@ Here are links to the corresponding sections in the ECMA-262 specification:
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## `null` is falsy, but not `false`
+## `null` es falsy, pero no `false`
 
 Despite the fact that `null` is a falsy value, it's not equal to `false`.
 
