@@ -269,33 +269,33 @@ La expresión es evaluada como `'foo' + (+'bar')`, lo que convierte `'bar'` en u
 - [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 - [12.5.6 Unary + Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
 
-## `NaN` is not a `NaN`
+## `NaN` no es un `NaN`
 
 ```js
 NaN === NaN; // -> false
 ```
 
-### 💡 Explanation:
+### 💡 Explicación:
 
-The specification strictly defines the logic behind this behavior:
+La especificación define estrictamente la logica detras de este comportamiento:
 
-> 1. If `Type(x)` is different from `Type(y)`, return **false**.
-> 2. If `Type(x)` is Number, then
->    1. If `x` is **NaN**, return **false**.
->    2. If `y` is **NaN**, return **false**.
+> 1. Si `Type(x)` es diferente de `Type(y)`, return **false**.
+> 2. Si `Type(x)` es Number:
+>    1. Si `x` es **NaN**, return **false**.
+>    2. Si `y` es **NaN**, return **false**.
 >    3. … … …
 >
 > &mdash; [**7.2.14** Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)
 
-Following the definition of `NaN` from the IEEE:
+A continuación la definición de `NaN` de la IEEE:
 
 > Four mutually exclusive relations are possible: less than, equal, greater than, and unordered. The last case arises when at least one operand is NaN. Every NaN shall compare unordered with everything, including itself.
 >
 > &mdash; [“What is the rationale for all comparisons returning false for IEEE754 NaN values?”](https://stackoverflow.com/questions/1565164/1573715#1573715) at StackOverflow
 
-## It's a fail
+## Es un fail
 
-You would not believe, but …
+Parece increíble pero …
 
 ```js
 (![] + [])[+[]] +
@@ -305,7 +305,7 @@ You would not believe, but …
 // -> 'fail'
 ```
 
-### 💡 Explanation:
+### 💡 Explicación:
 
 By breaking that mass of symbols into pieces, we notice that the following pattern occurs often:
 
