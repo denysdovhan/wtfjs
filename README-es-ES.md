@@ -9,7 +9,7 @@ JavaScript es un lenguage genial. Tiene una sintaxis simple, un gran ecosistema 
 
 Sabemos que Javascript es un lenguage divertido pero que, al mismo tempo, tiene partes dificiles. Mientras algunas de ellas pueden, de repente, convertir nuestro trabajo diario en un infierno, otras nos hacen partirnos de risa.
 
-La idea original de WTFJS pertenece a [Brian Leroux](https://twitter.com/brianleroux). Esta lista está fuertemente inspirada en su charla  [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
+La idea original de WTFJS pertenece a [Brian Leroux](https://twitter.com/brianleroux). Esta lista está fuertemente inspirada en su charla [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
 [![dotJS 2012 - Brian Leroux - WTFJS](https://img.youtube.com/vi/et8xNAc2ic8/0.jpg)](https://www.youtube.com/watch?v=et8xNAc2ic8)
 
@@ -38,6 +38,7 @@ Actualmente, estan disponibles las siguientes traducciones de **wtfjs**:
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 # Table of Contents
 
 - [💪🏻 Motivación](#-motivaci%C3%B3n)
@@ -138,9 +139,9 @@ const foo = function() {};
 
 # 📄 Notas de traducción
 
-** Los términos [`truthy`] (https://developer.mozilla.org/es/docs/Glossary/Truthy) y [`falsy`] (https://developer.mozilla.org/es/docs/Glossary/Falsy) no se traducirán al no encontrar en español equivalencia válida.
+\*\* Los términos [`truthy`](https://developer.mozilla.org/es/docs/Glossary/Truthy) y [`falsy`](https://developer.mozilla.org/es/docs/Glossary/Falsy) no se traducirán al no encontrar en español equivalencia válida.
 
-** El término `coerced` se traducirá por coercido, que aunque la traducción mas usada sea coaccionado, coercido se parece mas al termino original.
+\*\* El término `coerced` se traducirá por coercido, que aunque la traducción mas usada sea coaccionado, coercido se parece mas al termino original.
 
 # 👀 Ejemplos
 
@@ -173,7 +174,7 @@ Ver también [`[]` es truthy, pero no `true`](#-es-truthy-pero-no-true).
 ## `true` no es igual a `![]`, pero tampoco igual a `[]`
 
 Array no es igual a `true`, pero tampoco no array es igual a `true`;
-Array es igual a `false`, no Array es también igual a  `false`:
+Array es igual a `false`, no Array es también igual a `false`:
 
 ```js
 true == []; // -> false
@@ -346,84 +347,84 @@ Here are links to the corresponding sections in the ECMA-262 specification:
 
 ## `null` es falsy, pero no `false`
 
-Despite the fact that `null` is a falsy value, it's not equal to `false`.
+A pesar que `null` es un valor falsy, no es igual a `false`.
 
 ```js
 !!null; // -> false
 null == false; // -> false
 ```
 
-At the same time, other falsy values, like `0` or `''` are equal to `false`.
+Al mismo tiempo, otros varlores falsy, como `0` o `''` son igual a `false`.
 
 ```js
 0 == false; // -> true
 "" == false; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Explicación:
 
-The explanation is the same as for previous example. Here's the corresponding link:
+La explicación es la misma que en el ejemplo anterior. Aquí está el link:
 
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## `document.all` is an object, but it is undefined
+## `document.all` es un objeto, pero es undefined
 
-> ⚠️ This is part of the Browser API and won't work in a Node.js environment ⚠️
+> ⚠️ Esto es parte de la API del navegador por lo tanto no funciona en un entorno Node.js ⚠️
 
-Despite the fact that `document.all` is an array-like object and it gives access to the DOM nodes in the page, it responds to the `typeof` function as `undefined`.
+A pesar que `document.all`  es un objecto tipo array y que da acceso a los nodos del DOM de la página, responde a la función `typeof` con `undefined`.
 
 ```js
 document.all instanceof Object; // -> true
 typeof document.all; // -> 'undefined'
 ```
 
-At the same time, `document.all` is not equal to `undefined`.
+Al mismo tiempo, `document.all` no es igual a `undefined`.
 
 ```js
 document.all === undefined; // -> false
 document.all === null; // -> false
 ```
 
-But at the same time:
+Pero al mismo tiempo:
 
 ```js
 document.all == null; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Explicación:
 
-> `document.all` used to be a way to access DOM elements, in particular with old versions of IE. While it has never been a standard it was broadly used in the old age JS code. When the standard progressed with new APIs (such as `document.getElementById`) this API call became obsolete and the standard commitee had to decide what to do with it. Because of its broad use they decided to keep the API but introduce a willful violation of the JavaScript specification.
-> The reason why it responds to `false` when using the [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) with `undefined` while `true` when using the [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) is due to the willful violation of the specification that explicitly allows that.
+> `document.all` solía ser una vía para acceder a los elementos del DOM, sobretodo con antiguas versiones de IE.  Si bien nunca ha sido un estándar, se usó ampliamente en código JS antiguo. Mientras el estandar avanzó con nuevas APIs (como `document.getElementById`) esta llamada API quedaba obsoleta y obsolete y el comité del estándar tenía que decidir que hacer con ella. Debido a su amplio uso, decidieron mantener la API pero introducir una violación intencionada de la especificación de JavaScript.
+> La razón por la que responde a `false` cuando usa la [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) con `undefined` y `true` cuando usa la [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) es devido a que la deliverada violación de la especificacion permite hacer esto.
 >
 > &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec
 > &mdash; [“Chapter 4 - ToBoolean - Falsy values”](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects) at YDKJS - Types & Grammar
 
-## Minimal value is greater than zero
+## Valor mínimo (Minimal) es más grande que cero
 
-`Number.MIN_VALUE` is the smallest number, which is greater than zero:
+`Number.MIN_VALUE` es el valor más pequeño, que es mayor que cero
 
 ```js
 Number.MIN_VALUE > 0; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Explicación:
 
-> `Number.MIN_VALUE` is `5e-324`, i.e. the smallest positive number that can be represented within float precision, i.e. that's as close as you can get to zero. It defines the best resolution that floats can give you.
+> `Number.MIN_VALUE` es `5e-324`, es decir, el número positivo más pequeño que se puede representar con precisión flotante (float), es decir, el valor más cerca de cero al que se puede llegar. Define la mejor resolución que un float puede dar.
 >
-> Now the overall smallest value is `Number.NEGATIVE_INFINITY` although it's not really numeric in a strict sense.
+> Ahora el valor más pequeño en general es `Number.NEGATIVE_INFINITY` Aunque no es realmente numérico en sentido estricto.
 >
 > &mdash; [“Why is `0` less than `Number.MIN_VALUE` in JavaScript?”](https://stackoverflow.com/questions/26614728/why-is-0-less-than-number-min-value-in-javascript) at StackOverflow
 
 - [**20.1.2.9** Number.MIN_VALUE](https://www.ecma-international.org/ecma-262/#sec-number.min_value)
 
-## function is not a function
+## function no es una function
 
-> ⚠️ A bug present in V8 v5.5 or lower (Node.js <=7) ⚠️
+> ⚠️ Hay un bug en V8 v5.5 o versiones inferiores (Node.js <=7) ⚠️
 
-All of you know about the annoying _undefined is not a function_, but what about this?
+Todos conocemos el molesto _undefined is not a function_, pero que pasa con este?
 
 ```js
-// Declare a class which extends null
+// Se declara una clase que extiende a null
 class Foo extends null {}
 // -> [Function: Foo]
 
@@ -432,30 +433,30 @@ new Foo() instanceof null;
 // >     at … … …
 ```
 
-### 💡 Explanation:
+### 💡 Explicación:
 
-This is not a part of the specification. It's just a bug that has now been fixed, so there shouldn't be a problem with it in the future.
+Esto no es una parte de la especificación. Es solo un error que ahora ha sido solventado, por lo que no debería haver problemas con él en el futuro.
 
-## Adding arrays
+## Sumando arrays
 
-What if you try to add two arrays?
+Que passa si se prueba a somar dos arrays?
 
 ```js
 [1, 2, 3] + [4, 5, 6]; // -> '1,2,34,5,6'
 ```
 
-### 💡 Explanation:
+### 💡 Explicación:
 
-The concatenation happens. Step-by-step, it looks like this:
+Pasa la concatenación. Paso a paso:
 
 ```js
 [1, 2, 3] +
   [4, 5, 6][
-    // call toString()
+    // llama a toString()
     (1, 2, 3)
   ].toString() +
   [4, 5, 6].toString();
-// concatenation
+// concatenación
 "1,2,3" + "4,5,6";
 // ->
 ("1,2,34,5,6");
