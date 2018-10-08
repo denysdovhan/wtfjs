@@ -38,7 +38,6 @@ Actualmente, estan disponibles las siguientes traducciones de **wtfjs**:
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 # Table of Contents
 
 - [💪🏻 Motivación](#-motivaci%C3%B3n)
@@ -52,11 +51,11 @@ Actualmente, estan disponibles las siguientes traducciones de **wtfjs**:
   - [`NaN` no es un `NaN`](#nan-no-es-un-nan)
   - [Es un fail](#es-un-fail)
   - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
-  - [`null` is falsy, but not `false`](#null-is-falsy-but-not-false)
-  - [`document.all` is an object, but it is undefined](#documentall-is-an-object-but-it-is-undefined)
-  - [Minimal value is greater than zero](#minimal-value-is-greater-than-zero)
-  - [function is not a function](#function-is-not-a-function)
-  - [Adding arrays](#adding-arrays)
+  - [`null` es falsy, pero no `false`](#null-es-falsy-pero-no-false)
+  - [`document.all` es un objeto, pero es undefined](#documentall-es-un-objeto-pero-es-undefined)
+  - [Valor mínimo (Minimal) es más grande que cero](#valor-m%C3%ADnimo-minimal-es-m%C3%A1s-grande-que-cero)
+  - [function no es una function](#function-no-es-una-function)
+  - [Sumando arrays](#sumando-arrays)
   - [Trailing commas in array](#trailing-commas-in-array)
   - [Array equality is a monster](#array-equality-is-a-monster)
   - [`undefined` and `Number`](#undefined-and-number)
