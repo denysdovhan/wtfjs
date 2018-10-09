@@ -3,7 +3,7 @@
 [![WTFPL 2.0][license-image]][license-url]
 [![NPM version][npm-image]][npm-url]
 
-> Una lista de ejemplos divertidos y curiosos de JavaScript
+> Una lista de ejemplos divertidos y complejos de JavaScript
 
 JavaScript es un lenguage genial. Tiene una sintaxis simple, un gran ecosistema y lo que es mas importante, una genial comunidad.
 
@@ -56,10 +56,10 @@ Actualmente, estan disponibles las siguientes traducciones de **wtfjs**:
   - [Valor mínimo (Minimal) es más grande que cero](#valor-m%C3%ADnimo-minimal-es-m%C3%A1s-grande-que-cero)
   - [function no es una function](#function-no-es-una-function)
   - [Sumando arrays](#sumando-arrays)
-  - [Trailing commas in array](#trailing-commas-in-array)
-  - [Array equality is a monster](#array-equality-is-a-monster)
-  - [`undefined` and `Number`](#undefined-and-number)
-  - [`parseInt` is a bad guy](#parseint-is-a-bad-guy)
+  - [Comas finales en los array](#comas-finales-en-los-array)
+  - [La igualdad de Array es un montruo](#la-igualdad-de-array-es-un-montruo)
+  - [`undefined` y `Number`](#undefined-y-number)
+  - [`parseInt` es un tipo malo](#parseint-es-un-tipo-malo)
   - [Math with `true` and `false`](#math-with-true-and-false)
   - [HTML comments are valid in JavaScript](#html-comments-are-valid-in-javascript)
   - [`NaN` is ~~not~~ a number](#nan-is-not-a-number)
@@ -513,65 +513,67 @@ Es importante mirar los ejemplos anteriores muy detalladamente! El comportamient
 
 ## `undefined` y `Number`
 
-If we don't pass any arguments into the `Number` constructor, we'll get `0`. The value `undefined` is assigned to formal arguments when there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
+Si no se pasan argumentos al constructor de `Number`, se obtiene un `0`. El valor `undefined` es asignado como argumento por defecto cuando no hay argumentos, por lo tanto se podría esperar que `Number` sin argumento, use `undefined` como valor de su parametro. Sin embargo, si se pasa `undefined`, lo que se obtiene es `NaN`.
 
 ```js
 Number(); // -> 0
 Number(undefined); // -> NaN
 ```
 
-### 💡 Explanation:
+### 💡 Explicación:
 
-According to the specification:
+Según la especificación:
 
-1. If no arguments were passed to this function's invocation, let `n` be `+0`.
-2. Else, let `n` be ? `ToNumber(value)`.
-3. In case of `undefined`, `ToNumber(undefined)` should return `NaN`.
+1. Si no hay argumentos pasados en la invocación de la función, `n` será `+0`.
+2. Si no, `n` será ? `ToNumber(value)`.
+3. En el caso de `undefined`, `ToNumber(undefined)` devolverá `NaN`.
 
-Here's the corresponding section:
+Aquí está la sección correspondiente:
 
 - [**20.1.1** The Number Constructor](https://www.ecma-international.org/ecma-262/#sec-number-constructor)
 - [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
 
-## `parseInt` is a bad guy
+## `parseInt` es un tipo malo
 
-`parseInt` is famous by its quirks:
+`parseInt` es famoso por sus peculiaridades:
 
 ```js
 parseInt("f*ck"); // -> NaN
 parseInt("f*ck", 16); // -> 15
 ```
 
-**💡 Explanation:** This happens because `parseInt` will continue parsing character-by-character until it hits a character it doesn't know. The `f` in `'f*ck'` is the hexadecimal digit `15`.
+### 💡 Explicación:
 
-Parsing `Infinity` to integer is something…
+Esto sucede porque `parseInt` continua convirtiendo carácter a carácter hasta que encuentra uno que no conoce. La `f` en `'f*ck'` es el dígito hexadecimal `15`.
+
+Convirtiendo `Infinito` a integer…
 
 ```js
 //
-parseInt("Infinity", 10); // -> NaN
+parseInt("Infinito", 10); // -> NaN
 // ...
-parseInt("Infinity", 18); // -> NaN...
-parseInt("Infinity", 19); // -> 18
+parseInt("Infinito", 18); // -> NaN...
+parseInt("Infinito", 19); // -> 18
 // ...
-parseInt("Infinity", 23); // -> 18...
-parseInt("Infinity", 24); // -> 151176378
+parseInt("Infinito", 23); // -> 18...
+parseInt("Infinito", 24); // -> 151176378
 // ...
-parseInt("Infinity", 29); // -> 385849803
-parseInt("Infinity", 30); // -> 13693557269
+parseInt("Infinito", 29); // -> 385849803
+parseInt("Infinito", 30); // -> 13693557269
 // ...
-parseInt("Infinity", 34); // -> 28872273981
-parseInt("Infinity", 35); // -> 1201203301724
-parseInt("Infinity", 36); // -> 1461559270678...
-parseInt("Infinity", 37); // -> NaN
+parseInt("Infinito", 34); // -> 28872273981
+parseInt("Infinito", 35); // -> 1201203301724
+parseInt("Infinito", 36); // -> 1461559270678...
+parseInt("Infinito", 37); // -> NaN
 ```
 
-Be careful with parsing `null` too:
+Cuidado al convertir `null`:
 
 ```js
 parseInt(null, 24); // -> 23
 ```
 
-**💡 Explanation:**
+### 💡 Explicación:
 
 > It's converting `null` to the string `"null"` and trying to convert it. For radixes 0 through 23, there are no numerals it can convert, so it returns NaN. At 24, `"n"`, the 14th letter, is added to the numeral system. At 31, `"u"`, the 21st letter, is added and the entire string can be decoded. At 37 on there is no longer any valid numeral set that can be generated and `NaN` is returned.
 >
