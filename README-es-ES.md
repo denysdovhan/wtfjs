@@ -461,9 +461,9 @@ Pasa la concatenación. Paso a paso:
 ("1,2,34,5,6");
 ```
 
-## Trailing commas in array
+## Comas finales en los array
 
-You've created an array with 4 empty elements. Despite all, you'll get an array with three elements, because of trailing commas:
+Creas un array con 4 elementos vacios. A pesar de todo, obtendras un array con tres elementos debido a las comas finales:
 
 ```js
 let a = [, , ,];
@@ -471,15 +471,15 @@ a.length; // -> 3
 a.toString(); // -> ',,'
 ```
 
-### 💡 Explanation:
+### 💡 Explicación:
 
-> **Trailing commas** (sometimes called "final commas") can be useful when adding new elements, parameters, or properties to JavaScript code. If you want to add a new property, you can simply add a new line without modifying the previously last line if that line already uses a trailing comma. This makes version-control diffs cleaner and editing code might be less troublesome.
+> **Comas finales** Pueden ser utiles cuando se añaden nuevos elementos, parametros o propiedades en JavaScript. Para añadir una nueva propiedad, simplemente se puede añadir una linia nueva sin modificar la anterior si esta usa una coma final. Esto hace el versionado más limpio y la edición de codigo menos sensible a errores.
 >
 > &mdash; [Trailing commas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas) at MDN
 
-## Array equality is a monster
+## La igualdad de Array es un montruo
 
-Array equality is a monster in JS, as you can see below:
+La igualdad de Array es un montruo en JS, como se puede ver a continuación:
 
 ```js
 [] == ''   // -> true
@@ -507,11 +507,11 @@ Array equality is a monster in JS, as you can see below:
 [[[[[[ undefined ]]]]]] == '' // true
 ```
 
-### 💡 Explanation:
+### 💡 Explicación:
 
-You should watch very carefully for the above examples! The behaviour is described in section [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) of the specification.
+Es importante mirar los ejemplos anteriores muy detalladamente! El comportamiento es explicado en la sección [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) de la especificación.
 
-## `undefined` and `Number`
+## `undefined` y `Number`
 
 If we don't pass any arguments into the `Number` constructor, we'll get `0`. The value `undefined` is assigned to formal arguments when there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
 
