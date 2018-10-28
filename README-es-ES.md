@@ -1024,9 +1024,9 @@ Más información sobre objetos literales aquí:
 - [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 - [**12.2.6** Object Initializer](http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer)
 
-## Accessing prototypes with `__proto__`
+## Accediendo a prototipos con `__proto__`
 
-As we know, primitives don't have prototypes. However, if we try to get a value of `__proto__` for primitives, we would get this:
+Como se save, lo tipos primitivos no tienen prototipo. Sin embargo, si se trata de obtener el valor de `__proto__` para primitivos, se obtendra lo siguiente:
 
 ```js
 (1).__proto__.__proto__.__proto__; // -> null
@@ -1034,7 +1034,7 @@ As we know, primitives don't have prototypes. However, if we try to get a value 
 
 ### 💡 Explicación:
 
-This happens because when something doesn't have a prototype, it will be wrapped into a wrapper object using the `ToObject` method. So, step-by-step:
+Esto sucede porque cuando algo que no tiene prototipo se envuelve en un objeto contenedor usando el método `ToObject`. Paso a paso:
 
 ```js
 (1)
@@ -1048,20 +1048,20 @@ This happens because when something doesn't have a prototype, it will be wrapped
   ).__proto__.__proto__.__proto__; // -> null
 ```
 
-Here is more information about `__proto__`:
+Más información sobre `__proto__`:
 
 - [**B.2.2.1** Object.prototype.**proto**](https://www.ecma-international.org/ecma-262/#sec-object.prototype.__proto__)
 - [**7.1.13** ToObject(`argument`)](https://www.ecma-international.org/ecma-262/#sec-toobject)
 
 ## `` `${{Object}}` ``
 
-What is the result of the expression below?
+¿Cual és el resultado de la expresión anterior?
 
 ```js
 `${{ Object }}`;
 ```
 
-The answer is:
+La respuesta es:
 
 ```js
 // -> '[object Object]'
@@ -1069,7 +1069,7 @@ The answer is:
 
 ### 💡 Explicación:
 
-We defined an object with a property `Object` using _Shorthand property notation_:
+Se define un objeto con una propiedad `Object` usando la _Notació de propiedad abreviada_ (Shorthand property notation):
 
 ```js
 {
@@ -1077,14 +1077,14 @@ We defined an object with a property `Object` using _Shorthand property notation
 }
 ```
 
-Then we've passed this object to the template literal, so the `toString` method calls for that object. That's why we get the string `'[object Object]'`.
+Luego hemos pasado el objetoa  la plantilla literal, por lo que el método `toString` es llamado para el objeto. Es por eso que se obtiene el string `'[object Object]'`.
 
 - [**12.2.9** Template Literals](https://www.ecma-international.org/ecma-262/#sec-template-literals)
 - [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 
-## Destructuring with default values
+## Desestructuración con valores por defecto.
 
-Consider this example:
+Por ejemplo:
 
 ```js
 let x,
@@ -1092,7 +1092,7 @@ let x,
 y;
 ```
 
-The example above is a great task for an interview. What the value of `y`? The answer is:
+El ejemplo anterior es una buena tarea para una entrevista. ¿Cual es el valor de `y`? La respuesta és:
 
 ```js
 // -> 1
@@ -1108,7 +1108,7 @@ y;
 //  1       3           2    4
 ```
 
-With the example above:
+Con el ejemplo anterior:
 
 1. We declare `x` with no value, so it's `undefined`.
 2. Then we pack the value of `x` into the object property `x`.
