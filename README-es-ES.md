@@ -1092,7 +1092,7 @@ let x,
 y;
 ```
 
-El ejemplo anterior es una buena tarea para una entrevista. ¿Cual es el valor de `y`? La respuesta és:
+El ejemplo anterior es una buena tarea para una entrevista. ¿Cual es el valor de `y`? La respuesta es:
 
 ```js
 // -> 1
@@ -1110,16 +1110,16 @@ y;
 
 Con el ejemplo anterior:
 
-1. We declare `x` with no value, so it's `undefined`.
-2. Then we pack the value of `x` into the object property `x`.
-3. Then we extract the value of `x` using destructuring and want to assign it to `y`. If the value is not defined, then we're going to use `1` as the default value.
-4. Return the value of `y`.
+1. Se declara `x` sin valor, por lo que es `undefined`.
+2. A continuación se empaqueta el valor de `x` en la propiedade `x` del objeto.
+3. A continuación se extrae el valor de  `x` usando deconsctrucción y se quiere asignar a `y`. Si el valor no está definido, se va a usar `1` como valor por defecto.
+4. Se retorna el valor de `y`.
 
 - [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 
-## Dots and spreading
+## Puntos y propagación
 
-Interesting examples could be composed with spreading of arrays. Consider this:
+Se pueden generar ejemplos interesantes con la propagación de arrays. Como el siguiente:
 
 ```js
 [...[..."..."]].length; // -> 3
@@ -1127,11 +1127,11 @@ Interesting examples could be composed with spreading of arrays. Consider this:
 
 ### 💡 Explicación:
 
-Why `3`? When we use the [spread operator](http://www.ecma-international.org/ecma-262/6.0/#sec-array-initializer), the `@@iterator` method is called, and the returned iterator is used to obtain the values to be iterated. The default iterator for string spreads a string into characters. After spreading, we pack these characters into an array. Then we spread this array again and pack it back to an array.
+¿Por qué `3`? Cuando se usa el operador de propagación ([spread operator](http://www.ecma-international.org/ecma-262/6.0/#sec-array-initializer)), el método `@@iterator` es llamado, y el iterador devuleto es usado para obtener los valores donde se va a iterar. El iterador por defecto para los string propaga un string en carácteres. Después de la propagación, se empaquetan los carácteres en un array. Seguidamente se propaga otra vez el array y se empaqueta otra vez en un array.
 
-A `'...'` string consists with three `.` characters, so the length of resulting array is `3`.
+Un string `'...'` está formado por tres `.` carácteres, por lo tanto, la longitud del resultado del array es `3`.
 
-Now, step-by-step:
+Aro, paso a paso:
 
 ```js
 [...'...']             // -> [ '.', '.', '.' ]
@@ -1139,19 +1139,19 @@ Now, step-by-step:
 [...[...'...']].length // -> 3
 ```
 
-Obviously, we can spread and wrap the elements of an array as many times as we want:
+Por supuest, se puede propagar y empaquetar los elementos de un array las veces que sea necesario:
 
 ```js
 [...'...']                 // -> [ '.', '.', '.' ]
 [...[...'...']]            // -> [ '.', '.', '.' ]
 [...[...[...'...']]]       // -> [ '.', '.', '.' ]
 [...[...[...[...'...']]]]  // -> [ '.', '.', '.' ]
-// and so on …
+// etcétera …
 ```
 
-## Labels
+## Labels (etiquetas)
 
-Not many programmers know about labels in JavaScript. They are kind of interesting:
+No muchos programadores conocen los labels en JavaScript. Son algo interesantes:
 
 ```js
 foo: {
@@ -1166,16 +1166,16 @@ foo: {
 
 ### 💡 Explicación:
 
-The labeled statement is used with `break` or `continue` statements. You can use a label to identify a loop, and then use the `break` or `continue` statements to indicate whether a program should interrupt the loop or continue its execution.
+Las declaraciones etiquetadas son unsadas conjuntamente con `break` o `continue`. Se puede usar una etiqueta para identificar un bucle, y después usar el `break` o el `continue` para indicar al programa cuendo parar o continuar la ejecución.
 
-In the example above, we identify a label `foo`. After that `console.log('first');` executes and then we interrupt the execution.
+En el ejemplo anterior, se identifica una etiqueta `foo`. A continuación el `console.log('first');` se ejecuta y después se interrumpe la ejecución.
 
-Read more about labels in JavaScript:
+Mas información de las etiquetas en JavaScript:
 
 - [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
 - [Labeled statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
 
-## Nested labels
+## Etiquetas anidadas
 
 ```js
 a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
