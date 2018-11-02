@@ -75,22 +75,22 @@ Actualmente, están disponibles las siguientes traducciones de **wtfjs**:
   - [Call call call](#call-call-call)
   - [Una propiedad `constructor`](#una-propiedad-constructor)
   - [Object como key de una propiedad de un object](#object-como-key-de-una-propiedad-de-un-object)
-  - [Accessing prototypes with `__proto__`](#accessing-prototypes-with-__proto__)
+  - [Accediendo a prototipos con `__proto__`](#accediendo-a-prototipos-con-__proto__)
   - [`` `${{Object}}` ``](#-object-)
-  - [Destructuring with default values](#destructuring-with-default-values)
-  - [Dots and spreading](#dots-and-spreading)
-  - [Labels](#labels)
-  - [Nested labels](#nested-labels)
-  - [Insidious `try..catch`](#insidious-trycatch)
-  - [Is this multiple inheritance?](#is-this-multiple-inheritance)
-  - [A generator which yields itself](#a-generator-which-yields-itself)
-  - [A class of class](#a-class-of-class)
-  - [Non-coercible objects](#non-coercible-objects)
-  - [Tricky arrow functions](#tricky-arrow-functions)
-  - [Arrow functions can not be a constructor](#arrow-functions-can-not-be-a-constructor)
-  - [`arguments` and arrow functions](#arguments-and-arrow-functions)
-  - [Tricky return](#tricky-return)
-  - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
+  - [Desestructuración con valores por defecto.](#desestructuraci%C3%B3n-con-valores-por-defecto)
+  - [Puntos y propagación](#puntos-y-propagaci%C3%B3n)
+  - [Labels (etiquetas)](#labels-etiquetas)
+  - [Etiquetas anidadas](#etiquetas-anidadas)
+  - [`try..catch` malicioso](#trycatch-malicioso)
+  - [¿Esto es herencia múltiple?](#%C2%BFesto-es-herencia-m%C3%BAltiple)
+  - [Un generador que se produce a si mismo](#un-generador-que-se-produce-a-si-mismo)
+  - [Una clase de clase](#una-clase-de-clase)
+  - [Objetos no coercibles](#objetos-no-coercibles)
+  - [Funciones de flecha complejas](#funciones-de-flecha-complejas)
+  - [Las funciones flecha no pueden ser un constructor](#las-funciones-flecha-no-pueden-ser-un-constructor)
+  - [`arguments` y las funciones de flecha](#arguments-y-las-funciones-de-flecha)
+  - [return complejo](#return-complejo)
+  - [Accediendo a propiedades de objetos con arrays](#accediendo-a-propiedades-de-objetos-con-arrays)
   - [Null and Relational Operators](#null-and-relational-operators)
   - [`Number.toFixed()` display different numbers](#numbertofixed-display-different-numbers)
   - [`Math.max()` less than `Math.min()`](#mathmax-less-than-mathmin)
@@ -1373,7 +1373,7 @@ baz.valueOf() === 1; // -> true
 - [A gist by Sergey Rubanov](https://gist.github.com/chicoxyzzy/5dd24608e886adf5444499896dff1197)
 - [**6.1.5.1** Well-Known Symbols](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
 
-## Funciones de flecha complicadas
+## Funciones de flecha complejas
 
 Veamos el siguiente ejemplo:
 
@@ -1398,9 +1398,9 @@ let f = () => ({});
 f(); // -> {}
 ```
 
-## Arrow functions can not be a constructor
+## Las funciones flecha no pueden ser un constructor
 
-Consider the example below:
+Veamos el siguiente ejemplo:
 
 ```js
 let f = function() {
@@ -1409,7 +1409,7 @@ let f = function() {
 new f(); // -> { 'a': 1 }
 ```
 
-Now, try do to the same with an arrow function:
+Ahora, lo mismo pero con funcion de flecha:
 
 ```js
 let f = () => {
@@ -1420,11 +1420,11 @@ new f(); // -> TypeError: f is not a constructor
 
 ### 💡 Explicación:
 
-Arrow functions cannot be used as constructors and will throw an error when used with new. Because has a lexical `this`, and do not have a `prototype` property, so it would not make much sense.
+Las funciones de flecha no pueden ser usadas como constructores y lanzaran un error si se usan con `new`. Al tner un `this` léxico, y no tener una propiedad `prototype`, hacerlo no tendría mucho sentido.
 
-## `arguments` and arrow functions
+## `arguments` y las funciones de flecha
 
-Consider the example below:
+Veamos el siguiente ejemplo:
 
 ```js
 let f = function() {
@@ -1433,7 +1433,7 @@ let f = function() {
 f("a"); // -> { '0': 'a' }
 ```
 
-Now, try do to the same with an arrow function:
+Ahora lo mismo con una función flecha:
 
 ```js
 let f = () => arguments;
@@ -1442,7 +1442,7 @@ f("a"); // -> Uncaught ReferenceError: arguments is not defined
 
 ### 💡 Explicación:
 
-Arrow functions are a lightweight version of regular functions with a focus on being short and lexical `this`. At the same time arrow functions do not provide a binding for the `arguments` object. As a valid alternative use the `rest parameters` to achieve the same result:
+Las funciones flecha son las versiones ligeras de las funciones normales y están centradas en ser cortas y en el `this` léxico. Al mismo tiempo, las funciones flecha no proveen binding para el objeto `arguments`. Como alternativa se puede usar el `resto de parametros` para conseguir el mismo resultado:
 
 ```js
 let f = (...args) => args;
@@ -1451,13 +1451,13 @@ f("a");
 
 - [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) at MDN.
 
-## Tricky return
+## return complejo
 
-`return` statement is also tricky. Consider this:
+La declaración `return` también es compleja. Veamos lo siguiente:
 
 ```js
 (function() {
-  return;
+  return
   {
     b: 10;
   }
@@ -1466,7 +1466,7 @@ f("a");
 
 ### 💡 Explicación:
 
-`return` and the returned expression must be in the same line:
+`return` y la expresión de retorno deven estar en la misma línea:
 
 ```js
 (function() {
@@ -1476,12 +1476,12 @@ f("a");
 })(); // -> { b: 10 }
 ```
 
-This is because of a concept called Automatic Semicolon Insertion, which automagically inserts semicolons after most newlines. In the first example, there is a semicolon inserted between the `return` statement and the object literal, so the function returns `undefined` and the object literal is never evaluated.
+Esto es devido al concepto llamado Inserción automática de punto y coma, que inserta automaticamente punto y coma al final de cada nueva línea. En el primer ejemplo, va a haver un punto y coma insertado entre el `return` y el objeto, por lo que la función devolverá `undefined`  y el objeto nunca será evaluado.
 
 - [**11.9.1** Rules of Automatic Semicolon Insertion](https://www.ecma-international.org/ecma-262/#sec-rules-of-automatic-semicolon-insertion)
 - [**13.10** The `return` Statement](https://www.ecma-international.org/ecma-262/#sec-return-statement)
 
-## Accessing object properties with arrays
+## Accediendo a propiedades de objetos con arrays
 
 ```js
 var obj = { property: 1 };
