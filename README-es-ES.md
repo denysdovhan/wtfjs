@@ -7,7 +7,7 @@
 
 JavaScript es un lenguaje genial. Tiene una sintaxis simple, un gran ecosistema y lo que es mas importante, una genial comunidad.
 
-Sabemos que Javascript es un lenguaje divertido pero que, al mismo tempo, tiene partes difíciles. Mientras algunas de ellas pueden, de repente, convertir nuestro trabajo diario en un infierno, otras nos hacen partirnos de risa.
+Sabemos que Javascript es un lenguaje divertido pero que, al mismo tempo, tiene partes complejas. Mientras algunas de ellas pueden, de repente, convertir nuestro trabajo diario en un infierno, otras nos hacen partirnos de risa.
 
 La idea original de WTFJS pertenece a [Brian Leroux](https://twitter.com/brianleroux). Esta lista está fuertemente inspirada en su charla [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
@@ -1183,15 +1183,15 @@ a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
 
 ### 💡 Explicación:
 
-Similar to previous examples, follow these links:
+Similar al ejemplo anterior, más información:
 
 - [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
 - [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
 - [Labeled statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
 
-## Insidious `try..catch`
+## `try..catch` malicioso
 
-What will this expression return? `2` or `3`?
+¿Que retorna esta expresión? ¿`2` o `3`?
 
 ```js
 (() => {
@@ -1203,32 +1203,32 @@ What will this expression return? `2` or `3`?
 })();
 ```
 
-The answer is `3`. Surprised?
+La respuesta es `3`. ¿Sorprendido?
 
 ### 💡 Explicación:
 
 - [**13.15** The `try` Statement](https://www.ecma-international.org/ecma-262/#sec-try-statement)
 
-## Is this multiple inheritance?
+## ¿Esto es herencia múltiple?
 
-Take a look at the example below:
+Veamos el siguiente ejemplo:
 
 ```js
 new class F extends (String, Array) {}(); // -> F []
 ```
 
-Is this a multiple inheritance? Nope.
+¿Esto es herencia múltiple? No.
 
 ### 💡 Explicación:
 
-The interesting part is the value of the `extends` clause (`(String, Array)`). The grouping operator always returns its last argument, so `(String, Array)` is actually just `Array`. That means we've just created a class which extends `Array`.
+La parte interesante es el valor del `extends`: (`(String, Array)`). El operador de grup siempre devuelve el último argumento, por lo tanto `(String, Array)` es realmente solo `Array`. Esto significa que se ha creado una clase que extiende de `Array`.
 
 - [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
 - [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
 
-## A generator which yields itself
+## Un generador que se produce a si mismo
 
-Consider this example of a generator which yields itself:
+Veamos este ejemplo de un generador que se produce a si mismo:
 
 ```js
 (function* f() {
@@ -1237,7 +1237,7 @@ Consider this example of a generator which yields itself:
 // -> { value: [GeneratorFunction: f], done: false }
 ```
 
-As you can see, the returned value is an object with its `value` equal to `f`. In that case, we can do something like this:
+Como se puede ver, el valor devuelto es un objeto con su `value` igual a `f`. En este caso, se puede hacer algo como lo siguiente:
 
 ```js
 (function* f() {
@@ -1248,7 +1248,7 @@ As you can see, the returned value is an object with its `value` equal to `f`. I
   .next()(
     // -> { value: [GeneratorFunction: f], done: false }
 
-    // and again
+    // y otra vez
     function* f() {
       yield f;
     }
@@ -1260,7 +1260,7 @@ As you can see, the returned value is an object with its `value` equal to `f`. I
   .next()(
     // -> { value: [GeneratorFunction: f], done: false }
 
-    // and again
+    // y otra vez
     function* f() {
       yield f;
     }
@@ -1274,20 +1274,20 @@ As you can see, the returned value is an object with its `value` equal to `f`. I
   .next();
 // -> { value: [GeneratorFunction: f], done: false }
 
-// and so on
+// etcétera
 // …
 ```
 
 ### 💡 Explicación:
 
-To understand why this works that way, read these sections of the specification:
+Para entender como funciona esto, leer las siguientes secciones de la especificación:
 
 - [**25** Control Abstraction Objects](https://www.ecma-international.org/ecma-262/#sec-control-abstraction-objects)
 - [**25.3** Generator Objects](https://www.ecma-international.org/ecma-262/#sec-generator-objects)
 
-## A class of class
+## Una clase de clase
 
-Consider this obfuscated syntax playing:
+Veamos este juego de sintaxis ofuscada:
 
 ```js
 typeof new class {
@@ -1295,11 +1295,11 @@ typeof new class {
 }(); // -> 'object'
 ```
 
-It seems like we're declaring a class inside of class. Should be an error, however, we get the string `'object'`.
+Parece que se está declarando una clase dentro de una clase. Debería ser un error, no obstante, se obtiene el string `'object'`.
 
 ### 💡 Explicación:
 
-Since ECMAScript 5 era, _keywords_ are allowed as _property names_. So think about it as this simple object example:
+Desde la época de ECMAScript 5 , _keywords_ son permitidas como _nombres de propiedad_. Veamos el siguiente ejemplo de objeto simple:
 
 ```js
 const foo = {
@@ -1307,7 +1307,7 @@ const foo = {
 };
 ```
 
-And ES6 standardized shorthand method definitions. Also, classes can be anonymous. So if we drop `: function` part, we're going to get:
+Y ES6 estandarizó las definiciones de métodos abreviadas. También, las clases pueden ser anónimas. Por lo que si se saca la parte de `: function`, se obtiene solamente:
 
 ```js
 class {
@@ -1315,16 +1315,16 @@ class {
 }
 ```
 
-The result of a default class is always a simple object. And its typeof should return `'object'`.
+El resultado de una clase, por defecto, es siempre un objeto simple. Y typeof deve retornar `'object'`.
 
-Read more here:
+Mas información:
 
 - [**14.3** Method Definitions](https://www.ecma-international.org/ecma-262/#sec-method-definitions)
 - [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
 
-## Non-coercible objects
+## Objetos no coercibles
 
-With well-known symbols, there's a way to get rid of type coercion. Take a look:
+Con los conocidos symbols, hay una manera de deshacerse de la coerción. Veamos:
 
 ```js
 function nonCoercible(val) {
@@ -1342,28 +1342,28 @@ function nonCoercible(val) {
 }
 ```
 
-Now we can use this like this:
+Ahora se puede usar así:
 
 ```js
 // objects
 const foo = nonCoercible({ foo: "foo" });
 
-foo * 10; // -> TypeError: Trying to coerce non-coercible object
-foo + "evil"; // -> TypeError: Trying to coerce non-coercible object
+foo * 10; // -> TypeError: Probando de coercer un objeto no coercible
+foo + "evil"; // -> TypeError: Probando de coercer un objeto no coercible
 
 // strings
 const bar = nonCoercible("bar");
 
-bar + "1"; // -> TypeError: Trying to coerce non-coercible object
+bar + "1"; // -> TypeError: Probando de coercer un objeto no coercible
 bar.toString() + 1; // -> bar1
 bar === "bar"; // -> false
 bar.toString() === "bar"; // -> true
-bar == "bar"; // -> TypeError: Trying to coerce non-coercible object
+bar == "bar"; // -> TypeError: Probando de coercer un objeto no coercible
 
 // numbers
 const baz = nonCoercible(1);
 
-baz == 1; // -> TypeError: Trying to coerce non-coercible object
+baz == 1; // -> TypeError: Probando de coercer un objeto no coercible
 baz === 1; // -> false
 baz.valueOf() === 1; // -> true
 ```
@@ -1373,16 +1373,16 @@ baz.valueOf() === 1; // -> true
 - [A gist by Sergey Rubanov](https://gist.github.com/chicoxyzzy/5dd24608e886adf5444499896dff1197)
 - [**6.1.5.1** Well-Known Symbols](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
 
-## Tricky arrow functions
+## Funciones de flecha complicadas
 
-Consider the example below:
+Veamos el siguiente ejemplo:
 
 ```js
 let f = () => 10;
 f(); // -> 10
 ```
 
-Okay, fine, but what about this:
+Okay, vale, pero que hay de esto:
 
 ```js
 let f = () => {};
@@ -1391,7 +1391,7 @@ f(); // -> undefined
 
 ### 💡 Explicación:
 
-You might expect `{}` instead of `undefined`. This is because the curly braces are part of the syntax of the arrow functions, so `f` will return undefined. It is however possible to return the `{}` object directly from an arrow function, by enclosing the return value with brackets.
+Se podría esperar `{}` en canvio se obtiene `undefined`. Esto es devido a que las llaves son parte de la sintaxis de las funciones de flecha, por eso `f` devuelve undefined. Se puede retornar un objeto `{}` directamente en una función de flecha, se deve encerrar las llaves entre paréntesis.
 
 ```js
 let f = () => ({});
