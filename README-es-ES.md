@@ -3,7 +3,7 @@
 [![WTFPL 2.0][license-image]][license-url]
 [![NPM version][npm-image]][npm-url]
 
-> Una lista de ejemplos divertidos y complejos de JavaScript
+> Una lista de divertidos y complejos ejemplos de código JavaScript
 
 JavaScript es un lenguaje genial. Tiene una sintaxis simple, un gran ecosistema y lo que es mas importante, una genial comunidad.
 
