@@ -328,7 +328,7 @@ Pensando en un string como un array, podemos acceder a su primer caracter via `[
 
 El resto es obvio, aunque la `i` es mas difícil. La `i` de `fail` se obtiene de la generació del string `'falseundefined'` y cogiendola del elemento con el índice `['10']`
 
-## `[]` is truthy, but not `true`
+## `[]` is truthy pero no `true`
 
 Un array es un valor value, sin embargo, no es igual a `true`.
 
