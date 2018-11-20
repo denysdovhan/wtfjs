@@ -1448,7 +1448,7 @@ f("a");
 
 ```js
 (function() {
-  return;
+  return
   {
     b: 10;
   }
