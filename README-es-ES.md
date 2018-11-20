@@ -50,7 +50,7 @@ Actualmente, están disponibles las siguientes traducciones de **wtfjs**:
   - [baNaNa](#banana)
   - [`NaN` no es un `NaN`](#nan-no-es-un-nan)
   - [Es un fail](#es-un-fail)
-  - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
+  - [`[]` is truthy pero no `true`](#-is-truthy-pero-no-true)
   - [`null` es falsy, pero no `false`](#null-es-falsy-pero-no-false)
   - [`document.all` es un objeto, pero es undefined](#documentall-es-un-objeto-pero-es-undefined)
   - [Valor mínimo (Minimal) es más grande que cero](#valor-m%C3%ADnimo-minimal-es-m%C3%A1s-grande-que-cero)
