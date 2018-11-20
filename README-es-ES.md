@@ -91,13 +91,13 @@ Actualmente, están disponibles las siguientes traducciones de **wtfjs**:
   - [`arguments` y las funciones de flecha](#arguments-y-las-funciones-de-flecha)
   - [return complejo](#return-complejo)
   - [Accediendo a propiedades de objetos con arrays](#accediendo-a-propiedades-de-objetos-con-arrays)
-  - [Null and Relational Operators](#null-and-relational-operators)
-  - [`Number.toFixed()` display different numbers](#numbertofixed-display-different-numbers)
-  - [`Math.max()` less than `Math.min()`](#mathmax-less-than-mathmin)
-  - [Comparing `null` to `0`](#comparing-null-to-0)
-  - [Same variable redeclaration](#same-variable-redeclaration)
-- [📚 Other resources](#-other-resources)
-- [🎓 License](#-license)
+  - [Null y los Operadores Relacionales](#null-y-los-operadores-relacionales)
+  - [`Number.toFixed()` muestra distintos números](#numbertofixed-muestra-distintos-n%C3%BAmeros)
+  - [`Math.max()` es menor que `Math.min()`](#mathmax-es-menor-que-mathmin)
+  - [Comparando `null` a `0`](#comparando-null-a-0)
+  - [Misma redeclaración de variables](#misma-redeclaraci%C3%B3n-de-variables)
+- [📚 Otros recursos](#-otros-recursos)
+- [🎓 Licencia](#-licencia)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -1139,7 +1139,7 @@ Aro, paso a paso:
 [...[...'...']].length // -> 3
 ```
 
-Por supuest, se puede propagar y empaquetar los elementos de un array las veces que sea necesario:
+Por supuesto, se puede propagar y empaquetar los elementos de un array las veces que sea necesario:
 
 ```js
 [...'...']                 // -> [ '.', '.', '.' ]
@@ -1490,7 +1490,7 @@ var array = ["property"];
 obj[array]; // -> 1
 ```
 
-What about pseudo-multidimensional arrays?
+¿Que pasa con los arrays pseudo-multidimensionales?
 
 ```js
 var map = {};
@@ -1507,13 +1507,13 @@ map["11,2,3"]; // -> true
 
 ### 💡 Explicación:
 
-The brackets `[]` operator converts the passed expression using `toString`. Converting a one-element array to a string is akin to converting the contained element to the string:
+El operador `[]` convierte la expresión dada usando `toString`. Convertir un array con un elemento a string es similar a convertir el elemento contenido a string:
 
 ```js
 ["property"].toString(); // -> 'property'
 ```
 
-## Null and Relational Operators
+## Null y los Operadores Relacionales
 
 ```js
 null > 0; // false
@@ -1524,11 +1524,11 @@ null >= 0; // true
 
 ### 💡 Explicación:
 
-Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `true`. Read in-depth Explicación for this [here](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274).
+Si `null` es menor que  `0` es igual a `false`, `null >= 0` es igual a `true`. Leer la explicación en profundidad para esto [aquí](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274).
 
-## `Number.toFixed()` display different numbers
+## `Number.toFixed()` muestra distintos números
 
-`Number.toFixed()` can behave a bit strange in different browsers. Check out this example:
+`Number.toFixed()` puede comportarse un poco distindo en diferentes navegadores. Veamos el siguiente ejemplo:
 
 ```js
 (0.7875).toFixed(3);
@@ -1543,31 +1543,31 @@ Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `tr
 
 ### 💡 Explicación:
 
-While your first instinct may be that IE11 is correct and Firefox/Chrome are wrong, the reality is that Firefox/Chrome are more directly obeying standards for numbers (IEEE-754 Floating Point), while IE11 is minutely disobeying them in (what is probably) an effort to give clearer results.
+Aunque a primera impresión puede parecer que IE11 hace lo correcto y Firefox/Chrome están equivocados, la realidad es que Firefox/Chrome están cumpliendo directamente los estandares (IEEE-754 Floating Point) para los número, mientras que IE11 is desobedeciéndolos (aunque probablemente séa para conseguir unos resultados más claros).
 
-You can see why this occurs with a few quick tests:
+Veamos como ocurre con algun test rápido:
 
 ```js
-// Confirm the odd result of rounding a 5 down
+// Confirmar el resultado impar de redondear un 5 hacia abajo.
 (0.7875).toFixed(3); // -> 0.787
-// It looks like it's just a 5 when you expand to the
-// limits of 64-bit (double-precision) float accuracy
+// Parece que solo es un 5 cuando se expande a los límites
+// de precisión de los float de 64-bit (double-precision) float accuracy
 (0.7875).toFixed(14); // -> 0.78750000000000
-// But what if you go beyond the limit?
+// ¿Pero y si se va mas allá de los límites?
 (0.7875).toFixed(20); // -> 0.78749999999999997780
 ```
 
-Floating point numbers are not stored as a list of decimal digits internally, but through a more complicated methodology that produces tiny inaccuracies that are usually rounded away by toString and similar calls, but are actually present internally.
+Los números de punto flotante no se almacenan como una lista de dígitos decimales internamente, sino a través de una metodología más complicada que produce pequeñas imprecisiones que generalmente se redondean con toString y llamadas similares, pero en realidad están presentes internamente.
 
-In this case, that "5" on the end was actually an extremely tiny fraction below a true 5. Rounding it at any reasonable length will render it as a 5... but it is actually not a 5 internally.
+En este caso, ese "5" al final fue en realidad una fracción extremadamente pequeña por debajo de un verdadero 5. Redondearlo a una longitud razonable lo convertirá en un 5 ... pero en realidad no es un 5 internamente.
 
-IE11, however, will report the value input with only zeros appended to the end even in the toFixed(20) case, as it seems to be forcibly rounding the value to reduce the troubles from hardware limits.
+IE11, sin embargo, informará el valor ingresado con solo ceros agregados al final incluso en el caso toFixed (20), ya que parece estar redondeando el valor a la fuerza para reducir los problemas de los límites de hardware.
 
-See for reference `NOTE 2` on the ECMA-262 definition for `toFixed`.
+Ver como referéncia `NOTE 2` en la definición de ECMA-262 para `toFixed`.
 
 - [**20.1.3.3** Number.prototype.toFixed (`fractionDigits`)](https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed)
 
-## `Math.max()` less than `Math.min()`
+## `Math.max()` es menor que `Math.min()`
 
 ```js
 Math.min(1, 4, 7, 2); // -> 1
@@ -1581,9 +1581,9 @@ Math.min() > Math.max(); // -> true
 
 - [Why is Math.max() less than Math.min()?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min) by Charlie Harvey
 
-## Comparing `null` to `0`
+## Comparando `null` a `0`
 
-The following expressions seem to introduce a contradiction:
+Las siguientes expresiones parecen caer en contradicciones:
 
 ```js
 null == 0; // -> false
@@ -1591,24 +1591,24 @@ null > 0; // -> false
 null >= 0; // -> true
 ```
 
-How can `null` be neither equal to nor greater than `0`, if `null >= 0` is actually `true`? (This also works with less than in the same way.)
+¿Como puede `null` no ser ni igual ni mayor que `0`, si `null >= 0` es realmente `true`? (Esto también sucede de la misma forma con menor o igual.)
 
 ### 💡 Explicación:
 
-The way these three expressions are evaluated are all different and are responsible for producing this unexpected behavior.
+La manera con que estas tres expresiones son evaluadas es diferente y es la responsable de producir este comportamiento inesperado.
 
-First, the abstract equality comparison `null == 0`. Normally, if this operator can't compare the values on either side properly, it converts both to numbers and compares the numbers. Then, you might expect the following behavior:
+Primero, la comparación de igualdad abstracta `null == 0`. Normalmente, si este operador no puede comparar correctamente los valores en cualquiera de los lados, convierte ambos en números y los compara. Entonces, se podría esperar el siguiente comportamiento:
 
 ```js
-// This is not what happens
+// Esto no es lo que sucede
 (null == 0 + null) == +0;
 0 == 0;
 true;
 ```
 
-However, according to a close reading of the spec, the number conversion doesn't actually happen on a side that is `null` or `undefined`. Therefore, if you have `null` on one side of the equal sign, the other side must be `null` or `undefined` for the expression to return `true`. Since this is not the case, `false` is returned.
+Sin embargo, según la especificación, la conversión de números en realidad no ocurre en un lado que es `nulo` o `no definido`. Por lo tanto, si tiene `null` en un lado del signo igual, el otro lado debe ser `null` o `undefined` para que la expresión devuelva` true`. Como este no es el caso, se devuelve `false`.
 
-Next, the relational comparison `null > 0`. The algorithm here, unlike that of the abstract equality operator, _will_ convert `null` to a number. Therefore, we get this behavior:
+Ahora la comparación relacional `null > 0`. El algoritmo aquí, a diferencia del operador de igualdad abstracta, se convertirá `null` a un número. Por lo tanto, tenemos este comportamiento:
 
 ```js
 null > 0
@@ -1617,7 +1617,7 @@ null > 0
 false
 ```
 
-Finally, the relational comparison `null >= 0`. You could argue that this expression should be the result of `null > 0 || null == 0`; if this were the case, then the above results would mean that this would also be `false`. However, the `>=` operator in fact works in a very different way, which is basically to take the opposite of the `<` operator. Because our example with the greater than operator above also holds for the less than operator, that means this expression is actually evaluated like so:
+Finalmente, la comparación relacional `null >= 0`. Se podría argumentar que esta expresión debería ser el resultado de `null > 0 || null == 0`; si este fuera el caso, entonces los resultados anteriores significarían que esto también sería `false`. Sin embargo, el operador `>=` de hecho funciona de una manera muy diferente, que es básicamente tomar el opuesto al operador `<`. Debido a que nuestro ejemplo con el operador mayor que el anterior también es válido para el operador menor que, eso significa que esta expresión en realidad se evalúa así:
 
 ```js
 null >= 0;
@@ -1631,9 +1631,9 @@ true;
 - [**7.2.12** Abstract Relational Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-relational-comparison)
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## Same variable redeclaration
+## Misma redeclaración de variables
 
-JS allows to redeclare variables:
+JS permite redeclarar variables:
 
 ```js
 a;
@@ -1642,7 +1642,7 @@ a;
 a, a;
 ```
 
-Works also in strict mode:
+También funciona en el modo estricto:
 
 ```js
 var a, a, a;
@@ -1652,21 +1652,23 @@ var a;
 
 ### 💡 Explicación:
 
-All defenitions are merged into one definition.
+Todas las definiciones estan mezcladas en una.
 
 - [**13.3.2** Variable Statement](https://www.ecma-international.org/ecma-262/#sec-variable-statement)
 
-# 📚 Other resources
+# 📚 Otros recursos
 
-- [wtfjs.com](http://wtfjs.com/) — a collection of those very special irregularities, inconsistencies and just plain painfully unintuitive moments for the language of the web.
-- [Wat](https://www.destroyallsoftware.com/talks/wat) — A lightning talk by Gary Bernhardt from CodeMash 2012
-- [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — Kyle Simpsons talk for Forward 2 attempts to “pull out the crazy” from JavaScript. He wants to help you produce cleaner, more elegant, more readable code, then inspire people to contribute to the open source community.
+- [wtfjs.com](http://wtfjs.com/) — un listado de irregularidades muy especiales, inconsitencias y momentos dolorosamente poco intuitivos en programación web.
+- [Wat](https://www.destroyallsoftware.com/talks/wat) — Una buena charla de Gary Bernhardt en CodeMash 2012
+- [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — Kyle Simpsons habla para Forward 2 sobre intentos de Javascript de "sacar la locura". El quiere ayudar a producir código mas limpio, elegante, legible... También quiere inspirar a la gente a contribuir a la comunidad open source.
 
-# 🎓 License
+# 🎓 Licencia
 
 [![CC 4.0][license-image]][license-url]
 
 &copy; [Denys Dovhan](http://denysdovhan.com)
+
+Traducción: [Carles Hervera](http://www.carleshervera.com)
 
 [license-url]: http://www.wtfpl.net
 [license-image]: https://img.shields.io/badge/License-WTFPL%202.0-lightgrey.svg?style=flat-square
