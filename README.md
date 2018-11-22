@@ -89,6 +89,7 @@ Currently, there are these translations of **wtfjs**:
   - [Arrow functions can not be a constructor](#arrow-functions-can-not-be-a-constructor)
   - [`arguments` and arrow functions](#arguments-and-arrow-functions)
   - [Tricky return](#tricky-return)
+  - [Chaining assignments on object](#chaining-assignments-on-object)
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
   - [Null and Relational Operators](#null-and-relational-operators)
   - [`Number.toFixed()` display different numbers](#numbertofixed-display-different-numbers)
@@ -1471,6 +1472,38 @@ This is because of a concept called Automatic Semicolon Insertion, which automag
 
 - [**11.9.1** Rules of Automatic Semicolon Insertion](https://www.ecma-international.org/ecma-262/#sec-rules-of-automatic-semicolon-insertion)
 - [**13.10** The `return` Statement](https://www.ecma-international.org/ecma-262/#sec-return-statement)
+
+## Chaining assignments on object
+
+```js
+var foo = {n: 1};
+var bar = foo;
+
+foo.x = foo = {n: 2};
+
+foo.x // -> undefined
+foo   // -> {n: 2}
+bar   // -> {n: 1, x: {n: 2}}
+```
+
+From right to left, `{n: 2}` is assigned to foo, and the result of this assignment `{n: 2}` is assigned to foo.x, that's why bar is `{n: 1, x: {n: 2}}` as bar is a reference to foo. But why foo.x is undefined while bar.x is not ?
+
+### 💡 Explanation:
+
+Foo and bar references the same object `{n: 1}`, and lvalues are resolved before assignations. `foo = {n: 2}` is creating a new object, and so foo is updated to reference that new object. The trick here is foo in `foo.x = ...` as a lvalue was resolved beforehand and still reference the old `foo = {n: 1}` object and update it by adding the x value. After that chain assignments, bar still reference the old foo object, but foo reference the new `{n: 2}` object, where x is not existing.
+
+It's equivalent to:
+
+```js
+var foo = {n: 1};
+var bar = foo;
+
+foo = {n: 2} // -> {n: 2}
+bar.x = foo // -> {n: 1, x: {n: 2}}
+// bar.x point to the address of the new foo object
+// it's not equivalent to: bar.x = {n: 2}
+```
+
 
 ## Accessing object properties with arrays
 
