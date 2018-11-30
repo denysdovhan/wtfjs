@@ -1682,15 +1682,23 @@ All defenitions are merged into one definition.
 - [**13.3.2** Variable Statement](https://www.ecma-international.org/ecma-262/#sec-variable-statement)
 
 ## Default behavior Array.prototype.sort()
+
 Imagine that you need to sort an array of numbers.
+
 ```
 [ 10, 1, 3 ].sort() // -> [ 1, 10, 3 ]
 ```
+
 ### 💡 Explanation:
+
 The default sort order is built upon converting the elements into strings, then comparing their sequences of UTF-16 code units values.
+
 - [**22.1.3.25** Array.prototype.sort ( comparefn )](https://www.ecma-international.org/ecma-262/#sec-array.prototype.sort)
+
 ### Hint
+
 Pass `comparefn` if you try to sort anything but string.
+
 ```
 [ 10, 1, 3 ].sort((a, b) => a - b) // -> [ 1, 3, 10 ]
 ```
