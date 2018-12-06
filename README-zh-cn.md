@@ -306,7 +306,7 @@ new Foo() instanceof null;
 
 ### 💡 说明:
 
-这不是规范的一部分。这只是一个错误，现在它是固定的，所以将来不会有这个问题。
+这不是规范的一部分。这只是一个错误，现在它已被修复，所以将来不会有这个问题。
 
 ## 数组相加
 
@@ -394,7 +394,7 @@ Number(undefined); // -> NaN
 
 ### 💡 说明:
 
-根据规格：
+根据规范：
 
 1. 如果没有参数传递给这个函数，让 `n` 为 `+0` ;
 2. 否则，让 `n` 调用 `ToNumber(value)`
@@ -785,9 +785,9 @@ function template(strings, ...keys) {
 }
 ```
 
-This is the [magic behind](http://mxstbr.blog/2016/11/styled-components-magic-explained/) famous library called [💅 styled-components](https://www.styled-components.com/), which is popular in React community.
+这是[💅 styled-components](https://www.styled-components.com/)这个React社区很流行的库[背后的秘密](http://mxstbr.blog/2016/11/styled-components-magic-explained/)。
 
-链接到规范：
+规范的链接：
 
 - [**12.3.7** Tagged Templates](https://www.ecma-international.org/ecma-262/#sec-tagged-templates)
 
@@ -850,7 +850,7 @@ c[c][c]('console.log("WTF?")')(); // > WTF
 
 ### 💡 说明:
 
-为什么这样工作？ 这里我们使用 _计算属性的名称_ TODO（添加链接到 spec）。 当这些方括号之间传递一个对象时，它会将对象强制转换成一个字符串，所以我们得到一个属性键 `[object Object]` 和 值是 `{}` 。
+为什么这样工作？ 这里我们使用 _计算属性的名称_ 。 当这些方括号之间传递一个对象时，它会将对象强制转换成一个字符串，所以我们得到一个属性键 `[object Object]` 和 值是 `{}` 。
 
 同样的，我们也可以这样:
 
@@ -1340,8 +1340,6 @@ f("a"); // -> Uncaught ReferenceError: arguments is not defined
 
 ### 💡 说明:
 
-Arrow functions are a lightweight version of regular functions with a focus on being short and lexical `this`. At the same time arrow functions do not provide a binding for the `arguments` object. As a valid alternative use the `rest parameters` to achieve the same result:
-
 箭头函数是普通函数的轻量级版本，重点是简短和 `this` 上。与此同时，箭头函数不为 `arguments` 对象提供绑定。作为一个有效的替代使用 `rest parameters` 来达到相同的结果:
 
 ```js
@@ -1504,7 +1502,6 @@ true;
 - [wtfjs.com](http://wtfjs.com/) — 这是一组非常特别的不规范，不一致的地方，以及那些对于网络语言来说非常痛苦的不直观的时刻。
 - [Wat](https://www.destroyallsoftware.com/talks/wat) — A lightning talk by Gary Bernhardt from CodeMash 2012
 - [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — 凯尔。辛普森一家谈到了前两次试图从 JavaScript 中“拉出疯狂”的尝试。他希望帮助您生成更干净、更优雅、更可读的代码，然后鼓励人们为开源社区做出贡献。
--
 
 # 🎓 License
 
