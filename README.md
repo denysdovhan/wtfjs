@@ -248,7 +248,7 @@ false == "false"; // -> false
 ## baNaNa
 
 ```js
-"b" + "a" + +"a" + "a";
+"b" + "a" + +"a" + "a"; // -> 'baNaNa'
 ```
 
 This is an old-school joke in JavaScript, but remastered. Here's the original one:
