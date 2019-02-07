@@ -431,6 +431,18 @@ new Foo() instanceof null;
 
 This is not a part of the specification. It's just a bug that has now been fixed, so there shouldn't be a problem with it in the future.
 
+### Super constructor null of Foo is not a constructor
+It's continuation of story with previous bug in modern environment (tested with Chrome 71 and nodejs v11.8.0) 
+```js
+class Foo extends null {}
+new Foo() instanceof null;
+// > TypeError: Super constructor null of Foo is not a constructor
+// >     at … … …
+```
+
+### 💡 Explanation: 
+TBD
+
 ## Adding arrays
 
 What if you try to add two arrays?
