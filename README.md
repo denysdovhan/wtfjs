@@ -37,7 +37,6 @@ Currently, there are these translations of **wtfjs**:
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 # Table of Contents
 
 - [💪🏻 Motivation](#-motivation)
@@ -97,7 +96,8 @@ Currently, there are these translations of **wtfjs**:
   - [Comparing `null` to `0`](#comparing-null-to-0)
   - [Same variable redeclaration](#same-variable-redeclaration)
   - [Default behavior Array.prototype.sort()](#default-behavior-arrayprototypesort)
-- [Other resources](#other-resources)
+  - [Math.pow and `**` not equal](#mathpow-and--not-equal)
+- [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -1702,6 +1702,32 @@ Pass `comparefn` if you try to sort anything but string.
 ```
 [ 10, 1, 3 ].sort((a, b) => a - b) // -> [ 1, 3, 10 ]
 ```
+
+## Math.pow and `**` not equal
+
+```js
+Math.pow(99,99); // -> 3.697296376497263e+197
+99 ** 99; // -> 3.697296376497268e+197
+
+// using `**`
+var num = 99;
+num ** num - 99 ** 99; // -> -5.311379928167671e+182
+
+// using Math.pow
+var num = 99;
+Math.pow(num, num) - Math.pow(num, num); // -> 0
+
+// using `**` in runtime
+function pow(num) {
+  return num ** num;
+}
+
+pow(99) - pow(99); // -> 0
+```
+
+### 💡 Explanation:
+
+This is a [bug in V8](https://bugs.chromium.org/p/v8/issues/detail?id=5848).Only Chrome will show this problem. `**` operator evaluated at compile time, which yields a different result than the result at runtime.
 
 # 📚 Other resources
 
