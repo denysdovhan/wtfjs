@@ -97,6 +97,7 @@ Currently, there are these translations of **wtfjs**:
   - [Comparing `null` to `0`](#comparing-null-to-0)
   - [Same variable redeclaration](#same-variable-redeclaration)
   - [Default behavior Array.prototype.sort()](#default-behavior-arrayprototypesort)
+  - [Extends from null](#extends-from-null)
 - [Other resources](#other-resources)
 - [🎓 License](#-license)
 
@@ -1702,6 +1703,62 @@ Pass `comparefn` if you try to sort anything but string.
 ```
 [ 10, 1, 3 ].sort((a, b) => a - b) // -> [ 1, 3, 10 ]
 ```
+
+
+## Extends from null
+All of you know about the annoying undefined is not a function, but what about this?
+
+```js
+// Declare a class which extends null
+class Foo extends null {}
+// -> [Function: Foo]
+
+new Foo() instanceof null;
+// > TypeError: function is not a function
+// >     at … … …
+```
+
+### 💡 Explanation:
+This is not a bug because:
+
+```js
+console.dir(Object.getPrototypeOf(Foo.prototype)); // is null
+```
+
+if the class has no constructor the call from prototype chain. But in the parent has no constructor. Just in case, I’ll clarify that null is an object. Therefore, you can inherit from it (although in the world of the OOP for such terms would have beaten me).
+
+So you can't call the null constructor.
+
+If you change this code:
+```js
+class Foo extends null {
+    constructor() {
+        console.log(111);
+    }
+}
+```
+
+You se the error:
+```
+ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor
+```
+
+And if add super:
+```js
+class Foo extends null {
+    constructor() {
+        console.log(111);
+        super();
+    }
+}
+```
+
+JS throw error:
+```
+TypeError: Super constructor null of Foo is not a constructor
+```
+
+
 
 # 📚 Other resources
 
