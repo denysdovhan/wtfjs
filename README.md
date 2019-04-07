@@ -1677,7 +1677,7 @@ var a;
 
 ### 💡 Explanation:
 
-All defenitions are merged into one definition.
+All definitions are merged into one definition.
 
 - [**13.3.2** Variable Statement](https://www.ecma-international.org/ecma-262/#sec-variable-statement)
 
