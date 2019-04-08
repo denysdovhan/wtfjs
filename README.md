@@ -97,7 +97,7 @@ Currently, there are these translations of **wtfjs**:
   - [Comparing `null` to `0`](#comparing-null-to-0)
   - [Same variable redeclaration](#same-variable-redeclaration)
   - [Default behavior Array.prototype.sort()](#default-behavior-arrayprototypesort)
-- [Other resources](#other-resources)
+- [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
