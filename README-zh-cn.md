@@ -78,6 +78,7 @@ $ npm install -g wtfjs
   - [Null 和关系操作符](#空和关系操作符)
   - [`Number.toFixed()` 显示不同的数字](#numbertofixed-显示不同的数字)
   - [比较 `null` to `0`](#比较-null-to-0)
+  - [resolve() 不会返回 Promise 实例](#resolve-%E4%B8%8D%E4%BC%9A%E8%BF%94%E5%9B%9E-promise-%E5%AE%9E%E4%BE%8B)
 - [其他资源](#其他资源)
 - [🎓 License](#-license)
 
@@ -1496,6 +1497,48 @@ true;
 
 - [**7.2.12** 抽象的关系比较](https://www.ecma-international.org/ecma-262/#sec-abstract-relational-comparison)
 - [**7.2.13** 比较抽象的平等](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+
+## resolve() 不会返回 Promise 实例
+
+```javascript
+const theObject = {
+  "a": 7,
+};
+const thePromise = new Promise((resolve, reject) => {
+  resolve(theObject);
+}); // -> Promise 实例对象
+
+thePromise.then(value => {
+  console.log(value === theObject); // -> true
+  console.log(value); // -> { a: 7 }
+})
+```
+
+从`thePromise`接收到的`value`值完全就是`theObject`。
+
+那么，如果向`resolve`传入另外一个`Promise`会怎样？
+
+```javascript
+const theObject = new Promise((resolve, reject) => {
+  resolve(7);
+}); // -> Promise 实例对象
+const thePromise = new Promise((resolve, reject) => {
+  resolve(theObject);
+}); // -> Promise 实例对象
+
+thePromise.then(value => {
+  console.log(value === theObject); // -> false
+  console.log(value); // -> 7
+})
+```
+
+### 💡 Explanation:
+
+> 但如果这个（传入到resolve函数的）值是个thenable（即带有then方法），返回的promise会“跟随”这个thenable的对象，采用它的最终状态（指resolved/rejected/pending/settled）；如果传入的value本身就是promise对象，则该对象作为Promise.resolve方法的返回值返回；否则以该值为成功状态返回promise对象。
+
+&ndash; [Promise.resolve() on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
+
+官方规范是 [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions)，由于是机械思维，所以难以读懂。
 
 # 其他资源
 
