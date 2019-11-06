@@ -38,7 +38,7 @@ Actuellement, il existe des traductions de ** wtfjs ** pour les langues suivante
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-# Table of Contents
+# Table des matières
 
 - [💪🏻 Motivation](#-motivation)
 - [✍🏻 Notation](#-notation)
