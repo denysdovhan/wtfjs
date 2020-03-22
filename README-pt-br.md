@@ -29,6 +29,7 @@ O código-fonte está disponível aqui <https://github.com/denysdovhan/wtfjs>.
 
 Atualmente, temos essas traduções disponíveis de **wtfjs**:
 
+- [English (original)](./README.md)
 - [中文版](./README-zh-cn.md)
 - [Português do Brasil](./README-pt-br.md)
 
