@@ -78,7 +78,7 @@ Atualmente, temos essas traduções disponíveis de **wtfjs**:
   - [Acessando protótipos com `__proto__`](#acessando-prot%C3%B3tipos-com-__proto__)
   - [`` `${{Object}}` ``](#-object-)
   - [Desestruturação com valores padrão](#desestrutura%C3%A7%C3%A3o-com-valores-padr%C3%A3o)
-  - [Pontos e disperção](#pontos-e-disper%C3%A7%C3%A3o)
+  - [Pontos e dispersão](#pontos-e-disper%C3%A7%C3%A3o)
   - [Rótulos](#r%C3%B3tulos)
   - [Rótulos aninhados](#r%C3%B3tulos-aninhados)
   - [`try..catch` traidor](#trycatch-traidor)
@@ -86,7 +86,7 @@ Atualmente, temos essas traduções disponíveis de **wtfjs**:
   - [Um gerador que produz a si mesmo](#um-gerador-que-produz-a-si-mesmo)
   - [Uma classe de classe](#uma-classe-de-classe)
   - [Objetos não coercíveis](#objetos-n%C3%A3o-coerc%C3%ADveis)
-  - [Arrow functions astutas](#arrow-functions-astutas)
+  - [Arrow functions traiçoeiras](#arrow-functions-astutas)
   - [Arrow functions não podem ser construtores](#arrow-functions-n%C3%A3o-podem-ser-construtores)
   - [`arguments` e arrow functions](#arguments-e-arrow-functions)
   - [Retorno traiçoeiro](#retorno-trai%C3%A7oeiro)
@@ -275,7 +275,7 @@ NaN === NaN; // -> false
 
 A especificação define estritamente a lógica por trás desse comportamento:
 
-> 1. Se `Type(x)` ;e diferente de `Type(y)`, retorne **false**.
+> 1. Se `Type(x)` é diferente de `Type(y)`, retorne **false**.
 > 2. Se `Type(x)` é um Number, então
 >    1. Se `x` é um **NaN**, retorne **false**.
 >    2. Se `y` é um **NaN**, retorne **false**.
@@ -303,7 +303,7 @@ Você não vai acreditar, mas ...
 
 ### 💡 Explicação:
 
-Quando nós quebramos esses símbolos em pedaços, percemos que o esse padrão se repete com frequência:
+Quando nós quebramos esses símbolos em pedaços, percebemos que o esse padrão se repete com frequência:
 
 ```js
 ![] + []; // -> 'false'
@@ -366,7 +366,7 @@ A explicação é a mesma dos exemplos anteriores. Aqui está o link corresponde
 
 > ⚠️ Esta é a parte da API Browser e não irá funcionar em um ambiente com Node.js - apenas em navegadores ⚠️
 
-Apesar do fato de que `document.all` é um objeto parecido com um array, ele dá acesso aos nós do DOM na página, e responde como `undefined` na função `typeof`.
+Apesar de document.all` ser um objeto parecido com um array, ele dá acesso aos nós do DOM na página, e responde como `undefined` na função `typeof`.
 
 ```js
 document.all instanceof Object; // -> true
@@ -388,7 +388,7 @@ document.all == null; // -> true
 
 ### 💡 Explicação:
 
-> `document.all` é usado como uma maneira de acessar todos os elementos do DOM, em particular com versões legadas do IE. Enquanto ele nunca se tornou um padrão foi amplamente usado nas eras antigas do JS. Quando o padrão progrediu com novas APIs (como `document.getElementById`) essa API (document.all) se tornou obsoleta e o comitê padrão teve que decidir o que fazer com ela. Por conta do amplo uso eles decidiram deixar a API mas introduziram uma violação intencional da especificação do JavaScript.
+> `document.all` é usado como uma maneira de acessar todos os elementos do DOM, em particular com versões legadas do IE. Mesmo nunca tendo se tornado um padrão, foi amplamente usado nas eras antigas do JS. Quando o padrão progrediu com novas APIs (como `document.getElementById`) essa API (document.all) se tornou obsoleta e o comitê padrão teve que decidir o que fazer com ela. Por conta do amplo uso eles decidiram deixar a API mas introduziram uma violação intencional da especificação do JavaScript.
 > A razão que ele retorna como `false` quando usamos o [Comparador Estrito de Igualdade](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) com `undefined` e `true` quando usamos o [Comparador Abstrado de Igualdade](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) é devido a essa violação intencional que explicitamente permite isso.
 >
 > &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) em WhatWG - HTML spec
@@ -405,7 +405,7 @@ Number.MIN_VALUE > 0; // -> true
 
 ### 💡 Explicação:
 
-> `Number.MIN_VALUE` é igual a `5e-324`, ou seja, o menor número positivo que pode ser representado com precisão float; ou seja, o mais próximo possível de zero. Isso define a melhor resolução que pontos fluantes (floats) podem fornecer.
+> `Number.MIN_VALUE` é igual a `5e-324`, ou seja, o menor número positivo que pode ser representado com precisão float; ou seja, o mais próximo possível de zero. Isso define a melhor resolução que pontos flutuantes (floats) podem fornecer.
 >
 > Agora, o menor valor geral é `Number.NEGATIVE_INFINITY`, embora ele não seja realmente numérico em um senso estrito.
 >
@@ -431,7 +431,7 @@ new Foo() instanceof null;
 
 ### 💡 Explicação:
 
-Isto não é parte da especificação. É apenas um bug que já foo arrumado, então isso não deverá ser um problema no futuro.
+Isto não é parte da especificação. É apenas um bug que já foi arrumado, então isso não deverá ser um problema no futuro.
 
 ## Somando arrays
 
@@ -470,7 +470,7 @@ a.toString(); // -> ',,'
 
 ### 💡 Explicação:
 
-> **Trailing commas** (também chamadas de "final commas") (em português, vírgulas finais) são úteis quando você adiciona novos elementos, parâmetros ou propriedades em um código JS. Mas se você quer adicionar uma nova propriedade, você pode simplesmente adicionar uma nova linha sem modificar a anterior se ela já utiliza uma trailling comma. Isso faz com que os _diffs_ no versionamento de código sejam mais limpos, e também a edição do código menos problemática.
+> **Trailing commas** (também chamadas de "final commas", ou em português, "vírgulas finais") são úteis quando você adiciona novos elementos, parâmetros ou propriedades em um código JS. Caso se você quer adicionar uma nova propriedade, você pode simplesmente adicionar uma nova linha sem modificar a anterior se ela já utiliza uma trailling comma. Isso faz com que os _diffs_ no versionamento de código sejam mais limpos, e também a edição do código menos problemática.
 >
 > &mdash; [Trailing commas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas) no MDN
 
@@ -540,7 +540,7 @@ parseInt("f*ck", 16); // -> 15
 
 **💡 Explicação:**
 
-Isso acontece porque `parseInt` vai continuar parseando caractere por caracter até que ele atinga um caractere desconhecido. O `f` em `f*da` é o dígitl hexadecimal `15`.
+Isso acontece porque `parseInt` vai continuar parseando caractere por caractere até que ele atinja um caractere desconhecido. O `f` em `f*da` é o dígito hexadecimal `15`.
 
 Se você parsear `Infinity` para um inteiro…
 
@@ -570,7 +570,7 @@ parseInt(null, 24); // -> 23
 ```
 
 **💡 Explicação:**
-> Ele converte `null` para uma string `"null"` e tenta fazer o parse. Para raízes de 0 a 23, não existem numerais que ele possa converter, então ele retorna NaN. Em 24, `"n"`, a 14ª letra, é adicionada ao sistema numeral. Em 31, `"u"`, a 21ª letra, é adicionada e a string inteira poderá ser decodificada. Em 37 onde não existe mais nenhum numeral válido definido que poderá ser gerado, o retorno é `NaN`.
+> Ele converte `null` para uma string `"null"` e tenta fazer o parse. Para raízes de 0 a 23, não existem numerais que ele possa converter, então ele retorna NaN. Em 24, `"n"`, a 14ª letra, é adicionada ao sistema numérico. Em 31, `"u"`, a 21ª letra, é adicionada e a string inteira poderá ser decodificada. Em 37 onde não existe mais nenhum numeral válido definido que poderá ser gerado, o retorno é `NaN`.
 >
 > &mdash; [“parseInt(null, 24) === 23… wait, what?”](https://stackoverflow.com/questions/6459758/parseintnull-24-23-wait-what) no StackOverflow
 
@@ -629,7 +629,7 @@ Podemos forçar valores números com o construtor `Number`. É bem óbvio que `t
 Number(true); // -> 1
 ```
 
-O operador unário _soma_ (i++) tenta converter o valor para um número. Ele pode converter representações de inteiros e flutuantes em strings, bem como os valores que não são stings, como `true`, `false` e `null`. Se ele não conseguir parsear um valor particular, então será evaluado como `NaN`. Isso significa que nós podemos forçar `true` para `1` facilmente:
+O operador unário _soma_ (i++) tenta converter o valor para um número. Ele pode converter representações de inteiros e flutuantes em strings, bem como os valores que não são stings, como `true`, `false` e `null`. Se ele não conseguir parsear um valor particular, então será computado como `NaN`. Isso significa que nós podemos forçar `true` para `1` facilmente:
 
 ```js
 +true; // -> 1
@@ -659,7 +659,7 @@ Você ficará impressionado, mas `<!--` (sintaxe de comentários do HTML) são c
 
 ### 💡 Explicação:
 
-Impressionado? Comentários HTML se destinavam para permitir que navegadores que não interpretavam a tag `<script>` fossem degradados normalmente. Esses browsers, e.x. Netscape 1.x, não são mais populares. Portanto, não precisamos mais colocar comentários HTML em suas tags script.
+Impressionado? Comentários HTML se destinavam a permitir que navegadores que não interpretavam a tag `<script>` fossem degradados normalmente. Esses browsers, e.x. Netscape 1.x, não são mais populares. Portanto, não precisamos mais colocar comentários HTML em suas tags script.
 
 Como o Node.js é baseado na V8, comentários HTML são suportados pela runtime do Node.js também. Além disso, eles fazem parte da especificação:
 
@@ -930,7 +930,7 @@ f`true is ${true}, false is ${false}, array is ${[1, 2, 3]}`;
 
 ### 💡 Explicação:
 
-Bom, isso não é uma mágica se você está familiarizado com _Tagged template literals_. No exemplo acima, a função `f` é uma tag para template literal. Tags antes do template literal permitem que você faça o parse te template literals com uma função. O primeiro argumento de uma função tag contém um array de valores em string. O restante dos argumentos são relacionados às expressões. Exemplo:
+Bom, isso não é uma mágica se você está familiarizado com _Tagged template literals_. No exemplo acima, a função `f` é uma tag para template literal. Tags antes do template literal permitem que você faça o parse do template literals com uma função. O primeiro argumento de uma função tag contém um array de valores em string. O restante dos argumentos são relacionados às expressões. Exemplo:
 
 ```js
 function template(strings, ...keys) {
@@ -954,7 +954,7 @@ console.log.call.call.call.call.call.apply(a => a, [1, 2]);
 
 ### 💡 Explicação:
 
-Atencção, isso vai explodir sua mente! Tente reproduzir esse código na sua cabeça: estamos aplicando o método `call` usando o método `apply`. Leia mais:
+Atenção, isso vai explodir sua mente! Tente reproduzir esse código na sua cabeça: estamos aplicando o método `call` usando o método `apply`. Leia mais:
 
 - [**19.2.3.3** Function.prototype.call(`thisArg`, ...`args`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.call)
 - [**19.2.3.1 ** Function.prototype.apply(`thisArg`, `argArray`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.apply)
@@ -1478,7 +1478,7 @@ A sentença `return` é bem traiçoeira. Considere o seguinte:
 })(); // -> { b: 10 }
 ```
 
-Isso se dá por causa do conceito chamado _Automatic Semicolon Insertion_ (Inserção Automática de Ponto e vírgula), o que magicamente insere os ponto e vírgula (`;`) após a maioria das novas linhas. No primeiro exemplo, existe um ponto e vírgula entre a sentença `return` e o objeto, então a função retorna `undefined` e o objeto nunca é evaluado.
+Isso se dá por causa do conceito chamado _Automatic Semicolon Insertion_ (Inserção Automática de Ponto e vírgula), o que magicamente insere os ponto e vírgula (`;`) após a maioria das novas linhas. No primeiro exemplo, existe um ponto e vírgula entre a sentença `return` e o objeto, então a função retorna `undefined` e o objeto nunca é computado.
 
 - [**11.9.1** Rules of Automatic Semicolon Insertion](https://www.ecma-international.org/ecma-262/#sec-rules-of-automatic-semicolon-insertion)
 - [**13.10** The `return` Statement](https://www.ecma-international.org/ecma-262/#sec-return-statement)
