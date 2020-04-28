@@ -1315,9 +1315,7 @@ Avec des symboles bien connus, il existe un moyen de se débarrasser de la coerc
 ```js
 function nonCoercible(val) {
   if (val == null) {
-    throw TypeError(
-      "inCoercible ne doit pas être appelé avec null ou undefined"
-    );
+    throw TypeError("inCoercible ne doit pas être appelé avec null ou undefined");
   }
 
   const res = Object(val);
