@@ -29,8 +29,8 @@ La source du _package_ est disponible ici: <https://github.com/denysdovhan/wtfjs
 
 Actuellement, il existe des traductions de ** wtfjs ** pour les langues suivantes :
 
--   [中文版](./README-zh-cn.md)
--   [Français](./README-fr-fr.md)
+- [中文版](./README-zh-cn.md)
+- [Français](./README-fr-fr.md)
 
 [**Demander une autre traduction**][tr-request]
 
@@ -38,6 +38,7 @@ Actuellement, il existe des traductions de ** wtfjs ** pour les langues suivante
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 # Table des matières
 
 - [💪🏻 Motivation](#-motivation)
@@ -127,7 +128,7 @@ Dans tous les cas, lisez ce qui suit. Vous y trouverez probablement quelque chos
 **`// >`** définit le résultat de `console.log` ou tout autre sortie. Par exemple :
 
 ```js
-console.log('hello, world!'); // > hello, world!
+console.log("hello, world!"); // > hello, world!
 ```
 
 **`//`** indique un commentaire utilisé pour donner des explications. Par exemple :
@@ -164,8 +165,8 @@ true;
 
 Voir aussi [`[]` est truthy, mais pas `true`](#-est-truthy-mais-pas-true).
 
--   [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
--   [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
+- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 ## `true` n'est pas égale à `![]`, mais pas égale à `[]` aussi
 
@@ -226,8 +227,8 @@ false == false; // -> true
 ## true est faux
 
 ```js
-!!'false' == !!'true'; // -> true
-!!'false' === !!'true'; // -> true
+!!"false" == !!"true"; // -> true
+!!"false" === !!"true"; // -> true
 ```
 
 ### 💡 Explication :
@@ -236,12 +237,12 @@ Considérez ceci étape par étape :
 
 ```js
 // `true` est 'truthy' et est représenté par la valeur 1 (nombre), 'true' sous forme de chaîne est NaN.
-true == 'true'; // -> false
-false == 'false'; // -> false
+true == "true"; // -> false
+false == "false"; // -> false
 
 // 'false' n'est pas une chaîne vide, donc c'est une valeur `truthy`
-!!'false'; // -> true
-!!'true'; // -> true
+!!"false"; // -> true
+!!"true"; // -> true
 ```
 
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
@@ -249,13 +250,13 @@ false == 'false'; // -> false
 ## baNaNa
 
 ```js
-'b' + 'a' + +'a' + 'a'; // -> 'baNaNa'
+"b" + "a" + +"a" + "a"; // -> 'baNaNa'
 ```
 
 Ceci est une blague "old school" en JavaScript, mais remasterisée. Voici l'originale :
 
 ```js
-'foo' + +'bar'; // -> 'fooNaN'
+"foo" + +"bar"; // -> 'fooNaN'
 ```
 
 ### 💡 Explication :
@@ -277,9 +278,9 @@ La spécification définit strictement la logique derrière ce comportement :
 
 > 1. Si `Type(x)` est différent de `Type(y)`, retourne **false**.
 > 2. Si `Type(x)` est `Number`, alors
->     1. Si `x` est **NaN**, retourne **false**.
->     2. Si `y` est **NaN**, retourne **false**.
->     3. … … …
+>    1. Si `x` est **NaN**, retourne **false**.
+>    2. Si `y` est **NaN**, retourne **false**.
+>    3. … … …
 >
 > &mdash; [**7.2.14** Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)
 
@@ -295,9 +296,9 @@ Vous ne le croiriez pas, mais …
 
 ```js
 (![] + [])[+[]] +
-	(![] + [])[+!+[]] +
-	([![]] + [][[]])[+!+[] + [+[]]] +
-	(![] + [])[!+[] + !+[]];
+  (![] + [])[+!+[]] +
+  ([![]] + [][[]])[+!+[] + [+[]]] +
+  (![] + [])[!+[] + !+[]];
 // -> 'fail'
 ```
 
@@ -402,6 +403,7 @@ Number.MIN_VALUE > 0; // -> true
 > Maintenant, la plus petite valeur globale est `Number.NEGATIVE_INFINITY`, bien que cette dernière ne soit pas vraiment numérique au sens strict.
 >
 > &mdash; [“Why is `0` less than `Number.MIN_VALUE` in JavaScript?”](https://stackoverflow.com/questions/26614728/why-is-0-less-than-number-min-value-in-javascript) at StackOverflow
+
 - [**20.1.2.9** Number.MIN_VALUE](https://www.ecma-international.org/ecma-262/#sec-number.min_value)
 
 ## Fonction n'est pas une fonction
@@ -605,6 +607,7 @@ true +
     (true + true) -
   true; // -> 3
 ```
+
 Hmmm… 🤔
 
 ### 💡 Explication :
@@ -615,7 +618,7 @@ Avec le constructeur `Number`, nous pouvons forcer les valeurs aux nombres. Il e
 Number(true); // -> 1
 ```
 
-L'opérateur unaire `+` tente de convertir sa valeur en nombre. Il peut convertir des représentations d'entiers et de nombres flottants sous forme de chaîne, de même que les  valeurs `true`, `false` et `null`. S'il ne peut pas analyser une valeur particulière, il sera évalué à `NaN`. Cela signifie que nous pouvons contraindre `true` à `1` plus facilement :
+L'opérateur unaire `+` tente de convertir sa valeur en nombre. Il peut convertir des représentations d'entiers et de nombres flottants sous forme de chaîne, de même que les valeurs `true`, `false` et `null`. S'il ne peut pas analyser une valeur particulière, il sera évalué à `NaN`. Cela signifie que nous pouvons contraindre `true` à `1` plus facilement :
 
 ```js
 +true; // -> 1
@@ -1312,7 +1315,9 @@ Avec des symboles bien connus, il existe un moyen de se débarrasser de la coerc
 ```js
 function nonCoercible(val) {
   if (val == null) {
-    throw TypeError("inCoercible ne doit pas être appelé avec null ou undefined");
+    throw TypeError(
+      "inCoercible ne doit pas être appelé avec null ou undefined"
+    );
   }
 
   const res = Object(val);
@@ -1440,7 +1445,7 @@ La déclaration `return` est compliqué aussi. Considérez ceci :
 
 ```js
 (function() {
-  return
+  return;
   {
     b: 10;
   }
@@ -1467,14 +1472,14 @@ Cela est dû au concept appelé "Insertion Automatique du Point-Virgule", qui in
 ## Chaînage d'affectations sur un objet
 
 ```js
-var foo = {n: 1};
+var foo = { n: 1 };
 var bar = foo;
 
-foo.x = foo = {n: 2};
+foo.x = foo = { n: 2 };
 
-foo.x // -> undefined
-foo   // -> {n: 2}
-bar   // -> {n: 1, x: {n: 2}}
+foo.x; // -> undefined
+foo; // -> {n: 2}
+bar; // -> {n: 1, x: {n: 2}}
 ```
 
 De droite à gauche, `{n: 2}` est affecté à `foo`, et le résultat de cette affectation `{n: 2}` est affecté à `foo.x`. C'est pourquoi `bar` retourne `{n: 1, x: {n: 2}}`, puisque `bar` est une référence à `foo`. Mais pourquoi `foo.x` retourne `undefined`, alors que ce n'est pas le cas pour `bar.x` ?
@@ -1488,11 +1493,11 @@ Après cette chaîne d'assignation, `bar`, quant à lui, fait toujours référen
 C'est équivalent à :
 
 ```js
-var foo = {n: 1};
+var foo = { n: 1 };
 var bar = foo;
 
-foo = {n: 2} // -> {n: 2}
-bar.x = foo // -> {n: 1, x: {n: 2}}
+foo = { n: 2 }; // -> {n: 2}
+bar.x = foo; // -> {n: 1, x: {n: 2}}
 // `bar.x` pointe sur l'adresse du nouvel objet `foo`
 // ce n'est pas équivalent à : `bar.x = {n: 2}`
 ```
@@ -1696,9 +1701,9 @@ Passez `comparefn` si vous essayez de trier n'importe quoi d'autre qu'une chaîn
 
 # 📚 Autres ressources
 
--   [wtfjs.com](http://wtfjs.com/) — une collection d'irrégularités spéciales très particulières, d'incohérences et de moments terriblement non intuitifs pour le langage du Web.
--   [Wat](https://www.destroyallsoftware.com/talks/wat) — Un discours éclair de Gary Bernhardt de CodeMash 2012.
--   [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — Kyle Simpsons parle des tentatives de Forward 2 pour "sortir l'absurdité" du JavaScript. Il veut vous aider à produire un code plus propre, plus élégant et plus lisible, puis inspirer les gens à contribuer à la communauté open-source.
+- [wtfjs.com](http://wtfjs.com/) — une collection d'irrégularités spéciales très particulières, d'incohérences et de moments terriblement non intuitifs pour le langage du Web.
+- [Wat](https://www.destroyallsoftware.com/talks/wat) — Un discours éclair de Gary Bernhardt de CodeMash 2012.
+- [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — Kyle Simpsons parle des tentatives de Forward 2 pour "sortir l'absurdité" du JavaScript. Il veut vous aider à produire un code plus propre, plus élégant et plus lisible, puis inspirer les gens à contribuer à la communauté open-source.
 
 # 🎓 Licence
 
