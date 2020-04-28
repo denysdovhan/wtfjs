@@ -214,7 +214,7 @@ toNumber([]); // -> 0
 
 0 == 0; // -> true
 
-false == ![]; // -> false
+false == ![]; // -> true
 
 ![]; // -> false
 
@@ -629,7 +629,7 @@ Podemos forçar valores números com o construtor `Number`. É bem óbvio que `t
 Number(true); // -> 1
 ```
 
-O operador unário _soma_ (i++) tenta converter o valor para um número. Ele pode converter representações de inteiros e flutuantes em strings, bem como os valores que não são stings, como `true`, `false` e `null`. Se ele não conseguir parsear um valor particular, então será computado como `NaN`. Isso significa que nós podemos forçar `true` para `1` facilmente:
+O operador unário _soma_ (i++) tenta converter o valor para um número. Ele pode converter representações de inteiros e flutuantes em strings, bem como os valores que não são stings, como `true`, `false` e `null`. Se ele não conseguir parsear um valor particular, então será avaliado como `NaN`. Isso significa que nós podemos forçar `true` para `1` facilmente:
 
 ```js
 +true; // -> 1
@@ -1113,8 +1113,8 @@ Com o exemplo acima:
 
 1. Nós declaramos `x` sem nenhum valor, então ele é `undefined`.
 2. Então nós empacotamos o valor de `x` dentro da propriedade `x` do objeto.
-3. Depois nós extraímos o valor de `x` usando a desestruturação e queremos atribuí-lo para `x`. Se o valor não for definido, então vamos usar `1` como default.
-3. Then we extract the value of `x` using destructuring and want to assign it to `y`. If the 4. Retorna o valor de `y`;
+3. Depois nós extraímos o valor de `x` usando a desestruturação e queremos atribuí-lo para `y`. Se o valor não for definido, então usaremos `1` como default.
+4. Retornarmos o valor de `y`.
 
 - [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) no MDN
 
@@ -1128,9 +1128,9 @@ Exemplos interessantes podem ser compostos com _spreading_ (disperção) de arra
 
 ### 💡 Explicação:
 
-Por que `3`? Quando utilizamos o [spread operator](http://www.ecma-international.org/ecma-262/6.0/#sec-array-initializer), o método `@@iterator` é chamado, e o iterator retornado é utilizado para obter os valores para ser iterado. O iterador pad rão para string dispersa uma string em caracteres. Depois de dispersar, nós empacotamos esses valores dentro de um array. E então dispersamos esse array novamente e empacotamos de volta em um array.
+Por que `3`? Quando utilizamos o [spread operator](http://www.ecma-international.org/ecma-262/6.0/#sec-array-initializer), o método `@@iterator` é chamado, e o iterator retornado é utilizado para obter os valores para ser iterado. O iterador padrão para string dispersa uma string em caracteres. Depois de dispersar, nós empacotamos esses valores dentro de um array. E então dispersamos esse array novamente e empacotamos de volta em um array.
 
-Uma string de `'...'` consistem em três caracteres de `.`, então o tamanho do array que resulta será `3`.
+Uma string de `'...'` consistem em três caracteres de `.`, então o tamanho do array resultante será `3`.
 
 Agora, detalhadamente:
 
@@ -1140,7 +1140,7 @@ Agora, detalhadamente:
 [...[...'...']].length // -> 3
 ```
 
-Obviamente, nós podemos dispersar e envolver ementos de um array quantas vezes quisermos:
+Obviamente, nós podemos dispersar e envolver elementos de um array quantas vezes quisermos:
 
 ```js
 [...'...']                 // -> [ '.', '.', '.' ]
@@ -1167,7 +1167,7 @@ foo: {
 
 ### 💡 Explicação:
 
-A sentença rotulada é utilizada com os comandos `break` ou `continue`. Você pode utulizar um rítulo para identificar um laço de repetição, e então usar os comandos `break` ou `continue` para indicar quando um programa deverá interromper ou continuar a execução de um loop.
+A sentença rotulada é utilizada com os comandos `break` ou `continue`. Você pode utulizar um rótulo para identificar um laço de repetição, e então usar os comandos `break` ou `continue` para indicar quando um programa deverá interromper ou continuar a execução de um loop.
 
 No exemplo acima, nós identificamos o rótulo `foo`. Depois disso, é executado o that `console.log('first');` e depois interrompemos a execução.
 
@@ -1375,7 +1375,7 @@ baz.valueOf() === 1; // -> true
 - [Um gist de Sergey Rubanov](https://gist.github.com/chicoxyzzy/5dd24608e886adf5444499896dff1197)
 - [**6.1.5.1** Well-Known Symbols](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
 
-## Arrow functions astutas
+## Arrow functions traiçoeiras
 
 Considere o exemplo abaixo:
 
@@ -1455,7 +1455,7 @@ f("a");
 
 ## Retorno traiçoeiro
 
-A sentença `return` é bem traiçoeira. Considere o seguinte:
+A sentença `return` também é traiçoeira. Considere o seguinte:
 
 ```js
 (function() {
@@ -1478,7 +1478,7 @@ A sentença `return` é bem traiçoeira. Considere o seguinte:
 })(); // -> { b: 10 }
 ```
 
-Isso se dá por causa do conceito chamado _Automatic Semicolon Insertion_ (Inserção Automática de Ponto e vírgula), o que magicamente insere os ponto e vírgula (`;`) após a maioria das novas linhas. No primeiro exemplo, existe um ponto e vírgula entre a sentença `return` e o objeto, então a função retorna `undefined` e o objeto nunca é computado.
+Isso se dá por causa do conceito chamado _Automatic Semicolon Insertion_ (Inserção Automática de Ponto e vírgula), o que magicamente insere os ponto e vírgula (`;`) após a maioria das novas linhas. No primeiro exemplo, existe um ponto e vírgula entre a sentença `return` e o objeto, então a função retorna `undefined` e o objeto nunca é avaliado.
 
 - [**11.9.1** Rules of Automatic Semicolon Insertion](https://www.ecma-international.org/ecma-262/#sec-rules-of-automatic-semicolon-insertion)
 - [**13.10** The `return` Statement](https://www.ecma-international.org/ecma-262/#sec-return-statement)
@@ -1500,7 +1500,7 @@ Da direita para a esquerda, `{n: 2}` é atribuído para `foo`, e o resultado des
 
 ### 💡 Explicação:
 
-Foo e bar referenciam o mesmo objeto `{n: 1}`, e lvalues são resolvidos antes das atribuições. `foo = {n: 2}` está criando um novo objeto, e então foo é atualizado para referenciar esse novo objeto. O truque aqui é que foo em `foo.x = ...` como um lvalue foi resolvido antes e continua referenciando o objeto antigo `foo = {n: 1}` e atualizando quando o valor de x é adicionado. Depois desse encadeamento, bar continua referenciando o objeto antigo foo, mas foo referencia o novo objeto `{n: 2}`, onde x não existe.
+Foo e bar referenciam o mesmo objeto `{n: 1}`, e l-values são resolvidos antes das atribuições. `foo = {n: 2}` está criando um novo objeto, e então foo é atualizado para referenciar esse novo objeto. O truque aqui é que foo em `foo.x = ...` como um l-value foi resolvido antes e continua referenciando o objeto antigo `foo = {n: 1}` e o atualiza adicionando o valor de x. Depois desse encadeamento, bar continua referenciando o objeto antigo foo, mas foo referencia o novo objeto `{n: 2}`, onde x não existe.
 
 É equivalente a:
 
@@ -1617,7 +1617,7 @@ Math.min() > Math.max(); // -> true
 
 ## Comparando `null` com `0`
 
-As seguintes expressões parecem que introduzem uma contradição:
+As seguintes expressões parecem introduzir uma contradição:
 
 ```js
 null == 0; // -> false
@@ -1625,13 +1625,13 @@ null > 0; // -> false
 null >= 0; // -> true
 ```
 
-Como `null` não pode ser igual nem maior que` 0`, se `null> = 0` é realmente` true`? (Isso também funciona com menos da mesma maneira.)
+Como `null` não pode ser igual nem maior que` 0`, se `null> = 0` é realmente `true`? (Isso também funciona com menor que da mesma maneira.)
 
 ### 💡 Explicação:
 
-O jeito que essas três expressões são evaluadas são diferentes e são responsáveis por produzirem esse comportamento inesperado.
+O jeito que essas três expressões são avaliadas são diferentes e são responsáveis por produzirem esse comportamento inesperado.
 
-Primeiro, a comparação abstrata de igualdade `null == 0`. Normalmente, se o operador não pode comprara os valores dos dois lados, ele converte ambos em números e compara os números. Então, você poderá esperar o seguinte comportamento:
+Primeiro, a comparação abstrata de igualdade `null == 0`. Normalmente, se o operador não pode comparar os valores dos dois lados, ele converte ambos em números e compara os números. Então, você poderá esperar o seguinte comportamento:
 
 ```js
 // Isso não é o que acontece
@@ -1651,7 +1651,7 @@ null > 0
 false
 ```
 
-Finalmente, a comparação relacional `null >= 0`. Você pode argumentar que essa expressão deveria ser o resultado de `null > 0 || null == 0`; se fosse esse oc aso, então os resultados acima deveriam mostrar que isso também seria `false`. Todavia, o operador `>=` funciona de uma maneira diferente, onde basicamente ele se comporta de maneira oposta ao operador `<`. Como nosso exemplo acima com o operador _maior que_ também é válido para o operador _menor que_, isso significa que essa expressão é realmente avaliada da seguinte forma:
+Finalmente, a comparação relacional `null >= 0`. Você pode argumentar que essa expressão deveria ser o resultado de `null > 0 || null == 0`; se fosse esse o caso, então os resultados acima deveriam mostrar que isso também seria `false`. Todavia, o operador `>=` funciona de uma maneira diferente, onde basicamente ele se comporta de maneira oposta ao operador `<`. Como nosso exemplo acima com o operador _maior que_ também é válido para o operador _menor que_, isso significa que essa expressão é realmente avaliada da seguinte forma:
 
 ```js
 null >= 0;
@@ -1665,7 +1665,7 @@ true;
 - [**7.2.12** Abstract Relational Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-relational-comparison)
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## Redeclaração da mesma variável Same variable
+## Redeclaração da mesma variável
 
 JS nos permite declarar variáveis das seguintes formas:
 
@@ -1700,8 +1700,7 @@ Imagine que você precisa ordenar um array de números.
 
 ### 💡 Explicação:
 
-A ordem padrão de ordenacão é feita na conversão dos elementos em strings, e depois comparando suas sequências de 
-The default sort order is built upon converting the elements into strings, then comparing their sequências de valores de unidades de código UTF-16.
+A ordem padrão de ordenacão é feita na conversão dos elementos em texto, e depois comparando suas sequências de valores de unidades de código em UFT-16.
 
 - [**22.1.3.25** Array.prototype.sort ( comparefn )](https://www.ecma-international.org/ecma-262/#sec-array.prototype.sort)
 
@@ -1717,7 +1716,7 @@ Passe `comparefn` se você tentar ordenar algo que não seja string.
 
 - [wtfjs.com](http://wtfjs.com/) — uma coleção dessas várias irregularidades especiais, inconsistências e momentos dolorosos para cada linguagem da web.
 - [Wat](https://www.destroyallsoftware.com/talks/wat) — Uma excelente palestra de Gary Bernhardt no CodeMash 2012
-- [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — uma talk de Kyle Simpson para o Forward 2, que tenta “pull out the crazy” do JavaScript. Ele te ajuda a produzir código limpo, elegante, legível e te inspira a contribuir com a comunidade open source.
+- [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — uma talk de Kyle Simpson para o Forward 2, que tenta “pull out the crazy” do JavaScript. Ele te ajuda a produzir código limpo, elegante, legível e inspirar a contribuir com a comunidade open source.
 
 # 🎓 Licença
 
