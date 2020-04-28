@@ -310,23 +310,23 @@ En brisant cette masse de symboles en pièces, nous remarquons que le schéma su
 ![]; // -> false
 ```
 
-Donc, nous essayons d'ajouter `[]` à `false`, mais en raison d'un certain nombre d'appels de fonctions internes (`binary + Operator` -> `ToPrimitive` -> `[[DefaultValue]]`), nous finissons par convertir l'opérande de droite en chaîne : 
+Donc, nous essayons d'ajouter `[]` à `false`, mais en raison d'un certain nombre d'appels de fonctions internes (`binary + Operator` -> `ToPrimitive` -> `[[DefaultValue]]`), nous finissons par convertir l'opérande de droite en chaîne :
 
 ```js
 ![] + [].toString(); // 'false'
 ```
 
-En considérant une chaîne comme un tableau, nous pouvons accéder à son premier caractère via `[0]` : 
+En considérant une chaîne comme un tableau, nous pouvons accéder à son premier caractère via `[0]` :
 
 ```js
 "false"[0]; // -> 'f'
 ```
 
-Le reste est évident, sauf pour le `i`. Le `i` dans `fail` est saisi en générant la chaîne `"falseundefined"` et en saisissant l'éléments sur l'index `[10]`. 
+Le reste est évident, sauf pour le `i`. Le `i` dans `fail` est saisi en générant la chaîne `"falseundefined"` et en saisissant l'éléments sur l'index `[10]`.
 
 ## `[]` est truthy, mais pas `true`
 
-Un tableau est une valeur `truthy`, mais n'est pas égal à `true`. 
+Un tableau est une valeur `truthy`, mais n'est pas égal à `true`.
 
 ```js
 !![]       // -> true
@@ -342,7 +342,7 @@ Voici des liens vers les sections correspondantes de la spécification ECMA-262 
 
 ## `null` est falsy, mais pas `faux`
 
-Malgré le fait que `null` soit une valeur `falsy`, elle n'est pas égale à `false`. 
+Malgré le fait que `null` soit une valeur `falsy`, elle n'est pas égale à `false`.
 
 ```js
 0 == false; // -> true
@@ -351,7 +351,7 @@ Malgré le fait que `null` soit une valeur `falsy`, elle n'est pas égale à `fa
 
 ### 💡 Explication :
 
-L'explication est la même que pour l'exemple précédent. Voici le lien correspondant : 
+L'explication est la même que pour l'exemple précédent. Voici le lien correspondant :
 
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
@@ -359,21 +359,21 @@ L'explication est la même que pour l'exemple précédent. Voici le lien corresp
 
 > ⚠️ Ceci fait partie du Browser API et ne fonctionnera pas dans un environnement Node.js ⚠️
 
-Malgré le fait que `document.all` soit un objet de type tableau et qu'il donne accès aux nœuds DOM de la page, il répond à la fonction `typeof` comme étant `undefined`. 
+Malgré le fait que `document.all` soit un objet de type tableau et qu'il donne accès aux nœuds DOM de la page, il répond à la fonction `typeof` comme étant `undefined`.
 
 ```js
 document.all instanceof Object; // -> true
 typeof document.all; // -> 'undefined'
 ```
 
-En même temps, `document.all` n'est pas égal à `undefined`. 
+En même temps, `document.all` n'est pas égal à `undefined`.
 
 ```js
 document.all === undefined; // -> false
 document.all === null; // -> false
 ```
 
-Mais, parallèlement : 
+Mais, parallèlement :
 
 ```js
 document.all == null; // -> true
@@ -422,7 +422,7 @@ new Foo() instanceof null;
 
 ### 💡 Explication :
 
-Ceci ne fait pas partie de la spécification. C'est seulement une erreur qui a depuis été corrigé, il ne devrait donc plus y avoir de problème à l'avenir. 
+Ceci ne fait pas partie de la spécification. C'est seulement une erreur qui a depuis été corrigé, il ne devrait donc plus y avoir de problème à l'avenir.
 
 ## Ajout de tableaux
 
@@ -434,7 +434,7 @@ Et si vous essayez d'additionner deux tableaux ?
 
 ### 💡 Explication :
 
-C'est la concaténation ! Etape par étape, ça ressemble à ceci :  
+C'est la concaténation ! Etape par étape, ça ressemble à ceci :
 
 ```js
 [1, 2, 3] +
@@ -461,7 +461,7 @@ a.toString(); // -> ',,'
 
 ### 💡 Explication :
 
-> Les **virgules finales** (_trailing commas_ en anglais) peuvent être utiles lors de l'ajout de nouveaux éléments, de paramètres ou de propriétés à du code JavaScript. Si vous voulez ajouter un nouvelle propriété, vous pouvez tout simplement ajouter une nouvelle ligne sans modifier la ligne précédente si cette ligne utilise déjà une virgule finale. Cela souligne les différences dans un système de contrôle de version plus clairement et rend l'édition de code possiblement moins difficile.
+> Les **virgules finales** (_trailing commas_ en anglais) peuvent être utiles lors de l'ajout de nouveaux éléments, de paramètres ou de propriétés à du code JavaScript. Si vous voulez ajouter une nouvelle propriété, vous pouvez tout simplement ajouter une nouvelle ligne sans modifier la ligne précédente si cette ligne utilise déjà une virgule finale. Cela rend plus clair les différences dans un système de contrôle de version et l'édition de code pourrait être moins difficile.
 >
 > &mdash; [Virgules finales (trailing commas)](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Virgules_finales) sur MDN.
 
@@ -510,13 +510,13 @@ Number(undefined); // -> NaN
 
 ### 💡 Explication :
 
-Selon la spécification : 
+Selon la spécification :
 
 1. Si aucun argument n'a été passé lors de l'appel de la fonction, `n` est `+0`.
 2. Sinon, `n` est ? `ToNumber(value)`.
 3. Dans le cas d'`undefined`, `ToNumber(undefined)` doit retourner `NaN`.
 
-Voici les sections correspondantes : 
+Voici les sections correspondantes :
 
 - [**20.1.1** The Number Constructor](https://www.ecma-international.org/ecma-262/#sec-number-constructor)
 - [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
@@ -553,7 +553,7 @@ parseInt("Infinity", 36); // -> 1461559270678...
 parseInt("Infinity", 37); // -> NaN
 ```
 
-Soyez prudent avec l'analyse de `null` aussi : 
+Soyez prudent avec l'analyse de `null` aussi :
 
 ```js
 parseInt(null, 24); // -> 23
@@ -561,7 +561,7 @@ parseInt(null, 24); // -> 23
 
 **💡 Explication :**
 
-> `parsetInt` convertit `null` sous forme de chaîne `"null"` et essait de la convertir. Pour les bases comprises entre 0 et 23, `parseInt` ne peut convertir aucun chiffre, donc `parseInt` renvoie `NaN`. Sur 24, `"n"`, la 14e lettre, est ajouté au système de numération. Sur 31, `"u"`, la 21e lettre, est ajoutée et la chaîne entière peut être décodée. Sur 37, il n'y a plus de jeu de valeur numérique valide pouvant être générée, donc, `NaN` est renvoyé. 
+> `parsetInt` convertit `null` sous forme de chaîne `"null"` et essait de la convertir. Pour les bases comprises entre 0 et 23, `parseInt` ne peut convertir aucun chiffre, donc `parseInt` renvoie `NaN`. Sur 24, `"n"`, la 14ème lettre, est ajoutée au système de numération. Sur 31, `"u"`, la 21ème lettre, est ajoutée et la chaîne entière peut être décodée. Sur 37, il n'y a plus de jeu de valeur numérique valide pouvant être générée, donc, `NaN` est renvoyé.
 >
 > &mdash; [“parseInt(null, 24) === 23… wait, what?”](https://stackoverflow.com/questions/6459758/parseintnull-24-23-wait-what) sur StackOverflow.
 
@@ -573,16 +573,16 @@ parseInt("08"); // 8 si support ECMAScript 5
 parseInt("08"); // 0 si pas support ECMAScript 5
 ```
 
-**💡 Explication :** Si la chaîne d'entrée commence par 0, que la base est égale à 8 (octal) ou à 10 (décimal). Exactement quelle base est choisie dépend de l'implémentation. ECMAScript 5 indique que la valeur 10 (décimal) est utilisé, mais tous les navigateurs ne le prennent pas encore en charge. Pour cette raison, spécifiez toujours une base lorsque vous utilisez `parseInt`. 
+**💡 Explication :** Si la chaîne d'entrée commence par 0, la base est égale à 8 (octal) ou à 10 (décimal). La base choisie dépend de l'implémentation. ECMAScript 5 indique que la valeur 10 (décimal) est utilisée, mais tous les navigateurs ne le prennent pas encore en charge. Pour cette raison, spécifiez toujours une base lorsque vous utilisez `parseInt`.
 
-`parseInt` convertit toujours une entrée en chaîne : 
+`parseInt` convertit toujours une entrée en chaîne :
 
 ```js
 parseInt({ toString: () => 2, valueOf: () => 1 }); // -> 2
 Number({ toString: () => 2, valueOf: () => 1 }); // -> 1
 ```
 
-Soyez prudent lors d'analyse de valeurs en virgule flottante : 
+Soyez prudent lors d'analyse de valeurs en virgule flottante :
 
 ```js
 parseInt(0.000001); // -> 0
@@ -590,11 +590,11 @@ parseInt(0.0000001); // -> 1
 parseInt(1 / 1999999); // -> 5
 ```
 
-**💡 Explication :** `parseInt` prend une chaîne de caractère comme argument et retourne un entier sur la base spécifiée. `parseInt` supprime aussi tout ce que suit, incluant le premier non-chiffre de la chaîne transmise en paramètre. `0.000001` est converti en chaîne `"0.000001"`, et `parseInt` retourne `0`. Quand `0.0000001` est converti en chaîne, il est traité comme `"1e-7"` et retourne donc `1`. `1/1999999` est interprété comme étant `5.00000250000125e-7` et retourne `5`. 
+**💡 Explication :** `parseInt` prend une chaîne de caractère comme argument et retourne un entier sur la base spécifiée. `parseInt` supprime aussi tout ce que suit, incluant le premier non-chiffre de la chaîne transmise en paramètre. `0.000001` est converti en chaîne `"0.000001"`, et `parseInt` retourne `0`. Quand `0.0000001` est converti en chaîne, il est traité comme `"1e-7"` et retourne donc `1`. `1/1999999` est interprété comme étant `5.00000250000125e-7` et retourne `5`.
 
 ## Math avec `true` et `false`
 
-Faisons des maths : 
+Faisons des maths :
 
 ```js
 true +
@@ -615,13 +615,13 @@ Avec le constructeur `Number`, nous pouvons forcer les valeurs aux nombres. Il e
 Number(true); // -> 1
 ```
 
-L'opérateur unaire `+` tente de convertir sa valeur en nombre. Il peut convertir des représentations d'entiers et de nombres flottants sous forme de chaîne, de même que les  valeurs `true`, `false` et `null`. S'il ne peut pas analyser une valeur particulière, il sera évalué à `NaN`. Cela signifie que nous pouvons contraindre `true` à `1` plus facilement : 
+L'opérateur unaire `+` tente de convertir sa valeur en nombre. Il peut convertir des représentations d'entiers et de nombres flottants sous forme de chaîne, de même que les  valeurs `true`, `false` et `null`. S'il ne peut pas analyser une valeur particulière, il sera évalué à `NaN`. Cela signifie que nous pouvons contraindre `true` à `1` plus facilement :
 
 ```js
 +true; // -> 1
 ```
 
-Lorsque vous effectuez une addition ou une multiplication, la méthode `ToNumber` est appelée. Selon la spécification, cette méthode retourne : 
+Lorsque vous effectuez une addition ou une multiplication, la méthode `ToNumber` est appelée. Selon la spécification, cette méthode retourne :
 
 > Si `argument` est **true**, retourne **1**. Si `argument` est **false**, retourne **+0**.
 
@@ -635,7 +635,7 @@ Les sections correspondantes :
 
 ## Les commentaires HTML sont valides en JavaScript
 
-Vous serez impressionné, mais `<!--` (connu sous le nom de commentaire HTML) est aussi valide comme commentaire en JavaScript. 
+Vous serez impressionné, mais `<!--` (connu sous le nom de commentaire HTML) est aussi valide comme commentaire en JavaScript.
 
 ```js
 // commentaire valide
@@ -650,7 +650,7 @@ Impressionné ? Les commentaires de type HTML étaient à la base destinés à p
 
 ## `NaN` n'est ~~pas~~ un nombre
 
-`typeof` `NaN` est un `'number'` : 
+`typeof` `NaN` est un `'number'` :
 
 ```js
 typeof NaN; // -> 'number'
@@ -675,13 +675,13 @@ null instanceof Object; // false
 
 ### 💡 Explication :
 
-Le comportement de l'opérateur `typeof` est défini dans la section suivante de la spécification : 
+Le comportement de l'opérateur `typeof` est défini dans la section suivante de la spécification :
 
 - [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
 
 Selon la spécification, l'opérateur `typeof` renvoie une chaîne : [Table 35: `typeof` Operator Results](https://www.ecma-international.org/ecma-262/#table-35). Pour les objets `null`, ordinaires, _standard exotic_ et _non-standard exotic_, qui n'implémentent pas `[[Call]]`, il retourne la chaîne `"object"`.
 
-En revanche, vous pouvez vérifier le type d'un objet en utilisant la méthode `toString`. 
+En revanche, vous pouvez vérifier le type d'un objet en utilisant la méthode `toString`.
 
 ```js
 Object.prototype.toString.call([]);
@@ -707,14 +707,14 @@ Object.prototype.toString.call(null);
 
 ### 💡 Explication :
 
-Ceci est dû à la norme IEEE 754-2008 concernant l'arithmétique binaire en virgule flottante. À cette échelle, un nombre s'arrondit au nombre pair le plus près. Plus d'infos : 
+Ceci est dû à la norme IEEE 754-2008 concernant l'arithmétique binaire en virgule flottante. À cette échelle, un nombre s'arrondit au nombre pair le plus près. Plus d'infos :
 
 - [**6.1.6** The Number Type](https://www.ecma-international.org/ecma-262/#sec-ecmascript-language-types-number-type)
 - [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) sur Wikipedia
 
 ## Précision de `0.1 + 0.2`
 
-Une blague bien connue. L'ajout de `0.1` et de `0.2` est mortellement précis : 
+Une blague bien connue. L'ajout de `0.1` et de `0.2` est mortellement précis :
 
 ```js
 0.1 +
@@ -735,7 +735,7 @@ Le problème est tellement connu qu'il y a même un site web appelé [0.30000000
 
 ## Patching de numéros
 
-Vous pouvez ajouter vos propres méthodes pour encapsuler des objets comme `Number` ou `String`. 
+Vous pouvez ajouter vos propres méthodes pour encapsuler des objets comme `Number` ou `String`.
 
 ```js
 Number.prototype.isOne = function() {
@@ -754,7 +754,7 @@ Number.prototype.isOne = function() {
 
 ### 💡 Explication :
 
-De toute évidence, vous pouvez _extend_ l'objet `Number` comme n'importe quel autre objet en JavaScript, mais ce n'est toutefois pas recommandé si le comportement de la méthode définie ne fait partie de la spécification. Voici donc la liste des propriétés de `Number` : 
+De toute évidence, vous pouvez _extend_ l'objet `Number` comme n'importe quel autre objet en JavaScript, mais ce n'est toutefois pas recommandé si le comportement de la méthode définie ne fait partie de la spécification. Voici donc la liste des propriétés de `Number` :
 
 - [**20.1** Number Objects](https://www.ecma-international.org/ecma-262/#sec-number-objects)
 
@@ -767,7 +767,7 @@ De toute évidence, vous pouvez _extend_ l'objet `Number` comme n'importe quel a
 
 ### 💡 Explication :
 
-Pourquoi est-ce que cela fonctionne ainsi ? Bien, le problème se trouve dans la première partie de l'expression. Voici comment cela fonctionne : 
+Pourquoi est-ce que cela fonctionne ainsi ? Bien, le problème se trouve dans la première partie de l'expression. Voici comment cela fonctionne :
 
 ```js
 1 < 2 < 3; // 1 < 2 -> true
@@ -785,13 +785,13 @@ Nous pouvons résoudre ce problème avec _l'opérateur Supérieur ou égal à (`
 3 > 2 >= 1; // true
 ```
 
-En savoir plus sur les opérateurs relationnels dans la spécification : 
+En savoir plus sur les opérateurs relationnels dans la spécification :
 
 - [**12.10** Relational Operators](https://www.ecma-international.org/ecma-262/#sec-relational-operators)
 
 ## Math drôle
 
-Souvent, les résultats d'opérations arithmétiques en JavaScript peuvent être assez inattendus. Considérez ces exemples : 
+Souvent, les résultats d'opérations arithmétiques en JavaScript peuvent être assez inattendus. Considérez ces exemples :
 
 ```js
  3  - 1  // -> 2
@@ -814,7 +814,7 @@ Souvent, les résultats d'opérations arithmétiques en JavaScript peuvent être
 
 ### 💡 Explication :
 
-Que se passe-t-il dans les quatre premiers exemples ? Voici un petit tableau pour comprendre les additions en JavaScript : 
+Que se passe-t-il dans les quatre premiers exemples ? Voici un petit tableau pour comprendre les additions en JavaScript :
 
 ```
 Nombre  + Nombre  -> addition
@@ -825,7 +825,7 @@ Chaîne  + Booléen -> concaténation
 Chaîne  + Chaîne  -> concaténation
 ```
 
-Qu'en est-il d'autres exemples ? Les méthodes `ToPrimitive` et `ToString` sont implicitement appelées pour `[]` et `{}` avant une addition. Lire plus sur le processus d'évalution dans la spécification : 
+Qu'en est-il des autres exemples ? Les méthodes `ToPrimitive` et `ToString` sont implicitement appelées pour `[]` et `{}` avant une addition. Lire plus sur le processus d'évalution dans la spécification :
 
 - [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 - [**7.1.1** ToPrimitive(`input` [,`PreferredType`])](https://www.ecma-international.org/ecma-262/#sec-toprimitive)
@@ -833,7 +833,7 @@ Qu'en est-il d'autres exemples ? Les méthodes `ToPrimitive` et `ToString` sont 
 
 ## Addition de RegExps
 
-Saviez-vous qu'il est possible d'ajouter des nombres ainsi ? 
+Saviez-vous que vous pouvez ajouter des nombres comme dans l'exemple ci-dessous ?
 
 ```js
 // Remplacement de la méthode toString
@@ -859,7 +859,7 @@ typeof "str"; // -> 'string'
 
 ### 💡 Explication :
 
-Le constructeur `String` retourne une chaîne : 
+Le constructeur `String` retourne une chaîne :
 
 ```js
 typeof String("str"); // -> 'string'
@@ -867,7 +867,7 @@ String("str"); // -> 'str'
 String("str") == "str"; // -> true
 ```
 
-Essayons avec un `new` : 
+Essayons avec un `new` :
 
 ```js
 new String("str") == "str"; // -> true
@@ -880,7 +880,7 @@ Un objet ? Qu'est-ce que c'est ?
 new String("str"); // -> [String: 'str']
 ```
 
-Plus d'infos sur le constructeur `String` dans la spécification : 
+Plus d'infos sur le constructeur `String` dans la spécification :
 
 - [**21.1.1** The String Constructor](https://www.ecma-international.org/ecma-262/#sec-string-constructor)
 
@@ -912,7 +912,7 @@ f`true is ${true}, false is ${false}, array is ${[1, 2, 3]}`;
 
 ### 💡 Explication :
 
-Bon, ce n'est pas du tout magique si vous êtes familier avec les _littéraux de gabarits étiquetés_. Dans l'exemple ci-dessus, la fonction `f` est une étiquette pour littéral de gabarit. Les étiquettes avant un littéral de gabarit vous permettent d'analyser les littéraux de gabarits avec une fonction. Le premier argument d'une fonction étiquetée contient un tableau avec comme valeurs des chaînes. Les arguments restants sont liés aux expressions. Exemple : 
+Bon, ce n'est pas du tout magique si vous êtes familier avec les _littéraux de gabarits étiquetés_. Dans l'exemple ci-dessus, la fonction `f` est une étiquette pour littéral de gabarit. Les étiquettes avant un littéral de gabarit vous permettent d'analyser les littéraux de gabarits avec une fonction. Le premier argument d'une fonction étiquetée contient un tableau avec comme valeurs des chaînes. Les arguments restants sont liés aux expressions. Exemple :
 
 ```js
 function template(strings, ...keys) {
@@ -936,7 +936,7 @@ console.log.call.call.call.call.call.apply(a => a, [1, 2]);
 
 ### 💡 Explication :
 
-Attention, ceci pourrait te casser la tête ! Essayez de reproduire ce code dans votre tête : nous appliquons la méthode `call` en utilisant la méthode `apply`. Lire plus :
+Attention, ceci pourrait te casser la tête ! Essayez de reproduire ce code dans votre tête : nous appliquons la méthode `call` en utilisant la méthode `apply`. Plus d'infos :
 
 - [**19.2.3.3** Function.prototype.call(`thisArg`, ...`args`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.call)
 - [**19.2.3.1 ** Function.prototype.apply(`thisArg`, `argArray`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.apply)
@@ -950,7 +950,7 @@ c[c][c]('console.log("WTF?")')(); // > WTF?
 
 ### 💡 Explication :
 
-Considérez cet exemple étape par étape : 
+Considérez cet exemple étape par étape :
 
 ```js
 // Déclare une nouvelle constante qui est une chaîne : "constructor"
@@ -989,7 +989,7 @@ Un `Object.prototype.constructor` renvoie une référence à la fonction constru
 
 Pourquoi est-ce que ça marche ? Ici, nous utilisons un _Computed property name_. Quand vous passez un objet entre ces crochets, l'objet est forcé à devenir une chaîne, alors nous obtenons la clé `[objet Object]` et la valeur `{}`.
 
-Nous pouvons créer des enfers de crochets et de parenthèses à l'exemple de :
+Nous pouvons créer des enfers de crochets et de parenthèses comme dans l'exemple ci-dessous :
 
 ```js
 ({ [{}]: { [{}]: {} } }[{}][{}]); // -> {}
@@ -1017,7 +1017,7 @@ Comme nous le savons, les primitives n’ont pas de prototypes. Cependant, si no
 
 ### 💡 Explication :
 
-Cela se produit car lorsque quelque chose n'a pas de prototype, il sera encapsulé dans un objet à l'aide de la méthode `ToObject`. Donc, étape par étape : 
+Cela se produit car lorsque quelque chose n'a pas de prototype, il sera encapsulé dans un objet à l'aide de la méthode `ToObject`. Donc, étape par étape :
 
 ```js
 (1)
@@ -1031,7 +1031,7 @@ Cela se produit car lorsque quelque chose n'a pas de prototype, il sera encapsul
   ).__proto__.__proto__.__proto__; // -> null
 ```
 
-Voici plus d'infos sur `__proto__` : 
+Voici plus d'infos sur `__proto__` :
 
 - [**B.2.2.1** Object.prototype.**proto**](https://www.ecma-international.org/ecma-262/#sec-object.prototype.__proto__)
 - [**7.1.13** ToObject(`argument`)](https://www.ecma-international.org/ecma-262/#sec-toobject)
@@ -1044,7 +1044,7 @@ Quel est le résultat de l'expression ci-dessous ?
 `${{ Object }}`;
 ```
 
-La réponse est : 
+La réponse est :
 
 ```js
 // -> '[object Object]'
@@ -1067,7 +1067,7 @@ Ensuite, nous avons passé cet objet au litéral de gabarit, ce qui fait que la 
 
 ## Déstructuration avec des valeurs par défaut
 
-Considérez cet exemple : 
+Considérez cet exemple :
 
 ```js
 let x,
@@ -1075,7 +1075,7 @@ let x,
 y;
 ```
 
-L'exemple ci-dessus est une bonne question pour un entretien. Quelle est la valeur de `y` ? La réponse est : 
+L'exemple ci-dessus est une bonne question pour un entretien. Quelle est la valeur de `y` ? La réponse est :
 
 ```js
 // -> 1
@@ -1091,7 +1091,7 @@ y;
 //  1       3           2    4
 ```
 
-Avec l'exemple ci-dessus : 
+Avec l'exemple ci-dessus :
 
 1. On déclare `x` sans valeur, donc sa valeur est `undefined`.
 2. Ensuite, nous intégrons la valeur de `x` dans la propriété de l'objet `x`.
@@ -1166,7 +1166,7 @@ a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
 
 ### 💡 Explication :
 
-Similaire aux exemples précédents, suivez ces liens pour plus d'infos : 
+Similaire aux exemples précédents, suivez ces liens pour plus d'infos :
 
 - [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
 - [**13.13** Labeled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
@@ -1194,7 +1194,7 @@ La réponse est `3`. Surprenant ?
 
 ## Est-ce un héritage multiple ?
 
-Regardez l'exemple ci-dessous : 
+Regardez l'exemple ci-dessous :
 
 ```js
 new class F extends (String, Array) {}(); // -> F []
@@ -1220,7 +1220,7 @@ Considérez cet exemple de générateur qui se `yield` lui-même :
 // -> { value: [GeneratorFunction: f], done: false }
 ```
 
-Comme vous pouvez le constater, la valeur renvoyée est un objet dont la `valeur` est égale à `f`. Dans ce cas, nous pouvons faire un truc semblable à ça : 
+Comme vous pouvez le constater, la valeur renvoyée est un objet dont la `valeur` est égale à `f`. Dans ce cas, nous pouvons faire quelque chose semblable à ça :
 
 ```js
 (function* f() {
@@ -1278,7 +1278,7 @@ typeof new class {
 }(); // -> "object"
 ```
 
-Il semble que nous déclarions une classe à l'intérieur d'une classe. Cela devrait être une erreur, cependant, nous obtenons la chaîne `"object"`.
+Il semble que nous déclarons une classe à l'intérieur d'une classe. Cela devrait être une erreur, cependant, nous obtenons la chaîne `"object"`.
 
 ### 💡 Explication :
 
@@ -1290,7 +1290,7 @@ const foo = {
 };
 ```
 
-Et les définitions de méthode abrégée standard d'ES6. Aussi, les classes peuvent être anonymes. Donc, si nous supprimons la partie `: function`, nous obtiendrons : 
+Et les définitions de méthode abrégée standard d'ES6. Aussi, les classes peuvent être anonymes. Donc, si nous supprimons la partie `: function`, nous obtiendrons :
 
 ```js
 class {
@@ -1300,14 +1300,14 @@ class {
 
 Le résultat d'une classe par défaut est toujours un objet simple. Et son `typeof` devrait retourner `"object"`.
 
-Plus d'infos ici : 
+Plus d'infos ici :
 
 - [**14.3** Method Definitions](https://www.ecma-international.org/ecma-262/#sec-method-definitions)
 - [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
 
 ## Objets incoercibles
 
-Avec des symboles bien connus, il existe un moyen de se débarrasser de la coercition de type. Examinez :
+Avec des symboles bien connus, il existe un moyen de se débarrasser de la coercition de type. Examinez l'exemple ci-dessous :
 
 ```js
 function nonCoercible(val) {
@@ -1325,7 +1325,7 @@ function nonCoercible(val) {
 }
 ```
 
-Maintenant, nous pouvons l'utiliser de cette manière : 
+Maintenant, nous pouvons l'utiliser de cette manière :
 
 ```js
 // objets
@@ -1425,7 +1425,7 @@ f("a"); // -> Uncaught ReferenceError: arguments is not defined
 
 ### 💡 Explication :
 
-Les fonctions fléchées sont une version allégée des fonctions standards dans laquelle l'accent est mis sur la taille et le _lexical `this`_. En même temps, les fonctions fléchées ne fournissent pas de liaison pour l'objet `arguments`. Comme alternative valable, utilisez les paramètres `rest` pour obtenir le même résultat :  
+Les fonctions fléchées sont une version allégée des fonctions standards dans laquelle l'accent est mis sur la taille et le _lexical `this`_. En même temps, les fonctions fléchées ne fournissent pas de liaison pour l'objet `arguments`. Comme alternative valable, utilisez les paramètres `rest` pour obtenir le même résultat :
 
 ```js
 let f = (...args) => args;
@@ -1459,7 +1459,7 @@ La déclaration `return` est compliqué aussi. Considérez ceci :
 })(); // -> { b: 10 }
 ```
 
-Cela est dû au concept appelé "Insertion Automatique du Point-Virgule", qui insère automatiquement des points-virgules à la fin de la plupart des nouvelles lignes. Dans le premier exemple, un point-virgule est inséré entre `return` et le littéral objet. La fonction renvoie donc `undefined` et le littéral n'est jamais évalué.  
+Cela est dû au concept appelé "Insertion Automatique du Point-Virgule", qui insère automatiquement des points-virgules à la fin de la plupart des nouvelles lignes. Dans le premier exemple, un point-virgule est inséré entre `return` et l'objet littéral. La fonction renvoie donc `undefined` et l'objet littéral n'est jamais évalué.
 
 - [**11.9.1** Rules of Automatic Semicolon Insertion](https://www.ecma-international.org/ecma-262/#sec-rules-of-automatic-semicolon-insertion)
 - [**13.10** The `return` Statement](https://www.ecma-international.org/ecma-262/#sec-return-statement)
@@ -1481,7 +1481,7 @@ De droite à gauche, `{n: 2}` est affecté à `foo`, et le résultat de cette af
 
 ### 💡 Explication :
 
-`foo` et `bar` font référence au même objet `{n: 1}`, et les _lvalues_ sont résolues avant les assignations. `foo = {n: 2}` créé un nouvel objet, et donc, `foo` est mis à jour pour référencer ce nouvel objet. Le truc ici est `foo` dans `foo.x = …`, car une _lvalue_ a été résolue au préalable et fait toujours référence à l'objet précédent `foo = {n: 1}` et donc, le met à jour en ajoutant la valeur `x`. 
+`foo` et `bar` font référence au même objet `{n: 1}`, et les _lvalues_ sont résolues avant les assignations. `foo = {n: 2}` créer un nouvel objet, et donc, `foo` est mis à jour pour référencer ce nouvel objet. L'astuce ici est `foo` dans `foo.x = …`, car une _lvalue_ a été résolue au préalable et fait toujours référence à l'objet précédent `foo = {n: 1}` et donc, le met à jour en ajoutant la valeur `x`.
 
 Après cette chaîne d'assignation, `bar`, quant à lui, fait toujours référence à l'ancien objet `foo`, alors que `foo` fait référence au nouvel objet `{n: 2}`, où `x` n'existe pas.
 
@@ -1506,7 +1506,7 @@ var array = ["property"];
 obj[array]; // -> 1
 ```
 
-Qu'en est-il des tableaux pseudo-multidimensionnels ? 
+Qu'en est-il des tableaux pseudo-multidimensionnels ?
 
 ```js
 var map = {};
@@ -1523,7 +1523,7 @@ map["11,2,3"]; // -> true
 
 ### 💡 Explication :
 
-L'opérateur `[]` convertit l'expression passée en utilisant `toString`. Transformer un tableau composé d'un seul élément vers une chaîne est similaire à transformer l'élément du tableau en chaîne : 
+L'opérateur `[]` convertit l'expression passée en utilisant `toString`. Transformer un tableau composé d'un seul élément vers une chaîne est similaire à transformer l'élément du tableau en chaîne :
 
 ```js
 ["property"].toString(); // -> 'property'
@@ -1544,7 +1544,7 @@ En bref, si `null < 0` est `false`, alors `null >= 0` est `true`. Lisez une expl
 
 ## `Number.toFixed()` affiche différents nombres
 
-`Number.toFixed()` peut se comporter étrangement selon le navigateur utilisé. Voir cet exemple : 
+`Number.toFixed()` peut se comporter étrangement selon le navigateur utilisé. Voir cet exemple :
 
 ```js
 (0.7875).toFixed(3);
@@ -1559,7 +1559,7 @@ En bref, si `null < 0` est `false`, alors `null >= 0` est `true`. Lisez une expl
 
 ### 💡 Explication :
 
-Alors que votre premier instinct peut être que IE11 a correct et que Firefox et Chrome ont faux, la réalité est que Firefox et Chrome obéissent plus directement aux normes relatives aux nombres (IEEE-754 Floating Point), alors qu'IE11 les désobéit minutieusement dans (ce qui est probablement) un effort de donner des résultats plus clairs. 
+Alors que votre premier instinct peut être que IE11 a correct et que Firefox et Chrome ont faux, la réalité est que Firefox et Chrome obéissent plus directement aux normes relatives aux nombres (IEEE-754 Floating Point), alors qu'IE11 les désobéit minutieusement dans (ce qui est probablement) un effort de donner des résultats plus clairs.
 
 Vous pouvez voir pourquoi cela se produit avec quelques tests rapides :
 
@@ -1573,9 +1573,9 @@ Vous pouvez voir pourquoi cela se produit avec quelques tests rapides :
 (0.7875).toFixed(20); // -> 0.78749999999999997780
 ```
 
-Les nombres à virgule flottante ne sont pas stockés sous forme de liste de chiffres décimaux en interne, mais par le biais d'une méthodologie plus complexe qui produit de minuscules inexactitudes qui sont généralement arrondies par des appels à `toString` ou autre appels similaires, mais qui sont réellement présentes en interne.
+Les nombres à virgule flottante ne sont pas stockés sous forme de liste de chiffres décimaux en interne, mais par le biais d'une méthodologie plus complexe qui produit de minuscules inexactitudes qui sont généralement arrondies par des appels à `toString` ou des appels similaires, mais qui sont réellement présentes en interne.
 
-Dans ce cas, le `5` sur la fin était en réalité une fraction extrêmement petite, en dessous d'un vrai `5`. Si vous arrondissez à une longueur raisonnable, vous obtenez un `5`… mais ce n'est en réalité pas un `5` en interne. 
+Dans ce cas, le `5` sur la fin était en réalité une fraction extrêmement petite, en dessous d'un vrai `5`. Si vous arrondissez à une longueur raisonnable, vous obtenez un `5`… mais ce n'est en réalité pas un `5` en interne.
 
 Ceci étant dit, IE11 rapportera la valeur entrée uniquement avec des zéros ajoutés à la fin, même dans le cas de `toFixed(20)`, car cela semble forcer la valeur arrondie pour réduire les problèmes liées aux limites matérielles.
 
@@ -1599,7 +1599,7 @@ Math.min() > Math.max(); // -> true
 
 ## Comparer `null` à `0`
 
-Les expressions suivantes semblent introduire une contradiction : 
+Les expressions suivantes semblent introduire une contradiction :
 
 ```js
 null == 0; // -> false
@@ -1611,7 +1611,7 @@ Comment `null` peut-il être ni égal ni supérieur à `0`, si `null >= 0` est e
 
 ### 💡 Explication :
 
-Les méthodes d'évaluation de ces trois expressions sont toutes différentes et sont responsables de la production de ce comportement inattendu. 
+Les méthodes d'évaluation de ces trois expressions sont toutes différentes et sont responsables de la production de ce comportement inattendu.
 
 Premièrement, la comparaison d'égalité abstraite `null == 0`. Normalement, si cet opérateur ne peut pas comparer correctement les valeurs d'un côté comme de l'autre, il convertit les deux en nombres et compare ensuite les nombres. Alors, vous pouvez vous attendre au comportement suivant :
 
@@ -1624,7 +1624,7 @@ true;
 
 Cependant, suite à une lecture attentive de la spécification, la transformation du nombre n'a pas lieu sur un côté qui est `null` ou `undefined`. Par conséquent, si vous avez `null` sur un des deux côté du signe égal, l'autre côté doit être `null` ou `undefined` pour que l'expression retourne `true`. Comme ce n'est pas le cas, `false` est renvoyé.
 
-Le prochain, la comparaison relationnelle `null > 0`. L'algorithme ici, contrairement à celui de l'opérateur d'égalité abstraite, _va_ convertir `null` à un nombre. Donc, nous obtenons ce comportement : 
+Ensuite, la comparaison relationnelle `null > 0`. L'algorithme ici, contrairement à celui de l'opérateur d'égalité abstraite, _va_ convertir `null` à un nombre. Donc, nous obtenons ce comportement :
 
 ```js
 null > 0
@@ -1649,7 +1649,7 @@ true;
 
 ## Même redéclaration d'une variable
 
-JavaScript autorise la redéclaration de variables : 
+JavaScript autorise la redéclaration de variables :
 
 ```js
 a;
@@ -1658,7 +1658,7 @@ a;
 a, a;
 ```
 
-Et ça fonctionne aussi en mode `strict` : 
+Et ça fonctionne aussi en mode `strict` :
 
 ```js
 var a, a, a;
@@ -1668,7 +1668,7 @@ var a;
 
 ### 💡 Explication :
 
-Toutes les définitions fusionnent en une seule définition. 
+Toutes les définitions fusionnent en une seule définition.
 
 - [**13.3.2** Variable Statement](https://www.ecma-international.org/ecma-262/#sec-variable-statement)
 
@@ -1688,7 +1688,7 @@ L'ordre de tri par défaut est construit lors de la transformation des élément
 
 ### Indice
 
-Passez `comparefn` si vous essayez de trier n'importe quoi d'autre qu'une chaîne. 
+Passez `comparefn` si vous essayez de trier n'importe quoi d'autre qu'une chaîne.
 
 ```
 [ 10, 1, 3 ].sort((a, b) => a - b) // -> [ 1, 3, 10 ]
