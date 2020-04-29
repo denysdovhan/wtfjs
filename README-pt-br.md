@@ -7,7 +7,7 @@
 
 JavaScript é uma excelente linguagem. Ela tem uma sintaxe simples, um ecossistema grande e, o mais importante, uma grande comunidade.
 
-Ao mesmo tempo, todos nós sabemos que o JavaScript é uma linguagem engraçada com várias partes complicadas. Algumas delas porem rapidamente transformar seu trabalho em um inferno, e outras podemo nos fazer gargalhar.
+Ao mesmo tempo, todos nós sabemos que o JavaScript é uma linguagem engraçada com várias partes complicadas. Algumas delas porem rapidamente transformar seu trabalho em um inferno, e outras podem nos fazer gargalhar.
 
 A ideia original para o WTFJS é do [Brian Leroux](https://twitter.com/brianleroux). Essa lista é inspirada por sua talk [**“WTFJS”** no dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
@@ -21,7 +21,7 @@ Você pode instalar esse manual usando o `npm`. É só rodar o comando:
 $ npm install -g wtfjs
 ```
 
-Você poderá rodar `wtfjs` na sua linha de comando. Esse comando vai abrir o manual na sua `$PAGER` selecionada. Ou, você pode continuar lendo aqui mesmo.
+Você poderá rodar `wtfjs` na sua linha de comando. Esse comando vai abrir o manual na sua `$PAGER` selecionada ou você pode continuar lendo aqui mesmo.
 
 O código-fonte está disponível aqui <https://github.com/denysdovhan/wtfjs>.
 
@@ -260,7 +260,7 @@ Essa é uma piada antiga no JavaScript, mas remasterizada. Aqui está a forma or
 
 ### 💡 Explicação:
 
-A expressão é evaluada como `'foo' + (+'bar')`, o que converte `bar` para um "não número" (NaN - Not a Number).
+A expressão é avaliada como `'foo' + (+'bar')`, o que converte `bar` para um "não número" (NaN - Not a Number).
 
 - [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 - [12.5.6 Unary + Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
@@ -771,7 +771,7 @@ Number.prototype.isOne = function() {
 
 ### 💡 Explicação:
 
-Obviamente, você pode extender o objeto `Number` como qualquer outro no JavaScript. Contudo, não é recomendado se o comportamento do método definido não for parte da especificação. Aqui estão a lista de propriedades do `Number`:
+Obviamente você pode extender o objeto `Number` como qualquer outro no JavaScript, contudo, não é recomendado se o comportamento do método definido não for parte da especificação. Aqui estão a lista de propriedades do `Number`:
 
 - [**20.1** Number Objects](https://www.ecma-international.org/ecma-262/#sec-number-objects)
 
