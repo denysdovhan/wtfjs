@@ -841,6 +841,21 @@ What about other examples? A `ToPrimitive` and `ToString` methods are being impl
 - [**7.1.1** ToPrimitive(`input` [,`PreferredType`])](https://www.ecma-international.org/ecma-262/#sec-toprimitive)
 - [**7.1.12** ToString(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tostring)
 
+Notably, `{} + []` here is the exception. The reason why it differs from `[] + {}` is that, without parenthesis, it is interpreted as a code block and then a unary +, converting `[]` into a number. It sees the following:
+
+```js 
+{
+  // a code block here
+}
++[] // -> 0
+```
+
+To get the same output as `[] + {}` we can wrap it in parenthesis.
+
+```js
+({} + []) // -> [object Object]
+```
+
 ## Addition of RegExps
 
 Did you know you can add numbers like this?
