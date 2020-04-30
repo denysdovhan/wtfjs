@@ -843,7 +843,7 @@ What about other examples? A `ToPrimitive` and `ToString` methods are being impl
 
 Notably, `{} + []` here is the exception. The reason why it differs from `[] + {}` is that, without parenthesis, it is interpreted as a code block and then a unary +, converting `[]` into a number. It sees the following:
 
-```
+```js 
 {
   // a code block here
 }
@@ -852,8 +852,8 @@ Notably, `{} + []` here is the exception. The reason why it differs from `[] + {
 
 To get the same output as `[] + {}` we can wrap it in parenthesis.
 
-```
-({} + []) -> [object Object]
+```js
+({} + []) // -> [object Object]
 ```
 
 ## Addition of RegExps
