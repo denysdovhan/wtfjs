@@ -150,7 +150,7 @@ Array é igual a not array:
 
 ### 💡 Explicação:
 
-O operador abstrato de igualdade converde os dois lados em números para compará-los, e os dois lados se tornam `0` por razões diferentes. Arrays são verdadeiros (truthy), então na direita, o oposto de um valor verdadeiro é `false`, o que é coagido para `0`. Na esquerda, todavia, um array vazio é coagido para um número sem se tornar um booleano (boolean) primeiro, e arrays vazios sempre forçados para `0`, apesar de serem verdadeiros.
+O operador abstrato de igualdade converte os dois lados em números para compará-los, e os dois lados se tornam `0` por razões diferentes. Arrays são verdadeiros (truthy), então na direita, o oposto de um valor verdadeiro é `false`, o que é coagido para `0`. Na esquerda, todavia, um array vazio é coagido para um número sem se tornar um booleano (boolean) primeiro, e arrays vazios sempre forçados para `0`, apesar de serem verdadeiros.
 
 Aqui está uma simplificação dessa expressão:
 
@@ -335,7 +335,7 @@ Um array é um valor verdadeiro (truthy), porém, não é igual a `true`.
 
 ### 💡 Explicação:
 
-Aqui estão links das sessões correspondentes especificação do ECMA-262:
+Aqui estão links das seções correspondentes especificação do ECMA-262:
 
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
@@ -506,7 +506,7 @@ Igualdade de arrays é um monstro no JS, como você pode ver abaixo:
 
 ### 💡 Explicação:
 
-Você deve observar bem cautelosamente os exemplos acima! O comportamento é descrito na sessão [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) da especificação.
+Você deve observar bem cautelosamente os exemplos acima! O comportamento é descrito na seção [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) da especificação.
 
 ## `undefined` e `Number`
 
@@ -524,7 +524,7 @@ De acordo com a especificação:
 2. Se não, `n` será ? `ToNumber(value)`.
 3. Em caso de `undefined`, `ToNumber(undefined)` deve retornar `NaN`.
 
-Aqui está a sessão correspondente:
+Aqui está a seção correspondente:
 
 - [**20.1.1** The Number Constructor](https://www.ecma-international.org/ecma-262/#sec-number-constructor)
 - [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
@@ -540,7 +540,7 @@ parseInt("f*ck", 16); // -> 15
 
 **💡 Explicação:**
 
-Isso acontece porque `parseInt` vai continuar parseando caractere por caractere até que ele atinja um caractere desconhecido. O `f` em `f*da` é o dígito hexadecimal `15`.
+Isso acontece porque `parseInt` vai continuar parseando caractere por caractere até que ele atinja um caractere desconhecido. O `f` em `f*ck` é o dígito hexadecimal `15`.
 
 Se você parsear `Infinity` para um inteiro…
 
@@ -642,7 +642,7 @@ De acordo com a especificação, esse método retorna:
 
 Por isso podemos adicionar valores booleanos (boolean) como números regulares e obtermos os resultados corretos.
 
-Sessões correspondentes:
+Seções correspondentes:
 
 - [**12.5.6** Unary `+` Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
 - [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
@@ -692,7 +692,7 @@ null instanceof Object; // false
 
 ### 💡 Explicação:
 
-O comportamento do operador `typeof` é definido nessa sessão da especificação:
+O comportamento do operador `typeof` é definido nessa seção da especificação:
 
 - [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
 
@@ -771,7 +771,7 @@ Number.prototype.isOne = function() {
 
 ### 💡 Explicação:
 
-Obviamente você pode extender o objeto `Number` como qualquer outro no JavaScript, contudo, não é recomendado se o comportamento do método definido não for parte da especificação. Aqui estão a lista de propriedades do `Number`:
+Obviamente você pode extender o objeto `Number` como qualquer outro no JavaScript, contudo, não é recomendado se o comportamento do método definido não for parte da especificação. Aqui está a lista de propriedades do `Number`:
 
 - [**20.1** Number Objects](https://www.ecma-international.org/ecma-262/#sec-number-objects)
 
@@ -834,12 +834,12 @@ Geralmente os resultados de operações aritméticas em JavaScript podem ser ine
 O que está acontecendo com os primeiros quatro exemplos? Aqui está uma tabela para entender a soma no JavaScript:
 
 ```
-Number  + Number  -> addition
-Boolean + Number  -> addition
-Boolean + Boolean -> addition
-Number  + String  -> concatenation
-String  + Boolean -> concatenation
-String  + String  -> concatenation
+Number  + Number  -> adição
+Boolean + Number  -> adição
+Boolean + Boolean -> adição
+Number  + String  -> concatenação
+String  + Boolean -> concatenação
+String  + String  -> concatenação
 ```
 
 E quanto aos outros exempos? Os métodos `ToPrimitive` e `ToString` estão sendo chamados implicitamente por `[]` e `{}` antes da adição. Leia mais sobre o processo de evaluação na especificação:
@@ -918,7 +918,6 @@ f(1, 2, 3); // -> [ 1, 2, 3 ]
 ```
 
 Mas você sabia que você pode chamar qualquer função usando _backticks_ (crases)?
-But did you know you can call any function with backticks?
 
 ```js
 f`true is ${true}, false is ${false}, array is ${[1, 2, 3]}`;
@@ -1118,9 +1117,9 @@ Com o exemplo acima:
 
 - [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) no MDN
 
-## Pontos e disperção
+## Pontos e dispersão
 
-Exemplos interessantes podem ser compostos com _spreading_ (disperção) de arrays. Considere o seguinte:
+Exemplos interessantes podem ser compostos com _spreading_ (dispersão) de arrays. Considere o seguinte:
 
 ```js
 [...[..."..."]].length; // -> 3
@@ -1152,7 +1151,7 @@ Obviamente, nós podemos dispersar e envolver elementos de um array quantas veze
 
 ## Rótulos
 
-Poucos programadores conhecem sobre rótulos no JavaScript. E eles são interessantes:
+Poucos programadores conhecem sobre rótulos no JavaScript, e eles são interessantes:
 
 ```js
 foo: {
@@ -1167,7 +1166,7 @@ foo: {
 
 ### 💡 Explicação:
 
-A sentença rotulada é utilizada com os comandos `break` ou `continue`. Você pode utulizar um rótulo para identificar um laço de repetição, e então usar os comandos `break` ou `continue` para indicar quando um programa deverá interromper ou continuar a execução de um loop.
+A sentença rotulada é utilizada com os comandos `break` ou `continue`. Você pode utilizar um rótulo para identificar um laço de repetição, e então usar os comandos `break` ou `continue` para indicar quando um programa deverá interromper ou continuar a execução de um loop.
 
 No exemplo acima, nós identificamos o rótulo `foo`. Depois disso, é executado o that `console.log('first');` e depois interrompemos a execução.
 
@@ -1282,7 +1281,7 @@ Como você pode ver, o valor retornado é um objeto com seu `value` igual a `f`.
 
 ### 💡 Explicação:
 
-Para entender porque isso funciona assim, leia essas sessões da especificação:
+Para entender porque isso funciona assim, leia essas seções da especificação:
 
 - [**25** Control Abstraction Objects](https://www.ecma-international.org/ecma-262/#sec-control-abstraction-objects)
 - [**25.3** Generator Objects](https://www.ecma-international.org/ecma-262/#sec-generator-objects)
@@ -1478,7 +1477,7 @@ A sentença `return` também é traiçoeira. Considere o seguinte:
 })(); // -> { b: 10 }
 ```
 
-Isso se dá por causa do conceito chamado _Automatic Semicolon Insertion_ (Inserção Automática de Ponto e vírgula), o que magicamente insere os ponto e vírgula (`;`) após a maioria das novas linhas. No primeiro exemplo, existe um ponto e vírgula entre a sentença `return` e o objeto, então a função retorna `undefined` e o objeto nunca é avaliado.
+Isso se dá por causa do conceito chamado _Automatic Semicolon Insertion_ (Inserção Automática de Ponto e vírgula), que magicamente insere o ponto e vírgula (`;`) após a maioria das novas linhas. No primeiro exemplo, existe um ponto e vírgula entre a sentença `return` e o objeto, então a função retorna `undefined` e o objeto nunca é avaliado.
 
 - [**11.9.1** Rules of Automatic Semicolon Insertion](https://www.ecma-international.org/ecma-262/#sec-rules-of-automatic-semicolon-insertion)
 - [**13.10** The `return` Statement](https://www.ecma-international.org/ecma-262/#sec-return-statement)
@@ -1593,7 +1592,7 @@ Você pode ver isso acontecendo com alguns testes rápidos:
 
 Números de ponto flutuante não são salvos internamente como uma lista de dígitos decimais, mas com uma metodologia um pouco mais complicada que produz pequenas imprecisões que são usualmente arredondadas por `toString` ou chamadas similares, mas estão presentes internamente.
 
-Nese caso, aquele "5" no final era atualmente uma fração extremamente pequena abaixo de um 5 verdadeiro. Arredondá-lo a qualquer comprimento razoável o tornará um 5 ... mas na verdade não é um 5 internamente.
+Nese caso, aquele "5" no final era atualmente uma fração extremamente pequena abaixo de um 5 verdadeiro. Arredondá-lo a qualquer comprimento razoável o tornará um 5... mas na verdade não é um 5 internamente.
 
 O IE11, no entanto, relatará a entrada de valor apenas com zeros anexados ao final, mesmo no caso toFixed(20), pois parece estar arredondando à força o valor para reduzir os problemas dos limites de hardware.
 
