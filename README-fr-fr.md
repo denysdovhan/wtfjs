@@ -44,8 +44,8 @@ Actuellement, il existe des traductions de ** wtfjs ** pour les langues suivante
 - [💪🏻 Motivation](#-motivation)
 - [✍🏻 Notation](#-notation)
 - [👀 Exemples](#-exemples)
-  - [`[]` est égale à `![]`](#-est-%C3%A9gale-%C3%A0-)
-  - [`true` n'est pas égale à `![]`, mais pas égale à `[]` aussi](#true-nest-pas-%C3%A9gale-%C3%A0--mais-pas-%C3%A9gale-%C3%A0--aussi)
+  - [`[]` est égal à `![]`](#-est-%C3%A9gal-%C3%A0-)
+  - [`true` n'est pas égal à `![]`, mais pas égal à `[]` aussi](#true-nest-pas-%C3%A9gal-%C3%A0--mais-pas-%C3%A9gal-%C3%A0--aussi)
   - [true est faux](#true-est-faux)
   - [baNaNa](#banana)
   - [`NaN` n'est pas un `NaN`](#nan-nest-pas-un-nan)
@@ -140,9 +140,9 @@ const foo = function() {};
 
 # 👀 Exemples
 
-## `[]` est égale à `![]`
+## `[]` est égal à `![]`
 
-Tableau est égale à pas tableau
+Tableau est égal à pas tableau
 
 ```js
 [] == ![]; // -> true
@@ -168,9 +168,9 @@ Voir aussi [`[]` est truthy, mais pas `true`](#-est-truthy-mais-pas-true).
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## `true` n'est pas égale à `![]`, mais pas égale à `[]` aussi
+## `true` n'est pas égal à `![]`, mais pas égal à `[]` aussi
 
-Un tableau n'est pas égale à `true`, tout comme pas tableau. Un tableau est égale à `false`, pas tableau est égale à `false` aussi :
+Un tableau n'est pas égal à `true`, tout comme pas tableau. Un tableau est égal à `false`, pas tableau est égal à `false` aussi :
 
 ```js
 true == []; // -> false
@@ -304,7 +304,7 @@ Vous ne le croiriez pas, mais …
 
 ### 💡 Explication :
 
-En brisant cette masse de symboles en pièces, nous remarquons que le schéma suivant se produit souvent :
+En brisant cette masse de symboles en morceaux, nous remarquons que le schéma suivant se produit souvent :
 
 ```js
 ![] + []; // -> 'false'
@@ -358,7 +358,7 @@ L'explication est la même que pour l'exemple précédent. Voici le lien corresp
 
 ## `document.all` est un objet, mais il est `undefined`
 
-> ⚠️ Ceci fait partie du Browser API et ne fonctionnera pas dans un environnement Node.js ⚠️
+> ⚠️ Ceci fait partie de la Browser API et ne fonctionnera pas dans un environnement Node.js ⚠️
 
 Malgré le fait que `document.all` soit un objet de type tableau et qu'il donne accès aux nœuds DOM de la page, il répond à la fonction `typeof` comme étant `undefined`.
 
@@ -382,7 +382,7 @@ document.all == null; // -> true
 
 ### 💡 Explication :
 
-> `document.all` était anciennement un moyen d'accéder aux éléments DOM, principalement avec les anciennes versions d'IE. Bien que cela n'est jamais été une norme, `document.all` était largement utilisé dans "l'ancien code JS". Quand la norme a progressé avec la venue de nouvelles API (par exemple, `document.getElementById`), l'API `document.all` est devenue obsolète et le comité de normes a dû décider ce qu'ils allaient en faire. En raison de sa large utilisation, ils ont décidé de la conserver, mais d'introduire une violation volontaire de la spécification JavaScript.
+> `document.all` était anciennement un moyen d'accéder aux éléments DOM, principalement avec les anciennes versions d'IE. Bien que cela n'ait jamais été une norme, `document.all` était largement utilisé dans "l'ancien code JS". Quand la norme a progressé avec la venue de nouvelles API (par exemple, `document.getElementById`), l'API `document.all` est devenue obsolète et le comité de normes a dû décider ce qu'ils allaient en faire. En raison de sa large utilisation, ils ont décidé de la conserver, mais d'introduire une violation volontaire de la spécification JavaScript.
 > La raison pour laquelle `document.all` retourne `false` lors de l'utilisation de l'opérateur d'égalité stricte ([Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)) avec `undefined` et `true` lors de l'utilisation de l'opérateur d'égalité abstraite ([Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)) est due à la violation volontaire de la spécification qui le permet explicitement.
 >
 > &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) sur WhatWG - HTML spec.
@@ -428,7 +428,7 @@ Ceci ne fait pas partie de la spécification. C'est seulement une erreur qui a d
 
 ## Ajout de tableaux
 
-Et si vous essayez d'additionner deux tableaux ?
+Et si vous essayiez d'additionner deux tableaux ?
 
 ```js
 [1, 2, 3] + [4, 5, 6]; // -> '1,2,34,5,6'
@@ -453,7 +453,7 @@ C'est la concaténation ! Etape par étape, ça ressemble à ceci :
 
 ## Les virgules finales dans un tableau
 
-Vous avez créez un tableau avec 4 éléments vides. Malgré tout, vous obtiendrez un tableau avec seulement trois éléments, à cause des virgules finales.
+Vous avez créé un tableau avec 4 éléments vides. Malgré tout, vous obtiendrez un tableau avec seulement trois éléments, à cause des virgules finales.
 
 ```js
 let a = [, , ,];
@@ -770,7 +770,7 @@ De toute évidence, vous pouvez _extend_ l'objet `Number` comme n'importe quel a
 
 ### 💡 Explication :
 
-Pourquoi est-ce que cela fonctionne ainsi ? Bien, le problème se trouve dans la première partie de l'expression. Voici comment cela fonctionne :
+Pourquoi est-ce que cela fonctionne ainsi ? Et bien le problème se trouve dans la première partie de l'expression. Voici comment cela fonctionne :
 
 ```js
 1 < 2 < 3; // 1 < 2 -> true
@@ -828,7 +828,7 @@ Chaîne  + Booléen -> concaténation
 Chaîne  + Chaîne  -> concaténation
 ```
 
-Qu'en est-il des autres exemples ? Les méthodes `ToPrimitive` et `ToString` sont implicitement appelées pour `[]` et `{}` avant une addition. Lire plus sur le processus d'évalution dans la spécification :
+Qu'en est-il des autres exemples ? Les méthodes `ToPrimitive` et `ToString` sont implicitement appelées pour `[]` et `{}` avant une addition. En lire plus sur le processus d'évalution dans la spécification :
 
 - [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 - [**7.1.1** ToPrimitive(`input` [,`PreferredType`])](https://www.ecma-international.org/ecma-262/#sec-toprimitive)
@@ -836,7 +836,7 @@ Qu'en est-il des autres exemples ? Les méthodes `ToPrimitive` et `ToString` son
 
 ## Addition de RegExps
 
-Saviez-vous que vous pouvez ajouter des nombres comme dans l'exemple ci-dessous ?
+Saviez-vous que vous pouviez ajouter des nombres comme dans l'exemple ci-dessous ?
 
 ```js
 // Remplacement de la méthode toString
@@ -915,7 +915,7 @@ f`true is ${true}, false is ${false}, array is ${[1, 2, 3]}`;
 
 ### 💡 Explication :
 
-Bon, ce n'est pas du tout magique si vous êtes familier avec les _littéraux de gabarits étiquetés_. Dans l'exemple ci-dessus, la fonction `f` est une étiquette pour littéral de gabarit. Les étiquettes avant un littéral de gabarit vous permettent d'analyser les littéraux de gabarits avec une fonction. Le premier argument d'une fonction étiquetée contient un tableau avec comme valeurs des chaînes. Les arguments restants sont liés aux expressions. Exemple :
+Bon, ce n'est pas du tout magique si vous êtes familier des _littéraux de gabarits étiquetés_. Dans l'exemple ci-dessus, la fonction `f` est une étiquette pour littéral de gabarit. Les étiquettes avant un littéral de gabarit vous permettent d'analyser les littéraux de gabarits avec une fonction. Le premier argument d'une fonction étiquetée contient un tableau avec comme valeurs des chaînes. Les arguments restants sont liés aux expressions. Exemple :
 
 ```js
 function template(strings, ...keys) {
@@ -939,7 +939,7 @@ console.log.call.call.call.call.call.apply(a => a, [1, 2]);
 
 ### 💡 Explication :
 
-Attention, ceci pourrait te casser la tête ! Essayez de reproduire ce code dans votre tête : nous appliquons la méthode `call` en utilisant la méthode `apply`. Plus d'infos :
+Attention, ceci pourrait vous casser la tête ! Essayez de reproduire ce code dans votre tête : nous appliquons la méthode `call` en utilisant la méthode `apply`. Plus d'infos :
 
 - [**19.2.3.3** Function.prototype.call(`thisArg`, ...`args`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.call)
 - [**19.2.3.1 ** Function.prototype.apply(`thisArg`, `argArray`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.apply)
@@ -990,7 +990,7 @@ Un `Object.prototype.constructor` renvoie une référence à la fonction constru
 
 ### 💡 Explication :
 
-Pourquoi est-ce que ça marche ? Ici, nous utilisons un _Computed property name_. Quand vous passez un objet entre ces crochets, l'objet est forcé à devenir une chaîne, alors nous obtenons la clé `[objet Object]` et la valeur `{}`.
+Pourquoi est-ce que ça marche ? Ici, nous utilisons un _Computed property name_. Quand vous passez un objet entre ces crochets, l'objet est forcé de devenir une chaîne, alors nous obtenons la clé `[objet Object]` et la valeur `{}`.
 
 Nous pouvons créer des enfers de crochets et de parenthèses comme dans l'exemple ci-dessous :
 
@@ -1113,7 +1113,7 @@ Des exemples intéressants pourraient être composés avec la propagation de tab
 
 ### 💡 Explication :
 
-Pourquoi `3` ? Lorsque nous utilisons le _[spread operator](http://www.ecma-international.org/ecma-262/6.0/#sec-array-initializer)_, la méthode `@@iterator` est appelée et l'itérateur renvoyé est utilisé pour obtenir les valeurs à itérer. L'itérateur par défaut pour une chaîne étend une chaîne en caractères. Après sa propagation, ces caractères sont empaquettés dans un tableau. Ensuite, ce tableau est à nouveau propagé et empaquetté encore une fois dans un tableau.
+Pourquoi `3` ? Lorsque nous utilisons le _[spread operator](http://www.ecma-international.org/ecma-262/6.0/#sec-array-initializer)_, la méthode `@@iterator` est appelée et l'itérateur renvoyé est utilisé pour obtenir les valeurs à itérer. L'itérateur par défaut pour une chaîne étend une chaîne en caractères. Après sa propagation, ces caractères sont empaquetés dans un tableau. Ensuite, ce tableau est à nouveau propagé et empaqueté encore une fois dans un tableau.
 
 Une chaîne `'...'` est composée de trois caractères `.`, donc, la longueur du tableau résultant est de `3`.
 
@@ -1281,11 +1281,11 @@ typeof new class {
 }(); // -> "object"
 ```
 
-Il semble que nous déclarons une classe à l'intérieur d'une classe. Cela devrait être une erreur, cependant, nous obtenons la chaîne `"object"`.
+Il semblerait que nous déclarions une classe à l'intérieur d'une classe. Cela devrait être une erreur, cependant, nous obtenons la chaîne `"object"`.
 
 ### 💡 Explication :
 
-Depuis ECMAScript 5, les _mots clés_ sont autorisés en tant que _noms de propriétés_. Réfléchissez-y comme vous le ferez pour cet exemple d'objet simple :
+Depuis ECMAScript 5, les _mots clés_ sont autorisés en tant que _noms de propriétés_. Réfléchissez comment vous le feriez pour cet exemple d'objet simple :
 
 ```js
 const foo = {
@@ -1315,7 +1315,9 @@ Avec des symboles bien connus, il existe un moyen de se débarrasser de la coerc
 ```js
 function nonCoercible(val) {
   if (val == null) {
-    throw TypeError("inCoercible ne doit pas être appelé avec null ou undefined");
+    throw TypeError(
+      "inCoercible ne doit pas être appelé avec null ou undefined"
+    );
   }
 
   const res = Object(val);
@@ -1439,7 +1441,7 @@ f("a");
 
 ## Retour difficile
 
-La déclaration `return` est compliqué aussi. Considérez ceci :
+La déclaration `return` est compliquée aussi. Considérez ceci :
 
 ```js
 (function() {
@@ -1484,7 +1486,7 @@ De droite à gauche, `{n: 2}` est affecté à `foo`, et le résultat de cette af
 
 ### 💡 Explication :
 
-`foo` et `bar` font référence au même objet `{n: 1}`, et les _lvalues_ sont résolues avant les assignations. `foo = {n: 2}` créer un nouvel objet, et donc, `foo` est mis à jour pour référencer ce nouvel objet. L'astuce ici est `foo` dans `foo.x = …`, car une _lvalue_ a été résolue au préalable et fait toujours référence à l'objet précédent `foo = {n: 1}` et donc, le met à jour en ajoutant la valeur `x`.
+`foo` et `bar` font référence au même objet `{n: 1}`, et les _lvalues_ sont résolues avant les assignations. `foo = {n: 2}` crée un nouvel objet, et donc `foo` est mis à jour pour référencer ce nouvel objet. L'astuce ici est `foo` dans `foo.x = …`, car une _lvalue_ a été résolue au préalable et fait toujours référence à l'objet précédent `foo = {n: 1}` et donc le met à jour en ajoutant la valeur `x`.
 
 Après cette chaîne d'assignation, `bar`, quant à lui, fait toujours référence à l'ancien objet `foo`, alors que `foo` fait référence au nouvel objet `{n: 2}`, où `x` n'existe pas.
 
@@ -1701,7 +1703,7 @@ Passez `comparefn` si vous essayez de trier n'importe quoi d'autre qu'une chaîn
 
 - [wtfjs.com](http://wtfjs.com/) — une collection d'irrégularités spéciales très particulières, d'incohérences et de moments terriblement non intuitifs pour le langage du Web.
 - [Wat](https://www.destroyallsoftware.com/talks/wat) — Un discours éclair de Gary Bernhardt de CodeMash 2012.
-- [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — Kyle Simpsons parle des tentatives de Forward 2 pour "sortir l'absurdité" du JavaScript. Il veut vous aider à produire un code plus propre, plus élégant et plus lisible, puis inspirer les gens à contribuer à la communauté open-source.
+- [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — Kyle Simpsons parle des tentatives de Forward 2 pour "sortir de l'absurdité" du JavaScript. Il veut vous aider à produire un code plus propre, plus élégant et plus lisible, puis inspirer les gens à contribuer à la communauté open-source.
 
 # 🎓 Licence
 
