@@ -36,6 +36,7 @@ Actuellement, il existe des traductions de ** wtfjs ** pour les langues suivante
 
 [tr-request]: https://github.com/denysdovhan/wtfjs/issues/new?title=Translation%20Request:%20%5BPlease%20enter%20language%20here%5D&body=I%20am%20able%20to%20translate%20this%20language%20%5Byes/no%5D
 
+<!-- prettier-ignore-start -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
@@ -102,6 +103,7 @@ Actuellement, il existe des traductions de ** wtfjs ** pour les langues suivante
 - [🎓 Licence](#-licence)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- prettier-ignore-end -->
 
 # 💪🏻 Motivation
 

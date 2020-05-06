@@ -46,10 +46,10 @@
   "lint-staged": {
     "*.{md}": [
       "npm run toc",
-      "npm run format"
+      "prettier --write"
     ],
     "*.{js,json}": [
-      "npm run format"
+      "prettier --write"
     ]
   }
 }

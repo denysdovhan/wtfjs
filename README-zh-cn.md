@@ -23,9 +23,9 @@ $ npm install -g wtfjs
 
 你应该能够在命令行中运行`wtfjs`，这将打开手册并在你选择的`$PAGER`中，否则你也可以选择在这里阅读。
 
+<!-- prettier-ignore-start -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 
 - [💪🏻 动机](#-%E5%8A%A8%E6%9C%BA)
 - [✍🏻 符号](#-%E7%AC%A6%E5%8F%B7)
@@ -53,7 +53,7 @@ $ npm install -g wtfjs
   - [数组相加](#%E6%95%B0%E7%BB%84%E7%9B%B8%E5%8A%A0)
     - [💡 说明：](#-%E8%AF%B4%E6%98%8E-10)
 - [数组中的逗号](#%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%97%E5%8F%B7)
-    - [💡 说明：](#-%E8%AF%B4%E6%98%8E-11)
+  - [💡 说明：](#-%E8%AF%B4%E6%98%8E-11)
   - [数组相等是一个怪物](#%E6%95%B0%E7%BB%84%E7%9B%B8%E7%AD%89%E6%98%AF%E4%B8%80%E4%B8%AA%E6%80%AA%E7%89%A9)
     - [💡 说明：](#-%E8%AF%B4%E6%98%8E-12)
   - [`undefined` 和 `Number`](#undefined-%E5%92%8C-number)
@@ -140,6 +140,7 @@ $ npm install -g wtfjs
 - [🎓 License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- prettier-ignore-end -->
 
 # 💪🏻 动机
 
@@ -1408,6 +1409,7 @@ f("a");
 
 `return` 语句是很棘手的. 看下面的代码:
 
+<!-- prettier-ignore-start -->
 ```js
 (function() {
   return
@@ -1416,6 +1418,7 @@ f("a");
   }
 })(); // -> undefined
 ```
+<!-- prettier-ignore-end -->
 
 ### 💡 说明：
 
@@ -1437,14 +1440,14 @@ f("a");
 ## 对象的链式赋值
 
 ```js
-var foo = {n: 1};
+var foo = { n: 1 };
 var bar = foo;
 
-foo.x = foo = {n: 2};
+foo.x = foo = { n: 2 };
 
-foo.x // -> undefined
-foo   // -> {n: 2}
-bar   // -> {n: 1, x: {n: 2}}
+foo.x; // -> undefined
+foo; // -> {n: 2}
+bar; // -> {n: 1, x: {n: 2}}
 ```
 
 从右到左，`{n: 2}` 被赋值给 `foo`，而此赋值的结果 `{n: 2}` 被赋值给 `foo.x`，因此 `bar` 是 `{n: 1, x: {n: 2}}` 因为 `bar` 是 `foo` 的一个引用。但为什么 `foo.x` 是 `undefined` 而 `bar.x` 不是呢？
@@ -1456,11 +1459,11 @@ bar   // -> {n: 1, x: {n: 2}}
 它等价于：
 
 ```js
-var foo = {n: 1};
+var foo = { n: 1 };
 var bar = foo;
 
-foo = {n: 2} // -> {n: 2}
-bar.x = foo // -> {n: 1, x: {n: 2}}
+foo = { n: 2 }; // -> {n: 2}
+bar.x = foo; // -> {n: 1, x: {n: 2}}
 // bar.x 指向新的 foo 对象的地址
 // 这不等价于：bar.x = {n: 2}
 ```
