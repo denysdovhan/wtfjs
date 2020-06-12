@@ -3,36 +3,38 @@
 [![WTFPL 2.0][license-image]][license-url]
 [![NPM version][npm-image]][npm-url]
 
-> A list of funny and tricky JavaScript examples
+> Lista zabawnych i trudnych przykładów JavaScript
 
-JavaScript is a great language. It has a simple syntax, large ecosystem and, what is most important, a great community.
+JavaScript to świetny język. Ma prostą składnię, duży ekosystem i, co najważniejsze, wspaniałą społeczność.
 
-At the same time, we all know that JavaScript is quite a funny language with tricky parts. Some of them can quickly turn our everyday job into hell, and some of them can make us laugh out loud.
+Jednocześnie wszyscy wiemy, że JavaScript jest dość zabawnym językiem z trudnymi częściami. Niektóre z nich mogą szybko zamienić naszą codzienną pracę w piekło, a niektóre mogą rozśmieszyć nas na głos.
 
-The original idea for WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux). This list is highly inspired by his talk [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
+Oryginalny pomysł na WTFJS należy do [Brian Leroux](https://twitter.com/brianleroux). Ta lista jest bardzo zainspirowana jego przemową
+ [**“WTFJS”** na dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
 [![dotJS 2012 - Brian Leroux - WTFJS](https://img.youtube.com/vi/et8xNAc2ic8/0.jpg)](https://www.youtube.com/watch?v=et8xNAc2ic8)
 
 # Node Packaged Manuscript
 
-You can install this handbook using `npm`. Just run:
+Możesz zainstalować ten podręcznik za pomocą `npm`. Po prostu uruchom:
 
 ```
 $ npm install -g wtfjs
 ```
 
-You should be able to run `wtfjs` at the command line now. This will open the manual in your selected `$PAGER`. Otherwise, you may continue reading on here.
+Powinieneś być teraz w stanie uruchomić `wtfjs` w linii poleceń. Spowoduje to otwarcie instrukcji w wybranym `$PAGER`. W przeciwnym razie możesz kontynuować czytanie tutaj.
 
-The source is available here: <https://github.com/denysdovhan/wtfjs>
+Źródło jest dostępne tutaj: <https://github.com/denysdovhan/wtfjs>
 
-# Translations
+# Tłumaczenia
 
-Currently, there are these translations of **wtfjs**:
+Obecnie są następujące tłumaczenia **wtfjs**:
 
 - [中文版](./README-zh-cn.md)
 - [Français](./README-fr-fr.md)
+- [Polski](./README-pl-pl.md)
 
-[**Request another translation**][tr-request]
+[**Poproś o kolejne tłumaczenie**][tr-request]
 
 [tr-request]: https://github.com/denysdovhan/wtfjs/issues/new?title=Translation%20Request:%20%5BPlease%20enter%20language%20here%5D&body=I%20am%20able%20to%20translate%20this%20language%20%5Byes/no%5D
 
@@ -40,11 +42,11 @@ Currently, there are these translations of **wtfjs**:
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-# Table of Contents
+# Spis treści
 
-- [💪🏻 Motivation](#-motivation)
-- [✍🏻 Notation](#-notation)
-- [👀 Examples](#-examples)
+- [💪🏻 Motywacja](#-motivation)
+- [✍🏻 Notacja](#-notation)
+- [👀 Przykłady](#-examples)
   - [`[]` is equal `![]`](#-is-equal-)
   - [`true` is not equal `![]`, but not equal `[]` too](#true-is-not-equal--but-not-equal--too)
   - [true is false](#true-is-false)
@@ -105,56 +107,56 @@ Currently, there are these translations of **wtfjs**:
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <!-- prettier-ignore-end -->
 
-# 💪🏻 Motivation
+# 💪🏻 Motywacja
 
-> Just for fun
+> Dla zabawy
 >
 > &mdash; _[**“Just for Fun: The Story of an Accidental Revolutionary”**](https://en.wikipedia.org/wiki/Just_for_Fun), Linus Torvalds_
 
-The primary goal of this list is to collect some crazy examples and explain how they work, if possible. Just because it's fun to learn something that we didn't know before.
+Głównym celem tej listy jest zebranie szalonych przykładów i wyjaśnienie, w jaki sposób działają, jeśli to możliwe. Tylko dlatego, że fajnie jest nauczyć się czegoś, czego wcześniej nie znaliśmy.
 
-If you are a beginner, you can use these notes to get a deeper dive into JavaScript. I hope these notes will motivate you to spend more time reading the specification.
+Jeśli jesteś początkujący, możesz skorzystać z tych notatek, aby głębiej zagłębić się w JavaScript. Mam nadzieję, że te notatki zmotywują cię do spędzenia więcej czasu na czytaniu specyfikacji.
 
-If you are a professional developer, you can consider these examples as a great reference for all of the quirks and unexpected edges of our beloved JavaScript.
+Jeśli jesteś profesjonalnym programistą, możesz rozważyć te przykłady jako świetne źródło informacji o wszystkich dziwactwach i nieoczekiwanych krawędziach naszego ukochanego JavaScript.
 
-In any case, just read this. You're probably going to find something new.
+W każdym razie po prostu przeczytaj to. Prawdopodobnie znajdziesz coś nowego.
 
-# ✍🏻 Notation
+# ✍🏻 Notacja
 
-**`// ->`** is used to show the result of an expression. For example:
+**`// ->`** służy do wyświetlenia wyniku wyrażenia. Na przykład:
 
 ```js
 1 + 1; // -> 2
 ```
 
-**`// >`** means the result of `console.log` or another output. For example:
+**`// >`** oznacza wynik `console.log` lub wyświetlenie innego wyniku. Na przykład:
 
 ```js
 console.log("hello, world!"); // > hello, world!
 ```
 
-**`//`** is just a comment used for explanations. Example:
+**`//`** jest tylko komentarzem używanym w celu wyjaśnienia. Przykład:
 
 ```js
 // Assigning a function to foo constant
 const foo = function() {};
 ```
 
-# 👀 Examples
+# 👀 Przykłady
 
 ## `[]` is equal `![]`
 
-Array is equal not array:
+Tablica jest równa zanegowanej tablicy:
 
 ```js
 [] == ![]; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
-The abstract equality operator converts both sides to numbers to compare them, and both sides become the number `0` for different reasons. Arrays are truthy, so on the right, the opposite of a truthy value is `false`, which is then coerced to `0`. On the left, however, an empty array is coerced to a number without becoming a boolean first, and empty arrays are coerced to `0`, despite being truthy.
+Abstrakcyjny operator równości przekształca obie strony na liczby, aby je porównać, a obie strony stają się liczbą `0` z różnych powodów. Tablice są prawdziwe, więc po prawej stronie przeciwieństwem prawdziwej wartości jest `false`, który jest następnie wymuszany na `0`. Po lewej jednak pusta tablica jest wymuszana na liczbę, nie będąc najpierw wartością logiczną, a puste tablice są wymuszane na `0`, mimo że są prawdziwe.
 
-Here is how this expression simplifies:
+Oto jak to wyrażenie upraszcza:
 
 ```js
 +[] == +![];
@@ -163,12 +165,12 @@ Here is how this expression simplifies:
 true;
 ```
 
-See also [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
+Zobacz też [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
 
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## `true` is not equal `![]`, but not equal `[]` too
+## `true` nie jest równe `![]`, ale też nie równe `[]`
 
 Array is not equal `true`, but not Array is not equal `true` too;
 Array is equal `false`, not Array is equal `false` too:
