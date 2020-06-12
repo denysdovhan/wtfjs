@@ -1034,12 +1034,12 @@ Możemy zrobić "brackets hell" jak tutaj:
 
 Przeczytaj więcej na temat literałów obiektowych tutaj:
 
-- [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
+- [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) na MDN
 - [**12.2.6** Object Initializer](http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer)
 
-## Accessing prototypes with `__proto__`
+## Dostęp do prototypów za pomocą `__proto__`
 
-As we know, primitives don't have prototypes. However, if we try to get a value of `__proto__` for primitives, we would get this:
+Jak wiemy, prymitywy nie mają prototypów. Jeśli jednak spróbujemy uzyskać wartość `__proto__` dla prymitywów otrzymalibyśmy to:
 
 ```js
 (1).__proto__.__proto__.__proto__; // -> null
@@ -1047,7 +1047,7 @@ As we know, primitives don't have prototypes. However, if we try to get a value 
 
 ### 💡 Wytłumaczenie:
 
-This happens because when something doesn't have a prototype, it will be wrapped into a wrapper object using the `ToObject` method. So, step-by-step:
+Dzieje się tak, ponieważ gdy coś nie ma prototypu, zostanie ono zawinięte w obiekt wrappera za pomocą metody `ToObject`. Więc krok po kroku:
 
 ```js
 (1)
@@ -1061,20 +1061,20 @@ This happens because when something doesn't have a prototype, it will be wrapped
   ).__proto__.__proto__.__proto__; // -> null
 ```
 
-Here is more information about `__proto__`:
+Oto więcej informacji na temat `__proto__`:
 
 - [**B.2.2.1** Object.prototype.**proto**](https://www.ecma-international.org/ecma-262/#sec-object.prototype.__proto__)
 - [**7.1.13** ToObject(`argument`)](https://www.ecma-international.org/ecma-262/#sec-toobject)
 
 ## `` `${{Object}}` ``
 
-What is the result of the expression below?
+Jaki jest wynik poniższego wyrażenia?
 
 ```js
 `${{ Object }}`;
 ```
 
-The answer is:
+Odpowiedź to:
 
 ```js
 // -> '[object Object]'
@@ -1082,7 +1082,7 @@ The answer is:
 
 ### 💡 Wytłumaczenie:
 
-We defined an object with a property `Object` using _Shorthand property notation_:
+Zdefiniowaliśmy obiekt z właściwością `Object` używając _Shorthand property notation_:
 
 ```js
 {
@@ -1090,14 +1090,14 @@ We defined an object with a property `Object` using _Shorthand property notation
 }
 ```
 
-Then we've passed this object to the template literal, so the `toString` method calls for that object. That's why we get the string `'[object Object]'`.
+Następnie przekazaliśmy ten obiekt do literału szablonu, więc metoda `toString` wywołuje ten obiekt. Właśnie dlatego otrzymujemy string `'[object Object]'`.
 
 - [**12.2.9** Template Literals](https://www.ecma-international.org/ecma-262/#sec-template-literals)
 - [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 
-## Destructuring with default values
+## Destrukturyzacja z wartościami domyślnymi
 
-Consider this example:
+Rozważ ten przykład:
 
 ```js
 let x,
@@ -1105,7 +1105,7 @@ let x,
 y;
 ```
 
-The example above is a great task for an interview. What the value of `y`? The answer is:
+Powyższy przykład to świetne zadanie na rozmowę kwalifikacyjną. Jaka jest wartość `y`? Odpowiedź to:
 
 ```js
 // -> 1
@@ -1121,18 +1121,18 @@ y;
 //  1       3           2    4
 ```
 
-With the example above:
+W powyższym przykładzie:
 
-1. We declare `x` with no value, so it's `undefined`.
-2. Then we pack the value of `x` into the object property `x`.
-3. Then we extract the value of `x` using destructuring and want to assign it to `y`. If the value is not defined, then we're going to use `1` as the default value.
-4. Return the value of `y`.
+1. Deklarujemy `x` z brakiem wartości, więc jest `undefined`.
+2. Wtedy pakujemy wartość `x` we własność obiektu `x`.
+3. Następnie wyodrębniamy wartość `x` używając destrukturyzacji i chcemy to przypisać do `y`. Jeśli wartość nie zostanie zdefiniowana, wówczas użyjemy „`1` jako wartości domyślnej.
+4. Zwróć wartość `y` .
 
 - [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 
 ## Dots and spreading
 
-Interesting examples could be composed with spreading of arrays. Consider this:
+Ciekawe przykłady można skomponować z rozmieszczaniem tablic. Rozważ to:
 
 ```js
 [...[..."..."]].length; // -> 3
@@ -1140,11 +1140,11 @@ Interesting examples could be composed with spreading of arrays. Consider this:
 
 ### 💡 Wytłumaczenie:
 
-Why `3`? When we use the [spread operator](http://www.ecma-international.org/ecma-262/6.0/#sec-array-initializer), the `@@iterator` method is called, and the returned iterator is used to obtain the values to be iterated. The default iterator for string spreads a string into characters. After spreading, we pack these characters into an array. Then we spread this array again and pack it back to an array.
+Czemu `3`? Kiedy korzystamy ze [spread operatora](http://www.ecma-international.org/ecma-262/6.0/#sec-array-initializer), metoda `@@iterator` jest wywołana, a zwrócony iterator służy do uzyskania wartości do iteracji. Domyślny iterator łańcucha rozdziela łańcuch na znaki. Po rozłożeniu pakujemy te znaki do tablicy. Następnie rozkładamy tę tablicę ponownie i pakujemy z powrotem do tablicy.
 
-A `'...'` string consists with three `.` characters, so the length of resulting array is `3`.
+String `'...'` składa się z trzech znaków `.`, więc długość wynikowej tablicy wynosi `3`.
 
-Now, step-by-step:
+Teraz krok po kroku:
 
 ```js
 [...'...']             // -> [ '.', '.', '.' ]
@@ -1152,7 +1152,7 @@ Now, step-by-step:
 [...[...'...']].length // -> 3
 ```
 
-Obviously, we can spread and wrap the elements of an array as many times as we want:
+Oczywiście możemy rozkładać i wrapować elementy tablicy tyle razy, ile chcemy:
 
 ```js
 [...'...']                 // -> [ '.', '.', '.' ]
@@ -1162,9 +1162,9 @@ Obviously, we can spread and wrap the elements of an array as many times as we w
 // and so on …
 ```
 
-## Labels
+## Etykiety
 
-Not many programmers know about labels in JavaScript. They are kind of interesting:
+Niewielu programistów wie o etykietach w JavaScript. Są dość interesujące:
 
 ```js
 foo: {
@@ -1179,16 +1179,16 @@ foo: {
 
 ### 💡 Wytłumaczenie:
 
-The labeled statement is used with `break` or `continue` statements. You can use a label to identify a loop, and then use the `break` or `continue` statements to indicate whether a program should interrupt the loop or continue its execution.
+Instrukcja z etykietą jest używana z instrukcją `break` lub `continue`. Możesz użyć etykiety do zidentyfikowania pętli, a następnie użyć instrukcji `break` lub `continue`, aby wskazać, czy program powinien przerwać pętlę, czy kontynuować jej wykonywanie.
 
-In the example above, we identify a label `foo`. After that `console.log('first');` executes and then we interrupt the execution.
+W powyższym przykładzie identyfikujemy etykietę `foo`. Po tym `console.log ('first');` wykonuje, a następnie przerywamy wykonywanie.
 
-Read more about labels in JavaScript:
+Przeczytaj więcej o etykietach w JavaScript:
 
 - [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
 - [Labeled statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
 
-## Nested labels
+## Zagnieżdżone etykiety
 
 ```js
 a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
@@ -1196,15 +1196,15 @@ a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
 
 ### 💡 Wytłumaczenie:
 
-Similar to previous examples, follow these links:
+Podobnie jak w poprzednich przykładach, skorzystaj z poniższych linków:
 
 - [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
 - [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
 - [Labeled statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
 
-## Insidious `try..catch`
+## Podstępny `try..catch`
 
-What will this expression return? `2` or `3`?
+Co zwróci to wyrażenie?? `2` czy `3`?
 
 ```js
 (() => {
@@ -1216,25 +1216,25 @@ What will this expression return? `2` or `3`?
 })();
 ```
 
-The answer is `3`. Surprised?
+Odpowiedź to `3`. Zaskoczony?
 
 ### 💡 Wytłumaczenie:
 
 - [**13.15** The `try` Statement](https://www.ecma-international.org/ecma-262/#sec-try-statement)
 
-## Is this multiple inheritance?
+## Czy to wielokrotne dziedziczenie?
 
-Take a look at the example below:
+Spójrz na poniższy przykład:
 
 ```js
 new class F extends (String, Array) {}(); // -> F []
 ```
 
-Is this a multiple inheritance? Nope.
+Czy to wielokrotne dziedziczenie? Nie.
 
 ### 💡 Wytłumaczenie:
 
-The interesting part is the value of the `extends` clause (`(String, Array)`). The grouping operator always returns its last argument, so `(String, Array)` is actually just `Array`. That means we've just created a class which extends `Array`.
+Interesującą częścią jest wartość klauzuli `extends` (`(String, Array)`). Operator grupowania zawsze zwraca ostatni argument, więc `(String, Array)` jest właściwie po prostu `Array`. Oznacza to, że właśnie stworzyliśmy klasę, która rozszerza `Array`.
 
 - [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
 - [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
@@ -1250,7 +1250,7 @@ Consider this example of a generator which yields itself:
 // -> { value: [GeneratorFunction: f], done: false }
 ```
 
-As you can see, the returned value is an object with its `value` equal to `f`. In that case, we can do something like this:
+Jak widać, zwrócona wartość jest obiektem wraz z nią `value` równa do `f`. W takim przypadku możemy zrobić coś takiego:
 
 ```js
 (function* f() {
@@ -1293,14 +1293,14 @@ As you can see, the returned value is an object with its `value` equal to `f`. I
 
 ### 💡 Wytłumaczenie:
 
-To understand why this works that way, read these sections of the specification:
+Aby zrozumieć, dlaczego to działa w ten sposób, przeczytaj następujące sekcje specyfikacji:
 
 - [**25** Control Abstraction Objects](https://www.ecma-international.org/ecma-262/#sec-control-abstraction-objects)
 - [**25.3** Generator Objects](https://www.ecma-international.org/ecma-262/#sec-generator-objects)
 
-## A class of class
+## Klasa klasy
 
-Consider this obfuscated syntax playing:
+Rozważ tę zaciemnioną składnię:
 
 ```js
 typeof new class {
@@ -1308,11 +1308,11 @@ typeof new class {
 }(); // -> 'object'
 ```
 
-It seems like we're declaring a class inside of class. Should be an error, however, we get the string `'object'`.
+Wygląda na to, że deklarujemy klasę wewnątrz klasy. Powinien być jednak błąd, ale otrzymujemy ciąg `'object'`.
 
 ### 💡 Wytłumaczenie:
 
-Since ECMAScript 5 era, _keywords_ are allowed as _property names_. So think about it as this simple object example:
+Od ery ECMAScript 5 _słowa kluczowe_ są dozwolone jako _nazwy własności_. Pomyśl o tym jako o tym prostym przykładzie obiektu:
 
 ```js
 const foo = {
@@ -1320,7 +1320,7 @@ const foo = {
 };
 ```
 
-And ES6 standardized shorthand method definitions. Also, classes can be anonymous. So if we drop `: function` part, we're going to get:
+I znormalizowane skróty definicji metod ES6. Ponadto klasy mogą być anonimowe. Więc jeśli opuścimy część `:function`, otrzymamy:
 
 ```js
 class {
@@ -1328,16 +1328,16 @@ class {
 }
 ```
 
-The result of a default class is always a simple object. And its typeof should return `'object'`.
+Wynik domyślnej klasy jest zawsze prostym obiektem. I jego typ powinien zwrócić `'object'`.
 
-Read more here:
+Przeczytaj więcej tutaj:
 
 - [**14.3** Method Definitions](https://www.ecma-international.org/ecma-262/#sec-method-definitions)
 - [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
 
 ## Non-coercible objects
 
-With well-known symbols, there's a way to get rid of type coercion. Take a look:
+Dzięki dobrze znanym symbolom można pozbyć się typu coercion. Spójrz:
 
 ```js
 function nonCoercible(val) {
@@ -1355,7 +1355,7 @@ function nonCoercible(val) {
 }
 ```
 
-Now we can use this like this:
+Teraz możemy użyć tego w następujący sposób:
 
 ```js
 // objects
@@ -1386,16 +1386,16 @@ baz.valueOf() === 1; // -> true
 - [A gist by Sergey Rubanov](https://gist.github.com/chicoxyzzy/5dd24608e886adf5444499896dff1197)
 - [**6.1.5.1** Well-Known Symbols](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
 
-## Tricky arrow functions
+## Podstępne funkcje strzałkowe
 
-Consider the example below:
+Rozważ poniższy przykład:
 
 ```js
 let f = () => 10;
 f(); // -> 10
 ```
 
-Okay, fine, but what about this:
+Okej, w porządku, ale co z tym:
 
 ```js
 let f = () => {};
@@ -1404,16 +1404,16 @@ f(); // -> undefined
 
 ### 💡 Wytłumaczenie:
 
-You might expect `{}` instead of `undefined`. This is because the curly braces are part of the syntax of the arrow functions, so `f` will return undefined. It is however possible to return the `{}` object directly from an arrow function, by enclosing the return value with brackets.
+Możesz oczekiwać `{}` zamiast `undefined`. Wynika to z faktu, że nawiasy klamrowe są częścią składni funkcji strzałek, więc `f` zwróci niezdefiniowane. Możliwe jest jednak zwrócenie obiektu `{}` bezpośrednio z funkcji strzałki, poprzez umieszczenie wartości zwracanej w nawiasach.
 
 ```js
 let f = () => ({});
 f(); // -> {}
 ```
 
-## Arrow functions can not be a constructor
+## Funkcje strzałek nie mogą być konstruktorami
 
-Consider the example below:
+Rozważ poniższy przykład:
 
 ```js
 let f = function() {
@@ -1422,7 +1422,7 @@ let f = function() {
 new f(); // -> { 'a': 1 }
 ```
 
-Now, try do to the same with an arrow function:
+Teraz spróbuj zrobić to samo z funkcją strzałki:
 
 ```js
 let f = () => {
@@ -1433,11 +1433,11 @@ new f(); // -> TypeError: f is not a constructor
 
 ### 💡 Wytłumaczenie:
 
-Arrow functions cannot be used as constructors and will throw an error when used with new. Because has a lexical `this`, and do not have a `prototype` property, so it would not make much sense.
+Funkcje strzałek nie mogą być używane jako konstruktory i będą zgłaszać błąd, gdy będą używane z nowym. Ponieważ ma leksykalne `this` i nie ma właściwości `prototype`, więc nie miałoby to większego sensu.
 
-## `arguments` and arrow functions
+## `arguments` i funkcje strzałek
 
-Consider the example below:
+Rozważ poniższy przykład:
 
 ```js
 let f = function() {
@@ -1446,7 +1446,7 @@ let f = function() {
 f("a"); // -> { '0': 'a' }
 ```
 
-Now, try do to the same with an arrow function:
+Teraz spróbuj zrobić to samo z funkcją strzałki:
 
 ```js
 let f = () => arguments;
@@ -1455,7 +1455,7 @@ f("a"); // -> Uncaught ReferenceError: arguments is not defined
 
 ### 💡 Wytłumaczenie:
 
-Arrow functions are a lightweight version of regular functions with a focus on being short and lexical `this`. At the same time arrow functions do not provide a binding for the `arguments` object. As a valid alternative use the `rest parameters` to achieve the same result:
+Funkcje strzałek to lekka wersja zwykłych funkcji z naciskiem na bycie krótkim i leksykalnym `this`. Jednocześnie funkcje strzałek nie zapewniają wiązania dla obiektu `arguments`. Jako prawidłową alternatywę użyj `rest parameters`, aby osiągnąć ten sam wynik:
 
 ```js
 let f = (...args) => args;
@@ -1464,9 +1464,9 @@ f("a");
 
 - [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) at MDN.
 
-## Tricky return
+## Podstępny return
 
-`return` statement is also tricky. Consider this:
+Wyrażenie `return` jest również podstępne. Rozważ to:
 
 <!-- prettier-ignore-start -->
 ```js
@@ -1481,7 +1481,7 @@ f("a");
 
 ### 💡 Wytłumaczenie:
 
-`return` and the returned expression must be in the same line:
+`return` i zwrócone wyrażenie musi znajdować się w tym samym wierszu:
 
 ```js
 (function() {
@@ -1491,7 +1491,7 @@ f("a");
 })(); // -> { b: 10 }
 ```
 
-This is because of a concept called Automatic Semicolon Insertion, which automagically inserts semicolons after most newlines. In the first example, there is a semicolon inserted between the `return` statement and the object literal, so the function returns `undefined` and the object literal is never evaluated.
+Wynika to z koncepcji o nazwie Automatyczne wstawianie średników, która automatycznie wstawia średniki po większości nowych linii. W pierwszym przykładzie między wyrażeniem `return` a literałem obiektu wstawiono średnik, więc funkcja zwraca `undefined`, a literał obiektu nigdy nie jest oceniany.
 
 - [**11.9.1** Rules of Automatic Semicolon Insertion](https://www.ecma-international.org/ecma-262/#sec-rules-of-automatic-semicolon-insertion)
 - [**13.10** The `return` Statement](https://www.ecma-international.org/ecma-262/#sec-return-statement)
@@ -1509,7 +1509,7 @@ foo; // -> {n: 2}
 bar; // -> {n: 1, x: {n: 2}}
 ```
 
-From right to left, `{n: 2}` is assigned to foo, and the result of this assignment `{n: 2}` is assigned to foo.x, that's why bar is `{n: 1, x: {n: 2}}` as bar is a reference to foo. But why foo.x is undefined while bar.x is not ?
+Z prawej do lewej, `{n: 2}` jest przypisany do foo, a wynik tego przypisania `{n: 2}` jest do foo.x, i dlatego bar jest `{n: 1, x: {n: 2}}` jako bar jest referencją do foo. Ale czemu foo.x jest undefined podczas gdy bar.x nie jest ?
 
 ### 💡 Wytłumaczenie:
 
