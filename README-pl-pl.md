@@ -646,9 +646,9 @@ Odpowiednie sekcje:
 - [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 - [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
 
-## HTML comments are valid in JavaScript
+## Komentarze HTML są obowiązujące w JavaScript
 
-You will be impressed, but `<!--` (which is known as HTML comment) is a valid comment in JavaScript.
+Będziesz pod wrażeniem, ale `<!--` (który jest znany jako komentarz HTML) jest poprawnym komentarzem w JavaScript.
 
 ```js
 // valid comment
@@ -657,15 +657,15 @@ You will be impressed, but `<!--` (which is known as HTML comment) is a valid co
 
 ### 💡 Wytłumaczenie:
 
-Impressed? HTML-like comments were intended to allow browsers that didn't understand the `<script>` tag to degrade gracefully. These browsers, e.g. Netscape 1.x are no longer popular. So there is really no point in putting HTML comments in your script tags anymore.
+Pod wrażeniem? Komentarze w formacie HTML miały umożliwić przeglądarkom, które nie rozumieją tagu `<script>` degradować z wdziękiem. Te przeglądarki, np. Netscape 1.x nie są już popularne. Dlatego naprawdę nie ma sensu umieszczać komentarzy HTML w tagach skryptu.
 
-Since Node.js is based on the V8 engine, HTML-like comments are supported by the Node.js runtime too. Moreover, they're a part of the specification:
+Ponieważ Node.js jest oparty na silniku V8, komentarze podobne do HTML są obsługiwane również przez środowisko uruchomieniowe Node.js. Ponadto są częścią specyfikacji:
 
 - [**B.1.3** HTML-like Comments](https://www.ecma-international.org/ecma-262/#sec-html-like-comments)
 
 ## `NaN` is ~~not~~ a number
 
-Type of `NaN` is a `'number'`:
+Typ `NaN` jest `'number'`:
 
 ```js
 typeof NaN; // -> 'number'
@@ -673,12 +673,12 @@ typeof NaN; // -> 'number'
 
 ### 💡 Wytłumaczenie:
 
-Wytłumaczenies of how `typeof` and `instanceof` operators work:
+Wytłumaczenia jak operatory `typeof` i `instanceof` działają:
 
 - [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
 - [**12.10.4** Runtime Semantics: InstanceofOperator(`O`,`C`)](https://www.ecma-international.org/ecma-262/#sec-instanceofoperator)
 
-## `[]` and `null` are objects
+## `[]` i `null` są obiektami
 
 ```js
 typeof []; // -> 'object'
@@ -690,13 +690,13 @@ null instanceof Object; // false
 
 ### 💡 Wytłumaczenie:
 
-The behavior of `typeof` operator is defined in this section of the specification:
+Zachowanie operatora `typeof` jest zdefiniowane w tej sekcji specyfikacji:
 
 - [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
 
-According to the specification, the `typeof` operator returns a string according to [Table 35: `typeof` Operator Results](https://www.ecma-international.org/ecma-262/#table-35). For `null`, ordinary, standard exotic and non-standard exotic objects, which do not implement `[[Call]]`, it returns the string `"object"`.
+Zgodnie ze specyfikacją, operator `typeof` zwraca ciąg zgodnie z [Table 35: `typeof` Operator Results](https://www.ecma-international.org/ecma-262/#table-35). For `null`, ordinary, standard exotic and non-standard exotic objects, which do not implement `[[Call]]`, it returns the string `"object"`.
 
-However, you can check the type of an object by using the `toString` method.
+Możesz jednak sprawdzić typ obiektu, używając metody `toString`.
 
 ```js
 Object.prototype.toString.call([]);
@@ -709,7 +709,7 @@ Object.prototype.toString.call(null);
 // -> '[object Null]'
 ```
 
-## Magically increasing numbers
+## Magicznie rosnące liczby
 
 ```js
 999999999999999; // -> 999999999999999
@@ -722,14 +722,14 @@ Object.prototype.toString.call(null);
 
 ### 💡 Wytłumaczenie:
 
-This is caused by IEEE 754-2008 standard for Binary Floating-Point Arithmetic. At this scale, it rounds to the nearest even number. Read more:
+Jest to spowodowane standardem IEEE 754-2008 dla binarnej arytmetyki zmiennoprzecinkowej. W tej skali zaokrągla się do najbliższej liczby parzystej. Czytaj więcej:
 
 - [**6.1.6** The Number Type](https://www.ecma-international.org/ecma-262/#sec-ecmascript-language-types-number-type)
 - [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) on Wikipedia
 
-## Precision of `0.1 + 0.2`
+## Precyzja `0.1 + 0.2`
 
-A well-known joke. An addition of `0.1` and `0.2` is deadly precise:
+Dobrze znany żart. An addition of `0.1` and `0.2` is deadly precise:
 
 ```js
 0.1 +
@@ -742,15 +742,15 @@ A well-known joke. An addition of `0.1` and `0.2` is deadly precise:
 
 ### 💡 Wytłumaczenie:
 
-The answer for the [”Is floating point math broken?”](https://stackoverflow.com/questions/588004/is-floating-point-math-broken) question on StackOverflow:
+Odpowiedź na pytanie [”Is floating point math broken?”](https://stackoverflow.com/questions/588004/is-floating-point-math-broken) ze StackOverflow:
 
-> The constants `0.2` and `0.3` in your program will also be approximations to their true values. It happens that the closest `double` to `0.2` is larger than the rational number `0.2` but that the closest `double` to `0.3` is smaller than the rational number `0.3`. The sum of `0.1` and `0.2` winds up being larger than the rational number `0.3` and hence disagreeing with the constant in your code.
+> Stałe `0.2` i `0.3` w twoim programie będzie również przybliżenie ich prawdziwych wartości. Zdarza się, że najbliższa `double` do `0.2` jest większa niż liczba wymierna `0.2`, ale najbliższa `double` do `0.3` jest mniejsza niż liczba wymierna `0.3`. Suma `0.1` i `0.2` kończy się na wartości większej od liczby wymiernej `0.3`, a zatem nie zgadza się ze stałą w kodzie.
 
-This problem is so known that there is even a website called [0.30000000000000004.com](http://0.30000000000000004.com/). It occurs in every language that uses floating-point math, not just JavaScript.
+Ten problem jest tak znany, że istnieje nawet strona internetowa o nazwie [0.30000000000000004.com](http://0.30000000000000004.com/). Występuje w każdym języku wykorzystującym matematykę zmiennoprzecinkową, nie tylko JavaScript.
 
 ## Patching numbers
 
-You can add your own methods to wrapper objects like `Number` or `String`.
+Możesz dodać własne metody do wrapowania obiektów takich jak `Number` lub `String`.
 
 ```js
 Number.prototype.isOne = function() {
@@ -769,11 +769,11 @@ Number.prototype.isOne = function() {
 
 ### 💡 Wytłumaczenie:
 
-Obviously, you can extend the `Number` object like any other object in JavaScript. However, it's not recommended if the behavior of the defined method is not a part of the specification. Here is the list of `Number`'s properties:
+Oczywiście możesz rozszerzyć obiekt `Number` jak każdy inny obiekt w JavaScript. Jednak nie jest zalecane, jeśli zachowanie zdefiniowanej metody nie jest częścią specyfikacji. Oto lista właściwości `Number`:
 
 - [**20.1** Number Objects](https://www.ecma-international.org/ecma-262/#sec-number-objects)
 
-## Comparison of three numbers
+## Porównanie trzech liczb
 
 ```js
 1 < 2 < 3; // -> true
@@ -782,7 +782,7 @@ Obviously, you can extend the `Number` object like any other object in JavaScrip
 
 ### 💡 Wytłumaczenie:
 
-Why does this work that way? Well, the problem is in the first part of an expression. Here's how it works:
+Dlaczego to działa w ten sposób? Problem tkwi w pierwszej części wyrażenia. Oto jak to działa:
 
 ```js
 1 < 2 < 3; // 1 < 2 -> true
@@ -794,19 +794,19 @@ true > 1; // true -> 1
 1 > 1; // -> false
 ```
 
-We can fix this with _Greater than or equal operator (`>=`)_:
+Możemy to naprawić za pomocą _Operatora większy lub równy (`>=`)_:
 
 ```js
 3 > 2 >= 1; // true
 ```
 
-Read more about Relational operators in the specification:
+Przeczytaj więcej o operatorach relacyjnych w specyfikacji:
 
 - [**12.10** Relational Operators](https://www.ecma-international.org/ecma-262/#sec-relational-operators)
 
-## Funny math
+## Zabawna matematyka
 
-Often the results of arithmetic operations in JavaScript might be quite unexpected. Consider these examples:
+Często wyniki operacji arytmetycznych w JavaScript mogą być dość nieoczekiwane. Rozważ te przykłady:
 
 ```js
  3  - 1  // -> 2
@@ -829,7 +829,7 @@ Often the results of arithmetic operations in JavaScript might be quite unexpect
 
 ### 💡 Wytłumaczenie:
 
-What's happening in the first four examples? Here's a small table to understand addition in JavaScript:
+Co dzieje się w pierwszych czterech przykładach? Oto mała tabelka, aby zrozumieć dodawanie w JavaScript:
 
 ```
 Number  + Number  -> addition
@@ -840,13 +840,13 @@ String  + Boolean -> concatenation
 String  + String  -> concatenation
 ```
 
-What about other examples? A `ToPrimitive` and `ToString` methods are being implicitly called for `[]` and `{}` before addition. Read more about evaluation process in the specification:
+Co z innymi przykładami? Metody `ToPrimitive` i `ToString` są domyślnie wywoływane dla `[]` i `{}` przed dodaniem. Przeczytaj więcej o procesie oceny w specyfikacji:
 
 - [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 - [**7.1.1** ToPrimitive(`input` [,`PreferredType`])](https://www.ecma-international.org/ecma-262/#sec-toprimitive)
 - [**7.1.12** ToString(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tostring)
 
-Notably, `{} + []` here is the exception. The reason why it differs from `[] + {}` is that, without parenthesis, it is interpreted as a code block and then a unary +, converting `[]` into a number. It sees the following:
+Szczególnie, `{} + []` tutaj jest wyjątek. Powód, dla którego się różni z `[] + {}` polega na tym, że bez nawiasów interpretuje się go jako blok kodu, a następnie jako jedność +, konwertując `[]` na liczbę. Wygląda następująco:
 
 ```js
 {
@@ -855,15 +855,15 @@ Notably, `{} + []` here is the exception. The reason why it differs from `[] + {
 +[]; // -> 0
 ```
 
-To get the same output as `[] + {}` we can wrap it in parenthesis.
+Aby uzyskać ten sam wynik jak `[] + {}` możemy owrapować to w nawias.
 
 ```js
 ({} + []); // -> [object Object]
 ```
 
-## Addition of RegExps
+## Dodanie RegExps
 
-Did you know you can add numbers like this?
+Czy wiesz, że możesz dodawać takie liczby?
 
 ```js
 // Patch a toString method
@@ -879,7 +879,7 @@ RegExp.prototype.toString =
 
 - [**21.2.5.10** get RegExp.prototype.source](https://www.ecma-international.org/ecma-262/#sec-get-regexp.prototype.source)
 
-## Strings aren't instances of `String`
+## Stringi nie są instancjami `String`
 
 ```js
 "str"; // -> 'str'
@@ -889,7 +889,7 @@ typeof "str"; // -> 'string'
 
 ### 💡 Wytłumaczenie:
 
-The `String` constructor returns a string:
+Konstruktor `String` zwraca string:
 
 ```js
 typeof String("str"); // -> 'string'
@@ -897,26 +897,26 @@ String("str"); // -> 'str'
 String("str") == "str"; // -> true
 ```
 
-Let's try with a `new`:
+Spróbujmy z `new`:
 
 ```js
 new String("str") == "str"; // -> true
 typeof new String("str"); // -> 'object'
 ```
 
-Object? What's that?
+Obiekt? Co to jest?
 
 ```js
 new String("str"); // -> [String: 'str']
 ```
 
-More information about the String constructor in the specification:
+Więcej informacji o konstruktorze String w specyfikacji:
 
 - [**21.1.1** The String Constructor](https://www.ecma-international.org/ecma-262/#sec-string-constructor)
 
-## Calling functions with backticks
+## Wywoływanie funkcji za pomocą backticksa
 
-Let's declare a function which logs all params into the console:
+Zadeklarujmy funkcję, która rejestruje wszystkie parametry w konsoli:
 
 ```js
 function f(...args) {
@@ -924,13 +924,13 @@ function f(...args) {
 }
 ```
 
-No doubt, you know you can call this function like this:
+Bez wątpienia wiesz, że możesz wywołać tę funkcję w następujący sposób:
 
 ```js
 f(1, 2, 3); // -> [ 1, 2, 3 ]
 ```
 
-But did you know you can call any function with backticks?
+Ale czy wiesz, że możesz wywołać dowolną funkcję za pomocą backticksa?
 
 ```js
 f`true is ${true}, false is ${false}, array is ${[1, 2, 3]}`;
@@ -942,7 +942,7 @@ f`true is ${true}, false is ${false}, array is ${[1, 2, 3]}`;
 
 ### 💡 Wytłumaczenie:
 
-Well, this is not magic at all if you're familiar with _Tagged template literals_. In the example above, `f` function is a tag for template literal. Tags before template literal allow you to parse template literals with a function. The first argument of a tag function contains an array of string values. The remaining arguments are related to the expressions. Example:
+Cóż, to wcale nie jest magia, jeśli jesteś obeznany z _Tagged template literals_. W powyższym przykładzie, funkcja `f` jest znacznikiem literału szablonu. Tagi przed literałem szablonu umożliwiają analizowanie literałów szablonu za pomocą funkcji. Pierwszy argument funkcji znacznika zawiera tablicę wartości ciągów. Pozostałe argumenty są powiązane z wyrażeniami. Przykład:
 
 ```js
 function template(strings, ...keys) {
@@ -950,15 +950,15 @@ function template(strings, ...keys) {
 }
 ```
 
-This is the [magic behind](http://mxstbr.blog/2016/11/styled-components-magic-explained/) famous library called [💅 styled-components](https://www.styled-components.com/), which is popular in the React community.
+To jest [magia z tyłu](http://mxstbr.blog/2016/11/styled-components-magic-explained/) słynnej biblioteki o nazwie [💅 styled-components](https://www.styled-components.com/), która jest popularna w społeczności React.
 
-Link to the specification:
+Link do specyfikacji:
 
 - [**12.3.7** Tagged Templates](https://www.ecma-international.org/ecma-262/#sec-tagged-templates)
 
 ## Call call call
 
-> Found by [@cramforce](http://twitter.com/cramforce)
+> Znalezione przez [@cramforce](http://twitter.com/cramforce)
 
 ```js
 console.log.call.call.call.call.call.apply(a => a, [1, 2]);
@@ -966,12 +966,12 @@ console.log.call.call.call.call.call.apply(a => a, [1, 2]);
 
 ### 💡 Wytłumaczenie:
 
-Attention, it could break your mind! Try to reproduce this code in your head: we're applying the `call` method using the `apply` method. Read more:
+Uwaga, może to popsuć ci umysł! Spróbuj odtworzyć ten kod w swojej głowie: stosujemy metodę `call` za pomocą metody` apply`. Czytaj więcej:
 
 - [**19.2.3.3** Function.prototype.call(`thisArg`, ...`args`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.call)
 - [**19.2.3.1 ** Function.prototype.apply(`thisArg`, `argArray`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.apply)
 
-## A `constructor` property
+## Właściwość `constructor`
 
 ```js
 const c = "constructor";
@@ -980,7 +980,7 @@ c[c][c]('console.log("WTF?")')(); // > WTF?
 
 ### 💡 Wytłumaczenie:
 
-Let's consider this example step-by-step:
+Rozważmy ten przykład krok po kroku:
 
 ```js
 // Declare a new constant which is a string 'constructor'
@@ -1004,12 +1004,12 @@ c[c][c]('console.log("WTF?")'); // -> [Function: anonymous]
 c[c][c]('console.log("WTF?")')(); // > WTF?
 ```
 
-An `Object.prototype.constructor` returns a reference to the `Object` constructor function that created the instance object. In case with strings it is `String`, in case with numbers it is `Number` and so on.
+`Object.prototype.constructor` zwraca referencję do funkcji konstruktora `Object` który utworzył obiekt instancji. W przypadku łańcuchów jest to `String`, w przypadku liczb jest to `Number` i tak dalej.
 
-- [`Object.prototype.constructor`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor) at MDN
+- [`Object.prototype.constructor`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor) na MDN
 - [**19.1.3.1** Object.prototype.constructor](https://www.ecma-international.org/ecma-262/#sec-object.prototype.constructor)
 
-## Object as a key of object's property
+## Obiekt jako klucz właściwości obiektu
 
 ```js
 { [{}]: {} } // -> { '[object Object]': {} }
@@ -1017,9 +1017,9 @@ An `Object.prototype.constructor` returns a reference to the `Object` constructo
 
 ### 💡 Wytłumaczenie:
 
-Why does this work so? Here we're using a _Computed property name_. When you pass an object between those brackets, it coerces object to a string, so we get the property key `'[object Object]'` and the value `{}`.
+Dlaczego to działa? Tutaj używamy _Computed property name_. Gdy przekazujesz obiekt między tymi nawiasami, wymusza on obiekt na ciąg, więc otrzymujemy klucz właściwości `'[object Object]'` i wartość `{}`.
 
-We can make "brackets hell" like this:
+Możemy zrobić "brackets hell" jak tutaj:
 
 ```js
 ({ [{}]: { [{}]: {} } }[{}][{}]); // -> {}
@@ -1032,7 +1032,7 @@ We can make "brackets hell" like this:
 // }
 ```
 
-Read more about object literals here:
+Przeczytaj więcej na temat literałów obiektowych tutaj:
 
 - [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 - [**12.2.6** Object Initializer](http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer)
