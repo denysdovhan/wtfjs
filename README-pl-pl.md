@@ -144,7 +144,7 @@ const foo = function() {};
 
 # 👀 Przykłady
 
-## `[]` is equal `![]`
+## `[]` jest równe `![]`
 
 Tablica jest równa zanegowanej tablicy:
 
@@ -392,15 +392,15 @@ document.all == null; // -> true
 
 ### 💡 Wytłumaczenie:
 
-> `document.all` used to be a way to access DOM elements, in particular with old versions of IE. While it has never been a standard it was broadly used in the old age JS code. When the standard progressed with new APIs (such as `document.getElementById`) this API call became obsolete and the standard committee had to decide what to do with it. Because of its broad use they decided to keep the API but introduce a willful violation of the JavaScript specification.
-> The reason why it responds to `false` when using the [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) with `undefined` while `true` when using the [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) is due to the willful violation of the specification that explicitly allows that.
+> `document.all` kiedyś był sposobem na dostęp do elementów DOM, w szczególności w starszych wersjach IE. Chociaż nigdy nie był standardem, był szeroko stosowany w starszym kodzie JS. Kiedy standard rozwijał się z nowymi interfejsami API (takimi jak `document.getElementById`), to wywołanie interfejsu API stało się przestarzałe i komitet standardowy musiał zdecydować, co z nim zrobić. Ze względu na szerokie zastosowanie postanowili zachować interfejs API, ale wprowadzili umyślne naruszenie specyfikacji JavaScript.
+> Powód, dla którego reaguje na `false` podczas korzystania ze [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) z `undefined` gdy `true` podczas korzystania z [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) wynika z umyślnego naruszenia specyfikacji, która wyraźnie na to pozwala.
 >
-> &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec
-> &mdash; [“Chapter 4 - ToBoolean - Falsy values”](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects) at YDKJS - Types & Grammar
+> &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) na WhatWG - HTML spec
+> &mdash; [“Chapter 4 - ToBoolean - Falsy values”](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects) na YDKJS - Types & Grammar
 
-## Minimal value is greater than zero
+## Minimalna wartość jest większa od zera
 
-`Number.MIN_VALUE` is the smallest number, which is greater than zero:
+`Number.MIN_VALUE` jest najmniejszą liczbą, która jest większa od zera:
 
 ```js
 Number.MIN_VALUE > 0; // -> true
@@ -408,19 +408,19 @@ Number.MIN_VALUE > 0; // -> true
 
 ### 💡 Wytłumaczenie:
 
-> `Number.MIN_VALUE` is `5e-324`, i.e. the smallest positive number that can be represented within float precision, i.e. that's as close as you can get to zero. It defines the best resolution that floats can give you.
+> `Number.MIN_VALUE` jest `5e-324`, np. najmniejsza liczba dodatnia, która może być reprezentowana z precyzją zmiennoprzecinkową, tj. jest tak blisko, jak można dojść do zera. Określa najlepszą rozdzielczość, jaką mogą zaoferować floaty.
 >
-> Now the overall smallest value is `Number.NEGATIVE_INFINITY` although it's not really numeric in a strict sense.
+> Teraz ogólna najmniejsza wartość to `Number.NEGATIVE_INFINITY` chociaż nie jest to tak naprawdę liczbowe w ścisłym tego słowa znaczeniu.
 >
-> &mdash; [“Why is `0` less than `Number.MIN_VALUE` in JavaScript?”](https://stackoverflow.com/questions/26614728/why-is-0-less-than-number-min-value-in-javascript) at StackOverflow
+> &mdash; [“Why is `0` less than `Number.MIN_VALUE` in JavaScript?”](https://stackoverflow.com/questions/26614728/why-is-0-less-than-number-min-value-in-javascript) na StackOverflow
 
 - [**20.1.2.9** Number.MIN_VALUE](https://www.ecma-international.org/ecma-262/#sec-number.min_value)
 
-## function is not a function
+## funkcja nie jest funkcją
 
-> ⚠️ A bug present in V8 v5.5 or lower (Node.js <=7) ⚠️
+> ⚠️ Bug obecny w wersji V8 5.5 lub nowszej (Node.js <=7) ⚠️
 
-All of you know about the annoying _undefined is not a function_, but what about this?
+Wszyscy wiecie o irytującym _niezdefiniowany nie jest funkcją_, ale co z tym?
 
 ```js
 // Declare a class which extends null
@@ -434,11 +434,11 @@ new Foo() instanceof null;
 
 ### 💡 Wytłumaczenie:
 
-This is not a part of the specification. It's just a bug that has now been fixed, so there shouldn't be a problem with it in the future.
+To nie jest część specyfikacji. To tylko błąd, który został już naprawiony, więc nie powinno być z tym problemu w przyszłości.
 
-## Adding arrays
+## Dodawanie tablic
 
-What if you try to add two arrays?
+Co jeśli spróbujesz dodać dwie tablice?
 
 ```js
 [1, 2, 3] + [4, 5, 6]; // -> '1,2,34,5,6'
@@ -446,7 +446,7 @@ What if you try to add two arrays?
 
 ### 💡 Wytłumaczenie:
 
-The concatenation happens. Step-by-step, it looks like this:
+Zachodzi konkatenacja. Krok po kroku wygląda to tak:
 
 ```js
 [1, 2, 3] +
@@ -463,7 +463,7 @@ The concatenation happens. Step-by-step, it looks like this:
 
 ## Trailing commas in array
 
-You've created an array with 4 empty elements. Despite all, you'll get an array with three elements, because of trailing commas:
+Utworzyłeś tablicę z 4 pustymi elementami. Mimo wszystko otrzymasz tablicę z trzema elementami ze względu na końcowe przecinki:
 
 ```js
 let a = [, , ,];
@@ -473,13 +473,13 @@ a.toString(); // -> ',,'
 
 ### 💡 Wytłumaczenie:
 
-> **Trailing commas** (sometimes called "final commas") can be useful when adding new elements, parameters, or properties to JavaScript code. If you want to add a new property, you can simply add a new line without modifying the previously last line if that line already uses a trailing comma. This makes version-control diffs cleaner and editing code might be less troublesome.
+> **Trailing commas** (czasami nazywane "final commas") może być przydatne podczas dodawania nowych elementów, parametrów lub właściwości do kodu JavaScript. Jeśli chcesz dodać nową właściwość, możesz po prostu dodać nową linię bez modyfikowania poprzedniej poprzedniej linii, jeśli linia ta już używa przecinka końcowego. To sprawia, że różnice w kontroli wersji są czystsze, a edycja kodu może być mniej kłopotliwa.
 >
-> &mdash; [Trailing commas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas) at MDN
+> &mdash; [Trailing commas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas) na MDN
 
-## Array equality is a monster
+## Równość tablic to potwór
 
-Array equality is a monster in JS, as you can see below:
+Równość tablic jest potworem w JS, jak widać poniżej:
 
 ```js
 [] == ''   // -> true
@@ -509,11 +509,11 @@ Array equality is a monster in JS, as you can see below:
 
 ### 💡 Wytłumaczenie:
 
-You should watch very carefully for the above examples! The behaviour is described in section [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) of the specification.
+Powinieneś uważnie obserwować powyższe przykłady! Zachowanie opisano w rozdziale [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) specyfikacji.
 
-## `undefined` and `Number`
+## `undefined` oraz `Number`
 
-If we don't pass any arguments into the `Number` constructor, we'll get `0`. The value `undefined` is assigned to formal arguments when there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
+Jeśli nie przekażemy żadnych argumentów do konstruktura `Number`, otrzymamy `0`. Wartość `undefined` jest przypisana do formalnych argumentów, gdy nie ma rzeczywistych argumentów, więc możesz się spodziewać, że `Number` bez argumentów dostanie `undefined` jako wartość jego parametru. Jednak kiedy przekażemy `undefined`, dostaniemy `NaN`.
 
 ```js
 Number(); // -> 0
@@ -522,29 +522,29 @@ Number(undefined); // -> NaN
 
 ### 💡 Wytłumaczenie:
 
-According to the specification:
+Zgodnie ze specyfikacją:
 
-1. If no arguments were passed to this function's invocation, let `n` be `+0`.
-2. Else, let `n` be ? `ToNumber(value)`.
-3. In case of `undefined`, `ToNumber(undefined)` should return `NaN`.
+1. Jeśli do wywołania tej funkcji nie zostaną przekazane żadne argumenty, pozwól `n` być `+0`.
+2. Inaczej, pozwól `n` być ? `ToNumber(value)`.
+3. W przypadku `undefined`, `ToNumber(undefined)` powinno zwrócić `NaN`.
 
-Here's the corresponding section:
+Oto odpowiednia sekcja:
 
 - [**20.1.1** The Number Constructor](https://www.ecma-international.org/ecma-262/#sec-number-constructor)
 - [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
 
-## `parseInt` is a bad guy
+## `parseInt` jest złym gościem
 
-`parseInt` is famous by its quirks:
+`parseInt` słynie ze swoich dziwactw:
 
 ```js
 parseInt("f*ck"); // -> NaN
 parseInt("f*ck", 16); // -> 15
 ```
 
-**💡 Wytłumaczenie:** This happens because `parseInt` will continue parsing character-by-character until it hits a character it doesn't know. The `f` in `'f*ck'` is the hexadecimal digit `15`.
+**💡 Wytłumaczenie:** Dzieje się tak, ponieważ `parseInt` będzie kontynuować analizowanie znak po znaku, dopóki nie trafi na postać, której nie zna. `f` w `'f*ck'` jest cyfrą szesnastkową `15`.
 
-Parsing `Infinity` to integer is something…
+Parsowanie `Infinity` do integer jest czymś…
 
 ```js
 //
@@ -565,7 +565,7 @@ parseInt("Infinity", 36); // -> 1461559270678...
 parseInt("Infinity", 37); // -> NaN
 ```
 
-Be careful with parsing `null` too:
+Uważaj na parsowanie `null` także:
 
 ```js
 parseInt(null, 24); // -> 23
@@ -573,11 +573,11 @@ parseInt(null, 24); // -> 23
 
 **💡 Wytłumaczenie:**
 
-> It's converting `null` to the string `"null"` and trying to convert it. For radixes 0 through 23, there are no numerals it can convert, so it returns NaN. At 24, `"n"`, the 14th letter, is added to the numeral system. At 31, `"u"`, the 21st letter, is added and the entire string can be decoded. At 37 on there is no longer any valid numeral set that can be generated and `NaN` is returned.
+> Konwertuje `null` na string `"null"` i próbuje to przekonwertować. W przypadku podstaw od 0 do 23 nie ma cyfr, które mógłby przekonwertować, więc zwraca NaN. Na 24, `"n"`, 14ta litera, jest dodawana do systemu liczbowego. Na 31, `"u"`, 21sza litera, jest dodawana, a cały ciąg można dekodować. Na 37 nie ma już żadnego poprawnego zestawu liczb, który można by wygenerować i `NaN` jest zwrócony.
 >
-> &mdash; [“parseInt(null, 24) === 23… wait, what?”](https://stackoverflow.com/questions/6459758/parseintnull-24-23-wait-what) at StackOverflow
+> &mdash; [“parseInt(null, 24) === 23… wait, what?”](https://stackoverflow.com/questions/6459758/parseintnull-24-23-wait-what) na StackOverflow
 
-Don't forget about octals:
+Nie zapomnij o ósemkach:
 
 ```js
 parseInt("06"); // 6
@@ -585,16 +585,16 @@ parseInt("08"); // 8 if support ECMAScript 5
 parseInt("08"); // 0 if not support ECMAScript 5
 ```
 
-**💡 Wytłumaczenie:** If the input string begins with "0", radix is eight (octal) or 10 (decimal). Exactly which radix is chosen is implementation-dependent. ECMAScript 5 specifies that 10 (decimal) is used, but not all browsers support this yet. For this reason always specify a radix when using `parseInt`.
+**💡 Wytłumaczenie:** Jeśli ciąg wejściowy zaczyna się od "0", podstawa to osiem (ósemka) lub 10 (dziesiętnie). To, która podstawa jest wybrana, zależy od implementacji. ECMAScript 5 określa, że używana jest liczba 10 (dziesiętna), ale nie wszystkie przeglądarki obsługują to jeszcze. Z tego powodu zawsze określaj podstawę podczas używania `parseInt`.
 
-`parseInt` always convert input to string:
+`parseInt` zawsze konwertuj dane wejściowe na ciąg:
 
 ```js
 parseInt({ toString: () => 2, valueOf: () => 1 }); // -> 2
 Number({ toString: () => 2, valueOf: () => 1 }); // -> 1
 ```
 
-Be careful while parsing floating point values
+Zachowaj ostrożność podczas analizowania wartości zmiennoprzecinkowych
 
 ```js
 parseInt(0.000001); // -> 0
@@ -602,11 +602,11 @@ parseInt(0.0000001); // -> 1
 parseInt(1 / 1999999); // -> 5
 ```
 
-**💡 Wytłumaczenie:** `ParseInt` takes a string argument and returns an integer of the specified radix. `ParseInt` also strips anything after and including the first non-digit in the string parameter. `0.000001` is converted to a string `"0.000001"` and the `parseInt` returns `0`. When `0.0000001` is converted to a string it is treated as `"1e-7"` and hence `parseInt` returns `1`. `1/1999999` is interpreted as `5.00000250000125e-7` and `parseInt` returns `5`.
+**💡 Wytłumaczenie:** `ParseInt` pobiera argument ciągu i zwraca liczbę całkowitą określonej podstawy. `ParseInt` usuwa również wszystko po pierwszej wartości cyfrowej i włącznie z nią w parametrze ciągu. `0.000001` jest konwertowany na ciąg znaków `"0.000001"` i `parseInt` zwraca `0`. Gdy `0.0000001` jest konwertowany na ciąg, który jest traktowany jako `"1e-7"` i stąd `parseInt` zwraca `1`. `1/1999999` jest interpretowane jako `5.00000250000125e-7` i `parseInt` zwraca `5`.
 
-## Math with `true` and `false`
+## Matematyka z `true` i `false`
 
-Let's do some math:
+Zróbmy trochę matematyki:
 
 ```js
 true +
@@ -622,25 +622,25 @@ Hmmm… 🤔
 
 ### 💡 Wytłumaczenie:
 
-We can coerce values to numbers with the `Number` constructor. It's quite obvious that `true` will be coerced to `1`:
+Możemy narzucić wartości do liczb za pomocą konstruktora `Number`. To całkiem oczywiste że `true` będzie zmienione na `1`:
 
 ```js
 Number(true); // -> 1
 ```
 
-The unary plus operator attempts to convert its value into a number. It can convert string representations of integers and floats, as well as the non-string values `true`, `false`, and `null`. If it cannot parse a particular value, it will evaluate to `NaN`. That means we can coerce `true` to `1` easier:
+Jednoargumentowy operator plus próbuje przeliczyć swoją wartość na liczbę. Może konwertować reprezentacje ciągu liczb całkowitych i liczb zmiennoprzecinkowych, a także wartości nie łańcuchowe `true`, `false`, i `null`. Jeśli nie może przeanalizować określonej wartości, oceni to jako `NaN`. To oznacza, że możemy narzucić `true` na `1` łatwiej:
 
 ```js
 +true; // -> 1
 ```
 
-When you're performing addition or multiplication, the `ToNumber` method is invoked. According to the specification, this method returns:
+Podczas dodawania lub mnożenia, metoda `ToNumber` jest przywoływana. Zgodnie ze specyfikacją ta metoda zwraca:
 
-> If `argument` is **true**, return **1**. If `argument` is **false**, return **+0**.
+> Jeśli `argument` jest **true**, zwraca **1**. Jeśli `argument` jest **false**, zwraca **+0**.
 
-That's why we can add boolean values as regular numbers and get correct results.
+Dlatego możemy dodawać wartości logiczne jako liczby regularne i uzyskiwać prawidłowe wyniki.
 
-Corresponding sections:
+Odpowiednie sekcje:
 
 - [**12.5.6** Unary `+` Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
 - [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
