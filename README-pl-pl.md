@@ -1515,7 +1515,7 @@ Z prawej do lewej, `{n: 2}` jest przypisany do foo, a wynik tego przypisania `{n
 
 Foo and bar references the same object `{n: 1}`, and lvalues are resolved before assignations. `foo = {n: 2}` is creating a new object, and so foo is updated to reference that new object. The trick here is foo in `foo.x = ...` as a lvalue was resolved beforehand and still reference the old `foo = {n: 1}` object and update it by adding the x value. After that chain assignments, bar still reference the old foo object, but foo reference the new `{n: 2}` object, where x is not existing.
 
-It's equivalent to:
+Jest to równoważne z:
 
 ```js
 var foo = { n: 1 };
@@ -1527,7 +1527,7 @@ bar.x = foo; // -> {n: 1, x: {n: 2}}
 // it's not equivalent to: bar.x = {n: 2}
 ```
 
-## Accessing object properties with arrays
+## Dostęp do właściwości obiektu za pomocą tablic
 
 ```js
 var obj = { property: 1 };
@@ -1536,7 +1536,7 @@ var array = ["property"];
 obj[array]; // -> 1
 ```
 
-What about pseudo-multidimensional arrays?
+Co z tablicami pseudo-wielowymiarowymi?
 
 ```js
 var map = {};
@@ -1553,7 +1553,7 @@ map["11,2,3"]; // -> true
 
 ### 💡 Wytłumaczenie:
 
-The brackets `[]` operator converts the passed expression using `toString`. Converting a one-element array to a string is akin to converting the contained element to the string:
+Operator nawiasów klamrowych `[]` konwertuje przekazane wyrażenie za pomocą `toString`. Konwersja tablicy jednoelementowej na ciąg znaków jest zbliżona do konwersji zawartego elementu na ciąg znaków:
 
 ```js
 ["property"].toString(); // -> 'property'
@@ -1574,7 +1574,7 @@ Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `tr
 
 ## `Number.toFixed()` display different numbers
 
-`Number.toFixed()` can behave a bit strange in different browsers. Check out this example:
+`Number.toFixed()` może zachowywać się trochę dziwnie w różnych przeglądarkach. Sprawdź ten przykład:
 
 ```js
 (0.7875).toFixed(3);
@@ -1589,9 +1589,9 @@ Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `tr
 
 ### 💡 Wytłumaczenie:
 
-While your first instinct may be that IE11 is correct and Firefox/Chrome are wrong, the reality is that Firefox/Chrome are more directly obeying standards for numbers (IEEE-754 Floating Point), while IE11 is minutely disobeying them in (what is probably) an effort to give clearer results.
+Podczas gdy twoim pierwszym instynktem może być to, że IE11 jest poprawny, a Firefox / Chrome są w błędzie, w rzeczywistości Firefox / Chrome bardziej bezpośrednio przestrzegają standardów liczbowych (zmiennoprzecinkowy IEEE-754), podczas gdy IE11 nieznacznie ich nie przestrzega (prawdopodobnie), aby dać wyraźniejsze wyniki.
 
-You can see why this occurs with a few quick tests:
+Możesz zobaczyć, dlaczego tak się dzieje po kilku szybkich testach:
 
 ```js
 // Confirm the odd result of rounding a 5 down
@@ -1613,7 +1613,7 @@ See for reference `NOTE 2` on the ECMA-262 definition for `toFixed`.
 
 - [**20.1.3.3** Number.prototype.toFixed (`fractionDigits`)](https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed)
 
-## `Math.max()` less than `Math.min()`
+## `Math.max()` mniej niż `Math.min()`
 
 ```js
 Math.min(1, 4, 7, 2); // -> 1
@@ -1625,11 +1625,11 @@ Math.min() > Math.max(); // -> true
 
 ### 💡 Wytłumaczenie:
 
-- [Why is Math.max() less than Math.min()?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min) by Charlie Harvey
+- [Why is Math.max() less than Math.min()?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min) od Charlie Harvey
 
 ## Comparing `null` to `0`
 
-The following expressions seem to introduce a contradiction:
+Następujące wyrażenia wydają się wprowadzać w sprzeczność:
 
 ```js
 null == 0; // -> false
@@ -1637,13 +1637,13 @@ null > 0; // -> false
 null >= 0; // -> true
 ```
 
-How can `null` be neither equal to nor greater than `0`, if `null >= 0` is actually `true`? (This also works with less than in the same way.)
+Jak `null` nie może być ani równy ani większy od `0`, jeśli `null>=0' jest w rzeczywistości `true`? (Działa to również z mniej niż w ten sam sposób.)
 
 ### 💡 Wytłumaczenie:
 
-The way these three expressions are evaluated are all different and are responsible for producing this unexpected behavior.
+Sposób oceny tych trzech wyrażeń jest różny i jest odpowiedzialny za wywołanie tego nieoczekiwanego zachowania.
 
-First, the abstract equality comparison `null == 0`. Normally, if this operator can't compare the values on either side properly, it converts both to numbers and compares the numbers. Then, you might expect the following behavior:
+Po pierwsze, abstrakcyjne porównanie równości `null == 0`. Zwykle, jeśli ten operator nie może poprawnie porównać wartości po obu stronach, konwertuje obie liczby na liczby i porównuje liczby. Następnie możesz spodziewać się następującego zachowania:
 
 ```js
 // This is not what happens
@@ -1652,9 +1652,9 @@ First, the abstract equality comparison `null == 0`. Normally, if this operator 
 true;
 ```
 
-However, according to a close reading of the spec, the number conversion doesn't actually happen on a side that is `null` or `undefined`. Therefore, if you have `null` on one side of the equal sign, the other side must be `null` or `undefined` for the expression to return `true`. Since this is not the case, `false` is returned.
+Jednak, zgodnie z dokładnym odczytaniem specyfikacji, konwersja liczb tak naprawdę nie zachodzi po stronie, która jest `null` lub `undefined`. Dlatego jeśli po jednej stronie znaku równości występuje `null`, druga strona musi być `null` lub `undefined`, aby wyrażenie mogło zwrócić `true`. Ponieważ tak nie jest, zwracane jest `false`.
 
-Next, the relational comparison `null > 0`. The algorithm here, unlike that of the abstract equality operator, _will_ convert `null` to a number. Therefore, we get this behavior:
+Następnie relacyjne porównanie `null> 0`. Algorytm tutaj, w przeciwieństwie do abstrakcyjnego operatora równości, _przekonwertuje_ `null` na liczbę. Dlatego otrzymujemy takie zachowanie:
 
 ```js
 null > 0
@@ -1663,7 +1663,7 @@ null > 0
 false
 ```
 
-Finally, the relational comparison `null >= 0`. You could argue that this expression should be the result of `null > 0 || null == 0`; if this were the case, then the above results would mean that this would also be `false`. However, the `>=` operator in fact works in a very different way, which is basically to take the opposite of the `<` operator. Because our example with the greater than operator above also holds for the less than operator, that means this expression is actually evaluated like so:
+Wreszcie relacyjne porównanie `null >= 0`. Można argumentować, że to wyrażenie powinno być wynikiem `null> 0 || null == 0`; gdyby tak było, powyższe wyniki oznaczałyby, że byłoby to również `false`. Jednak operator `> =` w rzeczywistości działa w zupełnie inny sposób, co w zasadzie ma przeciwne działanie niż operator `<`. Ponieważ nasz przykład z operatorem większym niż powyżej odnosi się również do operatora mniejszego niż, oznacza to, że to wyrażenie jest w rzeczywistości oceniane tak:
 
 ```js
 null >= 0;
@@ -1677,9 +1677,9 @@ true;
 - [**7.2.12** Abstract Relational Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-relational-comparison)
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## Same variable redeclaration
+## Redeklaracja tej samej zmiennej
 
-JS allows to redeclare variables:
+JS pozwala na ponowne zdefiniowanie zmiennych:
 
 ```js
 a;
@@ -1688,7 +1688,7 @@ a;
 a, a;
 ```
 
-Works also in strict mode:
+Działa również w trybie ścisłym:
 
 ```js
 var a, a, a;
@@ -1698,13 +1698,13 @@ var a;
 
 ### 💡 Wytłumaczenie:
 
-All definitions are merged into one definition.
+Wszystkie definicje są scalone w jedną definicję.
 
 - [**13.3.2** Variable Statement](https://www.ecma-international.org/ecma-262/#sec-variable-statement)
 
-## Default behavior Array.prototype.sort()
+## Domyślne zachowanie Array.prototype.sort()
 
-Imagine that you need to sort an array of numbers.
+Wyobraź sobie, że musisz posortować tablicę liczb.
 
 ```
 [ 10, 1, 3 ].sort() // -> [ 1, 10, 3 ]
@@ -1712,7 +1712,7 @@ Imagine that you need to sort an array of numbers.
 
 ### 💡 Wytłumaczenie:
 
-The default sort order is built upon converting the elements into strings, then comparing their sequences of UTF-16 code units values.
+Domyślna kolejność sortowania opiera się na konwersji elementów na ciągi, a następnie porównaniu ich sekwencji wartości jednostek kodu UTF-16.
 
 - [**22.1.3.25** Array.prototype.sort ( comparefn )](https://www.ecma-international.org/ecma-262/#sec-array.prototype.sort)
 
