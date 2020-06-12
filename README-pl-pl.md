@@ -3,11 +3,11 @@
 [![WTFPL 2.0][license-image]][license-url]
 [![NPM version][npm-image]][npm-url]
 
-> Lista zabawnych i trudnych przykładów JavaScript
+> Lista zabawnych i podchwytliwych przykładów JavaScript
 
 JavaScript to świetny język. Ma prostą składnię, duży ekosystem i, co najważniejsze, wspaniałą społeczność.
 
-Jednocześnie wszyscy wiemy, że JavaScript jest dość zabawnym językiem z trudnymi częściami. Niektóre z nich mogą szybko zamienić naszą codzienną pracę w piekło, a niektóre mogą rozśmieszyć nas na głos.
+Jednocześnie wszyscy wiemy, że JavaScript jest dość zabawnym językiem z podchwytliwymi częściami. Niektóre z nich mogą szybko zamienić naszą codzienną pracę w piekło, a niektóre mogą rozśmieszyć nas na głos.
 
 Oryginalny pomysł na WTFJS należy do [Brian Leroux](https://twitter.com/brianleroux). Ta lista jest bardzo zainspirowana jego przemową
  [**“WTFJS”** na dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
