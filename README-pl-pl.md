@@ -172,8 +172,8 @@ Zobacz też [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
 
 ## `true` nie jest równe `![]`, ale też nie równe `[]`
 
-Array is not equal `true`, but not Array is not equal `true` too;
-Array is equal `false`, not Array is equal `false` too:
+Tablica nie jest równa `true`, ale nie Tablica nie jest równa `true` również;
+Tablica jest równa `false`, nie Tablica jest równa `false` również:
 
 ```js
 true == []; // -> false
@@ -183,7 +183,7 @@ false == []; // -> true
 false == ![]; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 ```js
 true == []; // -> false
@@ -227,16 +227,16 @@ false == false; // -> true
 
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## true is false
+## prawda to fałsz
 
 ```js
 !!"false" == !!"true"; // -> true
 !!"false" === !!"true"; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
-Consider this step-by-step:
+Rozważ to krok po kroku:
 
 ```js
 // true is 'truthy' and represented by value 1 (number), 'true' in string form is NaN.
@@ -262,40 +262,40 @@ This is an old-school joke in JavaScript, but remastered. Here's the original on
 "foo" + +"bar"; // -> 'fooNaN'
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
-The expression is evaluated as `'foo' + (+'bar')`, which converts `'bar'` to not a number.
+Wyrażenie jest oceniane jako `'foo' + (+'bar')`, które konwertuje `'bar'` nie na liczbę.
 
 - [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 - [12.5.6 Unary + Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
 
-## `NaN` is not a `NaN`
+## `NaN` nie jest `NaN`
 
 ```js
 NaN === NaN; // -> false
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
-The specification strictly defines the logic behind this behavior:
+Specyfikacja ściśle określa logikę tego zachowania:
 
-> 1. If `Type(x)` is different from `Type(y)`, return **false**.
-> 2. If `Type(x)` is Number, then
->    1. If `x` is **NaN**, return **false**.
->    2. If `y` is **NaN**, return **false**.
+> 1. Jeśli `Type(x)` jest różny od `Type(y)`, zwraca **false**.
+> 2. Jeśli `Type(x)` jest Number, wtedy
+>    1. Jeśli `x` jest **NaN**, zwraca **false**.
+>    2. Jeśli `y` jest **NaN**, zwraca **false**.
 >    3. … … …
 >
 > &mdash; [**7.2.14** Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)
 
-Following the definition of `NaN` from the IEEE:
+Zgodnie z definicją `NaN` z IEEE:
 
-> Four mutually exclusive relations are possible: less than, equal, greater than, and unordered. The last case arises when at least one operand is NaN. Every NaN shall compare unordered with everything, including itself.
+> Możliwe są cztery wzajemnie wykluczające się relacje: mniejszy, równy, większy niż i nieuporządkowany. Ostatni przypadek powstaje, gdy co najmniej jednym operandem jest NaN. Każdy NaN porównuje się nieuporządkowany ze wszystkim, w tym samym sobą.
 >
 > &mdash; [“What is the rationale for all comparisons returning false for IEEE754 NaN values?”](https://stackoverflow.com/questions/1565164/1573715#1573715) at StackOverflow
 
-## It's a fail
+## To jest fail
 
-You would not believe, but …
+Nie uwierzyłbyś, ale …
 
 ```js
 (![] + [])[+[]] +
@@ -305,92 +305,92 @@ You would not believe, but …
 // -> 'fail'
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
-By breaking that mass of symbols into pieces, we notice that the following pattern occurs often:
+Po rozbiciu masy symboli na części zauważamy, że często występuje następujący wzór:
 
 ```js
 ![] + []; // -> 'false'
 ![]; // -> false
 ```
 
-So we try adding `[]` to `false`. But due to a number of internal function calls (`binary + Operator` -> `ToPrimitive` -> `[[DefaultValue]]`) we end up converting the right operand to a string:
+Więc próbujemy dodać `[]` do `false`. Ale z powodu wielu wywołań funkcji wewnętrznych (`binary + Operator` -> `ToPrimitive` -> `[[DefaultValue]]`) w końcu konwertujemy odpowiedni operand na ciąg:
 
 ```js
 ![] + [].toString(); // 'false'
 ```
 
-Thinking of a string as an array we can access its first character via `[0]`:
+Myśląc o łańcuchu jako tablicy, możemy uzyskać dostęp do jego pierwszego znaku za pośrednictwem `[0]`:
 
 ```js
 "false"[0]; // -> 'f'
 ```
 
-The rest is obvious, but the `i` is tricky. The `i` in `fail` is grabbed by generating the string `'falseundefined'` and grabbing the element on index `['10']`
+Reszta jest oczywista, ale `i` jest podchwytliwe. `i` w `fail` jest pobierany przez generowanie ciągu `'falseundefined'` i łapanie elementu na indeks `['10']`
 
-## `[]` is truthy, but not `true`
+## `[]` jest prawdziwe, ale nie `true`
 
-An array is a truthy value, however, it's not equal to `true`.
+Tablica jest prawdziwą wartością, jednak nie jest równa `true`.
 
 ```js
 !![]       // -> true
 [] == true // -> false
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
-Here are links to the corresponding sections in the ECMA-262 specification:
+Oto linki do odpowiednich sekcji specyfikacji ECMA-262:
 
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## `null` is falsy, but not `false`
+## `null` jest fałszywe, ale nie `false`
 
-Despite the fact that `null` is a falsy value, it's not equal to `false`.
+Pomimo faktu, że`null` jest wartością fałszywą, nie jest równa `false`.
 
 ```js
 !!null; // -> false
 null == false; // -> false
 ```
 
-At the same time, other falsy values, like `0` or `''` are equal to `false`.
+W tym samym czasie inne wartości fałszywe, takie jak `0` lub `''` są równe do `false`.
 
 ```js
 0 == false; // -> true
 "" == false; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
-The explanation is the same as for previous example. Here's the corresponding link:
+Wytłumaczenie jest takie samo jak w poprzednim przykładzie. Oto odpowiedni link:
 
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## `document.all` is an object, but it is undefined
+## `document.all` jest obiektem, ale jest undefined
 
-> ⚠️ This is part of the Browser API and won't work in a Node.js environment ⚠️
+> ⚠️ Jest to część interfejsu API przeglądarki i nie będzie działać w środowisku Node.js ⚠️
 
-Despite the fact that `document.all` is an array-like object and it gives access to the DOM nodes in the page, it responds to the `typeof` function as `undefined`.
+Pomimo faktu, że `document.all` jest obiektem tablicowym i daje dostęp do węzłów DOM na stronie, odpowiada na funkcję `typeof` jako `undefined`.
 
 ```js
 document.all instanceof Object; // -> true
 typeof document.all; // -> 'undefined'
 ```
 
-At the same time, `document.all` is not equal to `undefined`.
+W tym samym czasie, `document.all` nie jest równe `undefined`.
 
 ```js
 document.all === undefined; // -> false
 document.all === null; // -> false
 ```
 
-But at the same time:
+Ale w tym samym czasie:
 
 ```js
 document.all == null; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 > `document.all` used to be a way to access DOM elements, in particular with old versions of IE. While it has never been a standard it was broadly used in the old age JS code. When the standard progressed with new APIs (such as `document.getElementById`) this API call became obsolete and the standard committee had to decide what to do with it. Because of its broad use they decided to keep the API but introduce a willful violation of the JavaScript specification.
 > The reason why it responds to `false` when using the [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) with `undefined` while `true` when using the [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) is due to the willful violation of the specification that explicitly allows that.
@@ -406,7 +406,7 @@ document.all == null; // -> true
 Number.MIN_VALUE > 0; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 > `Number.MIN_VALUE` is `5e-324`, i.e. the smallest positive number that can be represented within float precision, i.e. that's as close as you can get to zero. It defines the best resolution that floats can give you.
 >
@@ -432,7 +432,7 @@ new Foo() instanceof null;
 // >     at … … …
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 This is not a part of the specification. It's just a bug that has now been fixed, so there shouldn't be a problem with it in the future.
 
@@ -444,7 +444,7 @@ What if you try to add two arrays?
 [1, 2, 3] + [4, 5, 6]; // -> '1,2,34,5,6'
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 The concatenation happens. Step-by-step, it looks like this:
 
@@ -471,7 +471,7 @@ a.length; // -> 3
 a.toString(); // -> ',,'
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 > **Trailing commas** (sometimes called "final commas") can be useful when adding new elements, parameters, or properties to JavaScript code. If you want to add a new property, you can simply add a new line without modifying the previously last line if that line already uses a trailing comma. This makes version-control diffs cleaner and editing code might be less troublesome.
 >
@@ -507,7 +507,7 @@ Array equality is a monster in JS, as you can see below:
 [[[[[[ undefined ]]]]]] == '' // true
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 You should watch very carefully for the above examples! The behaviour is described in section [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) of the specification.
 
@@ -520,7 +520,7 @@ Number(); // -> 0
 Number(undefined); // -> NaN
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 According to the specification:
 
@@ -542,7 +542,7 @@ parseInt("f*ck"); // -> NaN
 parseInt("f*ck", 16); // -> 15
 ```
 
-**💡 Explanation:** This happens because `parseInt` will continue parsing character-by-character until it hits a character it doesn't know. The `f` in `'f*ck'` is the hexadecimal digit `15`.
+**💡 Wytłumaczenie:** This happens because `parseInt` will continue parsing character-by-character until it hits a character it doesn't know. The `f` in `'f*ck'` is the hexadecimal digit `15`.
 
 Parsing `Infinity` to integer is something…
 
@@ -571,7 +571,7 @@ Be careful with parsing `null` too:
 parseInt(null, 24); // -> 23
 ```
 
-**💡 Explanation:**
+**💡 Wytłumaczenie:**
 
 > It's converting `null` to the string `"null"` and trying to convert it. For radixes 0 through 23, there are no numerals it can convert, so it returns NaN. At 24, `"n"`, the 14th letter, is added to the numeral system. At 31, `"u"`, the 21st letter, is added and the entire string can be decoded. At 37 on there is no longer any valid numeral set that can be generated and `NaN` is returned.
 >
@@ -585,7 +585,7 @@ parseInt("08"); // 8 if support ECMAScript 5
 parseInt("08"); // 0 if not support ECMAScript 5
 ```
 
-**💡 Explanation:** If the input string begins with "0", radix is eight (octal) or 10 (decimal). Exactly which radix is chosen is implementation-dependent. ECMAScript 5 specifies that 10 (decimal) is used, but not all browsers support this yet. For this reason always specify a radix when using `parseInt`.
+**💡 Wytłumaczenie:** If the input string begins with "0", radix is eight (octal) or 10 (decimal). Exactly which radix is chosen is implementation-dependent. ECMAScript 5 specifies that 10 (decimal) is used, but not all browsers support this yet. For this reason always specify a radix when using `parseInt`.
 
 `parseInt` always convert input to string:
 
@@ -602,7 +602,7 @@ parseInt(0.0000001); // -> 1
 parseInt(1 / 1999999); // -> 5
 ```
 
-**💡 Explanation:** `ParseInt` takes a string argument and returns an integer of the specified radix. `ParseInt` also strips anything after and including the first non-digit in the string parameter. `0.000001` is converted to a string `"0.000001"` and the `parseInt` returns `0`. When `0.0000001` is converted to a string it is treated as `"1e-7"` and hence `parseInt` returns `1`. `1/1999999` is interpreted as `5.00000250000125e-7` and `parseInt` returns `5`.
+**💡 Wytłumaczenie:** `ParseInt` takes a string argument and returns an integer of the specified radix. `ParseInt` also strips anything after and including the first non-digit in the string parameter. `0.000001` is converted to a string `"0.000001"` and the `parseInt` returns `0`. When `0.0000001` is converted to a string it is treated as `"1e-7"` and hence `parseInt` returns `1`. `1/1999999` is interpreted as `5.00000250000125e-7` and `parseInt` returns `5`.
 
 ## Math with `true` and `false`
 
@@ -620,7 +620,7 @@ true +
 
 Hmmm… 🤔
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 We can coerce values to numbers with the `Number` constructor. It's quite obvious that `true` will be coerced to `1`:
 
@@ -655,7 +655,7 @@ You will be impressed, but `<!--` (which is known as HTML comment) is a valid co
 <!-- valid comment too
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 Impressed? HTML-like comments were intended to allow browsers that didn't understand the `<script>` tag to degrade gracefully. These browsers, e.g. Netscape 1.x are no longer popular. So there is really no point in putting HTML comments in your script tags anymore.
 
@@ -671,9 +671,9 @@ Type of `NaN` is a `'number'`:
 typeof NaN; // -> 'number'
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
-Explanations of how `typeof` and `instanceof` operators work:
+Wytłumaczenies of how `typeof` and `instanceof` operators work:
 
 - [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
 - [**12.10.4** Runtime Semantics: InstanceofOperator(`O`,`C`)](https://www.ecma-international.org/ecma-262/#sec-instanceofoperator)
@@ -688,7 +688,7 @@ typeof null; // -> 'object'
 null instanceof Object; // false
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 The behavior of `typeof` operator is defined in this section of the specification:
 
@@ -720,7 +720,7 @@ Object.prototype.toString.call(null);
 10000000000000000 + 1.1; // -> 10000000000000002
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 This is caused by IEEE 754-2008 standard for Binary Floating-Point Arithmetic. At this scale, it rounds to the nearest even number. Read more:
 
@@ -740,7 +740,7 @@ A well-known joke. An addition of `0.1` and `0.2` is deadly precise:
   0.3; // -> false
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 The answer for the [”Is floating point math broken?”](https://stackoverflow.com/questions/588004/is-floating-point-math-broken) question on StackOverflow:
 
@@ -767,7 +767,7 @@ Number.prototype.isOne = function() {
   .isOne(); // -> false
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 Obviously, you can extend the `Number` object like any other object in JavaScript. However, it's not recommended if the behavior of the defined method is not a part of the specification. Here is the list of `Number`'s properties:
 
@@ -780,7 +780,7 @@ Obviously, you can extend the `Number` object like any other object in JavaScrip
 3 > 2 > 1; // -> false
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 Why does this work that way? Well, the problem is in the first part of an expression. Here's how it works:
 
@@ -827,7 +827,7 @@ Often the results of arithmetic operations in JavaScript might be quite unexpect
 [4, 4] * [4, 4] // NaN
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 What's happening in the first four examples? Here's a small table to understand addition in JavaScript:
 
@@ -875,7 +875,7 @@ RegExp.prototype.toString =
   -/5/; // -> 2
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 - [**21.2.5.10** get RegExp.prototype.source](https://www.ecma-international.org/ecma-262/#sec-get-regexp.prototype.source)
 
@@ -887,7 +887,7 @@ typeof "str"; // -> 'string'
 "str" instanceof String; // -> false
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 The `String` constructor returns a string:
 
@@ -940,7 +940,7 @@ f`true is ${true}, false is ${false}, array is ${[1, 2, 3]}`;
 // ->   [ 1, 2, 3 ] ]
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 Well, this is not magic at all if you're familiar with _Tagged template literals_. In the example above, `f` function is a tag for template literal. Tags before template literal allow you to parse template literals with a function. The first argument of a tag function contains an array of string values. The remaining arguments are related to the expressions. Example:
 
@@ -964,7 +964,7 @@ Link to the specification:
 console.log.call.call.call.call.call.apply(a => a, [1, 2]);
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 Attention, it could break your mind! Try to reproduce this code in your head: we're applying the `call` method using the `apply` method. Read more:
 
@@ -978,7 +978,7 @@ const c = "constructor";
 c[c][c]('console.log("WTF?")')(); // > WTF?
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 Let's consider this example step-by-step:
 
@@ -1015,7 +1015,7 @@ An `Object.prototype.constructor` returns a reference to the `Object` constructo
 { [{}]: {} } // -> { '[object Object]': {} }
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 Why does this work so? Here we're using a _Computed property name_. When you pass an object between those brackets, it coerces object to a string, so we get the property key `'[object Object]'` and the value `{}`.
 
@@ -1045,7 +1045,7 @@ As we know, primitives don't have prototypes. However, if we try to get a value 
 (1).__proto__.__proto__.__proto__; // -> null
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 This happens because when something doesn't have a prototype, it will be wrapped into a wrapper object using the `ToObject` method. So, step-by-step:
 
@@ -1080,7 +1080,7 @@ The answer is:
 // -> '[object Object]'
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 We defined an object with a property `Object` using _Shorthand property notation_:
 
@@ -1111,7 +1111,7 @@ The example above is a great task for an interview. What the value of `y`? The a
 // -> 1
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 ```js
 let x,
@@ -1138,7 +1138,7 @@ Interesting examples could be composed with spreading of arrays. Consider this:
 [...[..."..."]].length; // -> 3
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 Why `3`? When we use the [spread operator](http://www.ecma-international.org/ecma-262/6.0/#sec-array-initializer), the `@@iterator` method is called, and the returned iterator is used to obtain the values to be iterated. The default iterator for string spreads a string into characters. After spreading, we pack these characters into an array. Then we spread this array again and pack it back to an array.
 
@@ -1177,7 +1177,7 @@ foo: {
 // -> undefined
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 The labeled statement is used with `break` or `continue` statements. You can use a label to identify a loop, and then use the `break` or `continue` statements to indicate whether a program should interrupt the loop or continue its execution.
 
@@ -1194,7 +1194,7 @@ Read more about labels in JavaScript:
 a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 Similar to previous examples, follow these links:
 
@@ -1218,7 +1218,7 @@ What will this expression return? `2` or `3`?
 
 The answer is `3`. Surprised?
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 - [**13.15** The `try` Statement](https://www.ecma-international.org/ecma-262/#sec-try-statement)
 
@@ -1232,7 +1232,7 @@ new class F extends (String, Array) {}(); // -> F []
 
 Is this a multiple inheritance? Nope.
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 The interesting part is the value of the `extends` clause (`(String, Array)`). The grouping operator always returns its last argument, so `(String, Array)` is actually just `Array`. That means we've just created a class which extends `Array`.
 
@@ -1291,7 +1291,7 @@ As you can see, the returned value is an object with its `value` equal to `f`. I
 // …
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 To understand why this works that way, read these sections of the specification:
 
@@ -1310,7 +1310,7 @@ typeof new class {
 
 It seems like we're declaring a class inside of class. Should be an error, however, we get the string `'object'`.
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 Since ECMAScript 5 era, _keywords_ are allowed as _property names_. So think about it as this simple object example:
 
@@ -1381,7 +1381,7 @@ baz === 1; // -> false
 baz.valueOf() === 1; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 - [A gist by Sergey Rubanov](https://gist.github.com/chicoxyzzy/5dd24608e886adf5444499896dff1197)
 - [**6.1.5.1** Well-Known Symbols](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
@@ -1402,7 +1402,7 @@ let f = () => {};
 f(); // -> undefined
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 You might expect `{}` instead of `undefined`. This is because the curly braces are part of the syntax of the arrow functions, so `f` will return undefined. It is however possible to return the `{}` object directly from an arrow function, by enclosing the return value with brackets.
 
@@ -1431,7 +1431,7 @@ let f = () => {
 new f(); // -> TypeError: f is not a constructor
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 Arrow functions cannot be used as constructors and will throw an error when used with new. Because has a lexical `this`, and do not have a `prototype` property, so it would not make much sense.
 
@@ -1453,7 +1453,7 @@ let f = () => arguments;
 f("a"); // -> Uncaught ReferenceError: arguments is not defined
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 Arrow functions are a lightweight version of regular functions with a focus on being short and lexical `this`. At the same time arrow functions do not provide a binding for the `arguments` object. As a valid alternative use the `rest parameters` to achieve the same result:
 
@@ -1479,7 +1479,7 @@ f("a");
 ```
 <!-- prettier-ignore-end -->
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 `return` and the returned expression must be in the same line:
 
@@ -1511,7 +1511,7 @@ bar; // -> {n: 1, x: {n: 2}}
 
 From right to left, `{n: 2}` is assigned to foo, and the result of this assignment `{n: 2}` is assigned to foo.x, that's why bar is `{n: 1, x: {n: 2}}` as bar is a reference to foo. But why foo.x is undefined while bar.x is not ?
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 Foo and bar references the same object `{n: 1}`, and lvalues are resolved before assignations. `foo = {n: 2}` is creating a new object, and so foo is updated to reference that new object. The trick here is foo in `foo.x = ...` as a lvalue was resolved beforehand and still reference the old `foo = {n: 1}` object and update it by adding the x value. After that chain assignments, bar still reference the old foo object, but foo reference the new `{n: 2}` object, where x is not existing.
 
@@ -1551,7 +1551,7 @@ map["1,2,3"]; // -> true
 map["11,2,3"]; // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 The brackets `[]` operator converts the passed expression using `toString`. Converting a one-element array to a string is akin to converting the contained element to the string:
 
@@ -1568,9 +1568,9 @@ null == 0; // false
 null >= 0; // true
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
-Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `true`. Read in-depth explanation for this [here](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274).
+Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `true`. Read in-depth Wytłumaczenie for this [here](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274).
 
 ## `Number.toFixed()` display different numbers
 
@@ -1587,7 +1587,7 @@ Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `tr
 // IE11: -> 0.788
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 While your first instinct may be that IE11 is correct and Firefox/Chrome are wrong, the reality is that Firefox/Chrome are more directly obeying standards for numbers (IEEE-754 Floating Point), while IE11 is minutely disobeying them in (what is probably) an effort to give clearer results.
 
@@ -1623,7 +1623,7 @@ Math.max(); // -> -Infinity
 Math.min() > Math.max(); // -> true
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 - [Why is Math.max() less than Math.min()?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min) by Charlie Harvey
 
@@ -1639,7 +1639,7 @@ null >= 0; // -> true
 
 How can `null` be neither equal to nor greater than `0`, if `null >= 0` is actually `true`? (This also works with less than in the same way.)
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 The way these three expressions are evaluated are all different and are responsible for producing this unexpected behavior.
 
@@ -1696,7 +1696,7 @@ var a;
 var a;
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 All definitions are merged into one definition.
 
@@ -1710,27 +1710,27 @@ Imagine that you need to sort an array of numbers.
 [ 10, 1, 3 ].sort() // -> [ 1, 10, 3 ]
 ```
 
-### 💡 Explanation:
+### 💡 Wytłumaczenie:
 
 The default sort order is built upon converting the elements into strings, then comparing their sequences of UTF-16 code units values.
 
 - [**22.1.3.25** Array.prototype.sort ( comparefn )](https://www.ecma-international.org/ecma-262/#sec-array.prototype.sort)
 
-### Hint
+### Wskazówka
 
-Pass `comparefn` if you try to sort anything but string.
+Przekaż `comparefn` jeśli spróbujesz posortować cokolwiek poza ciągiem znaków.
 
 ```
 [ 10, 1, 3 ].sort((a, b) => a - b) // -> [ 1, 3, 10 ]
 ```
 
-# 📚 Other resources
+# 📚 Inne materiały
 
-- [wtfjs.com](http://wtfjs.com/) — a collection of those very special irregularities, inconsistencies and just plain painfully unintuitive moments for the language of the web.
-- [Wat](https://www.destroyallsoftware.com/talks/wat) — A lightning talk by Gary Bernhardt from CodeMash 2012
-- [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — Kyle Simpsons talk for Forward 2 attempts to “pull out the crazy” from JavaScript. He wants to help you produce cleaner, more elegant, more readable code, then inspire people to contribute to the open source community.
+- [wtfjs.com](http://wtfjs.com/) — zbiór tych bardzo wyjątkowych nieprawidłowości, niespójności i po prostu bolesnie nieintuicyjnych momentów dla języka webowego.
+- [Wat](https://www.destroyallsoftware.com/talks/wat) — Lightning talk od Gary Bernhardt z CodeMash 2012
+- [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — Kyle Simpsons mówi dla Forward 2 o próbach "wyciągnięcia szaleństwa" z JavaScript. Chce pomóc ci w tworzeniu czystszego, bardziej eleganckiego, bardziej czytelnego kodu, a następnie zainspirować ludzi do współpracy w społeczności open source.
 
-# 🎓 License
+# 🎓 Licencja
 
 [![CC 4.0][license-image]][license-url]
 
@@ -1740,3 +1740,5 @@ Pass `comparefn` if you try to sort anything but string.
 [license-image]: https://img.shields.io/badge/License-WTFPL%202.0-lightgrey.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/wtfjs
 [npm-image]: https://img.shields.io/npm/v/wtfjs.svg?style=flat-square
+
+Wersja polska od @[mbiesiad](https://github.com/mbiesiad)
