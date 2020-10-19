@@ -607,8 +607,8 @@ parseInt(1 / 1999999); // -> 5
 Let's do some math:
 
 ```js
-true +
-  true(
+true -
+  true + (
     // -> 2
     true + true
   ) *
