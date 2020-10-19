@@ -333,7 +333,7 @@ null == false; // -> false
 
 > ⚠️ 这是浏览器 API 的一部分，对于 Node.js 环境无效 ⚠️
 
-尽管 document.all 是一个 array-like object 并且通过它剋有访问页面中的 DOM 节点，但在通过 `typeof` 的检测结果是 `undefined`。
+尽管 document.all 是一个 array-like object 并且通过它可以访问页面中的 DOM 节点，但在通过 `typeof` 的检测结果是 `undefined`。
 
 ```js
 document.all instanceof Object; // -> true
