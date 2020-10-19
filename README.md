@@ -1417,7 +1417,7 @@ Consider the example below:
 let f = function() {
   this.a = 1;
 };
-new f(); // -> { 'a': 1 }
+new f(); // -> f { 'a': 1 }
 ```
 
 Now, try do to the same with an arrow function:
