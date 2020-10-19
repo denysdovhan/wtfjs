@@ -30,6 +30,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
 Currently, there are these translations of **wtfjs**:
 
 - [中文版](./README-zh-cn.md)
+- [हिंदी](./README-hi.md)
 
 [**Request another translation**][tr-request]
 
