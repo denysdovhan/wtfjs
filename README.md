@@ -31,6 +31,7 @@ Currently, there are these translations of **wtfjs**:
 
 - [中文版](./README-zh-cn.md)
 - [Français](./README-fr-fr.md)
+- [Português do Brasil](./README-pt-br.md)
 - [Polski](./README-pl-pl.md)
 
 [**Request another translation**][tr-request]
@@ -40,7 +41,6 @@ Currently, there are these translations of **wtfjs**:
 <!-- prettier-ignore-start -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 # Table of Contents
 
 - [💪🏻 Motivation](#-motivation)
