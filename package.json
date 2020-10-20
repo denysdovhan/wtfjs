@@ -1,6 +1,6 @@
 {
   "name": "wtfjs",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "A list of funny and tricky JavaScript examples",
   "bin": "wtfjs.js",
   "scripts": {
@@ -46,10 +46,10 @@
   "lint-staged": {
     "*.{md}": [
       "npm run toc",
-      "npm run format"
+      "prettier --write"
     ],
     "*.{js,json}": [
-      "npm run format"
+      "prettier --write"
     ]
   }
 }

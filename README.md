@@ -31,14 +31,16 @@ Currently, there are these translations of **wtfjs**:
 
 - [中文版](./README-zh-cn.md)
 - [हिंदी](./README-hi.md)
+- [Français](./README-fr-fr.md)
+- [Português do Brasil](./README-pt-br.md)
 
 [**Request another translation**][tr-request]
 
 [tr-request]: https://github.com/denysdovhan/wtfjs/issues/new?title=Translation%20Request:%20%5BPlease%20enter%20language%20here%5D&body=I%20am%20able%20to%20translate%20this%20language%20%5Byes/no%5D
 
+<!-- prettier-ignore-start -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 # Table of Contents
 
 - [💪🏻 Motivation](#-motivation)
@@ -98,10 +100,12 @@ Currently, there are these translations of **wtfjs**:
   - [Comparing `null` to `0`](#comparing-null-to-0)
   - [Same variable redeclaration](#same-variable-redeclaration)
   - [Default behavior Array.prototype.sort()](#default-behavior-arrayprototypesort)
+  - [resolve() won't return Promise instance](#resolve-wont-return-promise-instance)
 - [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- prettier-ignore-end -->
 
 # 💪🏻 Motivation
 
@@ -214,7 +218,7 @@ toNumber([]); // -> 0
 
 0 == 0; // -> true
 
-false == ![]; // -> false
+false == ![]; // -> true
 
 ![]; // -> false
 
@@ -605,8 +609,8 @@ parseInt(1 / 1999999); // -> 5
 Let's do some math:
 
 ```js
-true +
-  true(
+true -
+  true + (
     // -> 2
     true + true
   ) *
@@ -841,6 +845,21 @@ What about other examples? A `ToPrimitive` and `ToString` methods are being impl
 - [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 - [**7.1.1** ToPrimitive(`input` [,`PreferredType`])](https://www.ecma-international.org/ecma-262/#sec-toprimitive)
 - [**7.1.12** ToString(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tostring)
+
+Notably, `{} + []` here is the exception. The reason why it differs from `[] + {}` is that, without parenthesis, it is interpreted as a code block and then a unary +, converting `[]` into a number. It sees the following:
+
+```js
+{
+  // a code block here
+}
++[]; // -> 0
+```
+
+To get the same output as `[] + {}` we can wrap it in parenthesis.
+
+```js
+({} + []); // -> [object Object]
+```
 
 ## Addition of RegExps
 
@@ -1400,7 +1419,7 @@ Consider the example below:
 let f = function() {
   this.a = 1;
 };
-new f(); // -> { 'a': 1 }
+new f(); // -> f { 'a': 1 }
 ```
 
 Now, try do to the same with an arrow function:
@@ -1449,6 +1468,7 @@ f("a");
 
 `return` statement is also tricky. Consider this:
 
+<!-- prettier-ignore-start -->
 ```js
 (function() {
   return
@@ -1457,6 +1477,7 @@ f("a");
   }
 })(); // -> undefined
 ```
+<!-- prettier-ignore-end -->
 
 ### 💡 Explanation:
 
@@ -1478,14 +1499,14 @@ This is because of a concept called Automatic Semicolon Insertion, which automag
 ## Chaining assignments on object
 
 ```js
-var foo = {n: 1};
+var foo = { n: 1 };
 var bar = foo;
 
-foo.x = foo = {n: 2};
+foo.x = foo = { n: 2 };
 
-foo.x // -> undefined
-foo   // -> {n: 2}
-bar   // -> {n: 1, x: {n: 2}}
+foo.x; // -> undefined
+foo; // -> {n: 2}
+bar; // -> {n: 1, x: {n: 2}}
 ```
 
 From right to left, `{n: 2}` is assigned to foo, and the result of this assignment `{n: 2}` is assigned to foo.x, that's why bar is `{n: 1, x: {n: 2}}` as bar is a reference to foo. But why foo.x is undefined while bar.x is not ?
@@ -1497,15 +1518,14 @@ Foo and bar references the same object `{n: 1}`, and lvalues are resolved before
 It's equivalent to:
 
 ```js
-var foo = {n: 1};
+var foo = { n: 1 };
 var bar = foo;
 
-foo = {n: 2} // -> {n: 2}
-bar.x = foo // -> {n: 1, x: {n: 2}}
+foo = { n: 2 }; // -> {n: 2}
+bar.x = foo; // -> {n: 1, x: {n: 2}}
 // bar.x point to the address of the new foo object
 // it's not equivalent to: bar.x = {n: 2}
 ```
-
 
 ## Accessing object properties with arrays
 
@@ -1703,6 +1723,48 @@ Pass `comparefn` if you try to sort anything but string.
 ```
 [ 10, 1, 3 ].sort((a, b) => a - b) // -> [ 1, 3, 10 ]
 ```
+
+## resolve() won't return Promise instance
+
+```javascript
+const theObject = {
+  "a": 7,
+};
+const thePromise = new Promise((resolve, reject) => {
+  resolve(theObject);
+}); // -> Promise instance object
+
+thePromise.then(value => {
+  console.log(value === theObject); // -> true
+  console.log(value); // -> { a: 7 }
+})
+```
+
+The `value` which is resolved from `thePromise` is exactly `theObject`.
+
+How about input another `Promise` into the `resolve` function?
+
+```javascript
+const theObject = new Promise((resolve, reject) => {
+  resolve(7);
+}); // -> Promise instance object
+const thePromise = new Promise((resolve, reject) => {
+  resolve(theObject);
+}); // -> Promise instance object
+
+thePromise.then(value => {
+  console.log(value === theObject); // -> false
+  console.log(value); // -> 7
+})
+```
+
+### 💡 Explanation:
+
+> This function flattens nested layers of promise-like objects (e.g. a promise that resolves to a promise that resolves to something) into a single layer.
+
+&ndash; [Promise.resolve() on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
+
+ The specification is [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions). But it is not quite human-friendly.
 
 # 📚 Other resources
 
