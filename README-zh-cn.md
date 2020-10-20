@@ -136,6 +136,8 @@ $ npm install -g wtfjs
   - [Array.prototype.sort() 的默认行为](#arrayprototypesort-%E7%9A%84%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA)
     - [💡 说明：](#-%E8%AF%B4%E6%98%8E-50)
     - [提示](#%E6%8F%90%E7%A4%BA)
+  - [resolve() 不会返回 Promise 实例](#resolve-%E4%B8%8D%E4%BC%9A%E8%BF%94%E5%9B%9E-promise-%E5%AE%9E%E4%BE%8B)
+    - [💡 说明：](#-%E8%AF%B4%E6%98%8E-51)
 - [其他资源](#%E5%85%B6%E4%BB%96%E8%B5%84%E6%BA%90)
 - [🎓 License](#-license)
 
@@ -1663,6 +1665,48 @@ var a;
 ```
 [ 10, 1, 3 ].sort((a, b) => a - b) // -> [ 1, 3, 10 ]
 ```
+
+## resolve() 不会返回 Promise 实例
+
+```javascript
+const theObject = {
+  "a": 7,
+};
+const thePromise = new Promise((resolve, reject) => {
+  resolve(theObject);
+}); // -> Promise 实例对象
+
+thePromise.then(value => {
+  console.log(value === theObject); // -> true
+  console.log(value); // -> { a: 7 }
+})
+```
+
+从`thePromise`接收到的`value`值完全就是`theObject`。
+
+那么，如果向`resolve`传入另外一个`Promise`会怎样？
+
+```javascript
+const theObject = new Promise((resolve, reject) => {
+  resolve(7);
+}); // -> Promise 实例对象
+const thePromise = new Promise((resolve, reject) => {
+  resolve(theObject);
+}); // -> Promise 实例对象
+
+thePromise.then(value => {
+  console.log(value === theObject); // -> false
+  console.log(value); // -> 7
+})
+```
+
+### 💡 说明：
+
+> 此函数将类promise对象的多层嵌套展平。
+
+&ndash; [Promise.resolve() on MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
+
+官方规范是 [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions)，由于是机械思维，所以难以读懂。
 
 # 其他资源
 

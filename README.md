@@ -99,6 +99,7 @@ Currently, there are these translations of **wtfjs**:
   - [Comparing `null` to `0`](#comparing-null-to-0)
   - [Same variable redeclaration](#same-variable-redeclaration)
   - [Default behavior Array.prototype.sort()](#default-behavior-arrayprototypesort)
+  - [resolve() won't return Promise instance](#resolve-wont-return-promise-instance)
 - [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 
@@ -1721,6 +1722,48 @@ Pass `comparefn` if you try to sort anything but string.
 ```
 [ 10, 1, 3 ].sort((a, b) => a - b) // -> [ 1, 3, 10 ]
 ```
+
+## resolve() won't return Promise instance
+
+```javascript
+const theObject = {
+  "a": 7,
+};
+const thePromise = new Promise((resolve, reject) => {
+  resolve(theObject);
+}); // -> Promise instance object
+
+thePromise.then(value => {
+  console.log(value === theObject); // -> true
+  console.log(value); // -> { a: 7 }
+})
+```
+
+The `value` which is resolved from `thePromise` is exactly `theObject`.
+
+How about input another `Promise` into the `resolve` function?
+
+```javascript
+const theObject = new Promise((resolve, reject) => {
+  resolve(7);
+}); // -> Promise instance object
+const thePromise = new Promise((resolve, reject) => {
+  resolve(theObject);
+}); // -> Promise instance object
+
+thePromise.then(value => {
+  console.log(value === theObject); // -> false
+  console.log(value); // -> 7
+})
+```
+
+### 💡 Explanation:
+
+> This function flattens nested layers of promise-like objects (e.g. a promise that resolves to a promise that resolves to something) into a single layer.
+
+&ndash; [Promise.resolve() on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
+
+ The specification is [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions). But it is not quite human-friendly.
 
 # 📚 Other resources
 
