@@ -1702,9 +1702,9 @@ thePromise.then(value => {
 
 ### 💡 说明：
 
-> 但如果这个（传入到resolve函数的）值是个thenable（即带有then方法），返回的promise会“跟随”这个thenable的对象，采用它的最终状态（指resolved/rejected/pending/settled）；如果传入的value本身就是promise对象，则该对象作为Promise.resolve方法的返回值返回；否则以该值为成功状态返回promise对象。
+> 此函数将类promise对象的多层嵌套展平。
 
-&ndash; [Promise.resolve() on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
+&ndash; [Promise.resolve() on MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
 
 官方规范是 [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions)，由于是机械思维，所以难以读懂。
 
