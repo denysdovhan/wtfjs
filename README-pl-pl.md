@@ -90,8 +90,8 @@ Obecnie są następujące tłumaczenia **wtfjs**:
   - [Klasa klasy](#klasa-klasy)
   - [Non-coercible objects](#non-coercible-objects)
   - [Podstępne funkcje strzałkowe](#podstępne-funkcje-strzałkowe)
-  - [Funkcje strzałek nie mogą być konstruktorami](#funkcje-strzałek-nie-mogą-być-konstruktorami)
-  - [`arguments` i funkcje strzałek](#arguments-i-funkcje-strzałek)
+  - [Funkcje strzałkowe nie mogą być konstruktorami](#funkcje-strzałkowe-nie-mogą-być-konstruktorami)
+  - [`arguments` i funkcje strzałkowe](#arguments-i-funkcje-strzałkowe)
   - [Podstępny return](#podstępny-return)
   - [Chaining assignments on object](#chaining-assignments-on-object)
   - [Dostęp do właściwości obiektu za pomocą tablic](#dostęp-do-właściwości-obiektu-za-pomocą-tablic)
@@ -1404,14 +1404,14 @@ f(); // -> undefined
 
 ### 💡 Wytłumaczenie:
 
-Możesz oczekiwać `{}` zamiast `undefined`. Wynika to z faktu, że nawiasy klamrowe są częścią składni funkcji strzałek, więc `f` zwróci niezdefiniowane. Możliwe jest jednak zwrócenie obiektu `{}` bezpośrednio z funkcji strzałki, poprzez umieszczenie wartości zwracanej w nawiasach.
+Możesz oczekiwać `{}` zamiast `undefined`. Wynika to z faktu, że nawiasy klamrowe są częścią składni funkcji strzałkowych, więc `f` zwróci niezdefiniowane. Możliwe jest jednak zwrócenie obiektu `{}` bezpośrednio z funkcji strzałkowej, poprzez umieszczenie wartości zwracanej w nawiasach.
 
 ```js
 let f = () => ({});
 f(); // -> {}
 ```
 
-## Funkcje strzałek nie mogą być konstruktorami
+## Funkcje strzałkowe nie mogą być konstruktorami
 
 Rozważ poniższy przykład:
 
@@ -1422,7 +1422,7 @@ let f = function() {
 new f(); // -> { 'a': 1 }
 ```
 
-Teraz spróbuj zrobić to samo z funkcją strzałki:
+Teraz spróbuj zrobić to samo z funkcją strzałkowej:
 
 ```js
 let f = () => {
@@ -1433,9 +1433,9 @@ new f(); // -> TypeError: f is not a constructor
 
 ### 💡 Wytłumaczenie:
 
-Funkcje strzałek nie mogą być używane jako konstruktory i będą zgłaszać błąd, gdy będą używane z nowym. Ponieważ ma leksykalne `this` i nie ma właściwości `prototype`, więc nie miałoby to większego sensu.
+Funkcje strzałkowe nie mogą być używane jako konstruktory i będą zgłaszać błąd, gdy będą używane z nowym. Ponieważ ma leksykalne `this` i nie ma właściwości `prototype`, więc nie miałoby to większego sensu.
 
-## `arguments` i funkcje strzałek
+## `arguments` i funkcje strzałkowe
 
 Rozważ poniższy przykład:
 
@@ -1446,7 +1446,7 @@ let f = function() {
 f("a"); // -> { '0': 'a' }
 ```
 
-Teraz spróbuj zrobić to samo z funkcją strzałki:
+Teraz spróbuj zrobić to samo z funkcją strzałkową:
 
 ```js
 let f = () => arguments;
@@ -1455,14 +1455,14 @@ f("a"); // -> Uncaught ReferenceError: arguments is not defined
 
 ### 💡 Wytłumaczenie:
 
-Funkcje strzałek to lekka wersja zwykłych funkcji z naciskiem na bycie krótkim i leksykalnym `this`. Jednocześnie funkcje strzałek nie zapewniają wiązania dla obiektu `arguments`. Jako prawidłową alternatywę użyj `rest parameters`, aby osiągnąć ten sam wynik:
+Funkcje strzałkowe to lekka wersja zwykłych funkcji z naciskiem na bycie krótkim i leksykalnym `this`. Jednocześnie funkcje strzałkowe nie zapewniają wiązania dla obiektu `arguments`. Jako prawidłową alternatywę użyj `rest parameters`, aby osiągnąć ten sam wynik:
 
 ```js
 let f = (...args) => args;
 f("a");
 ```
 
-- [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) at MDN.
+- [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) na MDN.
 
 ## Podstępny return
 
