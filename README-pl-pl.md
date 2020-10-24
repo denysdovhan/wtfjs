@@ -117,7 +117,7 @@ Głównym celem tej listy jest zebranie szalonych przykładów i wyjaśnienie, w
 
 Jeśli jesteś początkujący, możesz skorzystać z tych notatek, aby głębiej zagłębić się w JavaScript. Mam nadzieję, że te notatki zmotywują cię do spędzenia więcej czasu na czytaniu specyfikacji.
 
-Jeśli jesteś profesjonalnym programistą, możesz rozważyć te przykłady jako świetne źródło informacji o wszystkich dziwactwach i nieoczekiwanych krawędziach naszego ukochanego JavaScript.
+Jeśli jesteś profesjonalnym programistą, możesz rozważyć te przykłady, jako świetne źródło informacji o wszystkich dziwactwach i nieoczekiwanych krawędziach naszego ukochanego JavaScript.
 
 W każdym razie po prostu przeczytaj to. Prawdopodobnie znajdziesz coś nowego.
 
@@ -165,15 +165,15 @@ Oto jak to wyrażenie upraszcza:
 true;
 ```
 
-Zobacz też [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
+Zobacz też [`[]` jest prawdziwe, ale nie `true`](##-jest-prawdziwe-ale-nie-true).
 
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 ## `true` nie jest równe `![]`, ale też nie równe `[]`
 
-Tablica nie jest równa `true`, ale nie Tablica nie jest równa `true` również;
-Tablica jest równa `false`, nie Tablica jest równa `false` również:
+Tablica nie jest równa `true`, ale zanegowana tablica też nie jest równa `true`;
+Tablica jest równa `false`, zanegowana tablica również jest równa `false`:
 
 ```js
 true == []; // -> false
@@ -256,7 +256,7 @@ false == "false"; // -> false
 "b" + "a" + +"a" + "a"; // -> 'baNaNa'
 ```
 
-This is an old-school joke in JavaScript, but remastered. Here's the original one:
+To stary żart w JavaScript, ale odnowiony. Oto oryginał:
 
 ```js
 "foo" + +"bar"; // -> 'fooNaN'
