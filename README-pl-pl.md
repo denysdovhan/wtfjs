@@ -1422,7 +1422,7 @@ let f = function() {
 new f(); // -> { 'a': 1 }
 ```
 
-Teraz spróbuj zrobić to samo z funkcją strzałkowej:
+Teraz spróbuj zrobić to samo z funkcją strzałkową:
 
 ```js
 let f = () => {
