@@ -101,6 +101,7 @@ Currently, there are these translations of **wtfjs**:
   - [Same variable redeclaration](#same-variable-redeclaration)
   - [Default behavior Array.prototype.sort()](#default-behavior-arrayprototypesort)
   - [resolve() won't return Promise instance](#resolve-wont-return-promise-instance)
+  - [```{}{}``` is undefined](#user-content--is-undefined)
 - [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 
@@ -1766,7 +1767,7 @@ thePromise.then(value => {
 
  The specification is [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions). But it is not quite human-friendly.
  
-## `{}{}`
+## `{}{}` is undefined
 
 Write them in console. They will return the value that defined in last object.
 
