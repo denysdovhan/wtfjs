@@ -1765,6 +1765,37 @@ thePromise.then(value => {
 &ndash; [Promise.resolve() on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
 
  The specification is [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions). But it is not quite human-friendly.
+ 
+## `{}{}`
+
+Write them in console. They will return the value that defined in last object.
+
+```
+{}{}; // undefined
+{}{}{}; // undefined
+{}{}{}{}; // undefined
+{foo: 'bar'}{}; // 'bar'
+{}{foo: 'bar'}; // 'bar'
+{}{foo: 'bar'}{}; // 'bar'
+{a: 'b'}{c:' d'}{}; // 'd'
+{a: 'b', c: 'd'}{}; // SyntaxError: Unexpected token ':'
+({}{}); // SyntaxError: Unexpected token '{'
+```
+
+### 💡 Explanation:
+
+When inspecting each ```{}```, they returns undefined. If you inspect ```{foo: 'bar'}{}```, you will find ```{foo: 'bar'}``` is ```'bar'```.
+
+There are 2 meaning for {}: object and block.
+For example, the {} in ()=>{} means block. So we need to use ()=>({}) to return an object.
+
+Let's use ```{foo: 'bar'}``` as a block. Write this snippet in your console:
+
+```
+if(true) {foo: 'bar'} // 'bar'
+```
+
+Surprisingly, it behaviors the same! You can guess here that ```{foo: 'bar'}{}``` is a block.
 
 # 📚 Other resources
 
