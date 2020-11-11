@@ -394,7 +394,7 @@ document.all == null; // -> true
 ### 💡 Spiegazione:
 
 > `document.all` veniva utilizzato per accedere agli elementi del DOM, in con le vecchie versioni di IE. Nonostante non sia mai diventato uno standard, veniva ampiamente utilizzato in codice JS non proprio recentissimo. Quando vennero rilasciate le nuove APIs (come `document.getElementById`) questa API divenne obsoleta e il comitato dello standard dovette decidere cosa farne. A causa del suo strauso l'API venne mantenuta ma venne introdotta una violazione intenzionale nelle speficiche di JavaScript.
-> Il motivo per il quale risponde a `false` quando si utilizza l'operatore di [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) con `undefined`, mentre `true` quando si utilizza l'operatore di [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) è a causa della violazione intenzionale inserita nella specifica, che la permette in modo esplicito. 
+> Il motivo per il quale risponde a `false` quando si utilizza l'operatore di [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) con `undefined`, mentre `true` quando si utilizza l'operatore di [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) è a causa della violazione intenzionale inserita nella specifica che la permette in modo esplicito. 
 
 >
 > &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec
