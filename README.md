@@ -33,6 +33,7 @@ Currently, there are these translations of **wtfjs**:
 - [Français](./README-fr-fr.md)
 - [Português do Brasil](./README-pt-br.md)
 - [Polski](./README-pl-pl.md)
+- [Italiano](./README-it-it.md)
 
 [**Request another translation**][tr-request]
 
