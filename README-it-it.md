@@ -3,13 +3,13 @@
 [![WTFPL 2.0][license-image]][license-url]
 [![NPM version][npm-image]][npm-url]
 
-> Una raccolta di snippet divertenti e complicati scritti in JavaScript 
+> Una raccolta di snippet ingannevoli e divertenti scritti in JavaScript 
 
 JavaScript è un ottimo linguaggio. Ha una sintassi semplice, un grande ecosistema e, quello che conta veramente, una community fantastica.
 
 Allo stesso tempo, sappiamo che JavaScript è un linguaggio abbastanza strano con delle parti cervellotiche. Alcune di queste possono rendere il nostro lavoro un inferno, alcune invece possono farci ridere a crepapelle. 
 
-L'idea per WTFJS è di [Brian Leroux](https://twitter.com/brianleroux). Questo elengo è largamente ispirato al suo talk [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
+L'idea per WTFJS è di [Brian Leroux](https://twitter.com/brianleroux). Questo elenco è largamente ispirato al suo talk [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
 [![dotJS 2012 - Brian Leroux - WTFJS](https://img.youtube.com/vi/et8xNAc2ic8/0.jpg)](https://www.youtube.com/watch?v=et8xNAc2ic8)
 
@@ -45,7 +45,7 @@ Attualmente **wtfjs** è disponibile nelle seguenti lingue:
 # Table of Contents
 
 - [💪🏻 Motivazione](#-motivazione)
-- [✍🏻 Notazione](#-motazione)
+- [✍🏻 Notazione](#-notazione)
 - [👀 Esempi](#-esempi)
   - [`[]` è uguale a `![]`](#-è-uguale-a-)
   - [`true` è diverso da `![]`, ma anche diverso da `[]` ](#true-è-diverso-da--ma-anche-diverso-da-)
@@ -85,7 +85,7 @@ Attualmente **wtfjs** è disponibile nelle seguenti lingue:
   - [Labels](#labels)
   - [Labels annidate](#labels-annidate)
   - [Un `try..catch` insidioso](#un-trycatch-insidioso)
-  - [Questa è ereditarietà multipla?](#questa-è-ereditarietà-multipla)
+  - [Si tratta di ereditarietà multipla?](#si-tratta-di-ereditarietà-multipla)
   - [Un generator che produce se stesso](#un-generator-che-produce-se-stesso)
   - [Una classe di tipo class](#una-classe-di-tipo-class)
   - [Oggetti non-coercible](#oggetti-non-coercible)
@@ -114,13 +114,13 @@ Attualmente **wtfjs** è disponibile nelle seguenti lingue:
 >
 > &mdash; _[**“Just for Fun: The Story of an Accidental Revolutionary”**](https://en.wikipedia.org/wiki/Just_for_Fun), Linus Torvalds_
 
-Lo scopo principale di questo elenco è quello di raccogliere un po' di esempi strambi e mostrarne il loro funzionamento, se possibile. Semplicemente per il fatto che è divertente imparare qualcosa che non sapevamo prima.
+Lo scopo principale di questo elenco è quello di raccogliere alcuni esempi strambi e mostrarne il loro funzionamento, se possibile. Semplicemente per il fatto che è divertente imparare qualcosa che non sapevamo prima.
 
 Se sei un principiante puoi utilizzare questi appunti per approfondire JavaScript. Spero che questi appunti ti motivino a leggerne le specifiche.
 
 Se sei uno sviluppatore senior, considera questi esempi come un'ottimo punto di riferimento per tutte quelle stranezze e stramberie del tuo amato JavaScript.
 
-In ogni caso leggi. Probabilmente imparerai qualcosa di nuovo.
+Ad ogni modo, leggilo. Probabilmente imparerai qualcosa di nuovo.
 
 # ✍🏻 Notazione
 
@@ -166,7 +166,7 @@ Qui possiamo vedere come viene semplificata l'espressione:
 true;
 ```
 
-Guarda anche [`[]` è truthy, ma non `true`](#-is-truthy-but-not-true).
+Vedi anche [`[]` è truthy, ma non `true`](#-is-truthy-but-not-true).
 
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
@@ -257,7 +257,7 @@ false == "false"; // -> false
 "b" + "a" + +"a" + "a"; // -> 'baNaNa'
 ```
 
-Questo è un giochino old-school in JavaScript, ma "remastered". L'originale è questo:
+Questo è un giochino old-school in JavaScript, rivisitato. L'originale è questo:
 
 ```js
 "foo" + +"bar"; // -> 'fooNaN'
@@ -290,7 +290,7 @@ Le specifiche definiscono rigorosamente la logica dietro a questo comportamento:
 
 Seguendo la definizione di `NaN` da quella dell'IEEE:
 
-> Sono possibili quattro relazioni mutuamente esclusive: less than, equal, greater than, and unordered. L'ultimo caso si presenta quando almeno un operando è NaN. Tutt i NaN se comparati risulteranno unordered, inclusa la comparazione con se stesso.
+> Sono possibili quattro relazioni mutuamente esclusive: less than, equal, greater than, e unordered. L'ultimo caso si presenta quando almeno un operando è NaN. Tutt i NaN se comparati risulteranno unordered, inclusa la comparazione con se stesso.
 >
 > &mdash; [“What is the rationale for all comparisons returning false for IEEE754 NaN values?”](https://stackoverflow.com/questions/1565164/1573715#1573715) at StackOverflow
 
@@ -371,7 +371,7 @@ La spiegazione è la stessa dell'esempio precedente. Ecco il link corrispondente
 
 > ⚠️ Questo fa parte delle Browser API e non funziona su Node.js ⚠️
 
-Nonostante il fatto che `document.all` si un oggetto array-like e permette l'accesso al DOM della pagina, risponde alla funzione `typeof` con `undefined`.
+Nonostante il fatto che `document.all` sia un oggetto array-like e permette l'accesso al DOM della pagina, risponde alla funzione `typeof` con `undefined`.
 
 ```js
 document.all instanceof Object; // -> true
@@ -393,7 +393,7 @@ document.all == null; // -> true
 
 ### 💡 Spiegazione:
 
-> `document.all` veniva utilizzato per accedere agli elementi del DOM, in con le vecchie versioni di IE. Nonostante non sia mai diventato uno standard, veniva ampiamente utilizzato in codice JS non proprio recentissimo. Quando vennero rilasciate le nuove APIs (come `document.getElementById`) questa API divenne obsoleta e il comitato dello standard dovette decidere cosa farne. A causa del suo strauso l'API venne mantenuta ma venne introdotta una violazione intenzionale nelle speficiche di JavaScript.
+> `document.all` veniva utilizzato per accedere agli elementi del DOM, nelle vecchie versioni di IE. Nonostante non sia mai diventato uno standard, veniva ampiamente utilizzato in codice JS non proprio recentissimo. Quando vennero rilasciate le nuove APIs (come `document.getElementById`) questa API divenne obsoleta e il comitato dello standard dovette decidere cosa farne. A causa del suo uso spropositato l'API venne mantenuta ma venne introdotta una violazione intenzionale nelle speficiche di JavaScript.
 > Il motivo per il quale risponde a `false` quando si utilizza l'operatore di [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) con `undefined`, mentre `true` quando si utilizza l'operatore di [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) è a causa della violazione intenzionale inserita nella specifica che la permette in modo esplicito. 
 
 >
@@ -526,8 +526,8 @@ Number(undefined); // -> NaN
 
 In base alle specifiche:
 
-1. Se non viene passato alcun parametro durante l'invocazione della funzione, sia `n` valorizzato a `+0`.
-2. Altrimenti, sia `n` un ? `ToNumber(value)`.
+1. Se non viene passato alcun parametro durante l'invocazione della funzione, `n` viene valorizzato a `+0`.
+2. Altrimenti, `n` sarà il risultato di `ToNumber(value)`.
 3. Nel caso di `undefined`, `ToNumber(undefined)` deve restituire `NaN`.
 
 Qui la sezione corrispondente:
@@ -675,7 +675,7 @@ typeof NaN; // -> 'number'
 
 ### 💡 Spiegazione:
 
-Spiegaziones di come funzionano gli operatori `typeof` e `instanceof`:
+Spiegazione di come funzionano gli operatori `typeof` e `instanceof`:
 
 - [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
 - [**12.10.4** Runtime Semantics: InstanceofOperator(`O`,`C`)](https://www.ecma-international.org/ecma-262/#sec-instanceofoperator)
@@ -696,7 +696,7 @@ Il comportamento dell'operatore `typeof` è definito nella seguente sezione dell
 
 - [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
 
-Secondo le specifiche, l'operatore `typeof` restituisce una stringa in base alla [Table 35: `typeof` Operator Results](https://www.ecma-international.org/ecma-262/#table-35). Per `null`, gli ordinari, gli oggetti esotici standard e non standard che non implementano `[[Call]]`, restituisce la stringa `"object"`.
+Secondo le specifiche, l'operatore `typeof` restituisce una stringa in base alla [Table 35: `typeof` Operator Results](https://www.ecma-international.org/ecma-262/#table-35). Per `null`, gli oggetti ordinari, esotici standard e non standard che non implementano `[[Call]]`, restituisce la stringa `"object"`.
 
 Comunque si può anche controllare il tipo di un oggetto utilizzando il metodo `toString`.
 
@@ -724,7 +724,7 @@ Object.prototype.toString.call(null);
 
 ### 💡 Spiegazione:
 
-Questo è causato dallo standard IEEE 754-2008 per l'aritmetica binaria dei numeri Floating-Point. A questa scala, arrotonda al numero pari più vicino. Leggi di più qui:
+Questo è causato dallo standard IEEE 754-2008 per l'aritmetica binaria dei numeri in virgola mobile. A questa grandezze numeriche, arrotonda al numero pari più vicino. Leggi di più qui:
 
 - [**6.1.6** The Number Type](https://www.ecma-international.org/ecma-262/#sec-ecmascript-language-types-number-type)
 - [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) on Wikipedia
@@ -744,11 +744,11 @@ Un giochino ben noto. La somma di `0.1` e `0.2` è completamente sbagliata:
 
 ### 💡 Spiegazione:
 
-La risposta alla domanda [”La matematica in floating point è completamente rotta? ”](https://stackoverflow.com/questions/588004/is-floating-point-math-broken) su StackOverflow:
+La risposta alla domanda [”La matematica in virgola mobile è completamente rotta? ”](https://stackoverflow.com/questions/588004/is-floating-point-math-broken) su StackOverflow:
 
 > Le costanti `0.2` e `0.3` nel programma saranno approssimazioni del loro vero valore. Il valore `double` più vicino a `0.2` è più grande del numero razionale `0.2` ma il `double` più vicino a `0.3` è più piccolo del numero razionale `0.3`. La somma di `0.1` e `0.2` risulta essere più grande del numero razionale `0.3` e quindi risultando diverso dalla costante presente nel codice.
 
-Questo problema è talmente noto che esiste anche il sito web [0.30000000000000004.com](http://0.30000000000000004.com/). Capita in tutti i linguaggi di programmazione che svolgono calcoli in floating-point, non solo JavaScript.
+Questo problema è talmente noto che esiste anche il sito web [0.30000000000000004.com](http://0.30000000000000004.com/). Capita in tutti i linguaggi di programmazione che svolgono calcoli in virgola mobile, non solo JavaScript.
 
 ## Patchare numeri
 
@@ -771,7 +771,7 @@ Number.prototype.isOne = function() {
 
 ### 💡 Spiegazione:
 
-Ovviamente possiamo estendere l'oggetto `Number` così come ogni altro oggetto in JavaScript. Comunque non è una pratica consigliata se il metodo definito non è parte delle specifiche. Ecco la lista delle proprietà dell'oggetto `Number`:
+Ovviamente possiamo estendere l'oggetto `Number` così come ogni altro oggetto in JavaScript. Non è comunque una pratica consigliata se il metodo definito non è parte delle specifiche. Ecco la lista delle proprietà dell'oggetto `Number`:
 
 - [**20.1** Number Objects](https://www.ecma-international.org/ecma-262/#sec-number-objects)
 
@@ -944,7 +944,7 @@ f`true is ${true}, false is ${false}, array is ${[1, 2, 3]}`;
 
 ### 💡 Spiegazione:
 
-Beh, questa non è per niente magia se hai familiarità con i _Tagged template literals_. Nell'esempio sovrastante, la funzione f `f` è un tag per i template literal. I tag prima dei template literals permettono di svolgere il parsing dei template con una funzione. Il primo parametro di una "funzione tag" contiene un array di stringhe. I parametri restanti sono relativi alle espressioni. Ad esempio:
+Beh, questa non è per niente magia se hai familiarità con i _Tagged template literals_. Nell'esempio precedente, la funzione f `f` è un tag per i template literal. I tag prima dei template literals permettono di svolgere il parsing dei template con una funzione. Il primo parametro di una "funzione tag" contiene un array di stringhe. I parametri restanti sono relativi alle espressioni. Ad esempio:
 
 ```js
 function template(strings, ...keys) {
@@ -952,9 +952,9 @@ function template(strings, ...keys) {
 }
 ```
 
-Questa è la [magia dietro](http://mxstbr.blog/2016/11/styled-components-magic-explained/) famous library called [💅 styled-components](https://www.styled-components.com/), molto popolare tra la community di React.
+Questa è la [magia dietro](http://mxstbr.blog/2016/11/styled-components-magic-explained/) famosa libreria chiamata [💅 styled-components](https://www.styled-components.com/), molto popolare tra la community di React.
 
-Link to the specification:
+Link alle specifiche:
 
 - [**12.3.7** Tagged Templates](https://www.ecma-international.org/ecma-262/#sec-tagged-templates)
 
@@ -1124,7 +1124,7 @@ y;
 //  1       3           2    4
 ```
 
-Con l'esempio sovrastante:
+Con l'esempio precedente:
 
 1. Dichiariamo `x` senza alcun valore, quindi risulta `undefined`.
 2. Quindi inseriamo il valore di `x` all'interno della proprietà `x` dell'oggetto.
@@ -1135,7 +1135,7 @@ Con l'esempio sovrastante:
 
 ## Puntini e lo spreading
 
-Si possono realizzare esempi interessanti utilizzando l'operatore di spreding e gli array. Considera questo:
+Si possono realizzare esempi interessanti utilizzando l'operatore di spreading e gli array. Considera questo:
 
 ```js
 [...[..."..."]].length; // -> 3
@@ -1184,7 +1184,7 @@ foo: {
 
 L'istruzione etichettata viene utilizzata con le istruzioni di `break` o `continue`. Possiamo usare un'etichetta per identificare costrutto iterativo, e usare le istruzioni `break` o `continue` per indicare se il programma deve interrompere l'iterazione o continuarla.
 
-Nell'esempio sovrastante, identifichiamo l'etichetta `foo`. Dopo che `console.log('first');` viene eseguita l'esecuzione viene fermata.
+Nell'esempio precedente, identifichiamo l'etichetta `foo`. Dopo che `console.log('first');` viene eseguita l'esecuzione viene fermata.
 
 Approfondisci le etichette in JavaScript:
 
@@ -1225,7 +1225,7 @@ La risposta è `3`. Sorpreso?
 
 - [**13.15** The `try` Statement](https://www.ecma-international.org/ecma-262/#sec-try-statement)
 
-## Questa è ereditarietà multipla?
+## Si tratta di ereditarietà multipla?
 
 Dai uno sguardo all'esempio sottostante:
 
@@ -1233,7 +1233,7 @@ Dai uno sguardo all'esempio sottostante:
 new class F extends (String, Array) {}(); // -> F []
 ```
 
-È ereditarietà multipla? Nope.
+Si tratta di ereditarietà multipla? Negativo.
 
 ### 💡 Spiegazione:
 
@@ -1573,7 +1573,7 @@ null >= 0; // true
 
 ### 💡 Spiegazione:
 
-Per farla breve, se `null` che è più piccolo di `0` è `false`, allora `null >= 0` è `true`. Leggi la spiegazione approfondita per questo [qui](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274).
+Per farla breve, se `null` che è minore di `0` è `false`, allora `null >= 0` è `true`. Leggi la spiegazione approfondita per questo [qui](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274).
 
 ## `Number.toFixed()` mostra numeri diversi
 
@@ -1656,7 +1656,7 @@ Solitamente, se l'operatore non riesce a confrontare i suoi operanti in modo opp
 true;
 ```
 
-Invece, secondo una lettura attenta delle specifiche, la conversione a numero non avviente per l'operando che ha valore `null` o `undefined`. Quindi, se abbiamo `null` da un lato del simbolo uguale, l'altro lato deve essere `null` o `undefined` per fare in modo che venga restituito `true`. Dato che non è questo il caso, verrà restituito `false`.
+Invece, secondo una lettura attenta delle specifiche, la conversione a numero non avviene per l'operando che ha valore `null` o `undefined`. Quindi, se abbiamo `null` da un lato del simbolo uguale, l'altro lato deve essere `null` o `undefined` per fare in modo che venga restituito `true`. Dato che non è questo il caso, verrà restituito `false`.
 
 Ora analizziamo l'operatore di comparazione `null > 0`. Qui l'algoritmo, a differenza dell'operatore di abstract equality, _convertirà_ `null` in un numero. Quindi il comportamento sarà il seguente:
 
