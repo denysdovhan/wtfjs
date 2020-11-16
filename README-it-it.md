@@ -515,7 +515,7 @@ Guarda attentamente gli esempi precedenti! Il comportamento viene spiegato nella
 
 ## `undefined` e `Number`
 
-Se non passiamo argomenti al costruttore di `Number`, otteniamo `0`. Il valore `undefined` viene assegnato ai parametri formale quando non viene passato alcun valore come parametro, quindi possiamo aspettarci che `Number` senza parametri prenda `undefined` come valore del suo parametro. Invece quando inseriamo `undefined`, otteniamo `NaN`.
+Se non passiamo argomenti al costruttore di `Number`, otteniamo `0`. Il valore `undefined` viene assegnato di default quando non viene passato alcun valore, quindi possiamo aspettarci che `Number` senza parametri prenda `undefined` come valore del suo parametro. Invece quando inseriamo `undefined`, otteniamo `NaN`.
 
 ```js
 Number(); // -> 0
