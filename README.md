@@ -299,10 +299,7 @@ Following the definition of `NaN` from the IEEE:
 You would not believe, but …
 
 ```js
-(![] + [])[+[]] +
-  (![] + [])[+!+[]] +
-  ([![]] + [][[]])[+!+[] + [+[]]] +
-  (![] + [])[!+[] + !+[]];
+(![]+[])[+[]]+(![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]];
 // -> 'fail'
 ```
 
@@ -450,16 +447,13 @@ What if you try to add two arrays?
 The concatenation happens. Step-by-step, it looks like this:
 
 ```js
-[1, 2, 3] +
-  [4, 5, 6][
-    // call toString()
-    (1, 2, 3)
-  ].toString() +
-  [4, 5, 6].toString();
+[1, 2, 3] + [4, 5, 6]
+// call toString()
+[1, 2, 3].toString() + [4, 5, 6].toString()
 // concatenation
 "1,2,3" + "4,5,6";
 // ->
-("1,2,34,5,6");
+"1,2,34,5,6";
 ```
 
 ## Trailing commas in array
@@ -610,13 +604,8 @@ parseInt(1 / 1999999); // -> 5
 Let's do some math:
 
 ```js
-true -
-  true + (
-    // -> 2
-    true + true
-  ) *
-    (true + true) -
-  true; // -> 3
+true + true; // -> 2
+(true + true) * (true + true) - true; // -> 3
 ```
 
 Hmmm… 🤔
@@ -733,12 +722,8 @@ This is caused by IEEE 754-2008 standard for Binary Floating-Point Arithmetic. A
 A well-known joke. An addition of `0.1` and `0.2` is deadly precise:
 
 ```js
-0.1 +
-  0.2(
-    // -> 0.30000000000000004
-    0.1 + 0.2
-  ) ===
-  0.3; // -> false
+0.1 + 0.2; // -> 0.30000000000000004
+(0.1 + 0.2) === 0.3; // -> false
 ```
 
 ### 💡 Explanation:
@@ -760,12 +745,8 @@ Number.prototype.isOne = function() {
 
 (1.0).isOne(); // -> true
 (1).isOne(); // -> true
-(2.0)
-  .isOne()(
-    // -> false
-    7
-  )
-  .isOne(); // -> false
+(2.0).isOne(); // -> false
+(7).isOne(); // -> false
 ```
 
 ### 💡 Explanation:
@@ -868,12 +849,11 @@ Did you know you can add numbers like this?
 
 ```js
 // Patch a toString method
-RegExp.prototype.toString =
-  function() {
-    return this.source;
-  } /
-  7 /
-  -/5/; // -> 2
+RegExp.prototype.toString = function() {
+  return this.source
+}
+
+/7/ - /5/; // -> 2
 ```
 
 ### 💡 Explanation:
@@ -1023,7 +1003,7 @@ Why does this work so? Here we're using a _Computed property name_. When you pas
 We can make "brackets hell" like this:
 
 ```js
-({ [{}]: { [{}]: {} } }[{}][{}]); // -> {}
+({[{}]:{[{}]:{}}})[{}][{}] // -> {}
 
 // structure:
 // {
@@ -1051,15 +1031,9 @@ As we know, primitives don't have prototypes. However, if we try to get a value 
 This happens because when something doesn't have a prototype, it will be wrapped into a wrapper object using the `ToObject` method. So, step-by-step:
 
 ```js
-(1)
-  .__proto__(
-    // -> [Number: 0]
-    1
-  )
-  .__proto__.__proto__(
-    // -> {}
-    1
-  ).__proto__.__proto__.__proto__; // -> null
+(1).__proto__; // -> [Number: 0]
+(1).__proto__.__proto__; // -> {}
+(1).__proto__.__proto__.__proto__; // -> null
 ```
 
 Here is more information about `__proto__`:
@@ -1101,9 +1075,7 @@ Then we've passed this object to the template literal, so the `toString` method 
 Consider this example:
 
 ```js
-let x,
-  { x: y = 1 } = { x };
-y;
+let x, { x: y = 1 } = { x }; y;
 ```
 
 The example above is a great task for an interview. What the value of `y`? The answer is:
@@ -1115,9 +1087,7 @@ The example above is a great task for an interview. What the value of `y`? The a
 ### 💡 Explanation:
 
 ```js
-let x,
-  { x: y = 1 } = { x };
-y;
+let x, { x: y = 1 } = { x }; y;
 //  ↑       ↑           ↑    ↑
 //  1       3           2    4
 ```
@@ -1245,47 +1215,22 @@ The interesting part is the value of the `extends` clause (`(String, Array)`). T
 Consider this example of a generator which yields itself:
 
 ```js
-(function* f() {
-  yield f;
-})().next();
+(function* f() { yield f })().next()
 // -> { value: [GeneratorFunction: f], done: false }
 ```
 
 As you can see, the returned value is an object with its `value` equal to `f`. In that case, we can do something like this:
 
 ```js
-(function* f() {
-  yield f;
-})()
-  .next()
-  .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
+(function* f() { yield f })().next().value().next()
+// -> { value: [GeneratorFunction: f], done: false }
 
-    // and again
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
-  .next()
-  .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
+// and again
+(function* f() { yield f })().next().value().next().value().next()
+// -> { value: [GeneratorFunction: f], done: false }
 
-    // and again
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
-  .next()
-  .value()
-  .next()
-  .value()
-  .next();
+// and again
+(function* f() { yield f })().next().value().next().value().next().value().next()
 // -> { value: [GeneratorFunction: f], done: false }
 
 // and so on
@@ -1304,9 +1249,7 @@ To understand why this works that way, read these sections of the specification:
 Consider this obfuscated syntax playing:
 
 ```js
-typeof new class {
-  class() {}
-}(); // -> 'object'
+(typeof (new (class { class () {} }))) // -> 'object'
 ```
 
 It seems like we're declaring a class inside of class. Should be an error, however, we get the string `'object'`.
