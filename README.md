@@ -52,6 +52,7 @@ Currently, there are these translations of **wtfjs**:
   - [true is false](#true-is-false)
   - [baNaNa](#banana)
   - [`NaN` is not a `NaN`](#nan-is-not-a-nan)
+  - [`Object.is()` and `===` weird cases](#Object.<i></i>is()-and-===-weird-cases)
   - [It's a fail](#its-a-fail)
   - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
   - [`null` is falsy, but not `false`](#null-is-falsy-but-not-false)
@@ -293,6 +294,33 @@ Following the definition of `NaN` from the IEEE:
 > Four mutually exclusive relations are possible: less than, equal, greater than, and unordered. The last case arises when at least one operand is NaN. Every NaN shall compare unordered with everything, including itself.
 >
 > &mdash; [“What is the rationale for all comparisons returning false for IEEE754 NaN values?”](https://stackoverflow.com/questions/1565164/1573715#1573715) at StackOverflow
+
+## Object.<i></i>is() and === weird cases
+
+Object.<i></i>is() determines if two values have the same value or not. It works similar to the === operator but there are a few weird cases:
+
+```javascript
+Object.is(NaN, NaN); // -> true
+NaN === NaN; // -> false
+
+Object.is(-0, 0); // -> false
+-0 === 0; // -> true
+
+Object.is(NaN, 0/0); // -> true
+NaN === 0/0; // -> false
+```
+
+### 💡 Explanation:
+
+In JavaScript lingo, NaN and NaN are the same value but they're not strictly equal. NaN === NaN being false is apparently due to historical reasons so it would probably be better to accept it as it is.
+
+Similarly, -0 and 0 are strictly equal, but they're not the same value.
+
+For more details about NaN === NaN, see the above case.
+
+Here are the TC39 specs about Object.<i></i>is: https://tc39.es/ecma262/#sec-object.is
+
+You can read more about equality comparisons and sameness on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness
 
 ## It's a fail
 
