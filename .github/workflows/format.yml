@@ -3,18 +3,20 @@ on:
   pull_request:
 jobs:
   format:
-    name: Format docs
+    name: Format
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
       - name: Install
         uses: bahmutov/npm-install@v1
       - name: Generate TOC
         run: npm run toc
       - name: Commit changes
-        run: |
-          git config --global user.name 'Denys Dovhan'
-          git config --global user.email 'denysdovhan@gmail.com'
-          git commit -am "Update TOC"
-          git push
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update TOC
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
