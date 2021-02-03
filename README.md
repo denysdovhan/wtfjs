@@ -611,10 +611,9 @@ Let's do some math:
 
 ```js
 true -
-  true + (
-    // -> 2
-    true + true
-  ) *
+  true +
+  // -> 2
+  (true + true) *
     (true + true) -
   true; // -> 3
 ```
@@ -1729,7 +1728,7 @@ Pass `comparefn` if you try to sort anything but string.
 
 ```javascript
 const theObject = {
-  "a": 7,
+  a: 7
 };
 const thePromise = new Promise((resolve, reject) => {
   resolve(theObject);
@@ -1738,7 +1737,7 @@ const thePromise = new Promise((resolve, reject) => {
 thePromise.then(value => {
   console.log(value === theObject); // -> true
   console.log(value); // -> { a: 7 }
-})
+});
 ```
 
 The `value` which is resolved from `thePromise` is exactly `theObject`.
@@ -1756,7 +1755,7 @@ const thePromise = new Promise((resolve, reject) => {
 thePromise.then(value => {
   console.log(value === theObject); // -> false
   console.log(value); // -> 7
-})
+});
 ```
 
 ### 💡 Explanation:
@@ -1765,7 +1764,7 @@ thePromise.then(value => {
 
 &ndash; [Promise.resolve() on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
 
- The specification is [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions). But it is not quite human-friendly.
+The specification is [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions). But it is not quite human-friendly.
 
 # 📚 Other resources
 
