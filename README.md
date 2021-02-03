@@ -103,7 +103,7 @@ Currently, there are these translations of **wtfjs**:
   - [Same variable redeclaration](#same-variable-redeclaration)
   - [Default behavior Array.prototype.sort()](#default-behavior-arrayprototypesort)
   - [resolve() won't return Promise instance](#resolve-wont-return-promise-instance)
-  - [```{}{}``` is undefined](#user-content--is-undefined)
+  - [`{}{}` is undefined](#-is-undefined)
 - [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 

@@ -1,6 +1,6 @@
 {
   "name": "wtfjs",
-  "version": "1.15.0",
+  "version": "1.16.0",
   "description": "A list of funny and tricky JavaScript examples",
   "bin": {
     "wtfjs": "wtfjs.js"
