@@ -294,6 +294,32 @@ Following the definition of `NaN` from the IEEE:
 >
 > &mdash; [“What is the rationale for all comparisons returning false for IEEE754 NaN values?”](https://stackoverflow.com/questions/1565164/1573715#1573715) at StackOverflow
 
+## `Object.is()` and `===` weird cases
+
+`Object.is()` determines if two values have the same value or not. It works similar to the `===` operator but there are a few weird cases:
+
+```javascript
+Object.is(NaN, NaN); // -> true
+NaN === NaN; // -> false
+
+Object.is(-0, 0); // -> false
+-0 === 0; // -> true
+
+Object.is(NaN, 0/0); // -> true
+NaN === 0/0; // -> false
+```
+
+### 💡 Explanation:
+
+In JavaScript lingo, `NaN` and `NaN` are the same value but they're not strictly equal. `NaN === NaN` being false is apparently due to historical reasons so it would probably be better to accept it as it is.
+
+Similarly, `-0` and `0` are strictly equal, but they're not the same value.
+
+For more details about `NaN === NaN`, see the above case.
+
+* [Here are the TC39 specs about Object.is](https://tc39.es/ecma262/#sec-object.is)
+* [Equality comparisons and sameness](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness) on MDN
+
 ## It's a fail
 
 You would not believe, but …
