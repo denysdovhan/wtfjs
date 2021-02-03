@@ -39,7 +39,6 @@ Atualmente, temos essas traduções disponíveis de **wtfjs**:
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 # Table of Contents
 
 - [💪🏻 Motivação](#-motiva%C3%A7%C3%A3o)
@@ -66,7 +65,7 @@ Atualmente, temos essas traduções disponíveis de **wtfjs**:
   - [`NaN` ~~não~~ é um número](#nan-n%C3%A3o-%C3%A9-um-n%C3%BAmero)
   - [`[]` e `null` são objetos](#-e-null-s%C3%A3o-objetos)
   - [Aumentando números magicamente](#aumentando-n%C3%BAmeros-magicamente)
-  - [Precisão de `0.1 + 0.2`](#precis%C3%A3o-de--01--02)
+  - [Precisão de `0.1 + 0.2`](#precis%C3%A3o-de-01--02)
   - [Patching numbers](#patching-numbers)
   - [Comparação de três números](#compara%C3%A7%C3%A3o-de-tr%C3%AAs-n%C3%BAmeros)
   - [Matemática engraçada](#matem%C3%A1tica-engra%C3%A7ada)
@@ -79,7 +78,7 @@ Atualmente, temos essas traduções disponíveis de **wtfjs**:
   - [Acessando protótipos com `__proto__`](#acessando-prot%C3%B3tipos-com-__proto__)
   - [`` `${{Object}}` ``](#-object-)
   - [Desestruturação com valores padrão](#desestrutura%C3%A7%C3%A3o-com-valores-padr%C3%A3o)
-  - [Pontos e dispersão](#pontos-e-disper%C3%A7%C3%A3o)
+  - [Pontos e dispersão](#pontos-e-dispers%C3%A3o)
   - [Rótulos](#r%C3%B3tulos)
   - [Rótulos aninhados](#r%C3%B3tulos-aninhados)
   - [`try..catch` traidor](#trycatch-traidor)
@@ -87,7 +86,7 @@ Atualmente, temos essas traduções disponíveis de **wtfjs**:
   - [Um gerador que produz a si mesmo](#um-gerador-que-produz-a-si-mesmo)
   - [Uma classe de classe](#uma-classe-de-classe)
   - [Objetos não coercíveis](#objetos-n%C3%A3o-coerc%C3%ADveis)
-  - [Arrow functions traiçoeiras](#arrow-functions-astutas)
+  - [Arrow functions traiçoeiras](#arrow-functions-trai%C3%A7oeiras)
   - [Arrow functions não podem ser construtores](#arrow-functions-n%C3%A3o-podem-ser-construtores)
   - [`arguments` e arrow functions](#arguments-e-arrow-functions)
   - [Retorno traiçoeiro](#retorno-trai%C3%A7oeiro)
@@ -97,7 +96,7 @@ Atualmente, temos essas traduções disponíveis de **wtfjs**:
   - [`Number.toFixed()` mostra números diferentes](#numbertofixed-mostra-n%C3%BAmeros-diferentes)
   - [`Math.max()` menor que `Math.min()`](#mathmax-menor-que-mathmin)
   - [Comparando `null` com `0`](#comparando-null-com-0)
-  - [Redeclaração da mesma variável Same variable](#redeclara%C3%A7%C3%A3o-da-mesma-vari%C3%A1vel-same-variable)
+  - [Redeclaração da mesma variável](#redeclara%C3%A7%C3%A3o-da-mesma-vari%C3%A1vel)
   - [Comportamento padrão Array.prototype.sort()](#comportamento-padr%C3%A3o-arrayprototypesort)
 - [📚 Outros recursos](#-outros-recursos)
 - [🎓 Licença](#-licen%C3%A7a)
