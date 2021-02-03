@@ -1,8 +1,6 @@
 name: Release
 on:
-  push:
-    branches:
-      - master
+  pull_request:
 jobs:
   release:
     name: Prepare release
@@ -12,8 +10,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Install
         uses: bahmutov/npm-install@v1
-      - name: Release
-        run: npx semantic-release
+      - name: Format
+        uses: creyD/prettier_action@v3.1
+        with:
+          commit_message: "chore: Format code with Prettier"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
