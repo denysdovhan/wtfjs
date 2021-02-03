@@ -7,7 +7,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "toc": "doctoc --github --title '# Table of Contents' --maxlevel 2 README.md",
+    "toc": "doctoc --github --title '# Table of Contents' --maxlevel 2 README*.md",
     "format": "prettier --write '*.{json,js}'"
   },
   "repository": {
