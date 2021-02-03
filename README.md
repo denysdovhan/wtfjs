@@ -169,7 +169,7 @@ true;
 See also [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
 
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
-- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 ## `true` is not equal `![]`, but not equal `[]` too
 
@@ -226,7 +226,7 @@ false == ![]; // -> true
 false == false; // -> true
 ```
 
-- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 ## true is false
 
@@ -249,7 +249,7 @@ false == "false"; // -> false
 !!"true"; // -> true
 ```
 
-- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 ## baNaNa
 
@@ -340,7 +340,7 @@ An array is a truthy value, however, it's not equal to `true`.
 Here are links to the corresponding sections in the ECMA-262 specification:
 
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
-- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 ## `null` is falsy, but not `false`
 
@@ -362,7 +362,7 @@ At the same time, other falsy values, like `0` or `''` are equal to `false`.
 
 The explanation is the same as for previous example. Here's the corresponding link:
 
-- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 ## `document.all` is an object, but it is undefined
 
@@ -391,7 +391,7 @@ document.all == null; // -> true
 ### 💡 Explanation:
 
 > `document.all` used to be a way to access DOM elements, in particular with old versions of IE. While it has never been a standard it was broadly used in the old age JS code. When the standard progressed with new APIs (such as `document.getElementById`) this API call became obsolete and the standard committee had to decide what to do with it. Because of its broad use they decided to keep the API but introduce a willful violation of the JavaScript specification.
-> The reason why it responds to `false` when using the [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) with `undefined` while `true` when using the [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) is due to the willful violation of the specification that explicitly allows that.
+> The reason why it responds to `false` when using the [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) with `undefined` while `true` when using the [Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison) is due to the willful violation of the specification that explicitly allows that.
 >
 > &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec
 > &mdash; [“Chapter 4 - ToBoolean - Falsy values”](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects) at YDKJS - Types & Grammar
@@ -504,7 +504,7 @@ Array equality is a monster in JS, as you can see below:
 
 ### 💡 Explanation:
 
-You should watch very carefully for the above examples! The behaviour is described in section [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) of the specification.
+You should watch very carefully for the above examples! The behaviour is described in section [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison) of the specification.
 
 ## `undefined` and `Number`
 
@@ -1619,7 +1619,7 @@ true;
 ```
 
 - [**7.2.12** Abstract Relational Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-relational-comparison)
-- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 ## Same variable redeclaration
 
@@ -1672,7 +1672,7 @@ Pass `comparefn` if you try to sort anything but string.
 
 ```javascript
 const theObject = {
-  "a": 7,
+  a: 7
 };
 const thePromise = new Promise((resolve, reject) => {
   resolve(theObject);
@@ -1681,7 +1681,7 @@ const thePromise = new Promise((resolve, reject) => {
 thePromise.then(value => {
   console.log(value === theObject); // -> true
   console.log(value); // -> { a: 7 }
-})
+});
 ```
 
 The `value` which is resolved from `thePromise` is exactly `theObject`.
@@ -1699,7 +1699,7 @@ const thePromise = new Promise((resolve, reject) => {
 thePromise.then(value => {
   console.log(value === theObject); // -> false
   console.log(value); // -> 7
-})
+});
 ```
 
 ### 💡 Explanation:
@@ -1708,7 +1708,7 @@ thePromise.then(value => {
 
 &ndash; [Promise.resolve() on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
 
- The specification is [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions). But it is not quite human-friendly.
+The specification is [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions). But it is not quite human-friendly.
 
 # 📚 Other resources
 

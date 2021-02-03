@@ -1670,7 +1670,7 @@ var a;
 
 ```javascript
 const theObject = {
-  "a": 7,
+  a: 7
 };
 const thePromise = new Promise((resolve, reject) => {
   resolve(theObject);
@@ -1679,7 +1679,7 @@ const thePromise = new Promise((resolve, reject) => {
 thePromise.then(value => {
   console.log(value === theObject); // -> true
   console.log(value); // -> { a: 7 }
-})
+});
 ```
 
 从`thePromise`接收到的`value`值完全就是`theObject`。
@@ -1697,12 +1697,12 @@ const thePromise = new Promise((resolve, reject) => {
 thePromise.then(value => {
   console.log(value === theObject); // -> false
   console.log(value); // -> 7
-})
+});
 ```
 
 ### 💡 说明：
 
-> 此函数将类promise对象的多层嵌套展平。
+> 此函数将类 promise 对象的多层嵌套展平。
 
 &ndash; [Promise.resolve() on MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
 

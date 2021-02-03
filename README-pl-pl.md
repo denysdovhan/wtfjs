@@ -10,7 +10,7 @@ JavaScript to świetny język. Ma prostą składnię, duży ekosystem i, co najw
 Jednocześnie wszyscy wiemy, że JavaScript jest dość zabawnym językiem z podchwytliwymi częściami. Niektóre z nich mogą szybko zamienić naszą codzienną pracę w piekło, a niektóre mogą rozśmieszyć nas na głos.
 
 Oryginalny pomysł na WTFJS należy do [Brian Leroux](https://twitter.com/brianleroux). Ta lista jest bardzo zainspirowana jego przemową
- [**“WTFJS”** na dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
+[**“WTFJS”** na dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
 [![dotJS 2012 - Brian Leroux - WTFJS](https://img.youtube.com/vi/et8xNAc2ic8/0.jpg)](https://www.youtube.com/watch?v=et8xNAc2ic8)
 
@@ -966,7 +966,7 @@ console.log.call.call.call.call.call.apply(a => a, [1, 2]);
 
 ### 💡 Wytłumaczenie:
 
-Uwaga, może to popsuć ci umysł! Spróbuj odtworzyć ten kod w swojej głowie: stosujemy metodę `call` za pomocą metody` apply`. Czytaj więcej:
+Uwaga, może to popsuć ci umysł! Spróbuj odtworzyć ten kod w swojej głowie: stosujemy metodę `call` za pomocą metody`apply`. Czytaj więcej:
 
 - [**19.2.3.3** Function.prototype.call(`thisArg`, ...`args`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.call)
 - [**19.2.3.1 ** Function.prototype.apply(`thisArg`, `argArray`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.apply)
@@ -1637,7 +1637,7 @@ null > 0; // -> false
 null >= 0; // -> true
 ```
 
-Jak `null` nie może być ani równy ani większy od `0`, jeśli `null>=0' jest w rzeczywistości `true`? (Działa to również z mniej niż w ten sam sposób.)
+Jak `null` nie może być ani równy ani większy od `0`, jeśli `null>=0' jest w rzeczywistości`true`? (Działa to również z mniej niż w ten sam sposób.)
 
 ### 💡 Wytłumaczenie:
 
