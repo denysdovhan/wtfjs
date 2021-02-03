@@ -52,7 +52,6 @@ Currently, there are these translations of **wtfjs**:
   - [true is false](#true-is-false)
   - [baNaNa](#banana)
   - [`NaN` is not a `NaN`](#nan-is-not-a-nan)
-  - [`Object.is()` and `===` weird cases](#Object.<i></i>is()-and-===-weird-cases)
   - [It's a fail](#its-a-fail)
   - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
   - [`null` is falsy, but not `false`](#null-is-falsy-but-not-false)
