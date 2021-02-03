@@ -65,7 +65,7 @@ Atualmente, temos essas traduções disponíveis de **wtfjs**:
   - [`NaN` ~~não~~ é um número](#nan-n%C3%A3o-%C3%A9-um-n%C3%BAmero)
   - [`[]` e `null` são objetos](#-e-null-s%C3%A3o-objetos)
   - [Aumentando números magicamente](#aumentando-n%C3%BAmeros-magicamente)
-  - [Precisão de  `0.1 + 0.2`](#precis%C3%A3o-de--01--02)
+  - [Precisão de `0.1 + 0.2`](#precis%C3%A3o-de-01--02)
   - [Patching numbers](#patching-numbers)
   - [Comparação de três números](#compara%C3%A7%C3%A3o-de-tr%C3%AAs-n%C3%BAmeros)
   - [Matemática engraçada](#matem%C3%A1tica-engra%C3%A7ada)
@@ -78,7 +78,7 @@ Atualmente, temos essas traduções disponíveis de **wtfjs**:
   - [Acessando protótipos com `__proto__`](#acessando-prot%C3%B3tipos-com-__proto__)
   - [`` `${{Object}}` ``](#-object-)
   - [Desestruturação com valores padrão](#desestrutura%C3%A7%C3%A3o-com-valores-padr%C3%A3o)
-  - [Pontos e dispersão](#pontos-e-disper%C3%A7%C3%A3o)
+  - [Pontos e dispersão](#pontos-e-dispers%C3%A3o)
   - [Rótulos](#r%C3%B3tulos)
   - [Rótulos aninhados](#r%C3%B3tulos-aninhados)
   - [`try..catch` traidor](#trycatch-traidor)
@@ -86,7 +86,7 @@ Atualmente, temos essas traduções disponíveis de **wtfjs**:
   - [Um gerador que produz a si mesmo](#um-gerador-que-produz-a-si-mesmo)
   - [Uma classe de classe](#uma-classe-de-classe)
   - [Objetos não coercíveis](#objetos-n%C3%A3o-coerc%C3%ADveis)
-  - [Arrow functions traiçoeiras](#arrow-functions-astutas)
+  - [Arrow functions traiçoeiras](#arrow-functions-trai%C3%A7oeiras)
   - [Arrow functions não podem ser construtores](#arrow-functions-n%C3%A3o-podem-ser-construtores)
   - [`arguments` e arrow functions](#arguments-e-arrow-functions)
   - [Retorno traiçoeiro](#retorno-trai%C3%A7oeiro)
@@ -96,7 +96,7 @@ Atualmente, temos essas traduções disponíveis de **wtfjs**:
   - [`Number.toFixed()` mostra números diferentes](#numbertofixed-mostra-n%C3%BAmeros-diferentes)
   - [`Math.max()` menor que `Math.min()`](#mathmax-menor-que-mathmin)
   - [Comparando `null` com `0`](#comparando-null-com-0)
-  - [Redeclaração da mesma variável Same variable](#redeclara%C3%A7%C3%A3o-da-mesma-vari%C3%A1vel-same-variable)
+  - [Redeclaração da mesma variável](#redeclara%C3%A7%C3%A3o-da-mesma-vari%C3%A1vel)
   - [Comportamento padrão Array.prototype.sort()](#comportamento-padr%C3%A3o-arrayprototypesort)
 - [📚 Outros recursos](#-outros-recursos)
 - [🎓 Licença](#-licen%C3%A7a)
@@ -366,7 +366,7 @@ A explicação é a mesma dos exemplos anteriores. Aqui está o link corresponde
 
 > ⚠️ Esta é a parte da API Browser e não irá funcionar em um ambiente com Node.js - apenas em navegadores ⚠️
 
-Apesar de document.all` ser um objeto parecido com um array, ele dá acesso aos nós do DOM na página, e responde como `undefined` na função `typeof`.
+Apesar de document.all`ser um objeto parecido com um array, ele dá acesso aos nós do DOM na página, e responde como`undefined`na função`typeof`.
 
 ```js
 document.all instanceof Object; // -> true
@@ -511,6 +511,7 @@ Você deve observar bem cautelosamente os exemplos acima! O comportamento é des
 ## `undefined` e `Number`
 
 Se nós não passarmos nenhum argumento em um construtor `Number`, nós teremos `0` como retorno. O valor `undefined` é atribuído em argumentos formais quando não não existem argumentos, então você deve esperar que `Number` sem argumentos receba `undefined` como um valor dos seus parâmetros. Todavia, quando passamos `undefined`, o retorno será `NaN`.
+
 ```js
 Number(); // -> 0
 Number(undefined); // -> NaN
@@ -570,6 +571,7 @@ parseInt(null, 24); // -> 23
 ```
 
 **💡 Explicação:**
+
 > Ele converte `null` para uma string `"null"` e tenta fazer o parse. Para raízes de 0 a 23, não existem numerais que ele possa converter, então ele retorna NaN. Em 24, `"n"`, a 14ª letra, é adicionada ao sistema numérico. Em 31, `"u"`, a 21ª letra, é adicionada e a string inteira poderá ser decodificada. Em 37 onde não existe mais nenhum numeral válido definido que poderá ser gerado, o retorno é `NaN`.
 >
 > &mdash; [“parseInt(null, 24) === 23… wait, what?”](https://stackoverflow.com/questions/6459758/parseintnull-24-23-wait-what) no StackOverflow
@@ -623,7 +625,7 @@ Hmmm… 🤔
 
 ### 💡 Explicação:
 
-Podemos forçar valores números com o construtor `Number`. É bem óbvio que `true` será forçado para `1`: 
+Podemos forçar valores números com o construtor `Number`. É bem óbvio que `true` será forçado para `1`:
 
 ```js
 Number(true); // -> 1
@@ -729,7 +731,7 @@ Isso é causado pelo padrão IEEE 754-2008 para _Binary Floating-Point Arithmeti
 - [**6.1.6** The Number Type](https://www.ecma-international.org/ecma-262/#sec-ecmascript-language-types-number-type)
 - [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) na Wikipedia
 
-## Precisão de  `0.1 + 0.2`
+## Precisão de `0.1 + 0.2`
 
 Uma piada bastante conhecida. Uma adição de `0.1` e `0.2` é mortalmente precisa:
 
@@ -1458,7 +1460,7 @@ A sentença `return` também é traiçoeira. Considere o seguinte:
 
 ```js
 (function() {
-  return
+  return;
   {
     b: 10;
   }
@@ -1485,14 +1487,14 @@ Isso se dá por causa do conceito chamado _Automatic Semicolon Insertion_ (Inser
 ## Encadeamento atribuições em um objeto
 
 ```js
-var foo = {n: 1};
+var foo = { n: 1 };
 var bar = foo;
 
-foo.x = foo = {n: 2};
+foo.x = foo = { n: 2 };
 
-foo.x // -> undefined
-foo   // -> {n: 2}
-bar   // -> {n: 1, x: {n: 2}}
+foo.x; // -> undefined
+foo; // -> {n: 2}
+bar; // -> {n: 1, x: {n: 2}}
 ```
 
 Da direita para a esquerda, `{n: 2}` é atribuído para `foo`, e o resultado dessa atribuição `{n: 2}` é atribuído para `foo.x`, e por isso `bar` é `{n: 1, x: {n: 2}}`, pois `bar` é uma referência a `foo`. Mas por que `foo.x` é indefinido enquanto `bar.x` não?
@@ -1504,15 +1506,14 @@ Foo e bar referenciam o mesmo objeto `{n: 1}`, e l-values são resolvidos antes 
 É equivalente a:
 
 ```js
-var foo = {n: 1};
+var foo = { n: 1 };
 var bar = foo;
 
-foo = {n: 2} // -> {n: 2}
-bar.x = foo // -> {n: 1, x: {n: 2}}
+foo = { n: 2 }; // -> {n: 2}
+bar.x = foo; // -> {n: 1, x: {n: 2}}
 // bar.x aponta para o novo objeto foo
 // e não é equivalente a: bar.x = {n: 2}
 ```
-
 
 ## Acessando propriedades de objetos usando arrays
 
@@ -1581,7 +1582,7 @@ Enquanto seu primeiro instinto é achar que o IE11 está correto e Firefox/Chrom
 Você pode ver isso acontecendo com alguns testes rápidos:
 
 ```js
-// Confirme o resultado ímpar do arredondamento de 5 para baixo 
+// Confirme o resultado ímpar do arredondamento de 5 para baixo
 (0.7875).toFixed(3); // -> 0.787
 // Parece que é apenas 5 quando você expande para os
 // limites da precisão de flutuação de 64 bits (precisão dupla)
@@ -1624,7 +1625,7 @@ null > 0; // -> false
 null >= 0; // -> true
 ```
 
-Como `null` não pode ser igual nem maior que` 0`, se `null> = 0` é realmente `true`? (Isso também funciona com menor que da mesma maneira.)
+Como `null` não pode ser igual nem maior que`0`, se `null> = 0` é realmente `true`? (Isso também funciona com menor que da mesma maneira.)
 
 ### 💡 Explicação:
 

@@ -33,6 +33,7 @@ Currently, there are these translations of **wtfjs**:
 - [Français](./README-fr-fr.md)
 - [Português do Brasil](./README-pt-br.md)
 - [Polski](./README-pl-pl.md)
+- [Italiano](./README-it-it.md)
 
 [**Request another translation**][tr-request]
 
@@ -51,6 +52,7 @@ Currently, there are these translations of **wtfjs**:
   - [true is false](#true-is-false)
   - [baNaNa](#banana)
   - [`NaN` is not a `NaN`](#nan-is-not-a-nan)
+  - [`Object.is()` and `===` weird cases](#objectis-and--weird-cases)
   - [It's a fail](#its-a-fail)
   - [`[]` is truthy, but not `true`](#-is-truthy-but-not-true)
   - [`null` is falsy, but not `false`](#null-is-falsy-but-not-false)
@@ -169,7 +171,7 @@ true;
 See also [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
 
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
-- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 ## `true` is not equal `![]`, but not equal `[]` too
 
@@ -226,7 +228,7 @@ false == ![]; // -> true
 false == false; // -> true
 ```
 
-- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 ## true is false
 
@@ -249,7 +251,7 @@ false == "false"; // -> false
 !!"true"; // -> true
 ```
 
-- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 ## baNaNa
 
@@ -294,15 +296,38 @@ Following the definition of `NaN` from the IEEE:
 >
 > &mdash; [“What is the rationale for all comparisons returning false for IEEE754 NaN values?”](https://stackoverflow.com/questions/1565164/1573715#1573715) at StackOverflow
 
+## `Object.is()` and `===` weird cases
+
+`Object.is()` determines if two values have the same value or not. It works similar to the `===` operator but there are a few weird cases:
+
+```javascript
+Object.is(NaN, NaN); // -> true
+NaN === NaN; // -> false
+
+Object.is(-0, 0); // -> false
+-0 === 0; // -> true
+
+Object.is(NaN, 0/0); // -> true
+NaN === 0/0; // -> false
+```
+
+### 💡 Explanation:
+
+In JavaScript lingo, `NaN` and `NaN` are the same value but they're not strictly equal. `NaN === NaN` being false is apparently due to historical reasons so it would probably be better to accept it as it is.
+
+Similarly, `-0` and `0` are strictly equal, but they're not the same value.
+
+For more details about `NaN === NaN`, see the above case.
+
+* [Here are the TC39 specs about Object.is](https://tc39.es/ecma262/#sec-object.is)
+* [Equality comparisons and sameness](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness) on MDN
+
 ## It's a fail
 
 You would not believe, but …
 
 ```js
-(![] + [])[+[]] +
-  (![] + [])[+!+[]] +
-  ([![]] + [][[]])[+!+[] + [+[]]] +
-  (![] + [])[!+[] + !+[]];
+(![]+[])[+[]]+(![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]];
 // -> 'fail'
 ```
 
@@ -343,7 +368,7 @@ An array is a truthy value, however, it's not equal to `true`.
 Here are links to the corresponding sections in the ECMA-262 specification:
 
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
-- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 ## `null` is falsy, but not `false`
 
@@ -365,7 +390,7 @@ At the same time, other falsy values, like `0` or `''` are equal to `false`.
 
 The explanation is the same as for previous example. Here's the corresponding link:
 
-- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 ## `document.all` is an object, but it is undefined
 
@@ -394,7 +419,7 @@ document.all == null; // -> true
 ### 💡 Explanation:
 
 > `document.all` used to be a way to access DOM elements, in particular with old versions of IE. While it has never been a standard it was broadly used in the old age JS code. When the standard progressed with new APIs (such as `document.getElementById`) this API call became obsolete and the standard committee had to decide what to do with it. Because of its broad use they decided to keep the API but introduce a willful violation of the JavaScript specification.
-> The reason why it responds to `false` when using the [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) with `undefined` while `true` when using the [Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) is due to the willful violation of the specification that explicitly allows that.
+> The reason why it responds to `false` when using the [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) with `undefined` while `true` when using the [Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison) is due to the willful violation of the specification that explicitly allows that.
 >
 > &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec
 > &mdash; [“Chapter 4 - ToBoolean - Falsy values”](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects) at YDKJS - Types & Grammar
@@ -450,16 +475,13 @@ What if you try to add two arrays?
 The concatenation happens. Step-by-step, it looks like this:
 
 ```js
-[1, 2, 3] +
-  [4, 5, 6][
-    // call toString()
-    (1, 2, 3)
-  ].toString() +
-  [4, 5, 6].toString();
+[1, 2, 3] + [4, 5, 6]
+// call toString()
+[1, 2, 3].toString() + [4, 5, 6].toString()
 // concatenation
 "1,2,3" + "4,5,6";
 // ->
-("1,2,34,5,6");
+"1,2,34,5,6";
 ```
 
 ## Trailing commas in array
@@ -510,7 +532,7 @@ Array equality is a monster in JS, as you can see below:
 
 ### 💡 Explanation:
 
-You should watch very carefully for the above examples! The behaviour is described in section [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) of the specification.
+You should watch very carefully for the above examples! The behaviour is described in section [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison) of the specification.
 
 ## `undefined` and `Number`
 
@@ -610,13 +632,8 @@ parseInt(1 / 1999999); // -> 5
 Let's do some math:
 
 ```js
-true -
-  true + (
-    // -> 2
-    true + true
-  ) *
-    (true + true) -
-  true; // -> 3
+true + true; // -> 2
+(true + true) * (true + true) - true; // -> 3
 ```
 
 Hmmm… 🤔
@@ -733,12 +750,8 @@ This is caused by IEEE 754-2008 standard for Binary Floating-Point Arithmetic. A
 A well-known joke. An addition of `0.1` and `0.2` is deadly precise:
 
 ```js
-0.1 +
-  0.2(
-    // -> 0.30000000000000004
-    0.1 + 0.2
-  ) ===
-  0.3; // -> false
+0.1 + 0.2; // -> 0.30000000000000004
+(0.1 + 0.2) === 0.3; // -> false
 ```
 
 ### 💡 Explanation:
@@ -760,12 +773,8 @@ Number.prototype.isOne = function() {
 
 (1.0).isOne(); // -> true
 (1).isOne(); // -> true
-(2.0)
-  .isOne()(
-    // -> false
-    7
-  )
-  .isOne(); // -> false
+(2.0).isOne(); // -> false
+(7).isOne(); // -> false
 ```
 
 ### 💡 Explanation:
@@ -868,12 +877,11 @@ Did you know you can add numbers like this?
 
 ```js
 // Patch a toString method
-RegExp.prototype.toString =
-  function() {
-    return this.source;
-  } /
-  7 /
-  -/5/; // -> 2
+RegExp.prototype.toString = function() {
+  return this.source
+}
+
+/7/ - /5/; // -> 2
 ```
 
 ### 💡 Explanation:
@@ -1023,7 +1031,7 @@ Why does this work so? Here we're using a _Computed property name_. When you pas
 We can make "brackets hell" like this:
 
 ```js
-({ [{}]: { [{}]: {} } }[{}][{}]); // -> {}
+({[{}]:{[{}]:{}}})[{}][{}] // -> {}
 
 // structure:
 // {
@@ -1051,15 +1059,9 @@ As we know, primitives don't have prototypes. However, if we try to get a value 
 This happens because when something doesn't have a prototype, it will be wrapped into a wrapper object using the `ToObject` method. So, step-by-step:
 
 ```js
-(1)
-  .__proto__(
-    // -> [Number: 0]
-    1
-  )
-  .__proto__.__proto__(
-    // -> {}
-    1
-  ).__proto__.__proto__.__proto__; // -> null
+(1).__proto__; // -> [Number: 0]
+(1).__proto__.__proto__; // -> {}
+(1).__proto__.__proto__.__proto__; // -> null
 ```
 
 Here is more information about `__proto__`:
@@ -1101,9 +1103,7 @@ Then we've passed this object to the template literal, so the `toString` method 
 Consider this example:
 
 ```js
-let x,
-  { x: y = 1 } = { x };
-y;
+let x, { x: y = 1 } = { x }; y;
 ```
 
 The example above is a great task for an interview. What the value of `y`? The answer is:
@@ -1115,9 +1115,7 @@ The example above is a great task for an interview. What the value of `y`? The a
 ### 💡 Explanation:
 
 ```js
-let x,
-  { x: y = 1 } = { x };
-y;
+let x, { x: y = 1 } = { x }; y;
 //  ↑       ↑           ↑    ↑
 //  1       3           2    4
 ```
@@ -1245,47 +1243,22 @@ The interesting part is the value of the `extends` clause (`(String, Array)`). T
 Consider this example of a generator which yields itself:
 
 ```js
-(function* f() {
-  yield f;
-})().next();
+(function* f() { yield f })().next()
 // -> { value: [GeneratorFunction: f], done: false }
 ```
 
 As you can see, the returned value is an object with its `value` equal to `f`. In that case, we can do something like this:
 
 ```js
-(function* f() {
-  yield f;
-})()
-  .next()
-  .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
+(function* f() { yield f })().next().value().next()
+// -> { value: [GeneratorFunction: f], done: false }
 
-    // and again
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
-  .next()
-  .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
+// and again
+(function* f() { yield f })().next().value().next().value().next()
+// -> { value: [GeneratorFunction: f], done: false }
 
-    // and again
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
-  .next()
-  .value()
-  .next()
-  .value()
-  .next();
+// and again
+(function* f() { yield f })().next().value().next().value().next().value().next()
 // -> { value: [GeneratorFunction: f], done: false }
 
 // and so on
@@ -1304,9 +1277,7 @@ To understand why this works that way, read these sections of the specification:
 Consider this obfuscated syntax playing:
 
 ```js
-typeof new class {
-  class() {}
-}(); // -> 'object'
+(typeof (new (class { class () {} }))) // -> 'object'
 ```
 
 It seems like we're declaring a class inside of class. Should be an error, however, we get the string `'object'`.
@@ -1676,7 +1647,7 @@ true;
 ```
 
 - [**7.2.12** Abstract Relational Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-relational-comparison)
-- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 ## Same variable redeclaration
 
@@ -1729,7 +1700,7 @@ Pass `comparefn` if you try to sort anything but string.
 
 ```javascript
 const theObject = {
-  "a": 7,
+  a: 7
 };
 const thePromise = new Promise((resolve, reject) => {
   resolve(theObject);
@@ -1738,7 +1709,7 @@ const thePromise = new Promise((resolve, reject) => {
 thePromise.then(value => {
   console.log(value === theObject); // -> true
   console.log(value); // -> { a: 7 }
-})
+});
 ```
 
 The `value` which is resolved from `thePromise` is exactly `theObject`.
@@ -1756,16 +1727,16 @@ const thePromise = new Promise((resolve, reject) => {
 thePromise.then(value => {
   console.log(value === theObject); // -> false
   console.log(value); // -> 7
-})
+});
 ```
 
 ### 💡 Explanation:
 
 > This function flattens nested layers of promise-like objects (e.g. a promise that resolves to a promise that resolves to something) into a single layer.
 
-&ndash; [Promise.resolve() on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
+- [Promise.resolve() on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
 
- The specification is [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions). But it is not quite human-friendly.
+The specification is [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions). But it is not quite human-friendly.
  
 ## `{}{}` is undefined
 

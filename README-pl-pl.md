@@ -10,7 +10,7 @@ JavaScript to świetny język. Ma prostą składnię, duży ekosystem i, co najw
 Jednocześnie wszyscy wiemy, że JavaScript jest dość zabawnym językiem z podchwytliwymi częściami. Niektóre z nich mogą szybko zamienić naszą codzienną pracę w piekło, a niektóre mogą rozśmieszyć nas na głos.
 
 Oryginalny pomysł na WTFJS należy do [Brian Leroux](https://twitter.com/brianleroux). Ta lista jest bardzo zainspirowana jego przemową
- [**“WTFJS”** na dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
+[**“WTFJS”** na dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
 [![dotJS 2012 - Brian Leroux - WTFJS](https://img.youtube.com/vi/et8xNAc2ic8/0.jpg)](https://www.youtube.com/watch?v=et8xNAc2ic8)
 
@@ -41,67 +41,66 @@ Obecnie są następujące tłumaczenia **wtfjs**:
 <!-- prettier-ignore-start -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-# Spis treści
+# Table of Contents
 
 - [💪🏻 Motywacja](#-motywacja)
 - [✍🏻 Notacja](#-notacja)
-- [👀 Przykłady](#-przykłady)
-  - [`[]` jest równe `![]`](#-jest-równe-)
-  - [`true` nie jest równe `![]`, ale też nie jest równe `[]`](#true-nie-jest-równe--ale-też-nie-jest-równe-)
-  - [prawda to fałsz](#prawda-to-fałsz)
+- [👀 Przykłady](#-przyk%C5%82ady)
+  - [`[]` jest równe `![]`](#-jest-r%C3%B3wne-)
+  - [`true` nie jest równe `![]`, ale też nie równe `[]`](#true-nie-jest-r%C3%B3wne--ale-te%C5%BC-nie-r%C3%B3wne-)
+  - [prawda to fałsz](#prawda-to-fa%C5%82sz)
   - [baNaNa](#banana)
   - [`NaN` nie jest `NaN`](#nan-nie-jest-nan)
   - [To jest fail](#to-jest-fail)
   - [`[]` jest prawdziwe, ale nie `true`](#-jest-prawdziwe-ale-nie-true)
-  - [`null` jest fałszywe, ale nie `false`](#null-jest-fałszywe-ale-nie-false)
+  - [`null` jest fałszywe, ale nie `false`](#null-jest-fa%C5%82szywe-ale-nie-false)
   - [`document.all` jest obiektem, ale jest undefined](#documentall-jest-obiektem-ale-jest-undefined)
-  - [Minimalna wartość jest większa od zera](#minimalna-wartość-jest-większa-od-zera)
-  - [funkcja nie jest funkcją](#funkcja-nie-jest-funkcją)
+  - [Minimalna wartość jest większa od zera](#minimalna-warto%C5%9B%C4%87-jest-wi%C4%99ksza-od-zera)
+  - [funkcja nie jest funkcją](#funkcja-nie-jest-funkcj%C4%85)
   - [Dodawanie tablic](#dodawanie-tablic)
   - [Trailing commas in array](#trailing-commas-in-array)
-  - [Równość tablic to potwór](#równość-tablic-to-potwór)
+  - [Równość tablic to potwór](#r%C3%B3wno%C5%9B%C4%87-tablic-to-potw%C3%B3r)
   - [`undefined` oraz `Number`](#undefined-oraz-number)
-  - [`parseInt` jest złym gościem](#parseint-jest-złym-gościem)
+  - [`parseInt` jest złym gościem](#parseint-jest-z%C5%82ym-go%C5%9Bciem)
   - [Matematyka z `true` i `false`](#matematyka-z-true-i-false)
-  - [Komentarze HTML są obowiązujące w JavaScript](#komentarze-html-są-obowiązujące-w-javascript)
+  - [Komentarze HTML są obowiązujące w JavaScript](#komentarze-html-s%C4%85-obowi%C4%85zuj%C4%85ce-w-javascript)
   - [`NaN` is ~~not~~ a number](#nan-is-not-a-number)
-  - [`[]` i `null` są obiektami](#-i-null-są-obiektami)
-  - [Magicznie rosnące liczby](#magicznie-rosnące-liczby)
+  - [`[]` i `null` są obiektami](#-i-null-s%C4%85-obiektami)
+  - [Magicznie rosnące liczby](#magicznie-rosn%C4%85ce-liczby)
   - [Precyzja `0.1 + 0.2`](#precyzja-01--02)
   - [Patching numbers](#patching-numbers)
-  - [Porównanie trzech liczb](#porównanie-trzech-liczb)
+  - [Porównanie trzech liczb](#por%C3%B3wnanie-trzech-liczb)
   - [Zabawna matematyka](#zabawna-matematyka)
   - [Dodanie RegExps](#dodanie-regexps)
-  - [Stringi nie są instancjami `String`](#stringi-nie-są-instancjami-string)
-  - [Wywoływanie funkcji za pomocą backticksa](#wywoływanie-funkcji-za-pomocą-backticksa)
+  - [Stringi nie są instancjami `String`](#stringi-nie-s%C4%85-instancjami-string)
+  - [Wywoływanie funkcji za pomocą backticksa](#wywo%C5%82ywanie-funkcji-za-pomoc%C4%85-backticksa)
   - [Call call call](#call-call-call)
-  - [Właściwość `constructor`](#właściwość-constructor)
-  - [Obiekt jako klucz właściwości obiektu](#obiekt-jako-klucz-właściwości-obiektu)
-  - [Dostęp do prototypów za pomocą `__proto__`](#dostęp-do-prototypów-za-pomocą-__proto__)
+  - [Właściwość `constructor`](#w%C5%82a%C5%9Bciwo%C5%9B%C4%87-constructor)
+  - [Obiekt jako klucz właściwości obiektu](#obiekt-jako-klucz-w%C5%82a%C5%9Bciwo%C5%9Bci-obiektu)
+  - [Dostęp do prototypów za pomocą `__proto__`](#dost%C4%99p-do-prototyp%C3%B3w-za-pomoc%C4%85-__proto__)
   - [`` `${{Object}}` ``](#-object-)
-  - [Destrukturyzacja z wartościami domyślnymi](#destrukturyzacja-z-wartościami-domyślnymi)
+  - [Destrukturyzacja z wartościami domyślnymi](#destrukturyzacja-z-warto%C5%9Bciami-domy%C5%9Blnymi)
   - [Dots and spreading](#dots-and-spreading)
   - [Etykiety](#etykiety)
-  - [Zagnieżdżone etykiety](#zagnieżdżone-etykiety)
-  - [Podstępny `try..catch`](#podstępny-trycatch)
+  - [Zagnieżdżone etykiety](#zagnie%C5%BCd%C5%BCone-etykiety)
+  - [Podstępny `try..catch`](#podst%C4%99pny-trycatch)
   - [Czy to wielokrotne dziedziczenie?](#czy-to-wielokrotne-dziedziczenie)
   - [A generator which yields itself](#a-generator-which-yields-itself)
   - [Klasa klasy](#klasa-klasy)
   - [Non-coercible objects](#non-coercible-objects)
-  - [Podstępne funkcje strzałkowe](#podstępne-funkcje-strzałkowe)
-  - [Funkcje strzałkowe nie mogą być konstruktorami](#funkcje-strzałkowe-nie-mogą-być-konstruktorami)
-  - [`arguments` i funkcje strzałkowe](#arguments-i-funkcje-strzałkowe)
-  - [Podstępny return](#podstępny-return)
+  - [Podstępne funkcje strzałkowe](#podst%C4%99pne-funkcje-strza%C5%82kowe)
+  - [Funkcje strzałkowe nie mogą być konstruktorami](#funkcje-strza%C5%82kowe-nie-mog%C4%85-by%C4%87-konstruktorami)
+  - [`arguments` i funkcje strzałkowe](#arguments-i-funkcje-strza%C5%82kowe)
+  - [Podstępny return](#podst%C4%99pny-return)
   - [Chaining assignments on object](#chaining-assignments-on-object)
-  - [Dostęp do właściwości obiektu za pomocą tablic](#dostęp-do-właściwości-obiektu-za-pomocą-tablic)
+  - [Dostęp do właściwości obiektu za pomocą tablic](#dost%C4%99p-do-w%C5%82a%C5%9Bciwo%C5%9Bci-obiektu-za-pomoc%C4%85-tablic)
   - [Null and Relational Operators](#null-and-relational-operators)
   - [`Number.toFixed()` display different numbers](#numbertofixed-display-different-numbers)
-  - [`Math.max()` mniej niż `Math.min()`](#mathmax-mniej-niż-mathmin)
+  - [`Math.max()` mniej niż `Math.min()`](#mathmax-mniej-ni%C5%BC-mathmin)
   - [Comparing `null` to `0`](#comparing-null-to-0)
   - [Redeklaracja tej samej zmiennej](#redeklaracja-tej-samej-zmiennej)
-  - [Domyślne zachowanie Array.prototype.sort()](#domyślne-zachowanie-arrayprototypesort)
-- [📚 Inne materiały](#-inne-materiały)
+  - [Domyślne zachowanie Array.prototype.sort()](#domy%C5%9Blne-zachowanie-arrayprototypesort)
+- [📚 Inne materiały](#-inne-materia%C5%82y)
 - [🎓 Licencja](#-licencja)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -966,7 +965,7 @@ console.log.call.call.call.call.call.apply(a => a, [1, 2]);
 
 ### 💡 Wytłumaczenie:
 
-Uwaga, może to popsuć ci umysł! Spróbuj odtworzyć ten kod w swojej głowie: stosujemy metodę `call` za pomocą metody` apply`. Czytaj więcej:
+Uwaga, może to popsuć ci umysł! Spróbuj odtworzyć ten kod w swojej głowie: stosujemy metodę `call` za pomocą metody`apply`. Czytaj więcej:
 
 - [**19.2.3.3** Function.prototype.call(`thisArg`, ...`args`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.call)
 - [**19.2.3.1 ** Function.prototype.apply(`thisArg`, `argArray`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.apply)
@@ -1637,7 +1636,7 @@ null > 0; // -> false
 null >= 0; // -> true
 ```
 
-Jak `null` nie może być ani równy ani większy od `0`, jeśli `null>=0' jest w rzeczywistości `true`? (Działa to również z mniej niż w ten sam sposób.)
+Jak `null` nie może być ani równy ani większy od `0`, jeśli `null>=0' jest w rzeczywistości`true`? (Działa to również z mniej niż w ten sam sposób.)
 
 ### 💡 Wytłumaczenie:
 
