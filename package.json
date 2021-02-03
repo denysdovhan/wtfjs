@@ -8,7 +8,7 @@
   "scripts": {
     "precommit": "lint-staged",
     "toc": "doctoc --github --title '# Table of Contents' --maxlevel 2 README.md",
-    "format": "prettier --write '*.{json,md}' 'wtfjs'"
+    "format": "prettier --write '*.{json,js}'"
   },
   "repository": {
     "type": "git",
@@ -47,8 +47,7 @@
   },
   "lint-staged": {
     "*.{md}": [
-      "npm run toc",
-      "prettier --write"
+      "npm run toc"
     ],
     "*.{js,json}": [
       "prettier --write"
