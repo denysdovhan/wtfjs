@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/denysdovhan/wtfjs#readme",
   "devDependencies": {
+    "@semantic-release/git": "^9.0.0",
     "doctoc": "^1.3.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.2",
@@ -51,6 +52,24 @@
     ],
     "*.{js,json}": [
       "prettier --write"
+    ]
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "README*.md",
+            "*.js",
+            "package.json"
+          ]
+        }
+      ]
     ]
   }
 }

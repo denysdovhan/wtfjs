@@ -14,12 +14,8 @@ jobs:
         uses: bahmutov/npm-install@v1
       - name: Generate TOC
         run: npm run toc
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Update TOC
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Format files
+        run: npm run format
       - name: Release
         run: npx semantic-release
         env:
