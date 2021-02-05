@@ -1680,8 +1680,8 @@ All definitions are merged into one definition.
 
 Imagine that you need to sort an array of numbers.
 
-```
-[ 10, 1, 3 ].sort() // -> [ 1, 10, 3 ]
+```js
+[10, 1, 3].sort() // -> [ 1, 10, 3 ]
 ```
 
 ### 💡 Explanation:
@@ -1692,25 +1692,25 @@ The default sort order is built upon converting the elements into strings, then 
 
 ### Hint
 
-Pass `comparefn` if you try to sort anything but string.
+Pass `compareFn` if you try to sort anything but string.
 
-```
-[ 10, 1, 3 ].sort((a, b) => a - b) // -> [ 1, 3, 10 ]
+```js
+[10, 1, 3 ].sort((a, b) => a - b) // -> [ 1, 3, 10 ]
 ```
 
 ## resolve() won't return Promise instance
 
-```javascript
+```js
 const theObject = {
   a: 7
 };
 const thePromise = new Promise((resolve, reject) => {
   resolve(theObject);
-}); // -> Promise instance object
+}); // Promise instance object
 
 thePromise.then(value => {
-  console.log(value === theObject); // -> true
-  console.log(value); // -> { a: 7 }
+  console.log(value === theObject); // > true
+  console.log(value); // > { a: 7 }
 });
 ```
 
@@ -1718,17 +1718,17 @@ The `value` which is resolved from `thePromise` is exactly `theObject`.
 
 How about input another `Promise` into the `resolve` function?
 
-```javascript
+```js
 const theObject = new Promise((resolve, reject) => {
   resolve(7);
-}); // -> Promise instance object
+}); // Promise instance object
 const thePromise = new Promise((resolve, reject) => {
   resolve(theObject);
-}); // -> Promise instance object
+}); // Promise instance object
 
 thePromise.then(value => {
-  console.log(value === theObject); // -> false
-  console.log(value); // -> 7
+  console.log(value === theObject); // > false
+  console.log(value); // > 7
 });
 ```
 
@@ -1742,34 +1742,61 @@ The specification is [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://t
  
 ## `{}{}` is undefined
 
-Write them in console. They will return the value that defined in last object.
+Write them in the console. They will return the value defined in the last object.
 
-```
-{}{}; // undefined
-{}{}{}; // undefined
-{}{}{}{}; // undefined
-{foo: 'bar'}{}; // 'bar'
-{}{foo: 'bar'}; // 'bar'
-{}{foo: 'bar'}{}; // 'bar'
-{a: 'b'}{c:' d'}{}; // 'd'
-{a: 'b', c: 'd'}{}; // SyntaxError: Unexpected token ':'
-({}{}); // SyntaxError: Unexpected token '{'
+```js
+{}{}; // -> undefined
+{}{}{}; // -> undefined
+{}{}{}{}; // -> undefined
+{foo: 'bar'}{}; // -> 'bar'
+{}{foo: 'bar'}; // -> 'bar'
+{}{foo: 'bar'}{}; // -> 'bar'
+{a: 'b'}{c:' d'}{}; // -> 'd'
+{a: 'b', c: 'd'}{}; // > SyntaxError: Unexpected token ':'
+({}{}); // > SyntaxError: Unexpected token '{'
 ```
 
 ### 💡 Explanation:
 
-When inspecting each ```{}```, they returns undefined. If you inspect ```{foo: 'bar'}{}```, you will find ```{foo: 'bar'}``` is ```'bar'```.
+When inspecting each `{}`, they returns undefined. If you inspect `{foo: 'bar'}{}`, you will find `{foo: 'bar'}` is `'bar'`.
 
-There are 2 meaning for {}: object and block.
-For example, the {} in ()=>{} means block. So we need to use ()=>({}) to return an object.
+There are two meanings for `{}`: an object or a block. For example, the `{}` in `() => {}` means block. So we need to use `() => ({}`) to return an object.
 
-Let's use ```{foo: 'bar'}``` as a block. Write this snippet in your console:
+Let's use `{foo: 'bar'}` as a block. Write this snippet in your console:
 
+```js
+if (true) {foo: 'bar'} // -> 'bar'
 ```
-if(true) {foo: 'bar'} // 'bar'
+
+Surprisingly, it behaviors the same! You can guess here that `{foo: 'bar'}{}` is a block.
+
+## `min` is greater than `max`
+
+I find this example hilarious:
+
+```js
+Math.min() > Math.max() // -> true
+Math.min() < Math.max() // -> false
 ```
 
-Surprisingly, it behaviors the same! You can guess here that ```{foo: 'bar'}{}``` is a block.
+### 💡 Explanation:
+
+This is a simple one. Let's consider each part of this expression separately:
+
+```js
+Math.min() // -> Infinity
+Math.max() // -> -Infinity
+Infinity > -Infinity // -> true
+```
+
+Why so? Well, `Math.max()` is not the same thing as `Number.MAX_VALUE`. It does not return the largest possible number.
+
+`Math.max` takes arguments, tries to convert the to numbers, compares each one and then returns the largest remaining. If no arguments are given, the result is −∞. If any value is `NaN`, the result is `NaN`.
+
+The opposite is happening for `Math.min`. `Math.min` returns ∞, if no arguments are given.
+
+- [**15.8.2.11** Math.max](https://262.ecma-international.org/5.1/#sec-15.8.2.11)
+- [**15.8.2.11** Math.min](https://262.ecma-international.org/5.1/#sec-15.8.2.12)
 
 # 📚 Other resources
 
