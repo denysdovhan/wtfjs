@@ -47,7 +47,7 @@
     "update-notifier": "^2.0.0"
   },
   "lint-staged": {
-    "*.{md}": [
+    "*.md": [
       "npm run toc"
     ],
     "*.{js,json}": [
