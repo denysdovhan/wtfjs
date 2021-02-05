@@ -106,6 +106,8 @@ Currently, there are these translations of **wtfjs**:
   - [Default behavior Array.prototype.sort()](#default-behavior-arrayprototypesort)
   - [resolve() won't return Promise instance](#resolve-wont-return-promise-instance)
   - [`{}{}` is undefined](#-is-undefined)
+  - [`min` is greater than `max`](#min-is-greater-than-max)
+  - [`agruments` 2-way binding](#agruments-2-way-binding)
 - [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 
@@ -1797,6 +1799,27 @@ The opposite is happening for `Math.min`. `Math.min` returns ∞, if no argument
 
 - [**15.8.2.11** Math.max](https://262.ecma-international.org/5.1/#sec-15.8.2.11)
 - [**15.8.2.11** Math.min](https://262.ecma-international.org/5.1/#sec-15.8.2.12)
+- [Why is `Math.max()` less than `Math.min()`?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min)
+
+## `agruments` 2-way binding
+
+Consider this function:
+
+```js
+function a(x) {
+  arguments[0] = 'hello';
+  console.log(x);
+}
+
+a(); // > undefined
+a(1); // > "hello"
+```
+
+### 💡 Explanation:
+
+`arguments` is an Array-like object that contains the values of the arguments passed to that function. When no arguments are passed, then there's no `x` to override.
+
+* [The arguments object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments) on MDN
 
 # 📚 Other resources
 
