@@ -109,6 +109,7 @@ Currently, there are these translations of **wtfjs**:
   - [`min` is greater than `max`](#min-is-greater-than-max)
   - [`agruments` 2-way binding](#agruments-2-way-binding)
   - [An `alert` from hell](#an-alert-from-hell)
+  - [An infinite timeout](#an-infinite-timeout)
 - [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 
@@ -1820,7 +1821,7 @@ a(1); // > "hello"
 
 `arguments` is an Array-like object that contains the values of the arguments passed to that function. When no arguments are passed, then there's no `x` to override.
 
-* [The arguments object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments) on MDN
+- [The arguments object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments) on MDN
 
 ## An `alert` from hell
 
@@ -1836,9 +1837,36 @@ This one is based on octal escape sequences and multiple strings.
 
 Any character with a character code lower than 256 (i.e. any character in the extended ASCII range) can be escaped using its octal-encoded character code, prefixed with `\`. An example above is basically and `alert` ecoded by octal escape sequances.
 
-* [Martin Kleppe tweet about it](https://twitter.com/aemkei/status/897172907222237185)
-* [JavaScript character escape sequences](https://mathiasbynens.be/notes/javascript-escapes#octal)
-* [Multi-Line JavaScript Strings](https://davidwalsh.name/multiline-javascript-strings)
+- [Martin Kleppe tweet about it](https://twitter.com/aemkei/status/897172907222237185)
+- [JavaScript character escape sequences](https://mathiasbynens.be/notes/javascript-escapes#octal)
+- [Multi-Line JavaScript Strings](https://davidwalsh.name/multiline-javascript-strings)
+
+## An infinite timeout
+
+Guess what would happen if we set an infinite timeout?
+
+```js
+setTimeout(() => console.log('called'), Infinity) // -> <timeoutId>
+// > 'called'
+```
+
+It will executed immediately instead of infinity delay.
+
+### 💡 Explanation:
+
+Usually, runtime stores the delay as a 32-bit signed integer internally. This causes an integer overflow, resulting in the timeout being executed immediately.
+
+For example, in Node.js we will get this warning:
+
+```
+(node:1731) TimeoutOverflowWarning: Infinity does not fit into a 32-bit signed integer.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+```
+
+- [WindowOrWorkerGlobalScope.setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) on MDN
+- [Node.js Documentation on Timers](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_args)
+- [Timers](https://www.w3.org/TR/2011/WD-html5-20110525/timers.html) on W3C
 
 # 📚 Other resources
 
