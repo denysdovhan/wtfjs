@@ -108,6 +108,7 @@ Currently, there are these translations of **wtfjs**:
   - [`{}{}` is undefined](#-is-undefined)
   - [`min` is greater than `max`](#min-is-greater-than-max)
   - [`agruments` 2-way binding](#agruments-2-way-binding)
+  - [An `alert` from hell](#an-alert-from-hell)
 - [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 
@@ -1820,6 +1821,24 @@ a(1); // > "hello"
 `arguments` is an Array-like object that contains the values of the arguments passed to that function. When no arguments are passed, then there's no `x` to override.
 
 * [The arguments object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments) on MDN
+
+## An `alert` from hell
+
+This on is literally from hell:
+
+```js
+[666]['\155\141\160']['\143\157\156\163\164\162\165\143\164\157\162']('\141\154\145\162\164(666)')(666) // alert(666)
+```
+
+### 💡 Explanation:
+
+This one is based on octal escape sequences and multiple strings.
+
+Any character with a character code lower than 256 (i.e. any character in the extended ASCII range) can be escaped using its octal-encoded character code, prefixed with `\`. An example above is basically and `alert` ecoded by octal escape sequances.
+
+* [Martin Kleppe tweet about it](https://twitter.com/aemkei/status/897172907222237185)
+* [JavaScript character escape sequences](https://mathiasbynens.be/notes/javascript-escapes#octal)
+* [Multi-Line JavaScript Strings](https://davidwalsh.name/multiline-javascript-strings)
 
 # 📚 Other resources
 
