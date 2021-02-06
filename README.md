@@ -113,6 +113,7 @@ Currently, there are these translations of **wtfjs**:
   - [Double dot](#double-dot)
   - [Extra Newness](#extra-newness)
   - [Why you should use semicolons](#why-you-should-use-semicolons)
+  - [Split a string by a space](#split-a-string-by-a-space)
 - [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 
@@ -2001,6 +2002,28 @@ You basically assign a string `str` into an `array` property.
 
 - [An original tween with an example](https://twitter.com/SeaRyanC/status/1148726605222535168) by Ryan Cavanaugh
 - [TC39 meeting when they debated about it](https://github.com/tc39/notes/blob/master/meetings/2017-09/sept-26.md)
+
+## Split a string by a space
+
+Have you ever tried to split a string by a space?
+
+```js
+"".split("") // -> []
+// but…
+"".split(" ") // -> [""]
+```
+
+### 💡 Explanation:
+
+This is expected behaviour. It's responsibility is to divide the input string every time a separator occurs in that input string. When you pass in an empty string it'll never find a separator and thus return that string.
+
+Let's quote the specification:
+
+> The substrings are determined by searching from left to right for occurrences of `separator`; these occurrences are not part of any String in the returned array, but serve to divide up the String value.
+
+- [**22.1.3.21** String.prototype.split](https://tc39.es/ecma262/#sec-string.prototype.split)
+- [An original tween with an example](https://twitter.com/SeaRyanC/status/1331656278104440833) by Ryan Cavanaugh
+- [A tween with an explanation](https://twitter.com/kl13nt/status/1331742810932916227?s=20) by Nabil Tharwat
 
 # 📚 Other resources
 
