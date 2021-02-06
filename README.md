@@ -111,6 +111,7 @@ Currently, there are these translations of **wtfjs**:
   - [An `alert` from hell](#an-alert-from-hell)
   - [An infinite timeout](#an-infinite-timeout)
   - [Double dot](#double-dot)
+  - [Extra Newness](#extra-newness)
 - [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 
@@ -1919,6 +1920,54 @@ You must always use parenthesis or an addition dot to make such expression valid
 
 - [Usage of toString in JavaScript](https://stackoverflow.com/questions/6853865/usage-of-tostring-in-javascript/6853910#6853910) on StackOverflow
 - [Why does 10..toString() work, but 10.toString() does not?](https://stackoverflow.com/questions/13149282/why-does-10-tostring-work-but-10-tostring-does-not/13149301#13149301)
+
+## Extra Newness
+
+I present this as an oddity for your amusement.
+
+```js
+class Foo extends Function {
+  constructor(val) {
+    super();
+    this.prototype.val = val;
+  }
+}
+
+new new Foo(':D')().val // -> ':D'
+```
+
+### 💡 Explanation:
+
+Constructors in JavaScript are just functions with some special treatment. By extending Function using the class syntax you create a class that, when instantiated, is now a function, which you can then additionally instantiate.
+
+While not exhaustively tested, I believe the last statement can be analyzed thus:
+
+```js
+(new (new Foo(':D'))()).val
+(new newFooInstance()).val
+veryNewFooInstance.val
+// -> ':D'
+```
+
+As a tiny addendum, doing `new Function('return "bar";')` of course creates a function with the body `return "bar";`. Since `super()` in the constructor of our `Foo` class is calling `Function`'s constructor, it should come as no surprise now to see that we can additionally manipulate things in there.
+
+```js
+class Foo extends Function {
+  constructor(val) {
+    super(`
+      this.val = arguments[0];
+    `);
+    this.prototype.val = val;
+  }
+}
+
+var foo = new new Foo(':D')('D:');
+foo.val // -> 'D:'
+delete foo.val; // remove the instance prop 'val', deferring back to the prototype's 'val'.
+foo.val // -> ':D'
+```
+
+- [Class Extends Function: Extra Newness](https://github.com/denysdovhan/wtfjs/issues/78)
 
 # 📚 Other resources
 
