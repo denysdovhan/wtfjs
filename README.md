@@ -112,6 +112,7 @@ Currently, there are these translations of **wtfjs**:
   - [An infinite timeout](#an-infinite-timeout)
   - [Double dot](#double-dot)
   - [Extra Newness](#extra-newness)
+  - [Why you should use semicolons](#why-you-should-use-semicolons)
 - [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 
@@ -1968,6 +1969,38 @@ foo.val // -> ':D'
 ```
 
 - [Class Extends Function: Extra Newness](https://github.com/denysdovhan/wtfjs/issues/78)
+
+## Why you should use semicolons
+
+Writing some standard JavaScript… and then BOOM!
+
+```js
+class SomeClass {
+  ['array'] = []
+  ['string'] = 'str'
+}
+
+(new SomeClass()).array // -> 'str'
+```
+
+What the …?
+
+### 💡 Explanation:
+
+Once again, this is all thanks to the Automatic Semicolon Insertion.
+
+An example above is basically the same as:
+
+```js
+class SomeClass {
+  ['array'] = ([]['string'] = 'str');
+}
+```
+
+You basically assign a string `str` into an `array` property.
+
+- [An original tween with an example](https://twitter.com/SeaRyanC/status/1148726605222535168) by Ryan Cavanaugh
+- [TC39 meeting when they debated about it](https://github.com/tc39/notes/blob/master/meetings/2017-09/sept-26.md)
 
 # 📚 Other resources
 
