@@ -115,6 +115,7 @@ Currently, there are these translations of **wtfjs**:
   - [Why you should use semicolons](#why-you-should-use-semicolons)
   - [Split a string by a space](#split-a-string-by-a-space)
   - [A stringified string](#a-stringified-string)
+  - [Non-strict comparison of a number to `true`](#non-strict-comparison-of-a-number-to-true)
 - [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 
@@ -2049,6 +2050,37 @@ It is actually a stringified string, so it's true:
 ```
 
 - [ECMA-404 The JSON Data Interchange Standard.](https://www.json.org/json-en.html)
+
+## Non-strict comparison of a number to `true`
+
+```js
+1 == true // -> true
+// but…
+Boolean(1.1) // -> true
+1.1 == true // -> false
+```
+
+### 💡 Explanation:
+
+According to the specification:
+
+> The comparison x == y, where x and y are values, produces true or false. Such a comparison is performed as follows:
+> 
+> 4. If `Type(x)` is Number and `Type(y)` is String, return the result of the comparison `x == ! ToNumber(y)`.
+
+So this comparison is performed like this:
+
+```js
+1 == true
+1 == Number(true)
+1 == 1 // -> true
+// but…
+1.1 == true
+1.1 == Number(true)
+1.1 == 1 // -> false
+```
+
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 # 📚 Other resources
 
