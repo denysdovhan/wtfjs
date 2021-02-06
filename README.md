@@ -107,9 +107,10 @@ Currently, there are these translations of **wtfjs**:
   - [resolve() won't return Promise instance](#resolve-wont-return-promise-instance)
   - [`{}{}` is undefined](#-is-undefined)
   - [`min` is greater than `max`](#min-is-greater-than-max)
-  - [`agruments` 2-way binding](#agruments-2-way-binding)
+  - [`agruments` binding](#agruments-binding)
   - [An `alert` from hell](#an-alert-from-hell)
   - [An infinite timeout](#an-infinite-timeout)
+  - [Double dot](#double-dot)
 - [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 
@@ -1819,7 +1820,7 @@ The opposite is happening for `Math.min`. `Math.min` returns ∞, if no argument
 - [**15.8.2.11** Math.min](https://262.ecma-international.org/5.1/#sec-15.8.2.12)
 - [Why is `Math.max()` less than `Math.min()`?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min)
 
-## `agruments` 2-way binding
+## `agruments` binding
 
 Consider this function:
 
@@ -1883,6 +1884,41 @@ Timeout duration was set to 1.
 - [WindowOrWorkerGlobalScope.setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) on MDN
 - [Node.js Documentation on Timers](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_args)
 - [Timers](https://www.w3.org/TR/2011/WD-html5-20110525/timers.html) on W3C
+
+## Double dot
+
+Let's try to coerce a number to a string:
+
+```js
+27.toString() // > Uncaught SyntaxError: Invalid or unexpected token
+```
+
+Maybe we should try with a two dots?
+
+```js
+27..toString() // -> '27'
+```
+
+But why doesn't first example work? 
+
+### 💡 Explanation:
+
+It's just a language grammar limitation. 
+
+The `.` character presents an ambiguity. It can be understood to be the member operator, or a decimal, depending on its placement. 
+
+The specification's interpretation of the `.` character in that particular position is that it will be a decimal. This is defined by the numeric literal syntax of ECMAScript.
+
+You must always use parenthesis or an addition dot to make such expression valid.
+
+```js
+(27).toString() // -> '27'
+// or
+27..toString() // -> '27'
+```
+
+- [Usage of toString in JavaScript](https://stackoverflow.com/questions/6853865/usage-of-tostring-in-javascript/6853910#6853910) on StackOverflow
+- [Why does 10..toString() work, but 10.toString() does not?](https://stackoverflow.com/questions/13149282/why-does-10-tostring-work-but-10-tostring-does-not/13149301#13149301)
 
 # 📚 Other resources
 
