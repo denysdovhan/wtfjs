@@ -114,6 +114,7 @@ Currently, there are these translations of **wtfjs**:
   - [Extra Newness](#extra-newness)
   - [Why you should use semicolons](#why-you-should-use-semicolons)
   - [Split a string by a space](#split-a-string-by-a-space)
+  - [A stringified string](#a-stringified-string)
 - [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 
@@ -2024,6 +2025,30 @@ Let's quote the specification:
 - [**22.1.3.21** String.prototype.split](https://tc39.es/ecma262/#sec-string.prototype.split)
 - [An original tween with an example](https://twitter.com/SeaRyanC/status/1331656278104440833) by Ryan Cavanaugh
 - [A tween with an explanation](https://twitter.com/kl13nt/status/1331742810932916227?s=20) by Nabil Tharwat
+
+## A stringified string
+
+This caused a bug that I've been solving for a few days:
+
+```js
+JSON.stringify('production') === 'production' // -> false
+```
+
+### 💡 Explanation:
+
+Let's see what `JSON.stringify` is returning:
+
+```js
+JSON.stringify('production') // -> '"production"'
+```
+
+It is actually a stringified string, so it's true:
+
+```js
+'"production"' === 'production' // -> false
+```
+
+- [ECMA-404 The JSON Data Interchange Standard.](https://www.json.org/json-en.html)
 
 # 📚 Other resources
 
