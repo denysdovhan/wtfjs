@@ -497,6 +497,65 @@ new Foo() instanceof null;
 
 This is not a part of the specification. It's just a bug that has now been fixed, so there shouldn't be a problem with it in the future.
 
+### Super constructor null of Foo is not a constructor
+
+It's continuation of story with previous bug in modern environment (tested with Chrome 71 and Node.js v11.8.0).
+
+```js
+class Foo extends null {}
+new Foo() instanceof null;
+// > TypeError: Super constructor null of Foo is not a constructor
+```
+
+### 💡 Explanation: 
+
+This is not a bug because:
+
+```js
+Object.getPrototypeOf(Foo.prototype); // -> null
+```
+
+If the class has no constructor the call from prototype chain. But in the parent has no constructor. Just in case, I’ll clarify that `null` is an object:
+
+```js
+typeof null === 'object'
+```
+
+Therefore, you can inherit from it (although in the world of the OOP for such terms would have beaten me). So you can't call the null constructor. If you change this code:
+
+```js
+class Foo extends null {
+    constructor() {
+        console.log('something');
+    }
+}
+```
+
+You see the error:
+
+```
+ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor
+```
+
+And if you add `super`:
+
+```js
+class Foo extends null {
+    constructor() {
+        console.log(111);
+        super();
+    }
+}
+```
+
+JS throws an error:
+
+```
+TypeError: Super constructor null of Foo is not a constructor
+```
+
+- [An explanation of this issue](https://github.com/denysdovhan/wtfjs/pull/102#discussion_r259143582) by [@geekjob](https://github.com/geekjob)
+
 ## Adding arrays
 
 What if you try to add two arrays?
