@@ -39,9 +39,9 @@ Currently, there are these translations of **wtfjs**:
 - [Italiano](./README-it-it.md)
 - [Russian](https://habr.com/ru/company/mailru/blog/335292/) (on Habr.com)
 
-[**Request another translation**][tr-request]
+[**Help translating to your language**][tr-request]
 
-[tr-request]: https://github.com/denysdovhan/wtfjs/issues/new?title=Translation%20Request:%20%5BPlease%20enter%20language%20here%5D&body=I%20am%20able%20to%20translate%20this%20language%20%5Byes/no%5D
+[tr-request]: https://github.com/denysdovhan/wtfjs/blob/master/CONTRIBUTING.md#translations
 
 **Note:** Translations are maintained by their translators. They may not contain every example, and existing examples may be outdated.
 
