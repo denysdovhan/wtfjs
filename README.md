@@ -2,6 +2,8 @@
 
 [![WTFPL 2.0][license-image]][license-url]
 [![NPM version][npm-image]][npm-url]
+[![Patreon][patreon-image]][patreon-url]
+[![Buy Me A Coffee][bmc-image]][bmc-url]
 
 > A list of funny and tricky JavaScript examples
 
@@ -137,6 +139,8 @@ If you are a beginner, you can use these notes to get a deeper dive into JavaScr
 If you are a professional developer, you can consider these examples as a great reference for all of the quirks and unexpected edges of our beloved JavaScript.
 
 In any case, just read this. You're probably going to find something new.
+
+> **⚠️ Note:** If you enjoy reading this document, pleas, [consider supporting the author of this collection](#-supporting).
 
 # ✍🏻 Notation
 
@@ -2106,10 +2110,7 @@ Every single donation is important. Your donation is gonna make a clear statemen
 | **Bitcoin**      |     `1EJsKs6rPsqa7QLoVLpe3wgcdL9Q8WmDxE`     |      <img src="https://user-images.githubusercontent.com/3459374/107130426-0ae4f800-68d6-11eb-9b86-15bf33467615.png" width="120px"/>       |
 | **Ethereum**     | `0x6aF39C917359897ae6969Ad682C14110afe1a0a1` |      <img src="https://user-images.githubusercontent.com/3459374/107130370-55b24000-68d5-11eb-93f5-075355c7fcd4.png" width="120px"/>       |
 
-[patreon-url]: https://www.patreon.com/denysdovhan
-[bmc-url]: https://buymeacoffee.com/denysdovhan
-
-**⚠️ Note:** Sorry, those are the only ways you can support me. I live in Ukraine and services like PayPal and Stripe don't work with Ukrainian bank accounts. This means there's no way for me to set up GitHub Sponsors, OpenCollective, or services relied on them.
+> **⚠️ Note:** I live in Ukraine and services like PayPal and Stripe don't work with Ukrainian bank accounts. This means there's no way for me to set up GitHub Sponsors, OpenCollective, or services relied on them. Sorry, those are the only ways you can support me for now.
 
 # 🎓 License
 
@@ -2121,3 +2122,7 @@ Every single donation is important. Your donation is gonna make a clear statemen
 [license-image]: https://img.shields.io/badge/License-WTFPL%202.0-lightgrey.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/wtfjs
 [npm-image]: https://img.shields.io/npm/v/wtfjs.svg?style=flat-square
+[patreon-url]: https://patreon.com/denysdovhan
+[patreon-image]: https://img.shields.io/badge/support-patreon-F96854.svg?style=flat-square
+[bmc-url]: https://patreon.com/denysdovhan
+[bmc-image]: https://img.shields.io/badge/support-buymeacoffee-222222.svg?style=flat-square
