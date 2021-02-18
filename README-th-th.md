@@ -138,8 +138,6 @@ Array is equal not array:
 
 ```js
 [] == ![]; // -> true
-true == false
-0 ==
 ```
 
 ### 💡คำอธิบาย
@@ -153,3 +151,152 @@ arrays มีค่าเป็น truthy ดังนั้นทางด้�
 0 == 0;
 true;
 ```
+
+ดูเพิ่มเติม [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
+
+- [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
+- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+
+## `true` is not equal `![]`, but not equal `[]` too
+
+Array ไม่เท่ากับ `true` แต่ not Array(![]) ไม่เท่ากับ `true` เช่นกัน Array มีค่าเท่ากับ `false` not Array(![]) มีค่าเท่ากับ `false` เช่นกัน
+
+```js
+true == []; // -> false
+true == ![]; // -> false
+
+false == []; // -> true
+false == ![]; // -> true
+```
+
+### 💡 คำอธิบาย
+
+```js
+true == []; // -> false
+true == ![]; // -> false
+
+// According to the specification
+
+true == []; // -> false
+
+toNumber(true); // -> 1
+toNumber([]); // -> 0
+
+1 == 0; // -> false
+
+true == ![]; // -> false
+
+![]; // -> false
+
+true == false; // -> false
+```
+
+```js
+false == []; // -> true
+false == ![]; // -> true
+
+// According to the specification
+
+false == []; // -> true
+
+toNumber(false); // -> 0
+toNumber([]); // -> 0
+
+0 == 0; // -> true
+
+false == ![]; // -> true
+
+![]; // -> false
+
+false == false; // -> true
+```
+
+```js
+false == []; // -> true
+false == ![]; // -> true
+
+// According to the specification
+
+false == []; // -> true
+
+toNumber(false); // -> 0
+toNumber([]); // -> 0
+
+0 == 0; // -> true
+
+false == ![]; // -> true
+
+![]; // -> false
+
+false == false; // -> true
+```
+
+- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+
+## true is false
+
+```js
+!!"false" == !!"true"; // -> true
+!!"false" === !!"true"; // -> true
+```
+
+### 💡 คำอธิบาย
+
+พิจารณาสิ่งนี้ทีละขั้นตอน:
+
+```js
+// true คือ 'truthy' และเป็นตัวแทนของค่า  1 (number), 'true'  ในรูปแบบ strinh คิอ NaN
+true == "true"; // -> false
+false == "false"; // -> false
+
+// 'false' is not the empty string, so it's a truthy value
+// 'false' ไม่ใช้ค่า emptu string ดังนั้นจึงเป็น truthy
+!!"false"; // -> true
+!!"true"; // -> true
+```
+
+- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+
+## baNaNa
+
+```js
+"b" + "a" + +"a" + "a"; // -> 'baNaNa'
+```
+
+ผลลัพธ์การแปล
+นี่เป็นเรื่องตลกสมัยก่อนใน JavaScript แต่ได้รับการรีมาสเตอร์ นี่คือต้นฉบับ:
+
+```js
+"foo" + +"bar"; // -> 'fooNaN'
+```
+
+`'foo' + (+'bar')`, มันจะแปลง `'bar'` ซึ่งไม่ใช้ number. เลยได้ NaN ออกมาแทน
+
+expression
+
+- [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
+- [12.5.6 Unary + Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
+
+## `NaN` is not a `NaN`
+
+```js
+NaN === NaN; // -> false
+```
+
+### 💡 คำอธิบาย
+
+ข้อกำหนดกำหนดตรรกะที่อยู่เบื้องหลังพฤติกรรมนี้อย่างเคร่งครัด:
+
+> 1. ถ้า `Type(x)` แตกต่างจาก `Type(y)`, return **false**.
+> 2. ถ้า `Type(x)` คือ Number, then
+>    1. ถ้า `x` เป็น **NaN**, return **false**.
+>    2. ถ้า `y` เป็น **NaN**, return **false**.
+>    3. … … …
+>
+> &mdash; [**7.2.14** Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)
+
+ตามคำจำกัดความของ "NaN" จาก IEEE:
+
+> ความสัมพันธ์พิเศษซึ่งกันและกันเป็นไปได้สี่ประการ: น้อยกว่า(<),เท่ากับ(==),มากกว่า(>)และไม่เรียงลำดับ กรณีสุดท้ายเกิดขึ้นเมื่ออย่างน้อยหนึ่งตัวถูกดำเนินการคือ NaN ทุก NaN จะเปรียบเทียบไม่เรียงลำดับกับทุกสิ่งรวมทั้งตัวมันเองด้วย
+>
+> &mdash; [“What is the rationale for all comparisons returning false for IEEE754 NaN values?”](https://stackoverflow.com/questions/1565164/1573715#1573715) at StackOverflow

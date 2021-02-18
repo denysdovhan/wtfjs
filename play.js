@@ -1,1 +1,1 @@
-if (0) console.log(`show`);
+console.log(+"bar");
