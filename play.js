@@ -1,3 +1,1 @@
-// -> true
-
-console.log(document.all instanceof Object);
+console.log(parseInt("f*ck", 2));
