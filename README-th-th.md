@@ -640,3 +640,95 @@ Number(true); // -> 1
 - [**12.5.6** Unary `+` Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
 - [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 - [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
+
+## HTML comments are valid in JavaScript
+
+`<!--` (comment in HTML) is a valid comment in JavaScript.
+
+```js
+// valid comment
+<!-- valid comment too
+```
+
+### 💡 คำอธิบาย
+
+Impressed? HTML-like comments were intended to allow browsers that didn't understand the `<script>` tag to degrade gracefully. These browsers, e.g. Netscape 1.x are no longer popular. So there is really no point in putting HTML comments in your script tags anymore.
+
+Since Node.js is based on the V8 engine, HTML-like comments are supported by the Node.js runtime too. Moreover, they're a part of the specification:
+
+- [**B.1.3** HTML-like Comments](https://www.ecma-international.org/ecma-262/#sec-html-like-comments)
+
+## `NaN` is ~~not~~ a number
+
+Type of `NaN` is a `'number'`:
+
+```js
+typeof NaN; // -> 'number'
+```
+
+คำอธิบายว่าตัวดำเนินการ `typeof` และ `instanceof` ทำงานอย่างไร:
+
+- [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
+- [**12.10.4** Runtime Semantics: InstanceofOperator(`O`,`C`)](https://www.ecma-international.org/ecma-262/#sec-instanceofoperator)
+
+## `[]` and `null` are objects
+
+```js
+typeof []; // -> 'object'
+typeof null; // -> 'object'
+
+// however
+null instanceof Object; // false
+```
+
+### 💡 คำอธิบาย
+
+ลักษณะการทำงานของตัวดำเนินการ `typeof` ถูกกำหนดไว้ในส่วนนี้ของข้อกำหนด:
+
+ตามสเปค ตัวดำเนินการ `typeof` return string ตาม [Table 35: `typeof` Operator Results](https://www.ecma-international.org/ecma-262/#table-35) สำหรับ `null`, ordinary , standard exotic and non-standard exotic objects ซึ่งไม่ใช้ `[[Call]]` มันจะ return string `"string"`
+
+อย่างไรก็ตามคุณสามารถตรวจสอบประเภทของ object ได้โดยใช้เมธอด "toString"
+
+```js
+Object.prototype.toString.call([]);
+// -> '[object Array]'
+
+Object.prototype.toString.call(new Date());
+// -> '[object Date]'
+
+Object.prototype.toString.call(null);
+// -> '[object Null]'
+```
+
+## Magically increasing numbers
+
+```js
+999999999999999; // -> 999999999999999
+9999999999999999; // -> 10000000000000000
+
+10000000000000000; // -> 10000000000000000
+10000000000000000 + 1; // -> 10000000000000000
+10000000000000000 + 1.1; // -> 10000000000000002
+```
+
+### 💡 คำอธิบาย
+
+สิ่งนี้เกิดจากมาตรฐาน IEEE 754-2008 สำหรับเลขคณิต Binary Floating-Point ที่มาตราส่วนนี้จะปัดเศษเป็นเลขคู่ที่ใกล้ที่สุด อ่านเพิ่มเติม:
+
+- [**6.1.6** The Number Type](https://www.ecma-international.org/ecma-262/#sec-ecmascript-language-types-number-type)
+- [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) on Wikipedia
+
+## Precision of `0.1 + 0.2`
+
+เรื่องตลกที่รู้จักกันดี การเพิ่ม "0.1" และ "0.2" นั้นแม่นยำมาก:
+
+```js
+0.1 +
+  0.2(
+    // -> 0.30000000000000004
+    0.1 + 0.2
+  ) ===
+  0.3; // -> false
+```
+
+The answer for the [”Is floating point math broken?”](https://stackoverflow.com/questions/588004/is-floating-point-math-broken) question on StackOverflow:
