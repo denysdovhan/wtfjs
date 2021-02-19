@@ -731,4 +731,10 @@ Object.prototype.toString.call(null);
   0.3; // -> false
 ```
 
+### 💡 Explanation
+
 The answer for the [”Is floating point math broken?”](https://stackoverflow.com/questions/588004/is-floating-point-math-broken) question on StackOverflow:
+
+> The constants `0.2` and `0.3` in your program will also be approximations to their true values. It happens that the closest `double` to `0.2` is larger than the rational number `0.2` but that the closest `double` to `0.3` is smaller than the rational number `0.3`. The sum of `0.1` and `0.2` winds up being larger than the rational number `0.3` and hence disagreeing with the constant in your code.
+
+> เกิดขึ้นว่าค่า "คู่" ที่ใกล้เคียงที่สุดถึง "0.2" มีค่ามากกว่าจำนวนตรรกยะ "0.2" แต่ค่า "คู่" ที่ใกล้เคียงที่สุดถึง "0.3" จะน้อยกว่าจำนวนที่มีเหตุผล "0.3" ผลรวมของ "0.1" และ "0.2" จะมีค่ามากกว่าจำนวนตรรกยะ "0.3" และด้วยเหตุนี้จึงไม่เห็นด้วยกับค่าคงที่ในรหัสของคุณ
