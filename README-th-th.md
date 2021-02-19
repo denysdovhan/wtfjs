@@ -313,7 +313,7 @@ You would not believe, but …
 // -> 'fail'
 ```
 
-### 💡 Explanation
+### 💡 คำอธิบาย
 
 เราสังเกตเห็นว่ารูปแบบต่อไปนี้เกิดขึ้นบ่อยครั้ง:
 
@@ -344,3 +344,34 @@ array เป็นค่า `truthy` แต่ไม่เท่ากับ `tr
 !![]       // -> true
 [] == true // -> false
 ```
+
+### 💡 คำอธิบาย
+
+นี่คือลิงค์ไปยังส่วนที่เกี่ยวข้องในข้อกำหนด ECMA-262:
+
+- [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
+- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+
+## `null` is falsy, but not `false`
+
+แม้ว่า "null" จะเป็นค่า `falsy` แต่ก็ไม่เท่ากับ `false`
+
+```js
+!!null; // -> false
+null == false; // -> false
+```
+
+ในขณะเดียวกันค่าเท็จอื่น ๆ เช่น `0` หรือ `''` จะเท่ากับ `false`
+
+```js
+0 == false; // -> true
+"" == false; // -> true
+```
+
+คำอธิบายเหมือนกับตัวอย่างก่อนหน้านี้ นี่คือลิงค์ที่เกี่ยวข้อง:
+
+- [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+
+## `document.all` is an object, but it is undefined
+
+> ⚠️ This is part of the Browser API and won't work in a Node.js environment ⚠️
