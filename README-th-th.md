@@ -2,6 +2,10 @@
 
 [![WTFPL 2.0][license-image]][license-url]
 [![NPM version][npm-image]][npm-url]
+[![Patreon][patreon-image]][patreon-url]
+[![Buy Me A Coffee][bmc-image]][bmc-url]
+
+> รายการตัวอย่าง JavaScript ที่ตลกและยุ่งยาก
 
 JavaScript เป็นภาษาที่ดีภาษานึง มีไวยากรณ์ง่ายๆ มี ecosystem ขนาดใหญ่ และสิ่งที่สำคัญที่สุดคือ community ที่ยอดเยี่ยม
 
@@ -95,7 +99,20 @@ npm install -g wtfjs
   - [Comparing `null` to `0`](#comparing-null-to-0)
   - [Same variable redeclaration](#same-variable-redeclaration)
   - [Default behavior Array.prototype.sort()](#default-behavior-arrayprototypesort)
+  - [resolve() won't return Promise instance](#resolve-wont-return-promise-instance)
+  - [`{}{}` is undefined](#-is-undefined)
+  - [`min` is greater than `max`](#min-is-greater-than-max)
+  - [`agruments` binding](#agruments-binding)
+  - [An `alert` from hell](#an-alert-from-hell)
+  - [An infinite timeout](#an-infinite-timeout)
+  - [Double dot](#double-dot)
+  - [Extra Newness](#extra-newness)
+  - [Why you should use semicolons](#why-you-should-use-semicolons)
+  - [Split a string by a space](#split-a-string-by-a-space)
+  - [A stringified string](#a-stringified-string)
+  - [Non-strict comparison of a number to `true`](#non-strict-comparison-of-a-number-to-true)
 - [📚 Other resources](#-other-resources)
+- [🤝 Supporting](#-supporting)
 - [🎓 License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -580,7 +597,7 @@ parseInt("08"); // 8 if support ECMAScript 5
 parseInt("08"); // 0 if not support ECMAScript 5
 ```
 
-**💡 Explanation:** ากสตริงอินพุตขึ้นต้นด้วย "0" เลขฐานแปด (ฐานแปด) หรือ 10 (ทศนิยม) รัศมีที่เลือกนั้นขึ้นอยู่กับการนำไปใช้งาน ECMAScript 5 ระบุว่ามีการใช้ 10 (ทศนิยม) แต่เบราว์เซอร์บางตัวยังไม่รองรับสิ่งนี้ ด้วยเหตุนี้จึงต้องระบุรัศมีเสมอเมื่อใช้ `parseInt`
+**💡 คำอธิบาย:** ากสตริงอินพุตขึ้นต้นด้วย "0" เลขฐานแปด (ฐานแปด) หรือ 10 (ทศนิยม) รัศมีที่เลือกนั้นขึ้นอยู่กับการนำไปใช้งาน ECMAScript 5 ระบุว่ามีการใช้ 10 (ทศนิยม) แต่เบราว์เซอร์บางตัวยังไม่รองรับสิ่งนี้ ด้วยเหตุนี้จึงต้องระบุรัศมีเสมอเมื่อใช้ `parseInt`
 
 "parseInt` แปลงอินพุตเป็นสตริงเสมอ:
 
@@ -731,7 +748,7 @@ Object.prototype.toString.call(null);
   0.3; // -> false
 ```
 
-### 💡 Explanation
+### 💡 คำอธิบาย
 
 The answer for the [”Is floating point math broken?”](https://stackoverflow.com/questions/588004/is-floating-point-math-broken) question on StackOverflow:
 
@@ -931,7 +948,7 @@ f`true is ${true}, false is ${false}, array is ${[1, 2, 3]}`;
 // ->   [ 1, 2, 3 ] ]
 ```
 
-### 💡 Explanation
+### 💡 คำอธิบาย
 
 Well, this is not magic at all if you're familiar with _Tagged template literals_. In the example above, `f` function is a tag for template literal. Tags before template literal allow you to parse template literals with a function. The first argument of a tag function contains an array of string values. The remaining arguments are related to the expressions. Example:
 
@@ -1715,11 +1732,377 @@ Pass "Comparefn" หากคุณพยายามจัดเรียงอ
 
 [ 10, 1, 3 ].sort((a, b) => a - b) // -> [ 1, 3, 10 ]
 
+## resolve() won't return Promise instance
+
+```js
+const theObject = {
+  a: 7
+};
+
+const thePromise = new Promise((resolve, reject) => {
+  resolve(theObject);
+}); // Promise instance object
+
+thePromise.then(value => {
+  console.log(value === theObject); // > true
+  console.log(value); // > { a: 7 }
+});
+```
+
+`value` ซึ่งได้รับการแก้ไขจาก `thePromise` เป็น `theObject`
+
+วิธีการป้อน "Promise" อื่นในฟังก์ชัน "resolve"
+
+```js
+const theObject = new Promise((resolve, reject) => {
+  resolve(7);
+}); // Promise instance object
+const thePromise = new Promise((resolve, reject) => {
+  resolve(theObject);
+}); // Promise instance object
+
+thePromise.then(value => {
+  console.log(value === theObject); // > false
+  console.log(value); // > 7
+});
+```
+
+### 💡 คำอธิบาย:
+
+> This function flattens nested layers of promise-like objects (e.g. a promise that resolves to a promise that resolves to something) into a single layer.
+
+- [Promise.resolve() on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
+
+The specification is [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions). But it is not quite human-friendly.
+
+## `{}{}` is undefined
+
+เขียนไว้ในคอนโซล พวกเขาจะ return ที่กำหนดไว้ใน object สุดท้าย
+
+```js
+{}{}; // -> undefined
+{}{}{}; // -> undefined
+{}{}{}{}; // -> undefined
+{foo: 'bar'}{}; // -> 'bar'
+{}{foo: 'bar'}; // -> 'bar'
+{}{foo: 'bar'}{}; // -> 'bar'
+{a: 'b'}{c:' d'}{}; // -> 'd'
+{a: 'b', c: 'd'}{}; // > SyntaxError: Unexpected token ':'
+({}{}); // > SyntaxError: Unexpected token '{'
+```
+
+### 💡 คำอธิบาย:
+
+เมื่อตรวจสอบแต่ละ `{}` จะส่งกลับค่าที่ไม่ได้กำหนดไว้ หากคุณตรวจสอบ `{foo: 'bar'} {}` คุณจะพบว่า `{foo: 'bar'}` is `'bar'`
+
+มีสองความหมายสำหรับ `{}`: object or a block สำหรับตัวอย่าง `{}` in `() => {}` หมายถึง block ดังนั้นเราต้องใช้ `() => ({}`) เพื่อ return object
+
+ให้ใช้ `{foo: 'bar'}` เป็น block เขียน snippet in your console:
+
+```js
+if (true) {
+  foo: "bar";
+} // -> 'bar'
+```
+
+## `min` is greater than `max`
+
+ฉันพบว่าตัวอย่างนี้อย่างฮา:
+
+```js
+Math.min() > Math.max(); // -> true
+Math.min() < Math.max(); // -> false
+```
+
+### 💡 คำอธิบาย:
+
+นี่เป็นวิธีง่ายๆ ลองพิจารณาแต่ละส่วนของนิพจน์นี้แยกกัน:
+
+```js
+Math.min(); // -> Infinity
+Math.max(); // -> -Infinity
+Infinity > -Infinity; // -> true
+```
+
+ทำไม? , `Math.max()` ไม่เหมือน `Number.MAX_VALUE` จะไม่ส่งคืนจำนวนมากที่สุดที่เป็นไปได้
+
+`Math.max` takes arguments พยายามแปลงตัวเลขเปรียบเทียบแต่ละตัวแล้ว return ค่ากลับที่เหลือมากที่สุด ถ้าไม่มี arguments ให้ผลลัพท์คือ `−∞` ถ้าค่าใด ๆ เป็น `NaN` ผลลัพท์จะเป็น `NaN`
+
+- [**15.8.2.11** Math.max](https://262.ecma-international.org/5.1/#sec-15.8.2.11)
+- [**15.8.2.11** Math.min](https://262.ecma-international.org/5.1/#sec-15.8.2.12)
+- [Why is `Math.max()` less than `Math.min()`?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min)
+
+## `agruments` binding
+
+พิจารณาฟังก์ชันนี้:
+
+```js
+function a(x) {
+  arguments[0] = "hello";
+  console.log(x);
+}
+
+a(); // > undefined
+a(1); // > "hello"
+```
+
+### 💡 คำอธิบาย:
+
+"arguments" คือ object คล้าย array ที่มีค่าของ arguments ที่ส่งไปยังฟังก์ชันนั้น เมื่อไม่มีการส่งผ่านargumentsจะไม่มี "x" ให้ override
+
+## An `alert` from hell
+
+```js
+[666]["\155\141\160"]["\143\157\156\163\164\162\165\143\164\157\162"](
+  "\141\154\145\162\164(666)"
+)(666); // alert(666)
+```
+
+### 💡 คำอธิบาย:
+
+อันนี้ขึ้นอยู่กับลำดับการหลีกเลี่ยงฐานแปดและmultiple strings
+
+อักขระใด ๆ ที่มีรหัสอักขระต่ำกว่า 256 (เช่นอักขระใด ๆ ในช่วงขยาย ASCII ) สามารถหลีกเลี่ยงได้โดยใช้รหัสอักขระที่เข้ารหัสฐานแปดซึ่งนำหน้าด้วย "\" ตัวอย่างข้างต้นเป็นพื้นฐานและ "alert" ถูกสร้างโดยลำดับเลขฐานแปด
+
+- [Martin Kleppe tweet about it](https://twitter.com/aemkei/status/897172907222237185)
+- [JavaScript character escape sequences](https://mathiasbynens.be/notes/javascript-escapes#octal)
+- [Multi-Line JavaScript Strings](https://davidwalsh.name/multiline-javascript-strings)
+
+## An infinite timeout
+
+เดาว่าจะเกิดอะไรขึ้นถ้าเราตั้งค่าการหมดเวลาที่ไม่สิ้นสุด?
+
+```js
+setTimeout(() => console.log("called"), Infinity); // -> <timeoutId>
+// > 'called'
+```
+
+มันจะดำเนินการทันทีแทนการหน่วงเวลาอินฟินิตี้
+
+### 💡 คำอธิบาย:
+
+โดยปกติรันไทม์จะจัดเก็บความล่าช้าเป็นจำนวนเต็ม 32 บิตที่ลงชื่อไว้ภายใน สิ่งนี้ทำให้เกิดจำนวนเต็มล้นส่งผลให้การหมดเวลาถูกดำเนินการทันที
+
+ตัวอย่างเช่นใน Node.js เราจะได้รับคำเตือนนี้:
+
+```
+(node:1731) TimeoutOverflowWarning: Infinity does not fit into a 32-bit signed integer.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+```
+
+- [WindowOrWorkerGlobalScope.setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) on MDN
+- [Node.js Documentation on Timers](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_args)
+- [Timers](https://www.w3.org/TR/2011/WD-html5-20110525/timers.html) on W3C
+
+## Double dot
+
+ลองบังคับตัวเลขเป็นสตริง:
+
+```js
+27.toString() // > Uncaught SyntaxError: Invalid or unexpected token
+```
+
+Maybe we should try with a two dots?
+
+```js
+(27).toString(); // -> '27'
+```
+
+แต่ทำไมตัวอย่างแรกไม่ work ?
+
+### 💡 คำอธิบาย:
+
+เป็นเพียงข้อ จำกัด ด้านไวยากรณ์ภาษา
+อักขระ `.` แสดงความคลุมเครือ เป็นที่เข้าใจได้ว่าเป็น member operator หรือทศนิยมขึ้นอยู่กับตำแหน่ง
+
+The specification's interpretation of the `.` character ในตำแหน่งเฉพาะนั้นคือมันจะเป็นทศนิยม สิ่งนี้กำหนดโดยไวยากรณ์ตัวอักษรตัวเลขของ ECMAScript คุณต้องใช้วงเล็บหรือจุดเพิ่มเติมเสมอเพื่อให้expression นั้นถูกต้อง
+
+```js
+(27).toString(); // -> '27'
+// or
+(27).toString(); // -> '27'
+```
+
+- [Usage of toString in JavaScript](https://stackoverflow.com/questions/6853865/usage-of-tostring-in-javascript/6853910#6853910) on StackOverflow
+- [Why does 10..toString() work, but 10.toString() does not?](https://stackoverflow.com/questions/13149282/why-does-10-tostring-work-but-10-tostring-does-not/13149301#13149301)
+
+## Extra Newness
+
+ฉันนำเสนอสิ่งนี้เป็นเรื่องแปลกสำหรับความบันเทิงของคุณ
+
+```js
+class Foo extends Function {
+  constructor(val) {
+    super();
+    this.prototype.val = val;
+  }
+}
+
+new new Foo(":D")().val; // -> ':D'
+```
+
+### 💡 คำอธิบาย:
+
+Constructors ใน JavaScript เป็นแค่ function ที่มีการดูแลเป็นพิเศษ โดยการขยายฟังก์ชันโดยใช้ไวยากรณ์ของคลาสคุณจะสร้างคลาสที่เมื่อสร้างอินสแตนซ์ ตอนนี้เป็นฟังก์ชันซึ่งคุณสามารถสร้างอินสแตนซ์เพิ่มเติมได้
+
+แม้ว่าจะไม่ได้รับการทดสอบอย่างละเอียด แต่ฉันเชื่อว่าข้อความสุดท้ายสามารถวิเคราะห์ได้ดังนี้:
+
+```js
+new new Foo(":D")().val(new newFooInstance()).val;
+veryNewFooInstance.val;
+// -> ':D'
+```
+
+ในฐานะที่เป็นภาคผนวกเล็ก ๆ การทำ `` ฟังก์ชันใหม่ ('return "bar";') แน่นอนว่าจะสร้างฟังก์ชันที่มี body `return" bar ";". เนื่องจาก "super ()" ในตัวสร้างของคลาส "Foo" ของเราเรียกตัวสร้างของ "function" จึงไม่น่าแปลกใจเลยที่เห็นว่าเราสามารถจัดการกับสิ่งต่างๆในนั้นได้
+
+```js
+class Foo extends Function {
+  constructor(val) {
+    super(`
+      this.val = arguments[0];
+    `);
+    this.prototype.val = val;
+  }
+}
+
+var foo = new new Foo(":D")("D:");
+foo.val; // -> 'D:'
+delete foo.val; // remove the instance prop 'val', deferring back to the prototype's 'val'.
+foo.val; // -> ':D'
+```
+
+- [Class Extends Function: Extra Newness](https://github.com/denysdovhan/wtfjs/issues/78)
+
+## Why you should use semicolons
+
+เขียน JavaScript มาตรฐาน…แล้ว BOOM!
+
+```js
+class SomeClass {
+  ["array"] = ([]["string"] = "str");
+}
+
+new SomeClass().array; // -> 'str'
+```
+
+What the …?
+
+### 💡 คำอธิบาย:
+
+อีกครั้งทั้งหมดนี้ต้องขอบคุณ Automatic Semicolon Insertion
+
+ตัวอย่างข้างต้นนั้นเหมือนกับ:
+
+```js
+class SomeClass {
+  ["array"] = ([]["string"] = "str");
+}
+```
+
+โดยทั่วไปคุณกำหนดสตริง "str" ในคุณสมบัติ "array"
+
+- [An original tween with an example](https://twitter.com/SeaRyanC/status/1148726605222535168) by Ryan Cavanaugh
+- [TC39 meeting when they debated about it](https://github.com/tc39/notes/blob/master/meetings/2017-09/sept-26.md)
+
+## Split a string by a space
+
+คุณเคยพยายามแบ่งสตริงด้วยช่องว่างหรือไม่?
+
+```js
+"".split(""); // -> []
+// but…
+"".split(" "); // -> [""]
+```
+
+### 💡 คำอธิบาย:
+
+นี่คือพฤติกรรมที่คาดหวัง responsibility คือการแบ่งสตริงอินพุตทุกครั้งที่มีตัวคั่นเกิดขึ้นในสตริงอินพุตนั้น เมื่อคุณส่งสตริงว่างมันจะไม่พบตัวคั่นและส่งกลับสตริงนั้น
+
+ขออ้างข้อกำหนด:
+
+> string ย่อยถูกกำหนดโดยการค้นหาจากซ้ายไปขวาสำหรับการเกิดขึ้นของ "separator"; เหตุการณ์เหล่านี้ไม่ได้เป็นส่วนหนึ่งของ String ใด ๆ ใน array ที่ส่งคืน แต่ทำหน้าที่แบ่งค่า String
+
+- [**22.1.3.21** String.prototype.split](https://tc39.es/ecma262/#sec-string.prototype.split)
+- [An original tween with an example](https://twitter.com/SeaRyanC/status/1331656278104440833) by Ryan Cavanaugh
+- [A tween with an คำอธิบาย](https://twitter.com/kl13nt/status/1331742810932916227?s=20) by Nabil Tharwat
+
+## A stringified string
+
+สิ่งนี้ทำให้เกิดข้อบกพร่องที่ฉันได้รับการแก้ไขมาสองสามวัน:
+
+```js
+JSON.stringify("production") === "production"; // -> false
+```
+
+### 💡 คำอธิบาย:
+
+Let's see what `JSON.stringify` is returning:
+
+```js
+JSON.stringify("production"); // -> '"production"'
+```
+
+จริงๆแล้วมันเป็นstringified string ที่กำหนดไว้ดังนั้นจึงเป็น `true`:
+
+```js
+'"production"' === "production"; // -> false
+```
+
+- [ECMA-404 The JSON Data Interchange Standard.](https://www.json.org/json-en.html)
+
+## Non-strict comparison of a number to `true`
+
+```js
+1 == true; // -> true
+// but…
+Boolean(1.1); // -> true
+1.1 == true; // -> false
+```
+
+### 💡 คำอธิบาย:
+
+ตามข้อกำหนด:
+
+> การเปรียบเทียบ x == y โดยที่ x และ y เป็นค่าทำให้เกิดจริงหรือเท็จ การเปรียบเทียบดังกล่าวดำเนินการดังนี้:
+>
+> 4. ถ้า `Type (x) 'คือ Number และ' Type (y) 'เป็น String ให้ส่งคืนผลลัพธ์ของการเปรียบเทียบ` x ==! ToNumber (y) ".
+
+ดังนั้นการเปรียบเทียบจะดำเนินการดังนี้:
+
+```js
+1 == true;
+1 == Number(true);
+1 == 1; // -> true
+// but…
+1.1 == true;
+1.1 == Number(true);
+1.1 == 1; // -> false
+```
+
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
+
 # 📚 Other resources
 
 - [wtfjs.com](http://wtfjs.com/) — คอลเลกชันของความผิดปกติที่พิเศษมากความไม่สอดคล้องกันและเป็นเพียงช่วงเวลาที่เจ็บปวดโดยไม่ได้ตั้งใจสำหรับภาษาของเว็บ.
 - [Wat](https://www.destroyallsoftware.com/talks/wat) — คำบรรยายสั้น ๆ โดย Gary Bernhardt จาก CodeMash 2012
 - [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — Kyle Simpsons talk for Forward 2 attempts to “pull out the crazy” from JavaScript. He wants to help you produce cleaner, more elegant, more readable code, then inspire people to contribute to the open source community.
+- [Zeros in JavaScript](http://zero.milosz.ca/) — a comparison table of `==`, `===`, `+` and `*` in JavaScript.
+
+# 🤝 Supporting
+
+Hi! ฉันทำงานในโครงการนี้ในเวลาว่างนอกเหนือจากงานหลักของฉัน ฉันหวังว่าคุณจะสนุกกับการอ่าน ถ้ายังไงช่วยพิจารณาสนับสนุนด้วยนะครับ🙏.
+
+ทุกการบริจาคมีความสำคัญ การบริจาคของคุณจะทำให้ชัดเจน: งานของฉันมีค่า
+
+| Service          |                     Link                     |                                                                   Action                                                                   |
+| ---------------- | :------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------: |
+| **Patreon**      |        [Become a patron][patreon-url]        | <a href="https://patreon.com/denysdovhan"><img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="120px"></a> |
+| **BuyMeACoffee** |     [Buy me a cup of ☕️ or 🥤][bmc-url]     |    <a href="https://buymeacoffee.com/denysdovhan"><img src="https://cdn.buymeacoffee.com/buttons/default-black.png" width="120px"></a>     |
+| **Bitcoin**      |     `1EJsKs6rPsqa7QLoVLpe3wgcdL9Q8WmDxE`     |      <img src="https://user-images.githubusercontent.com/3459374/107130426-0ae4f800-68d6-11eb-9b86-15bf33467615.png" width="120px"/>       |
+| **Ethereum**     | `0x6aF39C917359897ae6969Ad682C14110afe1a0a1` |      <img src="https://user-images.githubusercontent.com/3459374/107130370-55b24000-68d5-11eb-93f5-075355c7fcd4.png" width="120px"/>       |
+
+> ** ⚠️หมายเหตุ: ** ฉันอาศัยอยู่ในยูเครนและบริการต่างๆเช่น PayPal และ Stripe ใช้กับบัญชีธนาคารของยูเครนไม่ได้ ซึ่งหมายความว่าไม่มีทางที่ฉันจะตั้งค่าผู้สนับสนุน GitHub, OpenCollective หรือบริการที่ต้องพึ่งพาพวกเขา ขออภัยนี่เป็นวิธีเดียวที่คุณสามารถสนับสนุนฉันได้ในตอนนี้
 
 # 🎓 License
 
@@ -1731,3 +2114,7 @@ Pass "Comparefn" หากคุณพยายามจัดเรียงอ
 [license-image]: https://img.shields.io/badge/License-WTFPL%202.0-lightgrey.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/wtfjs
 [npm-image]: https://img.shields.io/npm/v/wtfjs.svg?style=flat-square
+[patreon-url]: https://patreon.com/denysdovhan
+[patreon-image]: https://img.shields.io/badge/support-patreon-F96854.svg?style=flat-square
+[bmc-url]: https://patreon.com/denysdovhan
+[bmc-image]: https://img.shields.io/badge/support-buymeacoffee-222222.svg?style=flat-square

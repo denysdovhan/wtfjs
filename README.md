@@ -19,8 +19,8 @@ The original idea for WTFJS belongs to [Brian Leroux](https://twitter.com/brianl
 
 You can install this handbook using `npm`. Just run:
 
-```
-$ npm install -g wtfjs
+```bash
+npm install -g wtfjs
 ```
 
 You should be able to run `wtfjs` at the command line now. This will open the manual in your selected `$PAGER`. Otherwise, you may continue reading on here.
