@@ -31,10 +31,19 @@ npm install -g wtfjs
 
 ปัจจุบันมีการแปล **wtfjs** เหล่านี้:
 
-- [จีน] (./ README-zh-cn.md)
-- [ฝรั่งเศส] (./ README-fr-fr.md)
+- [中文版](./README-zh-cn.md)
+- [हिंदी](./README-hi.md)
+- [Français](./README-fr-fr.md)
+- [Português do Brasil](./README-pt-br.md)
+- [Polski](./README-pl-pl.md)
+- [Italiano](./README-it-it.md)
+- [Russian](https://habr.com/ru/company/mailru/blog/335292/) (on Habr.com)
 
-[tr-request]: https://github.com/denysdovhan/wtfjs/issues/new?title=Translation%20Request:%20%5BPlease%20enter%20language%20here%5D&body=I%20am%20able%20to%20translate%20this%20language%20%5Byes/no%5D
+[**Help translating to your language**][tr-request]
+
+[tr-request]: https://github.com/denysdovhan/wtfjs/blob/master/CONTRIBUTING.md#translations
+
+**Note:** Translations are maintained by their translators. They may not contain every example, and existing examples may be outdated.
 
 <!-- prettier-ignore-start -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
