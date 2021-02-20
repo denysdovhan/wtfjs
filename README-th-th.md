@@ -737,4 +737,410 @@ The answer for the [”Is floating point math broken?”](https://stackoverflow.
 
 > The constants `0.2` and `0.3` in your program will also be approximations to their true values. It happens that the closest `double` to `0.2` is larger than the rational number `0.2` but that the closest `double` to `0.3` is smaller than the rational number `0.3`. The sum of `0.1` and `0.2` winds up being larger than the rational number `0.3` and hence disagreeing with the constant in your code.
 
-> เกิดขึ้นว่าค่า "คู่" ที่ใกล้เคียงที่สุดถึง "0.2" มีค่ามากกว่าจำนวนตรรกยะ "0.2" แต่ค่า "คู่" ที่ใกล้เคียงที่สุดถึง "0.3" จะน้อยกว่าจำนวนที่มีเหตุผล "0.3" ผลรวมของ "0.1" และ "0.2" จะมีค่ามากกว่าจำนวนตรรกยะ "0.3" และด้วยเหตุนี้จึงไม่เห็นด้วยกับค่าคงที่ในรหัสของคุณ
+This problem is so known that there is even a website called [0.30000000000000004.com](http://0.30000000000000004.com/). It occurs in every language that uses floating-point math, not just JavaScript.
+
+## Patching numbers
+
+คุณสามารถเพิ่มวิธีการของคุณเองให้กับวัตถุ Wrapper เช่น `Number` หรือ `String`
+
+Number.prototype.isOne = function() {
+return Number(this) === 1;
+};
+
+```js
+Number.prototype.isOne = function() {
+  return Number(this) === 1;
+};
+
+(1.0).isOne(); // -> true
+(1).isOne(); // -> true
+(2.0)
+  .isOne()(
+    // -> false
+    7
+  )
+  .isOne(); // -> false
+```
+
+### 💡 คำอธิบาย
+
+เห็นได้ชัด คุณสามารถขยายออบเจ็กต์ "Number" เหมือนกับออบเจ็กต์อื่น ๆ ใน JavaScript อย่างไรก็ตาม ไม่แนะนำหากลักษณะการทำงานของวิธีการที่กำหนดไม่ได้เป็นส่วนหนึ่งของข้อกำหนด นี่คือรายการคุณสมบัติของ "Number":
+
+- [**20.1** Number Objects](https://www.ecma-international.org/ecma-262/#sec-number-objects)
+
+## Comparison of three numbers
+
+```js
+1 < 2 < 3; // -> true
+3 > 2 > 1; // -> false
+```
+
+### 💡 คำอธิบาย
+
+ทำไมถึงได้ผลอย่างนั้น? ปัญหาอยู่ในส่วนแรกของนิพจน์ นี่คือวิธีการทำงาน:
+
+```js
+1 < 2 < 3; // 1 < 2 -> true
+true < 3; // true -> 1
+1 < 3; // -> true
+
+3 > 2 > 1; // 3 > 2 -> true
+true > 1; // true -> 1
+1 > 1; // -> false
+```
+
+เราสามารถแก้ไขได้ด้วยตัวดำเนินการ _Greater มากกว่าหรือเท่ากับ (`> =`) _:
+
+```js
+3 > 2 >= 1; // true
+```
+
+Read more about Relational operators in the specification:
+
+- [**12.10** Relational Operators](https://www.ecma-international.org/ecma-262/#sec-relational-operators)
+
+## Funny math
+
+บ่อยครั้งที่ผลลัพธ์ของการคำนวณทางคณิตศาสตร์ใน JavaScript อาจไม่คาดคิด ลองพิจารณาตัวอย่างเหล่านี้:
+
+```js
+ 3  - 1  // -> 2
+ 3  + 1  // -> 4
+'3' - 1  // -> 2
+'3' + 1  // -> '31'
+
+'' + '' // -> ''
+[] + [] // -> ''
+{} + [] // -> 0
+[] + {} // -> '[object Object]'
+{} + {} // -> '[object Object][object Object]'
+
+'222' - -'111' // -> 333
+
+[4] * [4]       // -> 16
+[] * []         // -> 0
+[4, 4] * [4, 4] // NaN
+```
+
+เกิดอะไรขึ้นในสี่ตัวอย่างแรก นี่คือตารางขนาดเล็กเพื่อทำความเข้าใจเพิ่มเติมใน JavaScript:
+
+```js
+Number  + Number  -> addition
+Boolean + Number  -> addition
+Boolean + Boolean -> addition
+Number  + String  -> concatenation
+String  + Boolean -> concatenation
+String  + String  -> concatenation
+```
+
+แล้วตัวอย่างอื่น ๆ ล่ะ? วิธีการ "ToPrimitive" และ "ToString" ถูกเรียกโดยปริยายสำหรับ `[]` และ `{}` ก่อนที่จะเพิ่ม อ่านเพิ่มเติมเกี่ยวกับกระบวนการประเมินในไฟล์
+
+- [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
+- [**7.1.1** ToPrimitive(`input` [,`PreferredType`])](https://www.ecma-international.org/ecma-262/#sec-toprimitive)
+- [**7.1.12** ToString(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tostring)
+
+โดยเฉพาะอย่างยิ่ง `{} + []` นี่คือข้อยกเว้น สาเหตุที่มันแตกต่างจาก `[] + {}` ก็คือหากไม่มีวงเล็บมันจะถูกตีความว่าเป็นโค้ดบล็อกแล้วจึงเป็นยูนารี + โดยแปลง "[]` เป็นตัวเลข จะเห็นสิ่งต่อไปนี้:
+
+```js
+{
+  // a code block here
+}
++[]; // -> 0
+```
+
+เพื่อให้ได้ผลลัพธ์เดียวกันกับ `[] + {}` เราสามารถใส่ไว้ในวงเล็บ
+
+```js
+({} + []); // -> [object Object]
+```
+
+## Addition of RegExps
+
+คุณทราบหรือไม่ว่าคุณสามารถเพิ่มตัวเลขเช่นนี้ได้?
+
+```js
+// Patch a toString method
+RegExp.prototype.toString =
+  function() {
+    return this.source;
+  } /
+  7 /
+  -/5/; // -> 2
+```
+
+### 💡 คำอธิบาย
+
+- [**21.2.5.10** get RegExp.prototype.source](https://www.ecma-international.org/ecma-262/#sec-get-regexp.prototype.source)
+
+## Strings aren't instances of `String`
+
+```js
+"str"; // -> 'str'
+typeof "str"; // -> 'string'
+"str" instanceof String; // -> false
+```
+
+### 💡 คำอธิบาย
+
+The `String` constructor returns a string:
+
+```js
+typeof String("str"); // -> 'string'
+String("str"); // -> 'str'
+String("str") == "str"; // -> true
+```
+
+Let's try with a `new`:
+
+```js
+new String("str") == "str"; // -> true
+typeof new String("str"); // -> 'object'
+```
+
+Object? What's that?
+
+```js
+new String("str"); // -> [String: 'str']
+```
+
+- [**21.1.1** The String Constructor](https://www.ecma-international.org/ecma-262/#sec-string-constructor)
+
+## Calling functions with backticks
+
+มาประกาศฟังก์ชั่นที่บันทึกพารามิเตอร์ทั้งหมดลงในคอนโซล:
+
+```js
+function f(...args) {
+  return args;
+}
+```
+
+ไม่ต้องสงสัยเลยว่าคุณสามารถเรียกใช้ฟังก์ชันนี้ว่า:
+
+```js
+f(1, 2, 3); // -> [ 1, 2, 3 ]
+```
+
+แต่คุณรู้หรือไม่ว่าคุณสามารถเรียกใช้ฟังก์ชันใดก็ได้โดยใช้ backticks?
+
+```js
+f`true is ${true}, false is ${false}, array is ${[1, 2, 3]}`;
+// -> [ [ 'true is ', ', false is ', ', array is ', '' ],
+// ->   true,
+// ->   false,
+// ->   [ 1, 2, 3 ] ]
+```
+
+### 💡 Explanation
+
+Well, this is not magic at all if you're familiar with _Tagged template literals_. In the example above, `f` function is a tag for template literal. Tags before template literal allow you to parse template literals with a function. The first argument of a tag function contains an array of string values. The remaining arguments are related to the expressions. Example:
+
+```js
+function template(strings, ...keys) {
+  // do something with strings and keys…
+}
+```
+
+This is the [magic behind](http://mxstbr.blog/2016/11/styled-components-magic-explained/) famous library called [💅 styled-components](https://www.styled-components.com/), which is popular in the React community.
+
+Link to the specification:
+
+- [**12.3.7** Tagged Templates](https://www.ecma-international.org/ecma-262/#sec-tagged-templates)
+
+## Call call call
+
+> Found by [@cramforce](http://twitter.com/cramforce)
+
+```js
+console.log.call.call.call.call.call.apply(a => a, [1, 2]);
+```
+
+### 💡 คำอธิบาย
+
+ความสนใจมันอาจทำลายความคิดของคุณ! ลองสร้างรหัสนี้ขึ้นมาใหม่: เรากำลังใช้วิธี "โทร" โดยใช้วิธี "ใช้" อ่านเพิ่มเติม:
+
+- [**19.2.3.3** Function.prototype.call(`thisArg`, ...`args`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.call)
+- [**19.2.3.1 ** Function.prototype.apply(`thisArg`, `argArray`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.apply)
+
+## A `constructor` property
+
+```js
+const c = "constructor";
+c[c][c]('console.log("WTF?")')(); // > WTF?
+```
+
+### 💡 คำอธิบาย
+
+Let's consider this example step-by-step:
+
+```js
+// Declare a new constant which is a string 'constructor'
+const c = "constructor";
+
+// c is a string
+c; // -> 'constructor'
+
+// Getting a constructor of string
+c[c]; // -> [Function: String]
+
+// Getting a constructor of constructor
+c[c][c]; // -> [Function: Function]
+
+// Call the Function constructor and pass
+// the body of new function as an argument
+c[c][c]('console.log("WTF?")'); // -> [Function: anonymous]
+
+// And then call this anonymous function
+// The result is console-logging a string 'WTF?'
+c[c][c]('console.log("WTF?")')(); // > WTF?
+```
+
+An `Object.prototype.constructor` returns a reference to the `Object` constructor function that created the instance object. In case with strings it is `String`, in case with numbers it is `Number` and so on.
+
+- [`Object.prototype.constructor`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor) at MDN
+- [**19.1.3.1** Object.prototype.constructor](https://www.ecma-international.org/ecma-262/#sec-object.prototype.constructor)
+
+## Object as a key of object's property
+
+```js
+{ [{}]: {} } // -> { '[object Object]': {} }
+```
+
+### 💡 คำอธิบาย
+
+ทำไมถึงได้ผล? เรากำลังใช้ _Computed property name_ เมื่อคุณส่งออบเจ็กต์ระหว่างวงเล็บเหล่านั้นมันจะบังคับอ็อบเจกต์ไปยังสตริงดังนั้นเราจึงได้รับคีย์คุณสมบัติ `` '[อ็อบเจกต์อ็อบเจกต์]' 'และค่า `{}"
+
+เราสามารถสร้าง "วงเล็บนรก" ได้ดังนี้:
+
+```js
+({ [{}]: { [{}]: {} } }[{}][{}]); // -> {}
+
+// structure:
+// {
+//   '[object Object]': {
+//     '[object Object]': {}
+//   }
+// }
+```
+
+Read more about object literals here:
+
+- [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
+- [**12.2.6** Object Initializer](http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer)
+
+## Accessing prototypes with `__proto__`
+
+อย่างที่เราทราบกันดีว่า primitives ไม่มี prototypes อย่างไรก็ตาม
+ถ้าเราพยายามหาค่า "**proto**" สำหรับprimitives เราจะได้ค่านี้
+
+```js
+(1).__proto__.__proto__.__proto__; // -> null
+```
+
+### 💡 คำอธิบาย
+
+สิ่งนี้เกิดขึ้นเนื่องจากเมื่อบางสิ่งบางอย่างไม่มีต้นแบบมันจะถูกห่อเป็นวัตถุห่อหุ้มโดยใช้เมธอด `ToObject` ดังนั้นทีละขั้นตอน:
+
+```js
+(1)
+  .__proto__(
+    // -> [Number: 0]
+    1
+  )
+  .__proto__.__proto__(
+    // -> {}
+    1
+  ).__proto__.__proto__.__proto__; // -> null
+```
+
+Here is more information about `__proto__`:
+
+- [**B.2.2.1** Object.prototype.**proto**](https://www.ecma-international.org/ecma-262/#sec-object.prototype.__proto__)
+- [**7.1.13** ToObject(`argument`)](https://www.ecma-international.org/ecma-262/#sec-toobject)
+
+## `` `${{Object}}` ``
+
+```js
+`${{ Object }}`;
+```
+
+The answer is:
+
+```js
+// -> '[object Object]'
+```
+
+### 💡 คำอธิบาย
+
+เรากำหนด object ด้วย property `Object` โดยใช้คุณสมบัติ _Shorthand notation_:
+
+```js
+{
+  Object: Object;
+}
+```
+
+จากนั้นเราก็ส่งออบเจ็กต์นี้ไปยัง template literal ดังนั้นเมธอด "toString" จึงเรียกใช้ออบเจ็กต์นั้น นั่นเป็นเหตุผลที่เราได้รับสตริง "[object Object]"
+
+- [**12.2.9** Template Literals](https://www.ecma-international.org/ecma-262/#sec-template-literals)
+- [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
+
+## Destructuring with default values
+
+ลองพิจารณาตัวอย่างนี้:
+
+```js
+let x,
+  { x: y = 1 } = { x };
+y;
+```
+
+ตัวอย่างข้างต้นเป็นงานที่ยอดเยี่ยมสำหรับการสัมภาษณ์ ค่าของ "y" คืออะไร? คำตอบคือ:
+
+```js
+// -> 1
+```
+
+### 💡 คำอธิบาย
+
+```js
+let x,
+  { x: y = 1 } = { x };
+y;
+//  ↑       ↑           ↑    ↑
+//  1       3           2    4
+```
+
+1. เราประกาศ `x` โดยไม่มีค่าดังนั้นจึงเป็น "undefined"
+
+2.จากนั้นเราบรรจุค่าของ `x` ลงใน object property `x`
+
+3.จากนั้นเราแยกค่าของ `x` โดยใช้ destructuring และต้องการกำหนดให้กับ `y` ถ้าหากไม่ได้กำหนดค่าเราจะใช้ "1" เป็นค่าเริ่มต้น
+
+4. Return the value of `y`.
+
+- [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
+
+## Dots and spreading
+
+Interesting examples could be composed with spreading of arrays. Consider this:
+
+ตัวอย่างที่น่าสนใจอาจประกอบด้วยการ composed with spreading of arrays พิจารณาสิ่งนี้:
+
+```js
+[...[..."..."]].length; // -> 3
+```
+
+### 💡 คำอธิบาย
+
+ทำไม `3`? When we use the [spread operator](http://www.ecma-international.org/ecma-262/6.0/#sec-array-initializer),
+
+เรียกว่าเมธอด "@@ iterator` และตัวiterator ที่ return จะใช้เพื่อรับค่าที่จะทำซ้ำ ตัว default iterator สำหรับ string จะกระจายสตริงเป็น characters หลังจากแยกแล้ว เราบรรจุอักขระเหล่านี้ลงในอาร์เรย์ จากนั้นเราก็กระจายอาร์เรย์นี้อีกครั้งและบรรจุกลับไปที่อาร์เรย์
+
+สตริง `'... '` ประกอบด้วยอักขระ `.` สามตัวดังนั้นความยาวของอาร์เรย์ผลลัพธ์คือ "3"
+
+```js
+[...'...']             // -> [ '.', '.', '.' ]
+[...[...'...']]        // -> [ '.', '.', '.' ]
+[...[...'...']].length // -> 3
+```
