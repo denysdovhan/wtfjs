@@ -1139,8 +1139,355 @@ Interesting examples could be composed with spreading of arrays. Consider this:
 
 สตริง `'... '` ประกอบด้วยอักขระ `.` สามตัวดังนั้นความยาวของอาร์เรย์ผลลัพธ์คือ "3"
 
+Now, step-by-step:
+
 ```js
 [...'...']             // -> [ '.', '.', '.' ]
 [...[...'...']]        // -> [ '.', '.', '.' ]
 [...[...'...']].length // -> 3
 ```
+
+เห็นได้ชัดว่าเราสามารถกระจายและรวมองค์ประกอบของอาร์เรย์ได้หลายครั้งตามที่เราต้องการ:
+
+```js
+[...'...']                 // -> [ '.', '.', '.' ]
+[...[...'...']]            // -> [ '.', '.', '.' ]
+[...[...[...'...']]]       // -> [ '.', '.', '.' ]
+[...[...[...[...'...']]]]  // -> [ '.', '.', '.' ]
+// and so on …
+```
+
+## Labels
+
+โปรแกรมเมอร์จำนวนไม่น้อยที่รู้เกี่ยวกับ labels กำกับใน JavaScript พวกมันน่าสนใจมาก:
+
+```js
+foo: {
+  console.log("first");
+  break foo;
+  console.log("second");
+}
+
+// > first
+// -> u
+```
+
+### 💡 คำอธิบาย
+
+The labeled statement ใช้กับ `break` or `continue` statements คุณสามารถใช้ label กับ loop และใช้ `break` or `continue` statements พื่อระบุว่าโปรแกรมควรขัดจังหวะลูปหรือดำเนินการต่อ
+
+ในตัวอย่างด้านบนเราระบุ label "foo" หลังจากนั้น `` console.log ('first'); ดำเนินการแล้วเราขัดจังหวะการดำเนินการ
+
+Read more about labels in JavaScript:
+
+- [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
+- [Labeled statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
+
+## Nested labels
+
+```js
+a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
+```
+
+### 💡 คำอธิบาย
+
+Similar to previous examples, follow these links:
+
+- [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
+- [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
+- [Labeled statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
+
+## Insidious `try..catch`
+
+expression นี้จะกลับมาเป็นอย่างไร? `2` หรือ`3`?
+
+```js
+(() => {
+  try {
+    return 2;
+  } finally {
+    return 3;
+  }
+})();
+```
+
+The answer is `3`. Surprised?
+
+### 💡 คำอธิบาย
+
+- [**13.15** The `try` Statement](https://www.ecma-international.org/ecma-262/#sec-try-statement)
+
+## Is this multiple inheritance?
+
+ดูตัวอย่างด้านล่าง:
+
+```js
+new class F extends (String, Array) {}(); // -> F []
+```
+
+Is this a multiple inheritance? Nope.
+
+### 💡 คำอธิบาย
+
+ส่วนที่น่าสนใจคือ `extends` clause (`(String, Array)`) ตัวดำเนินการจัดกลุ่มจะส่งคืนอาร์กิวเมนต์สุดท้ายเสมอ ดังนั้น `(String, Array)` แท้จริงแล้วเป็นเพียงแค่ "อาร์เรย์" นั่นหมายความว่าเราเพิ่งสร้างคลาสที่ขยาย "Array"
+
+- [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
+- [**12.16** Comma Operator (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
+
+## A generator which yields itself
+
+ลองพิจารณาตัวอย่างของ generator which yields itself:
+
+```js
+(function* f() {
+  yield f;
+})().next();
+// -> { value: [GeneratorFunction: f], done: false }
+```
+
+อย่างที่คุณเห็นค่าที่ส่งคืนคือวัตถุที่มี `value` เท่ากับ `f` ในกรณีนี้เราสามารถทำสิ่งนี้ได้:
+
+```js
+(function* f() {
+  yield f;
+})()
+  .next()
+  .value()
+  .next()(
+    // -> { value: [GeneratorFunction: f], done: false }
+
+    // and again
+    function* f() {
+      yield f;
+    }
+  )()
+  .next()
+  .value()
+  .next()
+  .value()
+  .next()(
+    // -> { value: [GeneratorFunction: f], done: false }
+
+    // and again
+    function* f() {
+      yield f;
+    }
+  )()
+  .next()
+  .value()
+  .next()
+  .value()
+  .next()
+  .value()
+  .next();
+// -> { value: [GeneratorFunction: f], done: false }
+
+// and so on
+//
+```
+
+### 💡 คำอธิบาย
+
+หากต้องการทำความเข้าใจว่าเหตุใดจึงได้ผลเช่นนั้นโปรดอ่านข้อกำหนดเหล่านี้:
+
+- [**25** Control Abstraction Objects](https://www.ecma-international.org/ecma-262/#sec-control-abstraction-objects)
+- [**25.3** Generator Objects](https://www.ecma-international.org/ecma-262/#sec-generator-objects)
+
+## A class of class
+
+พิจารณาการเล่นไวยากรณ์ที่ซับซ้อนนี้:
+
+```js
+typeof new class {
+  class() {}
+}(); // -> 'object'
+```
+
+ดูเหมือนว่าเรากำลังประกาศclass inside class อย่างไรก็ตามควรเป็นข้อผิดพลาดเราได้รับสตริง `'object'`
+
+ตั้งแต่ยุค ECMAScript 5 _keywords_ ได้รับอนุญาตให้เป็น *property names*ลองคิดดูเป็นตัวอย่างวัตถุง่ายๆนี้:
+
+```js
+const foo = {
+  class: function() {}
+};
+```
+
+And ES6 standardized shorthand method definitions นอกจากนี้ class สามารถเป็น anonymous ได้ ดังนั้น ถ้าเราทิ้ง `function` part จะได้
+
+```js
+class {
+  class() {}
+}
+```
+
+ผลลัพธ์ของ default class มักจะเป็นออบเจ็กต์ธรรมดา และ typeof ควรส่งคืน `"object"`
+
+Read more here:
+
+- [**14.3** Method Definitions](https://www.ecma-international.org/ecma-262/#sec-method-definitions)
+- [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
+
+## Non-coercible objects
+
+ด้วย symbols ที่รู้จักกันดีมีวิธีกำจัดการบีบบังคับประเภทต่างๆ ลองดูสิ:
+
+```js
+function nonCoercible(val) {
+  if (val == null) {
+    throw TypeError("nonCoercible should not be called with null or undefined");
+  }
+
+  const res = Object(val);
+
+  res[Symbol.toPrimitive] = () => {
+    throw TypeError("Trying to coerce non-coercible object");
+  };
+
+  return res;
+}
+```
+
+Now we can use this like this:
+
+```js
+// objects
+const foo = nonCoercible({ foo: "foo" });
+
+foo * 10; // -> TypeError: Trying to coerce non-coercible object
+foo + "evil"; // -> TypeError: Trying to coerce non-coercible object
+
+// strings
+const bar = nonCoercible("bar");
+
+bar + "1"; // -> TypeError: Trying to coerce non-coercible object
+bar.toString() + 1; // -> bar1
+bar === "bar"; // -> false
+bar.toString() === "bar"; // -> true
+bar == "bar"; // -> TypeError: Trying to coerce non-coercible object
+
+// numbers
+const baz = nonCoercible(1);
+
+baz == 1; // -> TypeError: Trying to coerce non-coercible object
+baz === 1; // -> false
+baz.valueOf() === 1; // -> true
+```
+
+### 💡 คำอธิบาย
+
+- [A gist by Sergey Rubanov](https://gist.github.com/chicoxyzzy/5dd24608e886adf5444499896dff1197)
+- [**6.1.5.1** Well-Known Symbols](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols
+
+## Tricky arrow functions
+
+พิจราณาตัวอย่างต่อไปนี้
+
+```js
+let f = () => 10;
+f(); // -> 10
+```
+
+Okay, fine, but what about this:
+
+```js
+let f = () => {};
+f(); // -> undefined
+```
+
+### 💡 คำอธิบาย
+
+คุณอาจคาดหวังว่าจะเป็น `{}` แทนที่จะเป็น `undefined` เนื่องจากวงเล็บปีกกาเป็นส่วนหนึ่งของไวยากรณ์ของ arrow function ดังนั้น `f` จะ reuturn undefined
+อย่างไรก็ตามเป็นไปได้ที่จะส่งคืนอ็อบเจ็กต์ `{}` โดยตรงจาก arrow function โดยใส่ค่าที่ส่งคืนด้วยวงเล็บ
+
+```js
+let f = () => ({});
+f(); // -> {}
+```
+
+## Arrow functions can not be a constructor
+
+พิจราณาตัวอย่างต่อไปนี้
+
+```js
+let f = function() {
+  this.a = 1;
+};
+new f(); // -> { 'a': 1 }
+```
+
+ตอนนี้ลองทำเช่นเดียวกันกับฟังก์ชันลูกศร:
+
+```js
+let f = () => {
+  this.a = 1;
+};
+new f(); // -> TypeError: f is not a constructor
+```
+
+### 💡 คำอธิบาย
+
+ไม่สามารถใช้ arrow functions เป็น constructor และจะทำให้เกิดข้อผิดพลาดเมื่อใช้กับ new เนื่องจากมีคำว่า `this` และไม่มี property `prototype` จึงไม่สมเหตุสมผลเท่าไหร่
+
+## `arguments` and arrow functions
+
+พิจราณาตัวอย่างต่อไปนี้
+
+```js
+let f = function() {
+  return arguments;
+};
+f("a"); // -> { '0': 'a' }
+```
+
+ลองแบบเดียวกันบน arrow function
+
+```js
+let f = () => arguments;
+f("a"); // -> Uncaught ReferenceError: arguments is not defined
+```
+
+### 💡 คำอธิบาย
+
+arrow functions เป็น lightweight version ที่เน้นความสั้นและ lexical `this` ในขณะเดียวกันarrow functions จะไม่มีการเชื่อมโยงสำหรับออบเจ็กต์ `arguments`
+
+ทางเลือกอื่นที่ถูกต้องให้ใช้ `rest parameters` เพื่อให้ได้ผลลัพธ์เดียวกัน:
+
+```js
+let f = (...args) => args;
+f("a");
+```
+
+- [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) at MDN.
+
+## Tricky return
+
+คำสั่ง `return` ยังเป็นเรื่องยุ่งยาก พิจารณาสิ่งนี้:
+
+<!-- prettier-ignore-start -->
+```js
+(function() {
+  return
+  {
+    b: 10;
+  }
+})(); // -> undefined
+```
+<!-- prettier-ignore-end -->
+
+### 💡 คำอธิบาย
+
+`return` and the returned expression ต้องอยู่ในบรรทัดเดียวกัน
+
+```js
+(function() {
+  return {
+    b: 10
+  };
+})(); // -> { b: 10 }
+```
+
+เพราะว่า concept called Automatic Semicolon Insertion ซึ่งจะแทรก semicolon โดยอัตโนมัติหลังจากขึ้นบรรทัดใหม่ ในตัวอย่างแรก semicolon จะแทรกระหว่าง `return` statement and the object literal ดังนั้น function เลย return `underfined`และไม่มีการประเมินผล object
+
+- [**11.9.1** Rules of Automatic Semicolon Insertion](https://www.ecma-international.org/ecma-262/#sec-rules-of-automatic-semicolon-insertion)
+- [**13.10** The `return` Statement](https://www.ecma-international.org/ecma-262/#sec-return-statement)

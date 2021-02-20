@@ -1,1 +1,7 @@
-console.log([...[..."t"]]);
+console.log(
+  (function() {
+    return {
+      b: 10
+    };
+  })()
+);
