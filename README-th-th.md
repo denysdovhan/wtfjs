@@ -27,7 +27,7 @@ npm install -g wtfjs
 
 ปัจจุบันมีการแปล **wtfjs** เหล่านี้:
 
-- [中文版] (./ README-zh-cn.md)
+- [จีน] (./ README-zh-cn.md)
 - [ฝรั่งเศส] (./ README-fr-fr.md)
 
 [tr-request]: https://github.com/denysdovhan/wtfjs/issues/new?title=Translation%20Request:%20%5BPlease%20enter%20language%20here%5D&body=I%20am%20able%20to%20translate%20this%20language%20%5Byes/no%5D
