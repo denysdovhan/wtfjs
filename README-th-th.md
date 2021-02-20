@@ -1717,8 +1717,8 @@ Pass "Comparefn" หากคุณพยายามจัดเรียงอ
 
 # 📚 Other resources
 
-- [wtfjs.com](http://wtfjs.com/) — a collection of those very special irregularities, inconsistencies and just plain painfully unintuitive moments for the language of the web.
-- [Wat](https://www.destroyallsoftware.com/talks/wat) — A lightning talk by Gary Bernhardt from CodeMash 2012
+- [wtfjs.com](http://wtfjs.com/) — คอลเลกชันของความผิดปกติที่พิเศษมากความไม่สอดคล้องกันและเป็นเพียงช่วงเวลาที่เจ็บปวดโดยไม่ได้ตั้งใจสำหรับภาษาของเว็บ.
+- [Wat](https://www.destroyallsoftware.com/talks/wat) — คำบรรยายสั้น ๆ โดย Gary Bernhardt จาก CodeMash 2012
 - [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — Kyle Simpsons talk for Forward 2 attempts to “pull out the crazy” from JavaScript. He wants to help you produce cleaner, more elegant, more readable code, then inspire people to contribute to the open source community.
 
 # 🎓 License
