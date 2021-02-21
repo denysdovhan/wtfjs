@@ -19,8 +19,8 @@ The original idea for WTFJS belongs to [Brian Leroux](https://twitter.com/brianl
 
 You can install this handbook using `npm`. Just run:
 
-```bash
-npm install -g wtfjs
+```
+$ npm install -g wtfjs
 ```
 
 You should be able to run `wtfjs` at the command line now. This will open the manual in your selected `$PAGER`. Otherwise, you may continue reading on here.
@@ -326,8 +326,8 @@ NaN === NaN; // -> false
 Object.is(-0, 0); // -> false
 -0 === 0; // -> true
 
-Object.is(NaN, 0 / 0); // -> true
-NaN === 0 / 0; // -> false
+Object.is(NaN, 0/0); // -> true
+NaN === 0/0; // -> false
 ```
 
 ### 💡 Explanation:
@@ -338,18 +338,15 @@ Similarly, `-0` and `0` are strictly equal, but they're not the same value.
 
 For more details about `NaN === NaN`, see the above case.
 
-- [Here are the TC39 specs about Object.is](https://tc39.es/ecma262/#sec-object.is)
-- [Equality comparisons and sameness](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness) on MDN
+* [Here are the TC39 specs about Object.is](https://tc39.es/ecma262/#sec-object.is)
+* [Equality comparisons and sameness](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness) on MDN
 
 ## It's a fail
 
 You would not believe, but …
 
 ```js
-(![] + [])[+[]] +
-  (![] + [])[+!+[]] +
-  ([![]] + [][[]])[+!+[] + [+[]]] +
-  (![] + [])[!+[] + !+[]];
+(![]+[])[+[]]+(![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]];
 // -> 'fail'
 ```
 
@@ -389,8 +386,8 @@ More examples:
 +{}           // -> NaN
 ```
 
-- [Brainfuck beware: JavaScript is after you!](http://patriciopalladino.com/blog/2012/08/09/non-alphanumeric-javascript.html)
-- [Writing a sentence without using the Alphabet](https://bluewings.github.io/en/writing-a-sentence-without-using-the-alphabet/#weird-javascript-generator) — generate any phrase using JavaScript
+* [Brainfuck beware: JavaScript is after you!](http://patriciopalladino.com/blog/2012/08/09/non-alphanumeric-javascript.html)
+* [Writing a sentence without using the Alphabet](https://bluewings.github.io/en/writing-a-sentence-without-using-the-alphabet/#weird-javascript-generator) — generate any phrase using JavaScript 
 
 ## `[]` is truthy, but not `true`
 
@@ -510,7 +507,7 @@ new Foo() instanceof null;
 // > TypeError: Super constructor null of Foo is not a constructor
 ```
 
-### 💡 Explanation:
+### 💡 Explanation: 
 
 This is not a bug because:
 
@@ -521,16 +518,16 @@ Object.getPrototypeOf(Foo.prototype); // -> null
 If the class has no constructor the call from prototype chain. But in the parent has no constructor. Just in case, I’ll clarify that `null` is an object:
 
 ```js
-typeof null === "object";
+typeof null === 'object'
 ```
 
 Therefore, you can inherit from it (although in the world of the OOP for such terms would have beaten me). So you can't call the null constructor. If you change this code:
 
 ```js
 class Foo extends null {
-  constructor() {
-    console.log("something");
-  }
+    constructor() {
+        console.log('something');
+    }
 }
 ```
 
@@ -544,10 +541,10 @@ And if you add `super`:
 
 ```js
 class Foo extends null {
-  constructor() {
-    console.log(111);
-    super();
-  }
+    constructor() {
+        console.log(111);
+        super();
+    }
 }
 ```
 
@@ -572,16 +569,13 @@ What if you try to add two arrays?
 The concatenation happens. Step-by-step, it looks like this:
 
 ```js
-[1, 2, 3] +
-  [4, 5, 6][
-    // call toString()
-    (1, 2, 3)
-  ].toString() +
-  [4, 5, 6].toString();
+[1, 2, 3] + [4, 5, 6]
+// call toString()
+[1, 2, 3].toString() + [4, 5, 6].toString()
 // concatenation
 "1,2,3" + "4,5,6";
 // ->
-("1,2,34,5,6");
+"1,2,34,5,6";
 ```
 
 ## Trailing commas in array
@@ -851,7 +845,7 @@ A well-known joke. An addition of `0.1` and `0.2` is deadly precise:
 
 ```js
 0.1 + 0.2; // -> 0.30000000000000004
-0.1 + 0.2 === 0.3; // -> false
+(0.1 + 0.2) === 0.3; // -> false
 ```
 
 ### 💡 Explanation:
@@ -977,12 +971,11 @@ Did you know you can add numbers like this?
 
 ```js
 // Patch a toString method
-RegExp.prototype.toString =
-  function() {
-    return this.source;
-  } /
-  7 /
-  -/5/; // -> 2
+RegExp.prototype.toString = function() {
+  return this.source
+}
+
+/7/ - /5/; // -> 2
 ```
 
 ### 💡 Explanation:
@@ -1132,7 +1125,7 @@ Why does this work so? Here we're using a _Computed property name_. When you pas
 We can make "brackets hell" like this:
 
 ```js
-({ [{}]: { [{}]: {} } }[{}][{}]); // -> {}
+({[{}]:{[{}]:{}}})[{}][{}] // -> {}
 
 // structure:
 // {
@@ -1204,9 +1197,7 @@ Then we've passed this object to the template literal, so the `toString` method 
 Consider this example:
 
 ```js
-let x,
-  { x: y = 1 } = { x };
-y;
+let x, { x: y = 1 } = { x }; y;
 ```
 
 The example above is a great task for an interview. What the value of `y`? The answer is:
@@ -1218,9 +1209,7 @@ The example above is a great task for an interview. What the value of `y`? The a
 ### 💡 Explanation:
 
 ```js
-let x,
-  { x: y = 1 } = { x };
-y;
+let x, { x: y = 1 } = { x }; y;
 //  ↑       ↑           ↑    ↑
 //  1       3           2    4
 ```
@@ -1348,47 +1337,22 @@ The interesting part is the value of the `extends` clause (`(String, Array)`). T
 Consider this example of a generator which yields itself:
 
 ```js
-(function* f() {
-  yield f;
-})().next();
+(function* f() { yield f })().next()
 // -> { value: [GeneratorFunction: f], done: false }
 ```
 
 As you can see, the returned value is an object with its `value` equal to `f`. In that case, we can do something like this:
 
 ```js
-(function* f() {
-  yield f;
-})()
-  .next()
-  .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
+(function* f() { yield f })().next().value().next()
+// -> { value: [GeneratorFunction: f], done: false }
 
-    // and again
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
-  .next()
-  .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
+// and again
+(function* f() { yield f })().next().value().next().value().next()
+// -> { value: [GeneratorFunction: f], done: false }
 
-    // and again
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
-  .next()
-  .value()
-  .next()
-  .value()
-  .next();
+// and again
+(function* f() { yield f })().next().value().next().value().next().value().next()
 // -> { value: [GeneratorFunction: f], done: false }
 
 // and so on
@@ -1407,9 +1371,7 @@ To understand why this works that way, read these sections of the specification:
 Consider this obfuscated syntax playing:
 
 ```js
-typeof new class {
-  class() {}
-}(); // -> 'object'
+(typeof (new (class { class () {} }))) // -> 'object'
 ```
 
 It seems like we're declaring a class inside of class. Should be an error, however, we get the string `'object'`.
@@ -1811,7 +1773,7 @@ All definitions are merged into one definition.
 Imagine that you need to sort an array of numbers.
 
 ```js
-[10, 1, 3].sort(); // -> [ 1, 10, 3 ]
+[10, 1, 3].sort() // -> [ 1, 10, 3 ]
 ```
 
 ### 💡 Explanation:
@@ -1825,7 +1787,7 @@ The default sort order is built upon converting the elements into strings, then 
 Pass `compareFn` if you try to sort anything but string.
 
 ```js
-[10, 1, 3].sort((a, b) => a - b); // -> [ 1, 3, 10 ]
+[10, 1, 3 ].sort((a, b) => a - b) // -> [ 1, 3, 10 ]
 ```
 
 ## resolve() won't return Promise instance
@@ -1869,7 +1831,7 @@ thePromise.then(value => {
 - [Promise.resolve() on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
 
 The specification is [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions). But it is not quite human-friendly.
-
+ 
 ## `{}{}` is undefined
 
 Write them in the console. They will return the value defined in the last object.
@@ -1895,9 +1857,7 @@ There are two meanings for `{}`: an object or a block. For example, the `{}` in 
 Let's use `{foo: 'bar'}` as a block. Write this snippet in your console:
 
 ```js
-if (true) {
-  foo: "bar";
-} // -> 'bar'
+if (true) {foo: 'bar'} // -> 'bar'
 ```
 
 Surprisingly, it behaviors the same! You can guess here that `{foo: 'bar'}{}` is a block.
@@ -1907,8 +1867,8 @@ Surprisingly, it behaviors the same! You can guess here that `{foo: 'bar'}{}` is
 I find this example hilarious:
 
 ```js
-Math.min() > Math.max(); // -> true
-Math.min() < Math.max(); // -> false
+Math.min() > Math.max() // -> true
+Math.min() < Math.max() // -> false
 ```
 
 ### 💡 Explanation:
@@ -1916,9 +1876,9 @@ Math.min() < Math.max(); // -> false
 This is a simple one. Let's consider each part of this expression separately:
 
 ```js
-Math.min(); // -> Infinity
-Math.max(); // -> -Infinity
-Infinity > -Infinity; // -> true
+Math.min() // -> Infinity
+Math.max() // -> -Infinity
+Infinity > -Infinity // -> true
 ```
 
 Why so? Well, `Math.max()` is not the same thing as `Number.MAX_VALUE`. It does not return the largest possible number.
@@ -1937,7 +1897,7 @@ Consider this function:
 
 ```js
 function a(x) {
-  arguments[0] = "hello";
+  arguments[0] = 'hello';
   console.log(x);
 }
 
@@ -1956,9 +1916,7 @@ a(1); // > "hello"
 This on is literally from hell:
 
 ```js
-[666]["\155\141\160"]["\143\157\156\163\164\162\165\143\164\157\162"](
-  "\141\154\145\162\164(666)"
-)(666); // alert(666)
+[666]['\155\141\160']['\143\157\156\163\164\162\165\143\164\157\162']('\141\154\145\162\164(666)')(666) // alert(666)
 ```
 
 ### 💡 Explanation:
@@ -1976,7 +1934,7 @@ Any character with a character code lower than 256 (i.e. any character in the ex
 Guess what would happen if we set an infinite timeout?
 
 ```js
-setTimeout(() => console.log("called"), Infinity); // -> <timeoutId>
+setTimeout(() => console.log('called'), Infinity) // -> <timeoutId>
 // > 'called'
 ```
 
@@ -2009,25 +1967,25 @@ Let's try to coerce a number to a string:
 Maybe we should try with a two dots?
 
 ```js
-(27).toString(); // -> '27'
+27..toString() // -> '27'
 ```
 
-But why doesn't first example work?
+But why doesn't first example work? 
 
 ### 💡 Explanation:
 
-It's just a language grammar limitation.
+It's just a language grammar limitation. 
 
-The `.` character presents an ambiguity. It can be understood to be the member operator, or a decimal, depending on its placement.
+The `.` character presents an ambiguity. It can be understood to be the member operator, or a decimal, depending on its placement. 
 
 The specification's interpretation of the `.` character in that particular position is that it will be a decimal. This is defined by the numeric literal syntax of ECMAScript.
 
 You must always use parenthesis or an addition dot to make such expression valid.
 
 ```js
-(27).toString(); // -> '27'
+(27).toString() // -> '27'
 // or
-(27).toString(); // -> '27'
+27..toString() // -> '27'
 ```
 
 - [Usage of toString in JavaScript](https://stackoverflow.com/questions/6853865/usage-of-tostring-in-javascript/6853910#6853910) on StackOverflow
@@ -2045,7 +2003,7 @@ class Foo extends Function {
   }
 }
 
-new new Foo(":D")().val; // -> ':D'
+new new Foo(':D')().val // -> ':D'
 ```
 
 ### 💡 Explanation:
@@ -2055,8 +2013,9 @@ Constructors in JavaScript are just functions with some special treatment. By ex
 While not exhaustively tested, I believe the last statement can be analyzed thus:
 
 ```js
-new new Foo(":D")().val(new newFooInstance()).val;
-veryNewFooInstance.val;
+(new (new Foo(':D'))()).val
+(new newFooInstance()).val
+veryNewFooInstance.val
 // -> ':D'
 ```
 
@@ -2072,10 +2031,10 @@ class Foo extends Function {
   }
 }
 
-var foo = new new Foo(":D")("D:");
-foo.val; // -> 'D:'
+var foo = new new Foo(':D')('D:');
+foo.val // -> 'D:'
 delete foo.val; // remove the instance prop 'val', deferring back to the prototype's 'val'.
-foo.val; // -> ':D'
+foo.val // -> ':D'
 ```
 
 - [Class Extends Function: Extra Newness](https://github.com/denysdovhan/wtfjs/issues/78)
@@ -2086,10 +2045,11 @@ Writing some standard JavaScript… and then BOOM!
 
 ```js
 class SomeClass {
-  ["array"] = ([]["string"] = "str");
+  ['array'] = []
+  ['string'] = 'str'
 }
 
-new SomeClass().array; // -> 'str'
+(new SomeClass()).array // -> 'str'
 ```
 
 What the …?
@@ -2102,7 +2062,7 @@ An example above is basically the same as:
 
 ```js
 class SomeClass {
-  ["array"] = ([]["string"] = "str");
+  ['array'] = ([]['string'] = 'str');
 }
 ```
 
@@ -2116,9 +2076,9 @@ You basically assign a string `str` into an `array` property.
 Have you ever tried to split a string by a space?
 
 ```js
-"".split(""); // -> []
+"".split("") // -> []
 // but…
-"".split(" "); // -> [""]
+"".split(" ") // -> [""]
 ```
 
 ### 💡 Explanation:
@@ -2138,7 +2098,7 @@ Let's quote the specification:
 This caused a bug that I've been solving for a few days:
 
 ```js
-JSON.stringify("production") === "production"; // -> false
+JSON.stringify('production') === 'production' // -> false
 ```
 
 ### 💡 Explanation:
@@ -2146,13 +2106,13 @@ JSON.stringify("production") === "production"; // -> false
 Let's see what `JSON.stringify` is returning:
 
 ```js
-JSON.stringify("production"); // -> '"production"'
+JSON.stringify('production') // -> '"production"'
 ```
 
 It is actually a stringified string, so it's true:
 
 ```js
-'"production"' === "production"; // -> false
+'"production"' === 'production' // -> false
 ```
 
 - [ECMA-404 The JSON Data Interchange Standard.](https://www.json.org/json-en.html)
@@ -2160,10 +2120,10 @@ It is actually a stringified string, so it's true:
 ## Non-strict comparison of a number to `true`
 
 ```js
-1 == true; // -> true
+1 == true // -> true
 // but…
-Boolean(1.1); // -> true
-1.1 == true; // -> false
+Boolean(1.1) // -> true
+1.1 == true // -> false
 ```
 
 ### 💡 Explanation:
@@ -2171,19 +2131,19 @@ Boolean(1.1); // -> true
 According to the specification:
 
 > The comparison x == y, where x and y are values, produces true or false. Such a comparison is performed as follows:
->
+> 
 > 4. If `Type(x)` is Number and `Type(y)` is String, return the result of the comparison `x == ! ToNumber(y)`.
 
 So this comparison is performed like this:
 
 ```js
-1 == true;
-1 == Number(true);
-1 == 1; // -> true
+1 == true
+1 == Number(true)
+1 == 1 // -> true
 // but…
-1.1 == true;
-1.1 == Number(true);
-1.1 == 1; // -> false
+1.1 == true
+1.1 == Number(true)
+1.1 == 1 // -> false
 ```
 
 - [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
