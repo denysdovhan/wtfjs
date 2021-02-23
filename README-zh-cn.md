@@ -42,7 +42,7 @@ $ npm install -g wtfjs
   - [最小值大于零](#%E6%9C%80%E5%B0%8F%E5%80%BC%E5%A4%A7%E4%BA%8E%E9%9B%B6)
   - [函数不是函数](#%E5%87%BD%E6%95%B0%E4%B8%8D%E6%98%AF%E5%87%BD%E6%95%B0)
   - [数组相加](#%E6%95%B0%E7%BB%84%E7%9B%B8%E5%8A%A0)
-- [数组中的逗号](#%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%97%E5%8F%B7)
+  - [数组中的逗号](#%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%97%E5%8F%B7)
   - [数组相等是一个怪物](#%E6%95%B0%E7%BB%84%E7%9B%B8%E7%AD%89%E6%98%AF%E4%B8%80%E4%B8%AA%E6%80%AA%E7%89%A9)
   - [`undefined` 和 `Number`](#undefined-%E5%92%8C-number)
   - [`parseInt` 是一个坏蛋](#parseint-%E6%98%AF%E4%B8%80%E4%B8%AA%E5%9D%8F%E8%9B%8B)
