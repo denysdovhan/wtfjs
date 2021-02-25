@@ -111,7 +111,7 @@ Currently, there are these translations of **wtfjs**:
   - [resolve() won't return Promise instance](#resolve-wont-return-promise-instance)
   - [`{}{}` is undefined](#-is-undefined)
   - [`min` is greater than `max`](#min-is-greater-than-max)
-  - [`agruments` binding](#agruments-binding)
+  - [`arguments` binding](#arguments-binding)
   - [An `alert` from hell](#an-alert-from-hell)
   - [An infinite timeout](#an-infinite-timeout)
   - [Double dot](#double-dot)
@@ -1891,7 +1891,7 @@ The opposite is happening for `Math.min`. `Math.min` returns ∞, if no argument
 - [**15.8.2.11** Math.min](https://262.ecma-international.org/5.1/#sec-15.8.2.12)
 - [Why is `Math.max()` less than `Math.min()`?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min)
 
-## `agruments` binding
+## `arguments` binding
 
 Consider this function:
 
