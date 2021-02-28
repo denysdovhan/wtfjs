@@ -1,19 +1,19 @@
-# What the f\*ck JavaScript?
+# 아니 X 발? 자바스크립트 이게 뭐야??
 
 [![WTFPL 2.0][license-image]][license-url]
 [![NPM version][npm-image]][npm-url]
 
 > 재미있고 교묘한 JavaScript 예제
 
-JavaScript는 훌륭한 언어입니다. JavaScript는 구문이 단순하며 큰 생태계를 가지고 있습니다. 가장 중요한 점은 훌륭한 공동체를 가지고 있다는 것입니다.
+JavaScript 는 훌륭한 언어입니다. JavaScript 는 구문이 단순하며 큰 생태계를 가지고 있습니다. 가장 중요한 점은 훌륭한 공동체를 가지고 있다는 것입니다.
 
 동시에, 우리 모두는 자바스크립트가 까다로운 부분을 가진 꽤 재미있는 언어라는 것을 알고 있습니다. 몇몇 특징은 우리의 일상적인 일을 순식간에 지옥으로 바꾸기도 하고, 우리를 크게 웃게 만들기도 합니다.
 
-WTFJS의 아이디어는 [Brian Leroux](https://twitter.com/brianleroux)에 속해있습니다. 이 목록들은 그의 이야기에서 꽤 영감을 받았습니다. [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
+WTFJS 의 아이디어는 [Brian Leroux](https://twitter.com/brianleroux)에 속해있습니다. 이 목록들은 그의 이야기에서 꽤 영감을 받았습니다. [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
 
 [![dotJS 2012 - Brian Leroux - WTFJS](https://img.youtube.com/vi/et8xNAc2ic8/0.jpg)](https://www.youtube.com/watch?v=et8xNAc2ic8)
 
-# Node Packaged Manuscript
+# NPM 패키지 메뉴스크립트
 
 이 핸드북은 `npm`를 이용하여 설치할 수 있습니다. 그냥 실행합시다:
 
@@ -21,7 +21,7 @@ WTFJS의 아이디어는 [Brian Leroux](https://twitter.com/brianleroux)에 속�
 $ npm install -g wtfjs
 ```
 
-이제 당신은 커맨드 창에서 'wtfjs'를 실행할 수 있게 되었습니다. 당신이 선택한 '$PAGER'에서 열릴 것 입니다. 그렇지 않으면 계속 여기서 읽어도 됩니다.
+이제 당신은 커맨드 창에서 'wtfjs'를 실행할 수 있게 되었습니다. 당신이 선택한 '$PAGER'에서 'wtfjs'가 열릴 것 입니다. 아니면 계속 여기서 읽어도 됩니다.
 
 출처는 <https://github.com/denysdovhan/wtfjs> 여기에서 확인 할 수 있습니다.
 
@@ -30,10 +30,13 @@ $ npm install -g wtfjs
 현재, **wtfjs**는 아래와 같은 언어로 번역되었습니다.:
 
 - [中文版](./README-zh-cn.md)
+- [हिंदी](./README-hi.md)
 - [Français](./README-fr-fr.md)
 - [Português do Brasil](./README-pt-br.md)
 - [Polski](./README-pl-pl.md)
 - [Italiano](./README-it-it.md)
+- [Russian](https://habr.com/ru/company/mailru/blog/335292/) (on Habr.com)
+- [한국어](./README-kr.md)
 
 [**다른 번역 **][tr-request]
 
@@ -44,9 +47,9 @@ $ npm install -g wtfjs
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 # 목차
 
-- [💪🏻 Motivation](#-motivation)
-- [✍🏻 Notation](#-notation)
-- [👀 Examples](#-examples)
+- [💪🏻 시작하기에 앞서](#-motivation)
+- [✍🏻 표기법](#-notation)
+- [👀 예제](#-examples)
   - [`[]`와 `![]`은 같다](#-is-equal-)
   - [`true`는 `![]`와 같지 않지만, `[]` 이와도 같지 않다](#true-is-not-equal--but-not-equal--too)
   - [true는 false이다](#true-is-false)
@@ -108,17 +111,15 @@ $ npm install -g wtfjs
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <!-- prettier-ignore-end -->
 
-# 💪🏻 Motivation
+# 💪🏻 시작하기에 앞서
 
-> 재미로
->
 > &mdash; _[**“Just for Fun: 우연한 혁명가의 이야기”**](https://en.wikipedia.org/wiki/Just_for_Fun), Linus Torvalds_
 
-이 목록의 주요 목표는 가능한 JavaScript의 몇 가지의 엄청난 예들을 모으고, 작동 방식을 설명하는 것 입니다. 이전에 우리가 몰랐던 것들을 배우는 것이 재미 있기 때문입니다.
+이 목록의 주요 목표는 가능한 JavaScript 의 몇 가지의 엄청난 예들을 모으고, 작동 방식을 설명하는 것 입니다. 이전에 우리가 몰랐던 것들을 배우는 것이 재미 있기 때문입니다.
 
-당신이 초보자라면, 이 노트를 사용하여 JavaScript에 대해 자세히 알아 볼 수 있을 것입니다. 이 노트의 설명을 읽는 것에 더 많은 시간을 할애할수 있기를 바랍니다.
+당신이 초보자라면, 이 노트를 사용하여 JavaScript 에 대해 자세히 알아 볼 수 있을 것입니다. 이 노트의 설명을 읽는 것에 더 많은 시간을 할애할수 있기를 바랍니다.
 
-당신이 전문 개발자라면, 우리가 사랑하는 JavaScript의 모든 기이한 점과 예상치 못한 것들에 대한 예시에 훌륭한 참조로 간주 할 수 있습니다.
+당신이 전문 개발자라면, 우리가 사랑하는 JavaScript 의 모든 기이한 점과 예상치 못한 것들에 대한 예시에 훌륭한 참조로 간주 할 수 있습니다.
 
 어쨌든, 이것을 읽읍시다. 당신은 아마 새로운 것들을 찾을 수 있을 것 입니다.
 
@@ -140,10 +141,10 @@ console.log("hello, world!"); // > hello, world!
 
 ```js
 // Assigning a function to foo constant
-const foo = function () {};
+const foo = function() {};
 ```
 
-# 👀 Examples
+# 👀 예제
 
 ## `[]`와 `![]은 같다`
 
@@ -155,7 +156,7 @@ const foo = function () {};
 
 ### 💡 설명:
 
-추상 항등 연산자는 양쪽을 숫자로 변환하여 비교하고, 서로 다른 이유로 양 쪽의 숫자는 `0`이 됩니다. 배열은 truthy하므로, 오른쪽의 값은 `0`을 강요하는 truthy value의 반대 값 즉, `false`입니다. 그러나 왼쪽은 빈 배열은 먼저 boolean되지 않고 숫자로 강제 변환되고 빈 배열은 truthy 임에도 불구하고`0`으로 강요됩니다.
+추상 항등 연산자는 양쪽을 숫자로 변환하여 비교하고, 서로 다른 이유로 양 쪽의 숫자는 `0`이 됩니다. 배열은 truthy 하므로, 오른쪽의 값은 `0`을 강요하는 truthy value 의 반대 값 즉, `false`입니다. 그러나 왼쪽은 빈 배열은 먼저 boolean 되지 않고 숫자로 강제 변환되고 빈 배열은 truthy 임에도 불구하고`0`으로 강요됩니다.
 
 이 표현식이 어떻게 단순화 되는지는 아래와 같습니다.:
 
@@ -166,7 +167,7 @@ const foo = function () {};
 true;
 ```
 
-참조 [`[]`은 truthy이지만 `true`은 아니다](#-is-truthy-but-not-true).
+참조 [`[]`은 truthy 이지만 `true`은 아니다](#-is-truthy-but-not-true).
 
 - [**12.5.9** 논리 연산자 NOT (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.13** 추상 평등 ](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
@@ -228,7 +229,7 @@ false == false; // -> true
 
 - [**7.2.13** 추상 평등 비교](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## true은 false
+## true 은 false
 
 ```js
 !!"false" == !!"true"; // -> true
@@ -257,7 +258,7 @@ false == "false"; // -> false
 "b" + "a" + +"a" + "a"; // -> 'baNaNa'
 ```
 
-이것은 JavaScript에서 구식 농담이지만 재해석 되었습니다. 원본은 다음과 같습니다:
+이것은 JavaScript 에서 구식 농담이지만 재해석 되었습니다. 원본은 다음과 같습니다:
 
 ```js
 "foo" + +"bar"; // -> 'fooNaN'
@@ -288,11 +289,11 @@ NaN === NaN; // -> false
 >
 > &mdash; [**7.2.14** 염격한 평등 비교](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)
 
-IEEE에서 정의한 `NaN`:
+IEEE 에서 정의한 `NaN`:
 
-> 4개의 상호 배타적인 관계 : 보다 작음, 같음, 보다 큼, 순서 없음. 마지막의 경우 하나 이상의 피연산자가 NaN일 때 발생합니다. 모든 NaN는 자신을 포함한 모든 것과 순서 없이 비교해야합니다.
+> 4 개의 상호 배타적인 관계 : 보다 작음, 같음, 보다 큼, 순서 없음. 마지막의 경우 하나 이상의 피연산자가 NaN 일 때 발생합니다. 모든 NaN 는 자신을 포함한 모든 것과 순서 없이 비교해야합니다.
 >
-> &mdash; [“IEEE754 NaN 값에 false를 반환하는 것의 근거는 무엇입니까?”](https://stackoverflow.com/questions/1565164/1573715#1573715) StackOverflow에서
+> &mdash; [“IEEE754 NaN 값에 false 를 반환하는 것의 근거는 무엇입니까?”](https://stackoverflow.com/questions/1565164/1573715#1573715) StackOverflow 에서
 
 ## 이것은 실패다
 
@@ -329,9 +330,9 @@ IEEE에서 정의한 `NaN`:
 
 나머지는 분명하지만 `i`는 꽤 까다롭습니다. `fail` 속 `i`는 'falseundefined'라는 문자열을 생성하고 `['10']` 인덱스를 사용하여 요소를 잡습니다.
 
-## `[]`은 truthy이지만 `true`는 아니다
+## `[]`은 truthy 이지만 `true`는 아니다
 
-배열은 truthy한 값이지만 `true`와 같지는 않다.
+배열은 truthy 한 값이지만 `true`와 같지는 않다.
 
 ```js
 !![]       // -> true
@@ -345,7 +346,7 @@ IEEE에서 정의한 `NaN`:
 - [**12.5.9** 논리 NOT 연산자 (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.13** 추상 평등 비교](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## `null`은 falsy이지만 `false`은 아니다
+## `null`은 falsy 이지만 `false`은 아니다
 
 `null`은 falsy 값이라는 사실에도 불구하고 `false`는 아닙니다.
 
@@ -367,9 +368,9 @@ null == false; // -> false
 
 - [**7.2.13** 추상 평등 비교](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## `document.all`은 객체이지만 정의되지 않았다
+## `document.all`은 객체이지만 `undefined` 이다
 
-> ⚠️ 이 파트는 브라우저 API의 일부이며 Node.js 환경에서는 작동하지 않습니다.⚠️
+> ⚠️ 이 파트는 브라우저 API 의 일부이며 Node.js 환경에서는 작동하지 않습니다.⚠️
 
 `document.all`은 배열과 같은 클래스이고 페이지의 DOM 노드에 대한 엑세스를 제공한다는 사실에도 불구하고 `typeof`함수의 `undefined`으로 반응합니다.
 
@@ -393,15 +394,15 @@ document.all == null; // -> true
 
 ### 💡 설명:
 
-> 특히 이전 버전의 IE에서 `document.all`은 DOM 요소에 접근하는 방법을 사용했습니다. 이것은 표준이 된적은 없지만 이전 JS코드에서 사용되었습니다. 새로운 APIs (`document.getElementById`와 같은)에서 표준이 진행되었을 때 이 API 호출은 쓸모 없게 되었고 표준 위원회는 이를 어떻게 처리할지 결정해야했습니다. 광범위하게 사용되기 때문에 그들은 API를 유지하기로 결정했지만 JavaScript 명세된 것을 고의로 위반했습니다.
+> 특히 이전 버전의 IE 에서 `document.all`은 DOM 요소에 접근하는 방법을 사용했습니다. 이것은 표준이 된적은 없지만 이전 JS 코드에서 사용되었습니다. 새로운 APIs (`document.getElementById`와 같은)에서 표준이 진행되었을 때 이 API 호출은 쓸모 없게 되었고 표준 위원회는 이를 어떻게 처리할지 결정해야했습니다. 광범위하게 사용되기 때문에 그들은 API 를 유지하기로 결정했지만 JavaScript 명세된 것을 고의로 위반했습니다.
 > 이것이 `undefined`의 상황에서 [엄격한 평등 비교](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)을 사용했을 때 `false`를 응답하고 [추상 평등 비교](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)을 사용할 때 `true`로 응답하는 이유는 명시적으로 허용하는 명세된 것의 의도적인 위반 때문입니다.
 >
-> &mdash; [“오래된 특징 - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) WhatWG의 HTML 명세된 것
-> &mdash; [“Chapter 4 - ToBoolean - Falsy values”](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects) YDKJS의 Types & Grammar
+> &mdash; [“오래된 특징 - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) WhatWG 의 HTML 명세된 것
+> &mdash; [“Chapter 4 - ToBoolean - Falsy values”](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects) YDKJS 의 Types & Grammar
 
-## 최소 값은 0보다 크다
+## 최소 값은 0 보다 크다
 
-`Number.MIN_VALUE`은 0보다 큰 가장 작은 숫자입니다.:
+`Number.MIN_VALUE`은 0 보다 큰 가장 작은 숫자입니다.:
 
 ```js
 Number.MIN_VALUE > 0; // -> true
@@ -409,11 +410,11 @@ Number.MIN_VALUE > 0; // -> true
 
 ### 💡 설명:
 
-> `Number.MIN_VALUE`은 `5e-324`입니다. 즉, 부동 소수점 정밀도 내에서 표현할 수 있는 가장 작은 양수입니다. 이 말은 0에 도달할 수 있는 가장 가까운 값이라는 의미 입니다. 이것은 소수가 제공할 수 있는 최상의 값이라고 정의 할 수 있습니다.
+> `Number.MIN_VALUE`은 `5e-324`입니다. 즉, 부동 소수점 정밀도 내에서 표현할 수 있는 가장 작은 양수입니다. 이 말은 0 에 도달할 수 있는 가장 가까운 값이라는 의미 입니다. 이것은 소수가 제공할 수 있는 최상의 값이라고 정의 할 수 있습니다.
 >
 > 비록 엄격하게 실제로 숫자는 아니지만 전체적으로 가장 작은 값은 `Number.NEGATIVE_INFINITY`이라고 할 수 있습니다.
 >
-> &mdash; [“자바 스크립트에서 왜 `0`은 `Number.MIN_VALUE`보다 작습니까?”](https://stackoverflow.com/questions/26614728/why-is-0-less-than-number-min-value-in-javascript) StackOverflow에서
+> &mdash; [“자바 스크립트에서 왜 `0`은 `Number.MIN_VALUE`보다 작습니까?”](https://stackoverflow.com/questions/26614728/why-is-0-less-than-number-min-value-in-javascript) StackOverflow 에서
 
 - [**20.1.2.9** Number.MIN_VALUE](https://www.ecma-international.org/ecma-262/#sec-number.min_value)
 
@@ -464,7 +465,7 @@ new Foo() instanceof null;
 
 ## 배열의 후행 쉼표
 
-4개의 빈 배열을 만듭니다. 그럼에도 불구하고 후행 쉼표로 인해 세가지 , 요소가 있는 배열을 얻게 됩니다.:
+4 개의 빈 배열을 만듭니다. 그럼에도 불구하고 후행 쉼표로 인해 세가지 , 요소가 있는 배열을 얻게 됩니다.:
 
 ```js
 let a = [, , ,];
@@ -474,13 +475,13 @@ a.toString(); // -> ',,'
 
 ### 💡 설명:
 
-> **후행 쉼표** ("마지막 쉼표"라고도 함)는 JavaScript에 새로운 요소, 매개 변수 또는 속성을 추가할 때 유용하게 사용할 수 있습니다. 만약 새 속성을 추가하려는 상황에서 이미 후행 쉼표를 사용하고 있는 경우 이전 마지막 줄을 수정하지 않고 새 줄을 추가할 수 있습니다. 이렇게 하면 버전 관리가 더 깔끔 해지고 코드 편집이 덜 번거로울 수 있습니다.
+> **후행 쉼표** ("마지막 쉼표"라고도 함)는 JavaScript 에 새로운 요소, 매개 변수 또는 속성을 추가할 때 유용하게 사용할 수 있습니다. 만약 새 속성을 추가하려는 상황에서 이미 후행 쉼표를 사용하고 있는 경우 이전 마지막 줄을 수정하지 않고 새 줄을 추가할 수 있습니다. 이렇게 하면 버전 관리가 더 깔끔 해지고 코드 편집이 덜 번거로울 수 있습니다.
 >
-> &mdash; [후행 쉼표](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas) MDN에서
+> &mdash; [후행 쉼표](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas) MDN 에서
 
 ## 배열 평등은 몬스터
 
-배열 평등은 아래에서 볼 수 있듯 JS에서는 몬스터입니다.:
+배열 평등은 아래에서 볼 수 있듯 JS 에서는 몬스터입니다.:
 
 ```js
 [] == ''   // -> true
@@ -543,7 +544,7 @@ parseInt("f*ck"); // -> NaN
 parseInt("f*ck", 16); // -> 15
 ```
 
-**💡 설명:** 이는 `parseInt`알 수 없는 문자에 도달 할 때까지 문자별로 계속 구문 분석을 하기 때문에 발생합니다. `'f*ck'`에서 `f`는 16진수로 `15`입니다.
+**💡 설명:** 이는 `parseInt`알 수 없는 문자에 도달 할 때까지 문자별로 계속 구문 분석을 하기 때문에 발생합니다. `'f*ck'`에서 `f`는 16 진수로 `15`입니다.
 
 `Infinity`정수로 파싱하는 것은…
 
@@ -574,11 +575,11 @@ parseInt(null, 24); // -> 23
 
 **💡 설명:**
 
-> `null`을 문자열`"null"`로 변환하려고 합니다. 0부터 23까지의 기수에 대해서 변환할 수 있는 숫자가 없으므로 NaN을 반환합니다. 24에, `"n"`, 14번째 문자가 숫자 체계에 추가됩니다. 31에, `"u"`, 21번째 문자가 추가되고 전체 문자열을 디코딩 할 수 있게 되었습니다. 37에서 더이상 생성할 수 있는 유효 숫자 집합이 없으며 `NaN`이 반환됩니다.
+> `null`을 문자열`"null"`로 변환하려고 합니다. 0 부터 23 까지의 기수에 대해서 변환할 수 있는 숫자가 없으므로 NaN 을 반환합니다. 24 에, `"n"`, 14 번째 문자가 숫자 체계에 추가됩니다. 31 에, `"u"`, 21 번째 문자가 추가되고 전체 문자열을 디코딩 할 수 있게 되었습니다. 37 에서 더이상 생성할 수 있는 유효 숫자 집합이 없으며 `NaN`이 반환됩니다.
 >
-> &mdash; [“parseInt(null, 24) === 23… wait, what?”](https://stackoverflow.com/questions/6459758/parseintnull-24-23-wait-what) StackOverflow에서
+> &mdash; [“parseInt(null, 24) === 23… wait, what?”](https://stackoverflow.com/questions/6459758/parseintnull-24-23-wait-what) StackOverflow 에서
 
-8진수에 대해서 잊지맙시다:
+8 진수에 대해서 잊지맙시다:
 
 ```js
 parseInt("06"); // 6
@@ -586,7 +587,7 @@ parseInt("08"); // 8 if support ECMAScript 5
 parseInt("08"); // 0 if not support ECMAScript 5
 ```
 
-**💡 설명:** 입력 문자열이 "0"으로 시작하는 경우, 기수는 8 (octal) 또는 10 (decimal)입니다. 정확히는 어떤 기수가 선택되는가는 구현에 따라 다릅니다. ECMAScript 5은 10 (decimal)진수를 사용하도록 지정하지만 모든 브라우저가 이것을 지원하지는 않습니다. 그러므로 `parseInt`을 사용할 때는 항상 기수를 지정합시다.
+**💡 설명:** 입력 문자열이 "0"으로 시작하는 경우, 기수는 8 (octal) 또는 10 (decimal)입니다. 정확히는 어떤 기수가 선택되는가는 구현에 따라 다릅니다. ECMAScript 5 은 10 (decimal)진수를 사용하도록 지정하지만 모든 브라우저가 이것을 지원하지는 않습니다. 그러므로 `parseInt`을 사용할 때는 항상 기수를 지정합시다.
 
 `parseInt`항상 입력을 문자열로 변환:
 
@@ -603,7 +604,7 @@ parseInt(0.0000001); // -> 1
 parseInt(1 / 1999999); // -> 5
 ```
 
-**💡 설명:** `ParseInt`은 문자열 인수를 취하고 지정된 기수의 정수를 반환합니다. 또한 `ParseInt`은 문자열 매개 변수에서 첫 번째가 아닌 숫자를 포함하여 모든 것을 제거합니다. `0.000001`은 문자열 "0.000001"`로 바뀌고 `parseInt`은 `0`으로 반환됩니다. `0.0000001`이 문자열로 변환되면 `"1e-7"`로 되므로 `parseInt`은 `1`을 반환합니다. `1/1999999`은 `5.00000250000125e-7`로 해석되고 `parseInt`은 `5`을 리턴합니다.
+**💡 설명:** `ParseInt`은 문자열 인수를 취하고 지정된 기수의 정수를 반환합니다. 또한 `ParseInt`은 문자열 매개 변수에서 첫 번째가 아닌 숫자를 포함하여 모든 것을 제거합니다. `0.000001`은 문자열 "0.000001"`로 바뀌고`parseInt`은`0`으로 반환됩니다.`0.0000001`이 문자열로 변환되면`"1e-7"`로 되므로`parseInt`은`1`을 반환합니다.`1/1999999`은`5.00000250000125e-7`로 해석되고`parseInt`은`5`을 리턴합니다.
 
 ## `true`와 `false`를 이용한 수학
 
@@ -613,8 +614,7 @@ parseInt(1 / 1999999); // -> 5
 true -
   true +
   // -> 2
-  (true + true) *
-    (true + true) -
+  (true + true) * (true + true) -
   true; // -> 3
 ```
 
@@ -638,7 +638,7 @@ Number(true); // -> 1
 
 > 만약 `argument`이 **true**이면 **1**이 반환됩니다. 만약`argument`이 **false**이면 **+0**이 반환됩니다.
 
-이 때문에 boolean값을 일반 숫자로 추가하고 올바른 결과를 얻을 수 있습니다.
+이 때문에 boolean 값을 일반 숫자로 추가하고 올바른 결과를 얻을 수 있습니다.
 
 해당 부분:
 
@@ -646,9 +646,9 @@ Number(true); // -> 1
 - [**12.8.3** 더하기 연산자(`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 - [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
 
-## HTML 주석은 JavaScript에서도 유효하다
+## HTML 주석은 JavaScript 에서도 유효하다
 
-이것이 `<!--` (HTML 주석으로 알려진) JavaScript에서도 주석으로 사용될 수 있다는 것이 깊은 인상을 남깁니다.
+이것이 `<!--` (HTML 주석으로 알려진) JavaScript 에서도 주석으로 사용될 수 있다는 것이 깊은 인상을 남깁니다.
 
 ```js
 // valid comment
@@ -657,9 +657,9 @@ Number(true); // -> 1
 
 ### 💡 설명:
 
-인상 깊었나요? 이는 HTML과 유사한 주석 `<script>`태그를 이해하지 못하는 브라우저가 정상적으로 저하되도록 하기 위한것 입니다. Netscape 1.x와 같은 브라우저는 더이상 인기가 없습니다. 따라서 더이상 스크립트 태그에 HTML주석을 넣을 필요가 없습니다.
+인상 깊었나요? 이는 HTML 과 유사한 주석 `<script>`태그를 이해하지 못하는 브라우저가 정상적으로 저하되도록 하기 위한것 입니다. Netscape 1.x 와 같은 브라우저는 더이상 인기가 없습니다. 따라서 더이상 스크립트 태그에 HTML 주석을 넣을 필요가 없습니다.
 
-Node.js은 V8 엔진을 기반으로 하기때문에 Node.js 런타임에서도 HTML과 유사한 주석을 지원합니다. 또한 그것은 명시된 것의 일부입니다:
+Node.js 은 V8 엔진을 기반으로 하기때문에 Node.js 런타임에서도 HTML 과 유사한 주석을 지원합니다. 또한 그것은 명시된 것의 일부입니다:
 
 - [**B.1.3** HTML-like Comments](https://www.ecma-international.org/ecma-262/#sec-html-like-comments)
 
@@ -742,7 +742,7 @@ Object.prototype.toString.call(null);
 
 ### 💡 설명:
 
-[”부동 소수점 수학이 깨졌습니까?”](https://stackoverflow.com/questions/588004/is-floating-point-math-broken)에 대한 대답 StackOverflow에서:
+[”부동 소수점 수학이 깨졌습니까?”](https://stackoverflow.com/questions/588004/is-floating-point-math-broken)에 대한 대답 StackOverflow 에서:
 
 > 프로그램에서 상수 `0.2`와 `0.3`은 실제 값에 대한 근사치가 됩니다. `0.2`에 가장 가까운 `double`이 유리수 `0.2`보다 크지만 `0.3`에 가장 가까운 `double`이 유리수 `0.3`보다 작습니다. `0.1`과 `0.2`의 합은 유리수 `0.3`보다 커지기 때문에 코드의 상수와 일치하지 않습니다.
 
@@ -753,7 +753,7 @@ Object.prototype.toString.call(null);
 `Number` 또는 `String`과 같은 객체에 자신의 방법을 추가할 수 있습니다.
 
 ```js
-Number.prototype.isOne = function () {
+Number.prototype.isOne = function() {
   return Number(this) === 1;
 };
 
@@ -769,7 +769,7 @@ Number.prototype.isOne = function () {
 
 ### 💡 설명:
 
-분명히,`Number`객체를 JavaScript에서 다른 객체처럼 확장할 수 있습니다. 그러나, 정의된 메서드의 동작이 명시된 것의 일부가 아닌 경우 권장되지 않습니다. `Number`의 속성 목록은 다음과 같습니다:
+분명히,`Number`객체를 JavaScript 에서 다른 객체처럼 확장할 수 있습니다. 그러나, 정의된 메서드의 동작이 명시된 것의 일부가 아닌 경우 권장되지 않습니다. `Number`의 속성 목록은 다음과 같습니다:
 
 - [**20.1** 숫자 객체](https://www.ecma-international.org/ecma-262/#sec-number-objects)
 
@@ -806,7 +806,7 @@ true > 1; // true -> 1
 
 ## 재미있는 수학
 
-종종 JavaScript에서 산술 연산 결과는 예상치 못한 결과일 수 있습니다. 아래의 예들을 고려합시다:
+종종 JavaScript 에서 산술 연산 결과는 예상치 못한 결과일 수 있습니다. 아래의 예들을 고려합시다:
 
 ```js
  3  - 1  // -> 2
@@ -829,7 +829,7 @@ true > 1; // true -> 1
 
 ### 💡 설명:
 
-처음 4가지 예시에서 무슨 일이 일어나고 있나요? JavaScript에서 덧셈을 이해하기 위한 작은 표 입니다.:
+처음 4 가지 예시에서 무슨 일이 일어나고 있나요? JavaScript 에서 덧셈을 이해하기 위한 작은 표 입니다.:
 
 ```
 Number  + Number  -> addition
@@ -868,7 +868,7 @@ String  + String  -> concatenation
 ```js
 // Patch a toString method
 RegExp.prototype.toString =
-  function () {
+  function() {
     return this.source;
   } /
   7 /
@@ -914,7 +914,7 @@ new String("str"); // -> [String: 'str']
 
 - [**21.1.1** 문자열 생성자](https://www.ecma-international.org/ecma-262/#sec-string-constructor)
 
-## backticks으로 함수 호출
+## backticks 으로 함수 호출
 
 모든 매개 변수를 콘솔에 기록하는 함수를 선언해 보겠습니다.:
 
@@ -930,7 +930,7 @@ function f(...args) {
 f(1, 2, 3); // -> [ 1, 2, 3 ]
 ```
 
-그러나 backticks을 사용하여 모든 함수를 호출 할 수 있다는 것을 알고있나요?
+그러나 backticks 을 사용하여 모든 함수를 호출 할 수 있다는 것을 알고있나요?
 
 ```js
 f`true is ${true}, false is ${false}, array is ${[1, 2, 3]}`;
@@ -950,7 +950,7 @@ function template(strings, ...keys) {
 }
 ```
 
-이 [magic behind](http://mxstbr.blog/2016/11/styled-components-magic-explained/)는 [💅 styled-components](https://www.styled-components.com/)라 불리는 React community에서 인기있는 유명한 도서관에 있습니다.
+이 [magic behind](http://mxstbr.blog/2016/11/styled-components-magic-explained/)는 [💅 styled-components](https://www.styled-components.com/)라 불리는 React community 에서 인기있는 유명한 도서관에 있습니다.
 
 명세서를 링크합니다:
 
@@ -961,7 +961,7 @@ function template(strings, ...keys) {
 > [@cramforce](http://twitter.com/cramforce)에 의해 발견됨.
 
 ```js
-console.log.call.call.call.call.call.apply((a) => a, [1, 2]);
+console.log.call.call.call.call.call.apply(a => a, [1, 2]);
 ```
 
 ### 💡 설명:
@@ -1039,7 +1039,7 @@ c[c][c]('console.log("WTF?")')(); // > WTF?
 
 ## `__proto__`을 사용한 프로토 타입 접근
 
-아시다시피 primitives에는 prototypes이 없습니다. 그러나, `__proto__` primitives에 대한 값을 얻으려고 한다면 다음과 같이 할 수 있습니다.:
+아시다시피 primitives 에는 prototypes 이 없습니다. 그러나, `__proto__` primitives 에 대한 값을 얻으려고 한다면 다음과 같이 할 수 있습니다.:
 
 ```js
 (1).__proto__.__proto__.__proto__; // -> null
@@ -1130,7 +1130,7 @@ y;
 
 - [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 
-## Dots과 spreading
+## Dots 과 spreading
 
 배열의 확산으로 흥미로운 예를 구성할 수 있습니다. 이를 고려하세요:
 
@@ -1164,7 +1164,7 @@ y;
 
 ## 라벨
 
-JavaScript에서 라벨에 대해 아는 프로그래머는 많지 않습니다. 라벨들은 꽤 재미있습니다.:
+JavaScript 에서 라벨에 대해 아는 프로그래머는 많지 않습니다. 라벨들은 꽤 재미있습니다.:
 
 ```js
 foo: {
@@ -1182,7 +1182,7 @@ foo: {
 라벨 되어있는 문장들은 `break` 또는 `continue`문과 함께 사용됩니다. 라벨을 사용하여 루프를 식별할 수 있고 `break` 또는 `continue`문을 사용해 프로그램이 루프를 중단해야 하는지 또는 실행을 계속해야 하는지에 대한 여부를 알 수 있습니다.
 위의 예를 보면 `foo`라는 라벨을 볼 수 있습니다. 그 뒤로 `console.log('first');`을 실행한 후 실행을 중단합니다.
 
-JavaScript의 라벨에 대해 더 읽을거리:
+JavaScript 의 라벨에 대해 더 읽을거리:
 
 - [**13.13** Labelled Statements](https://tc39.github.io/ecma262/#sec-labelled-statements)
 - [Labeled statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) at MDN
@@ -1226,7 +1226,7 @@ a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
 아래의 예를 살펴보세요:
 
 ```js
-new (class F extends (String, Array) {})(); // -> F []
+new class F extends (String, Array) {}(); // -> F []
 ```
 
 다중 상속인 것 같습니까? 아닙니다.
@@ -1240,7 +1240,7 @@ new (class F extends (String, Array) {})(); // -> F []
 
 ## 스스로 생성되는 Generator
 
-스스로 생성되는 Generator의 예를 살펴봅시다:
+스스로 생성되는 Generator 의 예를 살펴봅시다:
 
 ```js
 (function* f() {
@@ -1302,9 +1302,9 @@ new (class F extends (String, Array) {})(); // -> F []
 아래의 읽기 애매한 구문을 생각해봅시다:
 
 ```js
-typeof new (class {
+typeof new class {
   class() {}
-})(); // -> 'object'
+}(); // -> 'object'
 ```
 
 마치 클래스 내부에 클래스를 선언하는 것 같습니다. 오류여야 하지만 문자열 `'object'`을 얻었습니다.
@@ -1315,11 +1315,11 @@ ECMAScript 5 시대부터 _keywords_ 는 _property names_ 으로 허용됩니다
 
 ```js
 const foo = {
-  class: function () {},
+  class: function() {}
 };
 ```
 
-그리고 ES6에서 축약 메소드 정의를 표준화하였습니다. 또한 클래스는 익명이 될 수 있습니다. 그래서 우리가 `: function`부분을 지우면 아래와 같은 결과 값을 얻을 것 입니다:
+그리고 ES6 에서 축약 메소드 정의를 표준화하였습니다. 또한 클래스는 익명이 될 수 있습니다. 그래서 우리가 `: function`부분을 지우면 아래와 같은 결과 값을 얻을 것 입니다:
 
 ```js
 class {
@@ -1387,7 +1387,7 @@ baz.valueOf() === 1; // -> true
 
 ## 까다로운 화살표 함수
 
-아래의 예를 고려하세요w:
+아래의 예를 고려하세요 w:
 
 ```js
 let f = () => 10;
@@ -1403,7 +1403,7 @@ f(); // -> undefined
 
 ### 💡 설명:
 
-`undefined` 대신 `{}`을 기대할 수도 있습니다. 이것({}) 또한 화살표 함수의 구문 중 하나이기 때문에 `f`는 undefined으로 리턴될 것입니다. 하지만 리턴 값을 괄호로 묶어서 화살표 함수에 직접 `{}` 객체를 리턴할 수는 있습니다.
+`undefined` 대신 `{}`을 기대할 수도 있습니다. 이것({}) 또한 화살표 함수의 구문 중 하나이기 때문에 `f`는 undefined 으로 리턴될 것입니다. 하지만 리턴 값을 괄호로 묶어서 화살표 함수에 직접 `{}` 객체를 리턴할 수는 있습니다.
 
 ```js
 let f = () => ({});
@@ -1415,7 +1415,7 @@ f(); // -> {}
 아래의 예를 생각해봅시다:
 
 ```js
-let f = function () {
+let f = function() {
   this.a = 1;
 };
 new f(); // -> f { 'a': 1 }
@@ -1432,20 +1432,20 @@ new f(); // -> TypeError: f is not a constructor
 
 ### 💡 설명:
 
-화살표 함수는 생성자로 사용할 수 없으며 new와 함께 사용하면 오류가 발생합니다. 왜냐하면 렉시컬 범위의 `this`가 있고 `prototype`이 없기 때문에 그래서 말이 안될 것 입니다.
+화살표 함수는 생성자로 사용할 수 없으며 new 와 함께 사용하면 오류가 발생합니다. 왜냐하면 렉시컬 범위의 `this`가 있고 `prototype`이 없기 때문에 그래서 말이 안될 것 입니다.
 
 ## `arguments`와 화살표 함수
 
-아래의 예를 생각해봅시다w:
+아래의 예를 생각해봅시다 w:
 
 ```js
-let f = function () {
+let f = function() {
   return arguments;
 };
 f("a"); // -> { '0': 'a' }
 ```
 
-이제, 화살표 함수를 이용하여 동일하게 시도해봅시다n:
+이제, 화살표 함수를 이용하여 동일하게 시도해봅시다 n:
 
 ```js
 let f = () => arguments;
@@ -1483,9 +1483,9 @@ f("a");
 `return`과 반환된 표현식은 같은 줄에 있어야 합니다:
 
 ```js
-(function () {
+(function() {
   return {
-    b: 10,
+    b: 10
   };
 })(); // -> { b: 10 }
 ```
@@ -1508,11 +1508,11 @@ foo; // -> {n: 2}
 bar; // -> {n: 1, x: {n: 2}}
 ```
 
-오른쪽에서 왼쪽으로, `{n: 2}`이 foo에 할당되어 있고 이 할당의 결과`{n: 2}`는 foo.x에 할당되어 있다고 bar는 foo를 할당하고 있기 때문에 bar은 `{n: 1, x: {n: 2}}`이다. 그런데 bar.x가 아닌 반면에 foo.x는 왜 정의되지 않은 것일까 ?
+오른쪽에서 왼쪽으로, `{n: 2}`이 foo 에 할당되어 있고 이 할당의 결과`{n: 2}`는 foo.x 에 할당되어 있다고 bar 는 foo 를 할당하고 있기 때문에 bar 은 `{n: 1, x: {n: 2}}`이다. 그런데 bar.x 가 아닌 반면에 foo.x 는 왜 정의되지 않은 것일까 ?
 
 ### 💡 설명:
 
-Foo와 bar는 같은 객체 `{n: 1}`를 참조하고 있고 lvalues은 할당되기 전에 결정됩니다. `foo = {n: 2}`은 새로운 객체를 생성하고 있으므로 foo는 새로운 객체를 참조하도록 업데이트됩니다. 트릭은 `foo.x = ...`의 foo에 있습니다. lvalue값은 사전에 확인되었고 여전히 이전 `foo = {n:1}` 객체를 참조하고 x 값을 추가하여 업데이트합니다. 체인 할당 후에도 bar는 여전히 이전의 foo 객체를 참조하지만 foo는 x가 존재하지 않는 새로운 `{n: 2}`객체를 참조합니다.
+Foo 와 bar 는 같은 객체 `{n: 1}`를 참조하고 있고 lvalues 은 할당되기 전에 결정됩니다. `foo = {n: 2}`은 새로운 객체를 생성하고 있으므로 foo 는 새로운 객체를 참조하도록 업데이트됩니다. 트릭은 `foo.x = ...`의 foo 에 있습니다. lvalue 값은 사전에 확인되었고 여전히 이전 `foo = {n:1}` 객체를 참조하고 x 값을 추가하여 업데이트합니다. 체인 할당 후에도 bar 는 여전히 이전의 foo 객체를 참조하지만 foo 는 x 가 존재하지 않는 새로운 `{n: 2}`객체를 참조합니다.
 
 다음과 동일합니다:
 
@@ -1526,7 +1526,7 @@ bar.x = foo; // -> {n: 1, x: {n: 2}}
 // it's not equivalent to: bar.x = {n: 2}
 ```
 
-## 배열을 사용한 객체 속성 접근s
+## 배열을 사용한 객체 속성 접근 s
 
 ```js
 var obj = { property: 1 };
@@ -1588,7 +1588,7 @@ null >= 0; // true
 
 ### 💡 설명:
 
-본능적으로 IE11은 올바르고 Firefox/Chrome이 잘못되었다고 생각할 수 있지만 사실은 Firefox/Chrome이 더 직접적으로 숫자의 표준(IEEE-754 Floating Point)을 준수하고 있는 반면 IE11는 더 명확한 결과를 제공하기 위한 노력으로 그것들을 미세하게 거역하고 있습니다.
+본능적으로 IE11 은 올바르고 Firefox/Chrome 이 잘못되었다고 생각할 수 있지만 사실은 Firefox/Chrome 이 더 직접적으로 숫자의 표준(IEEE-754 Floating Point)을 준수하고 있는 반면 IE11 는 더 명확한 결과를 제공하기 위한 노력으로 그것들을 미세하게 거역하고 있습니다.
 
 몇 가지 간단한 테스트를 통해 이 문제가 발생하는 이유를 확인할 수 있습니다:
 
@@ -1602,11 +1602,11 @@ null >= 0; // true
 (0.7875).toFixed(20); // -> 0.78749999999999997780
 ```
 
-부동 소수점 번호는 내부적으로 10진수 리스트로 저장되는 것이 아니라 대게 toString과 유사한 호출에 의해 반올림되지만 실제로 내부적으로는 매우 복잡한 방법론을 통해 저장됩니다.
+부동 소수점 번호는 내부적으로 10 진수 리스트로 저장되는 것이 아니라 대게 toString 과 유사한 호출에 의해 반올림되지만 실제로 내부적으로는 매우 복잡한 방법론을 통해 저장됩니다.
 
-이 경우 끝에 있는 "5"는 실제로 진짜 5보다 매우 작은 부분입니다.합리적인 길이로 반올림하면 5...로 렌더링되지만 실제로는 내부적으로 5는 아닙니다.
+이 경우 끝에 있는 "5"는 실제로 진짜 5 보다 매우 작은 부분입니다.합리적인 길이로 반올림하면 5...로 렌더링되지만 실제로는 내부적으로 5 는 아닙니다.
 
-그러나 IE11은 하드웨어 한계에서 문제를 줄이기 위해 값을 강제로 반올림하는 것처럼 보이기 때문에 toFixed(20)의 사례에서도 끝에 0만 추가한 값을 입력 보고 할 것입니다.
+그러나 IE11 은 하드웨어 한계에서 문제를 줄이기 위해 값을 강제로 반올림하는 것처럼 보이기 때문에 toFixed(20)의 사례에서도 끝에 0 만 추가한 값을 입력 보고 할 것입니다.
 
 `toFixed`에 대한 ECMA-262 정의의 `NOTE 2`를 참고하세요.
 
@@ -1651,7 +1651,7 @@ null >= 0; // -> true
 true;
 ```
 
-그러나 spec을 자세히 읽어보면 숫자 변환은 `null` 나 `undefined`의 한 면에서는 일어나지 않습니다. 그러므로 등호 한쪽에 `null`이 있으면 다른 한쪽에 `null` 또는 `undefined`가 있어야 `true`를 리턴한다. 이 경우 그렇지 않기 때문에`false`을 리턴한다.
+그러나 spec 을 자세히 읽어보면 숫자 변환은 `null` 나 `undefined`의 한 면에서는 일어나지 않습니다. 그러므로 등호 한쪽에 `null`이 있으면 다른 한쪽에 `null` 또는 `undefined`가 있어야 `true`를 리턴한다. 이 경우 그렇지 않기 때문에`false`을 리턴한다.
 
 다음은 관계 비교 `null > 0`입나다. 여기서 알고리즘은 추상 평등 연산자와 달리 `null`을 숫자로 변환합니다. 따라서 다음과 같은 동작이 발생합니다:
 
@@ -1677,7 +1677,7 @@ true;
 
 ## 동일한 변수 재선언
 
-JS에서는 변수를 다시 선언할 수 있습니다:
+JS 에서는 변수를 다시 선언할 수 있습니다:
 
 ```js
 a;
@@ -1722,17 +1722,17 @@ var a;
 [ 10, 1, 3 ].sort((a, b) => a - b) // -> [ 1, 3, 10 ]
 ```
 
-## resolve()은 Promise instance를 반환하지 않는다
+## resolve()은 Promise instance 를 반환하지 않는다
 
 ```javascript
 const theObject = {
-  a: 7,
+  a: 7
 };
 const thePromise = new Promise((resolve, reject) => {
   resolve(theObject);
 }); // -> Promise instance object
 
-thePromise.then((value) => {
+thePromise.then(value => {
   console.log(value === theObject); // -> true
   console.log(value); // -> { a: 7 }
 });
@@ -1750,7 +1750,7 @@ const thePromise = new Promise((resolve, reject) => {
   resolve(theObject);
 }); // -> Promise instance object
 
-thePromise.then((value) => {
+thePromise.then(value => {
   console.log(value === theObject); // -> false
   console.log(value); // -> 7
 });
@@ -1758,7 +1758,7 @@ thePromise.then((value) => {
 
 ### 💡 설명:
 
-> 이 함수는 promise같은 객체의 중첩된 레이어(예 : 무언가로 해결되는 proomise으로 해결되는 promise)를 단일 레이어로 평탄화합니다.
+> 이 함수는 promise 같은 객체의 중첩된 레이어(예 : 무언가로 해결되는 proomise 으로 해결되는 promise)를 단일 레이어로 평탄화합니다.
 
 &ndash; [Promise.resolve() on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
 
