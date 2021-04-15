@@ -2007,10 +2007,10 @@ Let's try to coerce a number to a string:
 27.toString() // > Uncaught SyntaxError: Invalid or unexpected token
 ```
 
-Maybe we should try with a two dots?
+Maybe we should try with two dots?
 
 ```js
-(27).toString(); // -> '27'
+27..toString(); // -> '27'
 ```
 
 But why doesn't first example work?
@@ -2028,7 +2028,7 @@ You must always use parenthesis or an addition dot to make such expression valid
 ```js
 (27).toString(); // -> '27'
 // or
-(27).toString(); // -> '27'
+27..toString(); // -> '27'
 ```
 
 - [Usage of toString in JavaScript](https://stackoverflow.com/questions/6853865/usage-of-tostring-in-javascript/6853910#6853910) on StackOverflow
@@ -2087,7 +2087,8 @@ Writing some standard JavaScript… and then BOOM!
 
 ```js
 class SomeClass {
-  ["array"] = ([]["string"] = "str");
+  ["array"] = []
+  ["string"] = "str"
 }
 
 new SomeClass().array; // -> 'str'
@@ -2109,7 +2110,7 @@ class SomeClass {
 
 You basically assign a string `str` into an `array` property.
 
-- [An original tween with an example](https://twitter.com/SeaRyanC/status/1148726605222535168) by Ryan Cavanaugh
+- [An original tweet with an example](https://twitter.com/SeaRyanC/status/1148726605222535168) by Ryan Cavanaugh
 - [TC39 meeting when they debated about it](https://github.com/tc39/notes/blob/master/meetings/2017-09/sept-26.md)
 
 ## Split a string by a space
