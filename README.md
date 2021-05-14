@@ -142,7 +142,7 @@ If you are a professional developer, you can consider these examples as a great 
 
 In any case, just read this. You're probably going to find something new.
 
-> **⚠️ Note:** If you enjoy reading this document, pleas, [consider supporting the author of this collection](#-supporting).
+> **⚠️ Note:** If you enjoy reading this document, please, [consider supporting the author of this collection](#-supporting).
 
 # ✍🏻 Notation
 
