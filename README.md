@@ -155,7 +155,7 @@ In any case, just read this. You're probably going to find something new.
 **`// >`** means the result of `console.log` or another output. For example:
 
 ```js
-console.log("hello, world!"); // -> hello, world!
+console.log("hello, world!"); // > hello, world!
 ```
 
 **`//`** is just a comment used for explanations. Example:
