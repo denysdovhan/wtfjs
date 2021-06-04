@@ -1999,6 +1999,50 @@ Timeout duration was set to 1.
 - [Node.js Documentation on Timers](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_args)
 - [Timers](https://www.w3.org/TR/2011/WD-html5-20110525/timers.html) on W3C
 
+## A setTimeout object
+
+#### Guess what would happen if we set an callback that's not a function to setTimeout?
+
+```js
+setTimeout(123, 100); // -> <timeoutId>
+// > 'called'
+```
+(This is fine)
+
+```js
+setTimeout('{a: 1}', 100); // -> <timeoutId>
+// > 'called'
+```
+(This is also fine)
+
+
+```js
+setTimeout({a: 1}, 100); // -> <timeoutId>
+// > 'Uncaught SyntaxError: Unexpected identifier               setTimeout (async) (anonymous) @ VM__:1'
+```
+(This throws an **SyntaxError**)
+
+Note that this can easily happen if your function returns an object and you call it here instead of passing it 🤦🏽‍♀️🤦🏽‍♀️!
+
+#### What if the content - policy is set to 'self'?
+
+```js
+setTimeout(123, 100); // -> <timeoutId>
+// > console.error("[Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'report-sample' 'self' ")
+```
+
+The console refuses to run it at all!!
+
+### 💡 Explanation:
+
+`WindowOrWorkerGlobalScope.setTimeout()` can be called with `code` as first argument, which will be passed on to `eval`, which is bad. Eval will coerce her input to String, and evaluate what is produced, so Objects becode `'[object Object]'` which has hmmm ...  an `'Unexpected identifier'`!
+
+
+- [eval()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval) on MDN (don't use this)
+- [WindowOrWorkerGlobalScope.setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) on MDN
+- [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
+- [Timers](https://www.w3.org/TR/2011/WD-html5-20110525/timers.html) on W3C
+
 ## Double dot
 
 Let's try to coerce a number to a string:
