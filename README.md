@@ -115,6 +115,7 @@ Currently, there are these translations of **wtfjs**:
   - [`arguments` binding](#arguments-binding)
   - [An `alert` from hell](#an-alert-from-hell)
   - [An infinite timeout](#an-infinite-timeout)
+  - [A setTimeout object](#a-settimeout-object)
   - [Double dot](#double-dot)
   - [Extra Newness](#extra-newness)
   - [Why you should use semicolons](#why-you-should-use-semicolons)
@@ -2035,7 +2036,7 @@ The console refuses to run it at all!!
 
 ### 💡 Explanation:
 
-`WindowOrWorkerGlobalScope.setTimeout()` can be called with `code` as first argument, which will be passed on to `eval`, which is bad. Eval will coerce her input to String, and evaluate what is produced, so Objects becode `'[object Object]'` which has hmmm ...  an `'Unexpected identifier'`!
+`WindowOrWorkerGlobalScope.setTimeout()` can be called with `code` as first argument, which will be passed on to `eval`, which is bad. Eval will coerce her input to String, and evaluate what is produced, so Objects becomes `'[object Object]'` which has hmmm ...  an `'Unexpected identifier'`!
 
 
 - [eval()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval) on MDN (don't use this)
