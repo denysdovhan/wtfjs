@@ -115,7 +115,7 @@ Currently, there are these translations of **wtfjs**:
   - [`arguments` binding](#arguments-binding)
   - [An `alert` from hell](#an-alert-from-hell)
   - [An infinite timeout](#an-infinite-timeout)
-  - [A setTimeout object](#a-settimeout-object)
+  - [A `setTimeout` object](#a-settimeout-object)
   - [Double dot](#double-dot)
   - [Extra Newness](#extra-newness)
   - [Why you should use semicolons](#why-you-should-use-semicolons)
