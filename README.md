@@ -116,6 +116,7 @@ Currently, there are these translations of **wtfjs**:
   - [Split a string by a space](#split-a-string-by-a-space)
   - [A stringified string](#a-stringified-string)
   - [Non-strict comparison of a number to `true`](#non-strict-comparison-of-a-number-to-true)
+  - [Mapping with parseInt](#mapping-with-parseint)
 - [📚 Other resources](#-other-resources)
 - [🎓 License](#-license)
 
@@ -2081,6 +2082,22 @@ So this comparison is performed like this:
 ```
 
 - [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
+
+## Mapping with parseInt
+
+```js
+[1,2,3].map(x => parseInt(x)) // -> [1,2,3]
+[1,2,3].map(parseInt) // -> [1,NaN,NaN]
+```
+
+### 💡 Explanation:
+
+The `map` operator actually passes three arguments to the callback function: the mapped element, the element index and the actual complete array.
+`parseInt`, which itself accepts two arguments, interprets the second argument (which is `undefined`) as radix, and fails silently, returning `NaN`.
+The same will apply for any callback function which accepts more than one argument.
+
+- [`Array.prototype.map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) at MDN
+- [`parseInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt) at MDN
 
 # 📚 Other resources
 
