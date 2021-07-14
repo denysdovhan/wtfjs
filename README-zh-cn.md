@@ -5,23 +5,23 @@
 
 > 一个有趣和棘手的 JavaScript 示例列表。
 
-JavaScript 是一种很好的语言。它有一个简单的语法，庞大的生态系统，以及最重要，最伟大的社区。
+JavaScript 是一个不错的语言。它的语法简单，生态系统也很庞大，最重要的是，它拥有最伟大的社区力量。
 
-同时，我们都知道，JavaScript 是一个非常有趣又充满戏法的语言。他们中的有些可以迅速将我们的日常工作变成地狱，有些可以让我们大声笑起来。
+我们知道，JavaScript 是一个非常有趣的语言，但同时也充满了各种奇怪的行为。这些奇怪的行为有时会搞砸我们的日常工作，有时则会让我们忍俊不禁。
 
-WTFJS 的原创思想属于 [Brian Leroux](https://twitter.com/brianleroux)。这个列表受到他的讲话的高度启发 [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8)：
+WTFJS 的灵感源于 [Brian Leroux](https://twitter.com/brianleroux)。这个列表受到他 [在2012年的 dotJS 上的演讲 **“WTFJS”**](https://www.youtube.com/watch?v=et8xNAc2ic8) 的高度启发：
 
 [![dotJS 2012 - Brian Leroux - WTFJS](https://img.youtube.com/vi/et8xNAc2ic8/0.jpg)](https://www.youtube.com/watch?v=et8xNAc2ic8)
 
-# npm 手稿
+# 适用于NodeJS的指南手册
 
-你可以通过 `npm` 来安装。只要运行：
+通过 `npm` 安装该项目的指南手册。只需运行：
 
 ```
 $ npm install -g wtfjs
 ```
 
-你应该能够在命令行中运行`wtfjs`，这将打开手册并在你选择的`$PAGER`中，否则你也可以选择在这里阅读。
+然后在命令行中尝试运行`wtfjs`，将会在命令行中打开手册并跳转至你选择的页数`$PAGER`。这不是必需的步骤，你也可以继续在这里阅读。
 
 <!-- prettier-ignore-start -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -91,19 +91,19 @@ $ npm install -g wtfjs
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <!-- prettier-ignore-end -->
 
-# 💪🏻 动机
+# 💪🏻 初衷
 
-> 只是为了好玩
+> 只是因为好玩
 >
 > &mdash; _[**“只是为了好玩：一个意外革命的故事”**](https://en.m.wikipedia.org/wiki/Just_for_Fun), Linus Torvalds_
 
-这个列表的主要目的是收集一些疯狂的例子，并解释它们如何工作，如果可能的话。只是因为学习以前不了解的东西很有趣。
+这个列表的主要目的是收集一些疯狂的例子，并尽可能解释它们的原理。学习以前不了解的东西对我来说很有趣。
 
-如果您是初学者，您可以使用此笔记来深入了解 JavaScript。我希望这个笔记会激励你花更多的时间阅读规范。
+如果您是初学者，您可以根据此笔记深入了解 JavaScript。我希望它会激励你花更多的时间阅读规范。
 
-如果您是专业开发人员，您可以将这些示例视为您公司新手访问问题和测验的重要资源。同时，这些例子在准备面试时会很方便。
+如果您是专业开发人员，您将看到人见人爱的 JavaScript 也充满了非预期的边界行为。
 
-无论如何，读读看。也许你会为自己找到新的东西。
+总之，先试着读一下这些例子，您总能学习到新的知识。
 
 # ✍🏻 符号
 
