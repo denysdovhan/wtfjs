@@ -138,6 +138,19 @@ const foo = function() {};
 
 ### 💡 说明：
 
+抽象相等运算符会将其两端的表达式转换为数字值进行比较，尽管这个例子中，左右两端均被转换为 `0`，但原因各不相同。数组总是真值（truthy）,因此右值的数组取反后总是为 `false`，然后在抽象相等比较中被被类型转换为 `0`。而左值则是另一种情形，空数组没有被转换为布尔值的话，尽管在逻辑上是真值（truthy），但在抽象相等比较中，会被类型转换为数字 `0`。
+
+该表达式的运算步骤如下：
+
+```js
++[] == +![];
+0 == +false;
+0 == 0;
+true;
+```
+
+了解更多：[`[]` 是真值，但并非 `true`](#-is-truthy-but-not-true).
+
 - [**12.5.9** 逻辑非运算符 (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.13** 抽象相等比较 ](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
