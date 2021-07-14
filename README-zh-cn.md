@@ -107,22 +107,22 @@ $ npm install -g wtfjs
 
 # ✍🏻 符号
 
-**`// ->`** 用于显示表达式的结果。例如：
+**`// ->`** 表示表达式的结果。例如：
 
 ```js
 1 + 1; // -> 2
 ```
 
-**`// >`** 意思是 `console.log` 或其他输出的结果。例如：
+**`// >`** 表示 `console.log` 等输出的结果。例如：
 
 ```js
 console.log("hello, world!"); // > hello, world!
 ```
 
-**`//`** 只是一个解释的评论。例如：
+**`//`** 则是解释的注释。例如：
 
 ```js
-// Assigning a function to foo constant
+// 将一个函数赋值给 foo 常量
 const foo = function() {};
 ```
 
