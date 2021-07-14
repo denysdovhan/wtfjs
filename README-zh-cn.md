@@ -119,7 +119,7 @@ $ npm install -g wtfjs
 console.log("hello, world!"); // > hello, world!
 ```
 
-**`//`** 则是解释的注释。例如：
+**`//`** 则是用于解释的注释。例如：
 
 ```js
 // 将一个函数赋值给 foo 常量
