@@ -332,7 +332,7 @@ NaN === 0 / 0; // -> false
 
 ## 它是 fail
 
-你不会相信，但...
+你可能不会相信，但……
 
 ```js
 (![] + [])[+[]] +
@@ -351,7 +351,7 @@ NaN === 0 / 0; // -> false
 ![]; // -> false
 ```
 
-所以我们尝试将`[]`和`false`加起来。 但是通过一些内部函数调用（`binary + Operator` - >`ToPrimitive` - >`[[DefaultValue]` ]），我们最终将右边的操作数转换为一个字符串：
+所以我们尝试将 `[]` 和 `false` 加起来。但是因为一些内部函数调用（`binary + Operator` - >`ToPrimitive` - >`[[DefaultValue]` ]），我们最终将右边的操作数转换为一个字符串：
 
 ```js
 ![] + [].toString(); // 'false'
@@ -363,7 +363,23 @@ NaN === 0 / 0; // -> false
 "false"[0]; // -> 'f'
 ```
 
-现在，其余的是明显的，可以自己弄清楚！
+剩下的部分以此类推，不过此处的 `i` 字符是比较讨巧的。`fail` 中的 `i` 来自于生成的字符串 `falseundefined`，通过指定序号 `['10']` 取得的。
+
+更多的例子：
+
+```js
++![]          // -> 0
++!![]         // -> 1
+!![]          // -> true
+![]           // -> false
+[][[]]        // -> undefined
++!![] / +![]  // -> Infinity
+[] + {}       // -> "[object Object]"
++{}           // -> NaN
+```
+
+- [烧脑预警：疯狂的 JavaScript](http://patriciopalladino.com/blog/2012/08/09/non-alphanumeric-javascript.html)
+- [写个句子干嘛要用字母](https://bluewings.github.io/en/writing-a-sentence-without-using-the-alphabet/#weird-javascript-generator) — 用 JavaScript 生成任意短语
 
 ## `[]` 是 `true`, 但它不等于 `true`
 
