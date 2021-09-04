@@ -468,11 +468,11 @@ Number.MIN_VALUE > 0; // -> true
 
 ### 💡 说明：
 
-> `Number.MIN_VALUE` 是 `5e-324` ，即可以在浮点精度内表示的最小正数，即可以达到零。 它定义了浮点数的最高精度。
+> `Number.MIN_VALUE` 是 `5e-324`，即可以在浮点精度内表示的最小正数，也是在该精度内无限接近零的数字。它定义了浮点数的最高精度。
 
-> 现在，整体最小的值是 `Number.NEGATIVE_INFINITY` ，尽管这在严格意义上并不是真正的数字。
+> 现在，整体最小的值是 `Number.NEGATIVE_INFINITY`，尽管这在严格意义上并不是真正的数字。
 >
-> &mdash; [“为什么在 JavaScript 中`0`小于`Number.MIN_VALUE`？”](https://stackoverflow.com/questions/26614728/why-is-0-less-than-number-min-value-in-javascript) at StackOverflow
+> &mdash; StackOverflow 上的[“为什么在 JavaScript 中 `0` 小于 `Number.MIN_VALUE`？”](https://stackoverflow.com/questions/26614728/why-is-0-less-than-number-min-value-in-javascript)
 
 - [**20.1.2.9** Number.MIN_VALUE](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
 
