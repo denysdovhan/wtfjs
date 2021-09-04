@@ -84,7 +84,7 @@ $ npm install -g wtfjs
   - [字符串不是 `String` 的实例](#%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8D%E6%98%AF-string-%E7%9A%84%E5%AE%9E%E4%BE%8B)
   - [用反引号调用函数](#%E7%94%A8%E5%8F%8D%E5%BC%95%E5%8F%B7%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0)
   - [到底 call 了谁](#%E5%88%B0%E5%BA%95-call-%E4%BA%86%E8%B0%81)
-  - [一个 `constructor` 属性](#%E4%B8%80%E4%B8%AA-constructor-%E5%B1%9E%E6%80%A7)
+  - [`constructor` 属性](#constructor-%E5%B1%9E%E6%80%A7)
   - [将对象做为另一个对象的 key](#%E5%B0%86%E5%AF%B9%E8%B1%A1%E5%81%9A%E4%B8%BA%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84-key)
   - [访问原型 `__proto__`](#%E8%AE%BF%E9%97%AE%E5%8E%9F%E5%9E%8B-__proto__)
   - [`` `${{Object}}` ``](#-object-)
@@ -1080,7 +1080,7 @@ console.log.call.call.call.call.call.apply(a => a, [1, 2]);
 - [**19.2.3.3** Function.prototype.call(`thisArg`, ...`args`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.call)
 - [**19.2.3.1 ** Function.prototype.apply(`thisArg`, `argArray`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.apply)
 
-## 一个 `constructor` 属性
+## `constructor` 属性
 
 ```js
 const c = "constructor";
@@ -1089,10 +1089,10 @@ c[c][c]('console.log("WTF?")')(); // > WTF?
 
 ### 💡 说明：
 
-让我们逐步考虑一下这个例子：
+让我们逐步分解这个例子：
 
 ```js
-// 声明一个新的常字符串 'constructor'
+// 声明一个新的常量字符串 'constructor'
 const c = "constructor";
 
 // c 是一个字符串
@@ -1111,7 +1111,7 @@ c[c][c]('console.log("WTF?")'); // -> [Function: anonymous]
 c[c][c]('console.log("WTF?")')(); // > WTF
 ```
 
-一个 `Object.prototype.constructor` 返回一个引用对象的构造函数创建的实例对象。在字符串的情况下，它是 `String` ，在数字的情况下它是 `Number` 等等。
+`Object.prototype.constructor` 返回一个创建示例对象的 `Object` 构造函数引用。当当前对象是字符串时，它是 `String`；当当前对象是数字时，它是 `Number`；以此类推。
 
 - [`Object.prototype.constructor`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor) at MDN
 - [**19.1.3.1** Object.prototype.constructor](https://www.ecma-international.org/ecma-262/#sec-object.prototype.constructor)
