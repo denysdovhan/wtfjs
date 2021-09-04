@@ -423,7 +423,7 @@ null == false; // -> false
 
 > ⚠️ 这是浏览器 API 的一部分，对于 Node.js 环境无效 ⚠️
 
-尽管 document.all 是一个 array-like object 并且通过它可以访问页面中的 DOM 节点，但在通过 `typeof` 的检测结果是 `undefined`。
+尽管 document.all 是一个类数组对象（array-like object），并且通过它可以访问页面中的 DOM 节点，但在通过 `typeof` 的检测结果是 `undefined`。
 
 ```js
 document.all instanceof Object; // -> true
@@ -434,10 +434,17 @@ typeof document.all; // -> 'undefined'
 
 ```js
 document.all === undefined; // -> false
-document.all === null; // -> false
+typeof document.all; // -> 'undefined'
 ```
 
-但是同时：
+但是同时，`document.all` 不等于 `undefined`：
+
+```js
+document.all === undefined; // -> false
+document.all == null; // -> true
+```
+
+不过：
 
 ```js
 document.all == null; // -> true
@@ -445,11 +452,11 @@ document.all == null; // -> true
 
 ### 💡 说明：
 
-> `document.all` 曾经是访问页面 DOM 节点的一种方式，特别是在早期版本的 IE 浏览器中。它从未成为标准，但被广泛使用在早期的 JS 代码中。当标准演变出新的 API 时（例如 `document.getElementById`）这个 API 调用就被废弃了，标准委员会必须决定如何处理它。因为它被广泛使用嗯他们决定保留这个 API 但引入一个有意的对 JavaScript 的标准的违反。
-> 其与 `undefined` 使用[严格相等比较](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)得出 `false` 而使用[抽象相等比较](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) 得出 `true` 是因为这个有意的对标准的违反明确地允许了这一点。
+> `document.all` 作为访问页面 DOM 节点的一种方式，在早期版本的 IE 浏览器中较为流行。尽管这一 API 从未成为标准，但被广泛使用在早期的 JS 代码中。当标准演变出新的 API（例如 `document.getElementById`）时，这个 API 调用就被废弃了。因为这个 API 的使用范围较为广泛，标准委员会决定保留这个 API，但有意地引入一个违反 JavaScript 标准的规范。
+> 这个有意的对违反标准的规范明确地允许该 API 与 `undefined` 使用[严格相等比较](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)得出 `false` 而使用[抽象相等比较](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) 得出 `true`。
 >
-> &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec
-> &mdash; [“Chapter 4 - ToBoolean - Falsy values”](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects) at YDKJS - Types & Grammar
+> &mdash; [“废弃功能 - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec
+> &mdash; YDKJS（你不懂JS） - 类型与语法 中的 [“第 4 章 - ToBoolean - 假值](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects)
 
 ## 最小值大于零
 
