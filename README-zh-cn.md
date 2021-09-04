@@ -110,6 +110,18 @@ $ npm install -g wtfjs
   - [相同变量重复声明](#%E7%9B%B8%E5%90%8C%E5%8F%98%E9%87%8F%E9%87%8D%E5%A4%8D%E5%A3%B0%E6%98%8E)
   - [Array.prototype.sort() 的默认行为](#arrayprototypesort-%E7%9A%84%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA)
   - [resolve() 不会返回 Promise 实例](#resolve-%E4%B8%8D%E4%BC%9A%E8%BF%94%E5%9B%9E-promise-%E5%AE%9E%E4%BE%8B)
+  - [`{}{}` 是 undefined](#-%E6%98%AF-undefined)
+  - [`min` 大于 `max`](#min-%E5%A4%A7%E4%BA%8E-max)
+  - [`arguments` binding](#arguments-binding)
+  - [An `alert` from hell](#an-alert-from-hell)
+  - [An infinite timeout](#an-infinite-timeout)
+  - [A `setTimeout` object](#a-settimeout-object)
+  - [Double dot](#double-dot)
+  - [Extra Newness](#extra-newness)
+  - [Why you should use semicolons](#why-you-should-use-semicolons)
+  - [Split a string by a space](#split-a-string-by-a-space)
+  - [A stringified string](#a-stringified-string)
+  - [Non-strict comparison of a number to `true`](#non-strict-comparison-of-a-number-to-true)
 - [其他资源](#%E5%85%B6%E4%BB%96%E8%B5%84%E6%BA%90)
 - [🎓 License](#-license)
 
@@ -1864,6 +1876,368 @@ thePromise.then(value => {
 &ndash; [MDN 上的 Promise.resolve()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
 
 官方规范是 [ECMAScript 25.6.1.3.2 Promise 的 Resolve 函数](https://tc39.es/ecma262/#sec-promise-resolve-functions)，但是这一章节对人类非常不友好。
+
+## `{}{}` 是 undefined
+
+你可以在终端测试一下。类似这样的结构会返回最后定义的对象中的值。
+
+```js
+{}{}; // -> undefined
+{}{}{}; // -> undefined
+{}{}{}{}; // -> undefined
+{foo: 'bar'}{}; // -> 'bar'
+{}{foo: 'bar'}; // -> 'bar'
+{}{foo: 'bar'}{}; // -> 'bar'
+{a: 'b'}{c:' d'}{}; // -> 'd'
+{a: 'b', c: 'd'}{}; // > SyntaxError: Unexpected token ':'
+({}{}); // > SyntaxError: Unexpected token '{'
+```
+
+### 💡 说明：
+
+解析到 `{}` 会返回 `undefined`，而解析 `{foo: 'bar'}{}`时，表达式 `{foo: 'bar'}` 返回 `'bar'`。
+
+`{}` 有两重含义：表示对象，或表示代码块。例如，在 `() => {}` 中的 `{}` 表示代码块。所以我们必须加上括号：`() => ({})` 才能让它正确地返回一个对象。
+
+因此，我们现在将 `{foo: 'bar'}` 当作代码块使用，则可以在终端中这样写：
+
+```js
+if (true) {
+  foo: "bar";
+} // -> 'bar'
+```
+
+啊哈，一样的结果！所以 `{foo: 'bar'}{}` 中的花括号就是表示代码块。
+
+## `min` 大于 `max`
+
+我发现一个神奇的例子：
+
+```js
+Math.min() > Math.max(); // -> true
+Math.min() < Math.max(); // -> false
+```
+
+### 💡 说明：
+
+This is a simple one. Let's consider each part of this expression separately:
+
+```js
+Math.min(); // -> Infinity
+Math.max(); // -> -Infinity
+Infinity > -Infinity; // -> true
+```
+
+Why so? Well, `Math.max()` is not the same thing as `Number.MAX_VALUE`. It does not return the largest possible number.
+
+`Math.max` takes arguments, tries to convert the to numbers, compares each one and then returns the largest remaining. If no arguments are given, the result is −∞. If any value is `NaN`, the result is `NaN`.
+
+The opposite is happening for `Math.min`. `Math.min` returns ∞, if no arguments are given.
+
+- [**15.8.2.11** Math.max](https://262.ecma-international.org/5.1/#sec-15.8.2.11)
+- [**15.8.2.11** Math.min](https://262.ecma-international.org/5.1/#sec-15.8.2.12)
+- [Why is `Math.max()` less than `Math.min()`?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min)
+
+## `arguments` binding
+
+Consider this function:
+
+```js
+function a(x) {
+  arguments[0] = "hello";
+  console.log(x);
+}
+
+a(); // > undefined
+a(1); // > "hello"
+```
+
+### 💡 Explanation:
+
+`arguments` is an Array-like object that contains the values of the arguments passed to that function. When no arguments are passed, then there's no `x` to override.
+
+- [The arguments object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments) on MDN
+
+## An `alert` from hell
+
+This on is literally from hell:
+
+```js
+[666]["\155\141\160"]["\143\157\156\163\164\162\165\143\164\157\162"](
+  "\141\154\145\162\164(666)"
+)(666); // alert(666)
+```
+
+### 💡 Explanation:
+
+This one is based on octal escape sequences and multiple strings.
+
+Any character with a character code lower than 256 (i.e. any character in the extended ASCII range) can be escaped using its octal-encoded character code, prefixed with `\`. An example above is basically and `alert` ecoded by octal escape sequances.
+
+- [Martin Kleppe tweet about it](https://twitter.com/aemkei/status/897172907222237185)
+- [JavaScript character escape sequences](https://mathiasbynens.be/notes/javascript-escapes#octal)
+- [Multi-Line JavaScript Strings](https://davidwalsh.name/multiline-javascript-strings)
+
+## An infinite timeout
+
+Guess what would happen if we set an infinite timeout?
+
+```js
+setTimeout(() => console.log("called"), Infinity); // -> <timeoutId>
+// > 'called'
+```
+
+It will executed immediately instead of infinity delay.
+
+### 💡 Explanation:
+
+Usually, runtime stores the delay as a 32-bit signed integer internally. This causes an integer overflow, resulting in the timeout being executed immediately.
+
+For example, in Node.js we will get this warning:
+
+```
+(node:1731) TimeoutOverflowWarning: Infinity does not fit into a 32-bit signed integer.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+```
+
+- [WindowOrWorkerGlobalScope.setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) on MDN
+- [Node.js Documentation on Timers](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_args)
+- [Timers](https://www.w3.org/TR/2011/WD-html5-20110525/timers.html) on W3C
+
+## A `setTimeout` object
+
+Guess what would happen if we set an callback that's not a function to `setTimeout`?
+
+```js
+setTimeout(123, 100); // -> <timeoutId>
+// > 'called'
+```
+
+This is fine.
+
+```js
+setTimeout('{a: 1}', 100); // -> <timeoutId>
+// > 'called'
+```
+
+This is also fine.
+
+```js
+setTimeout({a: 1}, 100); // -> <timeoutId>
+// > 'Uncaught SyntaxError: Unexpected identifier               setTimeout (async) (anonymous) @ VM__:1'
+```
+
+This throws an **SyntaxError**.
+
+Note that this can easily happen if your function returns an object and you call it here instead of passing it! What if the content - policy is set to `self`?
+
+```js
+setTimeout(123, 100); // -> <timeoutId>
+// > console.error("[Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'report-sample' 'self' ")
+```
+
+The console refuses to run it at all!
+
+### 💡 Explanation:
+
+`WindowOrWorkerGlobalScope.setTimeout()` can be called with `code` as first argument, which will be passed on to `eval`, which is bad. Eval will coerce her input to String, and evaluate what is produced, so Objects becomes `'[object Object]'` which has hmmm ...  an `'Unexpected identifier'`!
+
+- [eval()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval) on MDN (don't use this)
+- [WindowOrWorkerGlobalScope.setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) on MDN
+- [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
+- [Timers](https://www.w3.org/TR/2011/WD-html5-20110525/timers.html) on W3C
+
+## Double dot
+
+Let's try to coerce a number to a string:
+
+```js
+27.toString() // > Uncaught SyntaxError: Invalid or unexpected token
+```
+
+Maybe we should try with two dots?
+
+```js
+27..toString(); // -> '27'
+```
+
+But why doesn't first example work?
+
+### 💡 Explanation:
+
+It's just a language grammar limitation.
+
+The `.` character presents an ambiguity. It can be understood to be the member operator, or a decimal, depending on its placement.
+
+The specification's interpretation of the `.` character in that particular position is that it will be a decimal. This is defined by the numeric literal syntax of ECMAScript.
+
+You must always use parenthesis or an addition dot to make such expression valid.
+
+```js
+(27).toString(); // -> '27'
+// or
+27..toString(); // -> '27'
+```
+
+- [Usage of toString in JavaScript](https://stackoverflow.com/questions/6853865/usage-of-tostring-in-javascript/6853910#6853910) on StackOverflow
+- [Why does 10..toString() work, but 10.toString() does not?](https://stackoverflow.com/questions/13149282/why-does-10-tostring-work-but-10-tostring-does-not/13149301#13149301)
+
+## Extra Newness
+
+I present this as an oddity for your amusement.
+
+```js
+class Foo extends Function {
+  constructor(val) {
+    super();
+    this.prototype.val = val;
+  }
+}
+
+new new Foo(":D")().val; // -> ':D'
+```
+
+### 💡 Explanation:
+
+Constructors in JavaScript are just functions with some special treatment. By extending Function using the class syntax you create a class that, when instantiated, is now a function, which you can then additionally instantiate.
+
+While not exhaustively tested, I believe the last statement can be analyzed thus:
+
+```js
+new new Foo(":D")().val(new newFooInstance()).val;
+veryNewFooInstance.val;
+// -> ':D'
+```
+
+As a tiny addendum, doing `new Function('return "bar";')` of course creates a function with the body `return "bar";`. Since `super()` in the constructor of our `Foo` class is calling `Function`'s constructor, it should come as no surprise now to see that we can additionally manipulate things in there.
+
+```js
+class Foo extends Function {
+  constructor(val) {
+    super(`
+      this.val = arguments[0];
+    `);
+    this.prototype.val = val;
+  }
+}
+
+var foo = new new Foo(":D")("D:");
+foo.val; // -> 'D:'
+delete foo.val; // remove the instance prop 'val', deferring back to the prototype's 'val'.
+foo.val; // -> ':D'
+```
+
+- [Class Extends Function: Extra Newness](https://github.com/denysdovhan/wtfjs/issues/78)
+
+## Why you should use semicolons
+
+Writing some standard JavaScript… and then BOOM!
+
+```js
+class SomeClass {
+  ["array"] = []
+  ["string"] = "str"
+}
+
+new SomeClass().array; // -> 'str'
+```
+
+What the …?
+
+### 💡 Explanation:
+
+Once again, this is all thanks to the Automatic Semicolon Insertion.
+
+An example above is basically the same as:
+
+```js
+class SomeClass {
+  ["array"] = ([]["string"] = "str");
+}
+```
+
+You basically assign a string `str` into an `array` property.
+
+- [An original tweet with an example](https://twitter.com/SeaRyanC/status/1148726605222535168) by Ryan Cavanaugh
+- [TC39 meeting when they debated about it](https://github.com/tc39/notes/blob/master/meetings/2017-09/sept-26.md)
+
+## Split a string by a space
+
+Have you ever tried to split a string by a space?
+
+```js
+"".split(""); // -> []
+// but…
+"".split(" "); // -> [""]
+```
+
+### 💡 Explanation:
+
+This is expected behaviour. It's responsibility is to divide the input string every time a separator occurs in that input string. When you pass in an empty string it'll never find a separator and thus return that string.
+
+Let's quote the specification:
+
+> The substrings are determined by searching from left to right for occurrences of `separator`; these occurrences are not part of any String in the returned array, but serve to divide up the String value.
+
+- [**22.1.3.21** String.prototype.split](https://tc39.es/ecma262/#sec-string.prototype.split)
+- [An original tween with an example](https://twitter.com/SeaRyanC/status/1331656278104440833) by Ryan Cavanaugh
+- [A tween with an explanation](https://twitter.com/kl13nt/status/1331742810932916227?s=20) by Nabil Tharwat
+
+## A stringified string
+
+This caused a bug that I've been solving for a few days:
+
+```js
+JSON.stringify("production") === "production"; // -> false
+```
+
+### 💡 Explanation:
+
+Let's see what `JSON.stringify` is returning:
+
+```js
+JSON.stringify("production"); // -> '"production"'
+```
+
+It is actually a stringified string, so it's true:
+
+```js
+'"production"' === "production"; // -> false
+```
+
+- [ECMA-404 The JSON Data Interchange Standard.](https://www.json.org/json-en.html)
+
+## Non-strict comparison of a number to `true`
+
+```js
+1 == true; // -> true
+// but…
+Boolean(1.1); // -> true
+1.1 == true; // -> false
+```
+
+### 💡 Explanation:
+
+According to the specification:
+
+> The comparison x == y, where x and y are values, produces true or false. Such a comparison is performed as follows:
+>
+> 4. If `Type(x)` is Number and `Type(y)` is String, return the result of the comparison `x == ! ToNumber(y)`.
+
+So this comparison is performed like this:
+
+```js
+1 == true;
+1 == Number(true);
+1 == 1; // -> true
+// but…
+1.1 == true;
+1.1 == Number(true);
+1.1 == 1; // -> false
+```
+
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 # 其他资源
 
