@@ -68,7 +68,7 @@ $ npm install -g wtfjs
   - [函数不是函数](#%E5%87%BD%E6%95%B0%E4%B8%8D%E6%98%AF%E5%87%BD%E6%95%B0)
   - [数组相加](#%E6%95%B0%E7%BB%84%E7%9B%B8%E5%8A%A0)
 - [数组中的尾逗号](#%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%B0%BE%E9%80%97%E5%8F%B7)
-  - [数组相等是一个怪物](#%E6%95%B0%E7%BB%84%E7%9B%B8%E7%AD%89%E6%98%AF%E4%B8%80%E4%B8%AA%E6%80%AA%E7%89%A9)
+  - [数组的相等性是深水猛兽](#%E6%95%B0%E7%BB%84%E7%9A%84%E7%9B%B8%E7%AD%89%E6%80%A7%E6%98%AF%E6%B7%B1%E6%B0%B4%E7%8C%9B%E5%85%BD)
   - [`undefined` 和 `Number`](#undefined-%E5%92%8C-number)
   - [`parseInt` 是一个坏蛋](#parseint-%E6%98%AF%E4%B8%80%E4%B8%AA%E5%9D%8F%E8%9B%8B)
   - [`true` 和 `false` 数学运算](#true-%E5%92%8C-false-%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97)
@@ -598,9 +598,9 @@ a.toString(); // -> ',,'
 >
 > &mdash; MDN 上的 [尾逗号](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas)
 
-## 数组相等是一个怪物
+## 数组的相等性是深水猛兽
 
-数组进行相等比较是一个怪物，看下面的例子：
+数组之间进行相等比较是 JS 中的深水猛兽，看看这些例子：
 
 ```js
 [] == ''   // -> true
@@ -630,7 +630,7 @@ a.toString(); // -> ',,'
 
 ### 💡 说明：
 
-你应该非常小心留意上面的例子！ [**7.2.13** Abstract Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) 规范描述了这些行为。
+仔细阅读上面的例子！规范中的 [**7.2.13** 抽象相等比较](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) 一节描述了这些行为。
 
 ## `undefined` 和 `Number`
 
