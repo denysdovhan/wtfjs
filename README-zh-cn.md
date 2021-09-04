@@ -94,8 +94,8 @@ $ npm install -g wtfjs
   - [嵌套标签](#%E5%B5%8C%E5%A5%97%E6%A0%87%E7%AD%BE)
   - [阴险的 `try..catch`](#%E9%98%B4%E9%99%A9%E7%9A%84-trycatch)
   - [这是多重继承吗？](#%E8%BF%99%E6%98%AF%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF%E5%90%97)
-  - [](#)
-  - [一个类的类](#%E4%B8%80%E4%B8%AA%E7%B1%BB%E7%9A%84%E7%B1%BB)
+  - [yield 返回自身的生成器](#yield-%E8%BF%94%E5%9B%9E%E8%87%AA%E8%BA%AB%E7%9A%84%E7%94%9F%E6%88%90%E5%99%A8)
+  - [类的类](#%E7%B1%BB%E7%9A%84%E7%B1%BB)
   - [非强制对象](#%E9%9D%9E%E5%BC%BA%E5%88%B6%E5%AF%B9%E8%B1%A1)
   - [棘手的箭头功能](#%E6%A3%98%E6%89%8B%E7%9A%84%E7%AE%AD%E5%A4%B4%E5%8A%9F%E8%83%BD)
   - [箭头函数不能作为构造器](#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%8D%E8%83%BD%E4%BD%9C%E4%B8%BA%E6%9E%84%E9%80%A0%E5%99%A8)
@@ -1339,9 +1339,9 @@ new class F extends (String, Array) {}(); // -> F []
 - [**14.5** 类定义 ](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
 - [**12.16** 逗号运算符 (`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
 
-##
+## yield 返回自身的生成器
 
-考虑一下这个 yield 自身的生成器例子：
+考虑这个 yield 返回自身的生成器例子：
 
 ```js
 (function* f() {
@@ -1395,10 +1395,10 @@ new class F extends (String, Array) {}(); // -> F []
 
 要理解为什么这样工作，请阅读规范的这些部分：
 
-- [**25** Control Abstraction Objects](https://www.ecma-international.org/ecma-262/#sec-control-abstraction-objects)
-- [**25.3** Generator Objects](https://www.ecma-international.org/ecma-262/#sec-generator-objects)
+- [**25** 控制流抽象对象](https://www.ecma-international.org/ecma-262/#sec-control-abstraction-objects)
+- [**25.3** 生成器对象](https://www.ecma-international.org/ecma-262/#sec-generator-objects)
 
-## 一个类的类
+## 类的类
 
 考虑这个混淆语法：
 
