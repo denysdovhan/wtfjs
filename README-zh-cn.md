@@ -1006,14 +1006,14 @@ String("str"); // -> 'str'
 String("str") == "str"; // -> true
 ```
 
-我们来试试一个 `new`：
+再试试 `new`：
 
 ```js
 new String("str") == "str"; // -> true
 typeof new String("str"); // -> 'object'
 ```
 
-对象？那是什么？
+对象？啥玩意？
 
 ```js
 new String("str"); // -> [String: 'str']
@@ -1021,7 +1021,7 @@ new String("str"); // -> [String: 'str']
 
 有关规范中的 String 构造函数的更多信息：
 
-- [**21.1.1** The String Constructor](https://www.ecma-international.org/ecma-262/#sec-string-constructor)
+- [**21.1.1** String 构造函数](https://www.ecma-international.org/ecma-262/#sec-string-constructor)
 
 ## 用反引号调用函数
 
