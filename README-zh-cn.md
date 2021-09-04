@@ -1193,7 +1193,7 @@ c[c][c]('console.log("WTF?")')(); // > WTF
 然后我们将该对象传递给模板文字，`toString` 方法调用该对象。这就是为什么我们得到字符串 `'[object Object]'`。
 
 - [**12.2.9** 模板字面量](https://www.ecma-international.org/ecma-262/#sec-template-literals)
-- [对象初始化](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
+- MDN 上的 [对象初始化](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer)
 
 ## 使用默认值解构
 
@@ -1205,7 +1205,7 @@ let x,
 y;
 ```
 
-上面的例子是面试中的一个很好的任务。`y` 有什么值？ 答案是：
+这在面试中是一个很好的问题。问 `y` 的值是什么？ 答案是：
 
 ```js
 // -> 1
@@ -1223,12 +1223,12 @@ y;
 
 以上示例：
 
-1. 我们声明 `x` 没有赋值，所以它是 'undefined`。
-2. 然后我们将 `x` 的值打包到对象属性 `x` 中。
-3. 然后我们使用解构来提取 `x` 的值，并且要将这个值赋给 `y`。 如果未定义该值，那么我们将使用 `1` 作为默认值。
+1. 我们声明了 `x`，但没有立刻赋值，所以它是 `undefined`。
+2. 我们将 `x` 的值打包到对象属性 `x` 中。
+3. 我们使用解构来提取 `x` 的值，并且要将这个值赋给 `y`。如果未定义该值，那么我们将使用 `1` 作为默认值。
 4. 返回 `y` 的值。
 
-- [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
+- MDN 上的 [对象初始化](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer)
 
 ## 点和扩展运算符
 
