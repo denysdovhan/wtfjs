@@ -1124,9 +1124,9 @@ c[c][c]('console.log("WTF?")')(); // > WTF
 
 ### 💡 说明：
 
-为什么这样工作？这里我们使用 _已计算的属性名称_ 。当这些方括号之间传递一个对象时，它会将对象强制转换成一个字符串，所以我们得到一个属性键 `[object Object]` 以及值是 `{}` 。
+为何可以正常运行？这里我们使用的是 _计算属性_。当你将对象用方括号括起来当作对象的属性名时，它会将对象强制转换成一个字符串，所以我们得到属性键是 `[object Object]`，其值为 `{}`。
 
-我们可以把括号地狱搞成这样：
+体验一下简单的“括号地狱”：
 
 ```js
 ({ [{}]: { [{}]: {} } }[{}][{}]); // -> {}
@@ -1139,13 +1139,13 @@ c[c][c]('console.log("WTF?")')(); // > WTF
 // }
 ```
 
-这里阅读更多关于对象字面量：
+关于对象字面量，点击这里阅读更多：
 
-- [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
+- [对象初始化](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 
 ## 访问原型 `__proto__`
 
-正如我们所知道的，原始数据（premitives）没有原型。但是，如果我们尝试为原始数据获取一个 `__proto__` 的值，我们会得到这样的一个结果：
+我们知道，原始数据（premitives）是没有原型的。但是，如果我们尝试获取原始数据的 `__proto__` 属性的值，我们会得到这样的一个结果：
 
 ```js
 (1).__proto__.__proto__.__proto__; // -> null
@@ -1153,18 +1153,12 @@ c[c][c]('console.log("WTF?")')(); // > WTF
 
 ### 💡 说明：
 
-这是因为原始数据的没有原型，它将使用 `ToObject` 方法包装在包装器对象中。所以，一步一步：
+这是因为原始数据的没有原型，它将使用 `ToObject` 方法包装在包装器对象中。这个步骤如下所示：
 
 ```js
-(1)
-  .__proto__(
-    // -> [Number: 0]
-    1
-  )
-  .__proto__.__proto__(
-    // -> {}
-    1
-  ).__proto__.__proto__.__proto__; // -> null
+(1).__proto__; // -> [Number: 0]
+(1).__proto__.__proto__; // -> {}
+(1).__proto__.__proto__.__proto__; // -> null
 ```
 
 以下是关于 `__proto__`的更多信息：
