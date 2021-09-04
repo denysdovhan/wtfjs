@@ -2,6 +2,8 @@
 
 [![WTFPL 2.0][license-image]][license-url]
 [![NPM version][npm-image]][npm-url]
+[![Patreon][patreon-image]][patreon-url]
+[![Buy Me A Coffee][bmc-image]][bmc-url]
 
 > 一个有趣和棘手的 JavaScript 示例列表。
 
@@ -13,15 +15,36 @@ WTFJS 的灵感源于 [Brian Leroux](https://twitter.com/brianleroux)。这个�
 
 [![dotJS 2012 - Brian Leroux - WTFJS](https://img.youtube.com/vi/et8xNAc2ic8/0.jpg)](https://www.youtube.com/watch?v=et8xNAc2ic8)
 
-# 适用于NodeJS的指南手册
+# 适用于 NodeJS 的指南手册
 
-通过 `npm` 安装该项目的指南手册。只需运行：
+你可以通过 `npm` 安装该项目的指南手册。只需运行：
 
 ```
 $ npm install -g wtfjs
 ```
 
-然后在命令行中尝试运行`wtfjs`，将会在命令行中打开手册并跳转至你选择的页数`$PAGER`。这不是必需的步骤，你也可以继续在这里阅读。
+然后在命令行中运行 `wtfjs`，将会在命令行中打开手册并跳转至你选择的页数 `$PAGER`。这不是必需的步骤，你也可以继续在这里阅读。
+
+源码在此处: <https://github.com/denysdovhan/wtfjs>
+
+# 翻译
+
+如今，**wtfjs** 已被翻译成多种语言:
+
+- [中文](./README-zh-cn.md)
+- [हिंदी](./README-hi.md)
+- [Français](./README-fr-fr.md)
+- [Português do Brasil](./README-pt-br.md)
+- [Polski](./README-pl-pl.md)
+- [Italiano](./README-it-it.md)
+- [Russian](https://habr.com/ru/company/mailru/blog/335292/) (on Habr.com)
+- [한국어](./README-kr.md)
+
+[**点此添加新语言的翻译**][tr-request]
+
+[tr-request]: https://github.com/denysdovhan/wtfjs/blob/master/CONTRIBUTING.md#translations
+
+**注意:** 翻译由该语言的译者维护，因此可能缺失部分例子，或存在过时的例子等。
 
 <!-- prettier-ignore-start -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -97,13 +120,15 @@ $ npm install -g wtfjs
 >
 > &mdash; _[**“只是为了好玩：一个意外革命的故事”**](https://en.m.wikipedia.org/wiki/Just_for_Fun), Linus Torvalds_
 
-这个列表的主要目的是收集一些疯狂的例子，并尽可能解释它们的原理。学习以前不了解的东西对我来说很有趣。
+这个列表的主要目的是收集一些疯狂的例子，并尽可能解释它们的原理。我很喜欢学习以前不了解的东西。
 
-如果您是初学者，您可以根据此笔记深入了解 JavaScript。我希望它会激励你花更多的时间阅读规范。
+如果您是初学者，您可以根据此笔记深入了解 JavaScript。我希望它会激励你在阅读规范上投入更多时间和精力。
 
-如果您是专业开发人员，您将看到人见人爱的 JavaScript 也充满了非预期的边界行为。
+如果您是专业开发人员，您将从这些例子中看到人见人爱的 JavaScript 也充满了非预期的边界行为。
 
-总之，先试着读一下这些例子，您总能学习到新的知识。
+总之，古人云：三人行，必有我师焉。我相信这些例子总能让你学习到新的知识。
+
+> **⚠️ Note:** 如果这些例子帮助到你，请[务必赞助收集了这些例子的作者](#-supporting).
 
 # ✍🏻 符号
 
