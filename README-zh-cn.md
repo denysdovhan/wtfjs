@@ -1591,10 +1591,10 @@ f("a");
 })(); // -> { b: 10 }
 ```
 
-这是因为一个叫自动插入分号的概念，它会在大部分换行处插入分号。第一个例子里，有一个分号被插入到 `return` 语句和对象字面量中间。所以函数返回 `undefined` 而对象字面量不会被求值。
+这是因为一个叫自动分号插入的概念，它会在大部分换行处插入分号。第一个例子里，`return` 语句和对象字面量中间被插入了一个分号。所以函数返回 `undefined`，其后的对象字面量永远不会被求值。
 
-- [**11.9.1** Rules of Automatic Semicolon Insertion](https://www.ecma-international.org/ecma-262/#sec-rules-of-automatic-semicolon-insertion)
-- [**13.10** The `return` Statement](https://www.ecma-international.org/ecma-262/#sec-return-statement)
+- [**11.9.1** 自动分号插入的规则](https://www.ecma-international.org/ecma-262/#sec-rules-of-automatic-semicolon-insertion)
+- [**13.10** `return` 语句](https://www.ecma-international.org/ecma-262/#sec-return-statement)
 
 ## 对象的链式赋值
 
