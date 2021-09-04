@@ -61,7 +61,7 @@ $ npm install -g wtfjs
   - [`NaN` 不是 `NaN`](#nan-%E4%B8%8D%E6%98%AF-nan)
   - [奇怪的 `Object.is()` 和 `===`](#%E5%A5%87%E6%80%AA%E7%9A%84-objectis-%E5%92%8C-)
   - [它是 fail](#%E5%AE%83%E6%98%AF-fail)
-  - [`[]` 是 `true`, 但它不等于 `true`](#-%E6%98%AF-true-%E4%BD%86%E5%AE%83%E4%B8%8D%E7%AD%89%E4%BA%8E-true)
+  - [`[]` 是真值，但不等于 `true`](#-%E6%98%AF%E7%9C%9F%E5%80%BC%E4%BD%86%E4%B8%8D%E7%AD%89%E4%BA%8E-true)
   - [`null` 是 false, 但又不等于 `false`](#null-%E6%98%AF-false-%E4%BD%86%E5%8F%88%E4%B8%8D%E7%AD%89%E4%BA%8E-false)
   - [`document.all` 是一个 object，但又同时是 undefined](#documentall-%E6%98%AF%E4%B8%80%E4%B8%AA-object%E4%BD%86%E5%8F%88%E5%90%8C%E6%97%B6%E6%98%AF-undefined)
   - [最小值大于零](#%E6%9C%80%E5%B0%8F%E5%80%BC%E5%A4%A7%E4%BA%8E%E9%9B%B6)
@@ -381,9 +381,9 @@ NaN === 0 / 0; // -> false
 - [烧脑预警：疯狂的 JavaScript](http://patriciopalladino.com/blog/2012/08/09/non-alphanumeric-javascript.html)
 - [写个句子干嘛要用字母](https://bluewings.github.io/en/writing-a-sentence-without-using-the-alphabet/#weird-javascript-generator) — 用 JavaScript 生成任意短语
 
-## `[]` 是 `true`, 但它不等于 `true`
+## `[]` 是真值，但不等于 `true`
 
-数组是一个`true`，但是它不等于`true`。
+数组是一个真值，但却不等于 `true`。
 
 ```js
 !![]       // -> true
