@@ -59,6 +59,7 @@ $ npm install -g wtfjs
   - [true 是 false](#true-%E6%98%AF-false)
   - [baNaNa](#banana)
   - [`NaN` 不是 `NaN`](#nan-%E4%B8%8D%E6%98%AF-nan)
+  - [奇怪的 `Object.is()` 和 `===`](#%E5%A5%87%E6%80%AA%E7%9A%84-objectis-%E5%92%8C-)
   - [它是 fail](#%E5%AE%83%E6%98%AF-fail)
   - [`[]` 是 `true`, 但它不等于 `true`](#-%E6%98%AF-true-%E4%BD%86%E5%AE%83%E4%B8%8D%E7%AD%89%E4%BA%8E-true)
   - [`null` 是 false, 但又不等于 `false`](#null-%E6%98%AF-false-%E4%BD%86%E5%8F%88%E4%B8%8D%E7%AD%89%E4%BA%8E-false)
@@ -302,6 +303,32 @@ NaN === NaN; // -> false
 > 有四种可能的相互排斥的关系：小于、等于、大于和无序。当比较操作中至少一个操作数是 NaN 时，便是无序的关系。换句话说，NaN 对任何事物包括其本身比较都应当是无序关系。
 >
 > &mdash; StackOverflow 上的 [“为什么对于 IEEE754 NaN 值的所有比较返回 false？”](https://stackoverflow.com/questions/1565164/1573715#1573715)
+
+## 奇怪的 `Object.is()` 和 `===`
+
+`Object.is()` 用于判断两个值是否相同。和 `===` 操作符像作用类似，但它也有一些奇怪的行为：
+
+```javascript
+Object.is(NaN, NaN); // -> true
+NaN === NaN; // -> false
+
+Object.is(-0, 0); // -> false
+-0 === 0; // -> true
+
+Object.is(NaN, 0 / 0); // -> true
+NaN === 0 / 0; // -> false
+```
+
+### 💡 说明:
+
+在 JavaScript “语言”中，`NaN` 和 `NaN` 的值是相同的，但却不是严格相等。`NaN === NaN` 返回 false 是因为历史包袱，记住这个特例就行了。
+
+基于同样的原因，`-0` 和 `0` 是严格相等的，但它们的值却不同。
+
+关于 `NaN === NaN` 的更多细节，请参阅上一个例子。
+
+- [这是 TC39 中关于 Object.is 的规范](https://tc39.es/ecma262/#sec-object.is)
+- MDN 上的[相等比较与相同值比较]](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
 
 ## 它是 fail
 
