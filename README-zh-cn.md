@@ -71,7 +71,7 @@ $ npm install -g wtfjs
   - [数组的相等性是深水猛兽](#%E6%95%B0%E7%BB%84%E7%9A%84%E7%9B%B8%E7%AD%89%E6%80%A7%E6%98%AF%E6%B7%B1%E6%B0%B4%E7%8C%9B%E5%85%BD)
   - [`undefined` 和 `Number`](#undefined-%E5%92%8C-number)
   - [`parseInt` 是一个坏蛋](#parseint-%E6%98%AF%E4%B8%80%E4%B8%AA%E5%9D%8F%E8%9B%8B)
-  - [`true` 和 `false` 数学运算](#true-%E5%92%8C-false-%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97)
+  - [`true` 和 `false` 的数学运算](#true-%E5%92%8C-false-%E7%9A%84%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97)
   - [HTML 注释在 JavaScript 中有效](#html-%E6%B3%A8%E9%87%8A%E5%9C%A8-javascript-%E4%B8%AD%E6%9C%89%E6%95%88)
   - [`NaN` ~~不是~~一个数值](#nan-%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E6%95%B0%E5%80%BC)
   - [`[]` 和 `null` 是对象](#-%E5%92%8C-null-%E6%98%AF%E5%AF%B9%E8%B1%A1)
@@ -727,43 +727,38 @@ parseInt(1 / 1999999); // -> 5
 
 **💡 说明：** `parseInt` 接受字符串参数并返回一个指定基数下的整数。`parseInt` 会将字符串中首个非数字字符（字符集由基数决定）及其后的内容全部截断。如 `0.000001` 被转换为 `"0.000001"`，因此 `parseInt` 返回 `0`。而 `0.0000001` 转换为字符串会变成 `"1e-7"`，因此 `parseInt` 返回 `1`。`1/1999999` 被转换为 `5.00000250000125e-7`，所以 `parseInt` 返回 `5`。
 
-## `true` 和 `false` 数学运算
+## `true` 和 `false` 的数学运算
 
-我们做一些数学计算：
+做一下数学计算：
 
 ```js
-true +
-  true(
-    // -> 2
-    true + true
-  ) *
-    (true + true) -
-  true; // -> 3
+true + true; // -> 2
+(true + true) * (true + true) - true; // -> 3
 ```
 
-嗯… 🤔
+嗯……🤔
 
 ### 💡 说明：
 
-我们可以用 `Number` 构造函数强制转化成数值。 很明显，`true` 将被强制转换为 `1` ：
+我们可以用 `Number` 构造函数将值强制转化成数值。很明显，`true` 将被强制转换为 `1` ：
 
 ```js
 Number(true); // -> 1
 ```
 
-一元加运算符尝试将其值转换成数字。 它可以转换整数和浮点的字符串表示，以及非字符串值 `true` ，`false` 和 `null` 。 如果它不能解析特定的值，它将转化为 `NaN` 。 这意味着我们可以更容易地强制将 `true` 换成 `1`
+一元加运算符会尝试将其值转换成数字。它可以转换字符串形式表达的整数和浮点数，以及非字符串值 `true`、`false` 和 `null`。如果它不能解析特定的值，它将转化为 `NaN`。这意味着我们可以有更简便的方式将 `true` 转换成 `1`：
 
 ```js
 +true; // -> 1
 ```
 
-当你执行加法或乘法时，`ToNumber`方法调用。 根据规范，该方法返回：
+当你执行加法或乘法时，将会 `ToNumber` 方法。根据规范，该方法的返回值为：
 
-> 如果 `参数` is **true** , 返回 **1** 。 如果 `参数` 是 **false** 返回 **+0**。
+> 如果`参数`是 **true**，返回 **1**。如果`参数`是 **false**，则返回 **+0**。
 
-这就是为什么我们可以进行进行布尔值相加并得到正确的结果
+因此我们可以将布尔值相加并得到正确的结果
 
-相应部分：
+相应章节：
 
 - [**12.5.6** 一元 `+` 运算符 ](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
 - [**12.8.3** 加法运算符（`+`） ](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
