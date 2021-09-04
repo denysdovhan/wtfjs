@@ -1320,7 +1320,7 @@ a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
 
 ### 💡 说明：
 
-- [**13.15** `try` 表达式](https://www.ecma-international.org/ecma-262/#sec-try-statement)
+- [**13.15** `try` 语句](https://www.ecma-international.org/ecma-262/#sec-try-statement)
 
 ## 这是多重继承吗？
 
