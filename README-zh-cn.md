@@ -496,6 +496,67 @@ new Foo() instanceof null;
 
 这不是规范的一部分。这只是一个缺陷，且已经修复了。所以将来不会有这个问题。
 
+### Super constructor null of Foo is not a constructor (Foo的超类的构造函数null不是构造函数)
+
+这是前述缺陷的后续行为，在现代环境中可以复现（在 Chrome 71 和 Node.js v11.8.0 测试成功）。
+
+```js
+class Foo extends null {}
+new Foo() instanceof null;
+// > TypeError: Super constructor null of Foo is not a constructor
+```
+
+### 💡 说明：
+
+这并不是缺陷，因为：
+
+```js
+Object.getPrototypeOf(Foo.prototype); // -> null
+```
+
+若当前类没有构造函数，则在构造该类时会顺次调用其原型链上的构造函数，而本例中其父类没有构造函数。补充一下，`null` 也是一个 `object`：
+
+```js
+typeof null === "object";
+```
+
+因此，你可以继承 `null`（尽管在面向对象编程的世界里这是不允许的），但是却不能调用 `null` 的构造函数。若你把代码改成这样：
+
+```js
+class Foo extends null {
+  constructor() {
+    console.log("something");
+  }
+}
+```
+
+将会报错：
+
+```
+ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor
+// 引用错误：在访问`this`或返回之前，你需要在子类中先调用super构造函数
+```
+
+但是当你加上 `super` 时：
+
+```js
+class Foo extends null {
+  constructor() {
+    console.log(111);
+    super();
+  }
+}
+```
+
+JS 抛出错误：
+
+```
+TypeError: Super constructor null of Foo is not a constructor
+// 类型错误：Foo的超类的构造函数null不是构造函数
+```
+
+- [@geekjob](https://github.com/geekjob) 发布的 [对该问题的解释](https://github.com/denysdovhan/wtfjs/pull/102#discussion_r259143582)
+
 ## 数组相加
 
 如果您尝试两个数组相加呢？
