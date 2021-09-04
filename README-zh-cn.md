@@ -1725,7 +1725,7 @@ Math.min() > Math.max(); // -> true
 
 ### 💡 说明：
 
-- [Why is Math.max() less than Math.min()?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min) by Charlie Harvey
+- Charlie Harvey 的 [Why is Math.max() less than Math.min()?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min)
 
 ## 比较 `null` 和 `0`
 
