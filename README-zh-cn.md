@@ -938,20 +938,20 @@ true > 1; // true -> 1
 
 ### 💡 说明：
 
-前四个例子发生了什么？这是一个小表，以了解 JavaScript 中的添加：
+前四个例子发生了什么？你可以参考此处的给出的关于 JavaScript 中的加法的对照表：
 
 ```
-Number  + Number  -> addition
-Boolean + Number  -> addition
-Boolean + Boolean -> addition
-Number  + String  -> concatenation
-String  + Boolean -> concatenation
-String  + String  -> concatenation
+Number  + Number  -> 加法
+Boolean + Number  -> 加法
+Boolean + Boolean -> 加法
+Number  + String  -> 串联字符串
+String  + Boolean -> 串联字符串
+String  + String  -> 串联字符串
 ```
 
-剩下的例子呢？在相加之前，`[]` 和 `{}` 隐式调用 `ToPrimitive` 和 `ToString` 方法。详细了解规范中的求值过程：
+那其他例子呢？在相加之前，`[]` 和 `{}` 隐式调用 `ToPrimitive` 和 `ToString` 方法。详细了解规范中的求值过程：
 
-- [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
+- [**12.8.3** 加法操作符 (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 - [**7.1.1** ToPrimitive(`input` [,`PreferredType`])](https://www.ecma-international.org/ecma-262/#sec-toprimitive)
 - [**7.1.12** ToString(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tostring)
 
