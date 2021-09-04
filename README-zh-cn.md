@@ -1799,11 +1799,11 @@ var a;
 
 所有的定义都被合并成一条定义。
 
-- [**13.3.2** Variable Statement](https://www.ecma-international.org/ecma-262/#sec-variable-statement)
+- [**13.3.2** 变量表达式](https://www.ecma-international.org/ecma-262/#sec-variable-statement)
 
 ## Array.prototype.sort() 的默认行为
 
-想象你需要排序数组中的数字。
+假设你需要对数组排序。
 
 ```
 [ 10, 1, 3 ].sort() // -> [ 1, 10, 3 ]
@@ -1811,13 +1811,13 @@ var a;
 
 ### 💡 说明：
 
-默认排序基于将给定元素转换为字符串，然后比较它们的 UTF-16 序列中的值。
+默认的排序算法基于将给定元素转换为字符串，然后比较它们的 UTF-16 序列中的值。
 
 - [**22.1.3.25** Array.prototype.sort ( comparefn )](https://www.ecma-international.org/ecma-262/#sec-array.prototype.sort)
 
 ### 提示
 
-传入一个 `compareFn` 比较函数如果你想对字符串以外的内容排序。
+传入一个 `compareFn` 比较函数，对非字符串的其他值排序。
 
 ```
 [ 10, 1, 3 ].sort((a, b) => a - b) // -> [ 1, 3, 10 ]
@@ -1839,9 +1839,9 @@ thePromise.then(value => {
 });
 ```
 
-从`thePromise`接收到的`value`值完全就是`theObject`。
+从 `thePromise` 接收到的 `value` 值确实是 `theObject`。
 
-那么，如果向`resolve`传入另外一个`Promise`会怎样？
+那么，如果向 `resolve` 传入另外一个 `Promise` 会怎样？
 
 ```javascript
 const theObject = new Promise((resolve, reject) => {
@@ -1859,11 +1859,11 @@ thePromise.then(value => {
 
 ### 💡 说明：
 
-> 此函数将类 promise 对象的多层嵌套展平。
+> 此函数将类 promise 对象的多层嵌套平铺到单层嵌套。（例如上述的promise函数resolve了另一个会resolve出其他对象的promise函数）
 
-&ndash; [Promise.resolve() on MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
+&ndash; [MDN 上的 Promise.resolve()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
 
-官方规范是 [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions)，由于是机械思维，所以难以读懂。
+官方规范是 [ECMAScript 25.6.1.3.2 Promise 的 Resolve 函数](https://tc39.es/ecma262/#sec-promise-resolve-functions)，但是这一章节对人类非常不友好。
 
 # 其他资源
 
