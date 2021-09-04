@@ -955,6 +955,21 @@ String  + String  -> 串联字符串
 - [**7.1.1** ToPrimitive(`input` [,`PreferredType`])](https://www.ecma-international.org/ecma-262/#sec-toprimitive)
 - [**7.1.12** ToString(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tostring)
 
+不过需要注意此处的 `{} + []`，这是一个例外。你可以发现它的求值结果与 `[] + {}` 不同，这是因为当我们不加括号时，它被当作是一个空的代码块和一个一元加法运算符，这个运算符会把其后的 `[]` 转换为数字。具体如下：
+
+```js
+{
+  // 代码块
+}
++[]; // -> 0
+```
+
+当我们加上括号，情况就不一样了：
+
+```js
+({} + []); // -> [object Object]
+```
+
 ## 正则表达式的加法
 
 你知道可以做这样的运算吗？
