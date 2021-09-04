@@ -104,7 +104,7 @@ $ npm install -g wtfjs
   - [对象的链式赋值](#%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%93%BE%E5%BC%8F%E8%B5%8B%E5%80%BC)
   - [使用数组访问对象属性](#%E4%BD%BF%E7%94%A8%E6%95%B0%E7%BB%84%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7)
   - [Null 和关系运算符](#null-%E5%92%8C%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6)
-  - [`Number.toFixed()`显示不同的数字](#numbertofixed%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%90%8C%E7%9A%84%E6%95%B0%E5%AD%97)
+  - [`Number.toFixed()` 显示不同的数字](#numbertofixed-%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%90%8C%E7%9A%84%E6%95%B0%E5%AD%97)
   - [`Math.max()` 小于 `Math.min()`](#mathmax-%E5%B0%8F%E4%BA%8E-mathmin)
   - [比较 `null` 和 `0`](#%E6%AF%94%E8%BE%83-null-%E5%92%8C-0)
   - [相同变量重复声明](#%E7%9B%B8%E5%90%8C%E5%8F%98%E9%87%8F%E9%87%8D%E5%A4%8D%E5%A3%B0%E6%98%8E)
@@ -1673,7 +1673,7 @@ null >= 0; // true
 长话短说，如果 `null` 小于 `0` 是 `false`，那么 `null >= 0` 则是 `true`。
 请阅读[这里](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274)的详细解释。
 
-## `Number.toFixed()`显示不同的数字
+## `Number.toFixed()` 显示不同的数字
 
 `Number.toFixed()` 在不同的浏览器中会表现得有点奇怪。看看这个例子：
 
@@ -1695,7 +1695,7 @@ null >= 0; // true
 你可以通过一些快速的测试来了解为什么它们发生：
 
 ```js
-// 确认 5 向下取证的奇怪结果
+// 确认 5 向下取整的奇怪结果
 (0.7875).toFixed(3); // -> 0.787
 // 当你展开到 64 位（双精度）浮点数准确度限制时看起来就是一个 5
 (0.7875).toFixed(14); // -> 0.78750000000000
@@ -1707,7 +1707,7 @@ null >= 0; // true
 
 在这里，那个结尾的 "5" 实际上是一个极其小的略小于 5 的分数。将其以任何常理的长度取整它都会被看作一个 5，但它在内部通常不是 5。
 
-IE11，尽管如此，描述这个数字时只是加上一些 0，甚至在 toFixed(20) 的时候也是这样，因为它看起来强制取整了值来减少硬件限制带来的问题。
+然而 IE11 会直接在这个数字后面补0，甚至在 toFixed(20) 的时候也是这样，因为它看起来强制取整了值来减少硬件限制带来的问题。
 
 详见 ECMA-262 中 `NOTE 2` 的 `toFixed` 的定义。
 
