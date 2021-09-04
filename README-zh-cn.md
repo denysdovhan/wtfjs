@@ -1264,7 +1264,7 @@ y;
 
 ## 标签
 
-很多程序员不知道 JavaScript 中的标签。它们很有去
+很多程序员不知道 JavaScript 中也有标签，并且很有趣：
 
 ```js
 foo: {
@@ -1296,7 +1296,7 @@ a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
 
 ### 💡 说明：
 
-像以前的例子一样，请遵循以下链接：
+和上面的例子类似，请遵循以下链接：
 
 - [**12.16** 逗号运算符(`,`)](https://www.ecma-international.org/ecma-262/#sec-comma-operator)
 - [**13.13** 标签语句](https://tc39.github.io/ecma262/#sec-labelled-statements)
@@ -1320,7 +1320,7 @@ a: b: c: d: e: f: g: 1, 2, 3, 4, 5; // -> 5
 
 ### 💡 说明：
 
-- [**13.15** `try` 语句](https://www.ecma-international.org/ecma-262/#sec-try-statement)
+- [**13.15** `try` 表达式](https://www.ecma-international.org/ecma-262/#sec-try-statement)
 
 ## 这是多重继承吗？
 
