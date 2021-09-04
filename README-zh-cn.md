@@ -51,10 +51,11 @@ $ npm install -g wtfjs
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 # Table of Contents
 
-- [💪🏻 动机](#-%E5%8A%A8%E6%9C%BA)
+- [💪🏻 初衷](#-%E5%88%9D%E8%A1%B7)
 - [✍🏻 符号](#-%E7%AC%A6%E5%8F%B7)
 - [👀 例子](#-%E4%BE%8B%E5%AD%90)
   - [`[]` 等于 `![]`](#-%E7%AD%89%E4%BA%8E-)
+  - [`true` 不等于 `![]`，也不等于 `[]`](#true-%E4%B8%8D%E7%AD%89%E4%BA%8E-%E4%B9%9F%E4%B8%8D%E7%AD%89%E4%BA%8E-)
   - [true 是 false](#true-%E6%98%AF-false)
   - [baNaNa](#banana)
   - [`NaN` 不是一个 `NaN`](#nan-%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA-nan)
@@ -178,6 +179,63 @@ true;
 
 - [**12.5.9** 逻辑非运算符 (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.13** 抽象相等比较 ](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+
+## `true` 不等于 `![]`，也不等于 `[]`
+
+数组不等于 `true`，但数组取反也不等于 `true`；
+数组等于 `false`数组取反也等于 `false`：
+
+```js
+true == []; // -> false
+true == ![]; // -> false
+
+false == []; // -> true
+false == ![]; // -> true
+```
+
+### 💡 说明:
+
+```js
+true == []; // -> false
+true == ![]; // -> false
+
+// 根据规范
+
+true == []; // -> false
+
+toNumber(true); // -> 1
+toNumber([]); // -> 0
+
+1 == 0; // -> false
+
+true == ![]; // -> false
+
+![]; // -> false
+
+true == false; // -> false
+```
+
+```js
+false == []; // -> true
+false == ![]; // -> true
+
+// 根据规范
+
+false == []; // -> true
+
+toNumber(false); // -> 0
+toNumber([]); // -> 0
+
+0 == 0; // -> true
+
+false == ![]; // -> true
+
+![]; // -> false
+
+false == false; // -> true
+```
+
+- [**7.2.15** 抽象相等比较](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 ## true 是 false
 
