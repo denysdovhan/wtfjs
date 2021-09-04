@@ -62,7 +62,7 @@ $ npm install -g wtfjs
   - [奇怪的 `Object.is()` 和 `===`](#%E5%A5%87%E6%80%AA%E7%9A%84-objectis-%E5%92%8C-)
   - [它是 fail](#%E5%AE%83%E6%98%AF-fail)
   - [`[]` 是真值，但不等于 `true`](#-%E6%98%AF%E7%9C%9F%E5%80%BC%E4%BD%86%E4%B8%8D%E7%AD%89%E4%BA%8E-true)
-  - [`null` 是 false, 但又不等于 `false`](#null-%E6%98%AF-false-%E4%BD%86%E5%8F%88%E4%B8%8D%E7%AD%89%E4%BA%8E-false)
+  - [`null` 是假值，但又不等于 `false`](#null-%E6%98%AF%E5%81%87%E5%80%BC%E4%BD%86%E5%8F%88%E4%B8%8D%E7%AD%89%E4%BA%8E-false)
   - [`document.all` 是一个 object，但又同时是 undefined](#documentall-%E6%98%AF%E4%B8%80%E4%B8%AA-object%E4%BD%86%E5%8F%88%E5%90%8C%E6%97%B6%E6%98%AF-undefined)
   - [最小值大于零](#%E6%9C%80%E5%B0%8F%E5%80%BC%E5%A4%A7%E4%BA%8E%E9%9B%B6)
   - [函数不是函数](#%E5%87%BD%E6%95%B0%E4%B8%8D%E6%98%AF%E5%87%BD%E6%95%B0)
@@ -259,7 +259,7 @@ false == "false"; // -> false
 !!"true"; // -> true
 ```
 
-- [**7.2.13** 抽象相等比较 ](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.13** 抽象相等比较](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 ## baNaNa
 
@@ -395,18 +395,18 @@ NaN === 0 / 0; // -> false
 以下是 ECMA-262 规范中相应部分的链接：
 
 - [**12.5.9** 逻辑非运算符 (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
-- [**7.2.13** 抽象相等比较 ](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.13** 抽象相等比较](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
-## `null` 是 false, 但又不等于 `false`
+## `null` 是假值，但又不等于 `false`
 
-尽管 `null` 是 `false`，但它不等于 `false`。
+尽管 `null` 是假值，但它不等于 `false`。
 
 ```js
 !!null; // -> false
 null == false; // -> false
 ```
 
-同时，其他的一些等于 false 的值，如 `0` 或 `''` 等于 `false` 。
+但是，别的被当作假值的却等于 `false`，如 `0` 或 `''`。
 
 ```js
 0 == false; // -> true
@@ -417,7 +417,7 @@ null == false; // -> false
 
 跟前面的例子相同。这是一个相应的链接：
 
-- [**7.2.13** 抽象相等比较 ](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [**7.2.13** 抽象相等比较](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
 
 ## `document.all` 是一个 object，但又同时是 undefined
 
