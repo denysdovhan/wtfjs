@@ -766,7 +766,7 @@ Number(true); // -> 1
 
 ## HTML 注释在 JavaScript 中有效
 
-你会留下深刻的印象，`<!--` (这是 HTML 注释）是一个有效的 JavaScript 注释。
+你可能会感到震惊，`<!--` (这是 HTML 注释格式）也是一个有效的 JavaScript 注释。
 
 ```js
 // 有效注释
@@ -775,19 +775,18 @@ Number(true); // -> 1
 
 ### 💡 说明：
 
-感动吗? 类似 HTML 的注释旨在允许不理解标签的浏览器优雅地降级。这些浏览器，例如 Netscape 1.x 已经不再流行。因此，在脚本标记中添加 HTML 注释是没有意义的。
+震惊吗？类 HTML 注释旨在容许不理解 `<script>` 标签的浏览器优雅降级。这些浏览器，例如 Netscape 1.x 已经不再流行。因此，在脚本标记中添加 HTML 注释是没有意义的。
 
-由于 Node.js 基于 V8 引擎，Node.js 运行时也支持类似 HTML 的注释。 而且，它们是规范的一部分：
+由于 Node.js 基于 V8 引擎，Node.js 运行时也支持类似 HTML 的注释。而且，它们是规范的一部分：
 
-- [**B.1.3** 类似 HTML 的注释 ](https://www.ecma-international.org/ecma-262/#sec-html-like-comments)
+- [**B.1.3** 类 HTML 注释 ](https://www.ecma-international.org/ecma-262/#sec-html-like-comments)
 
 ## `NaN` ~~不是~~一个数值
 
-尽管 `NaN` 类型是 `'number'` ，但是 `NaN` 不是数字的实例：
+`NaN` 类型是 `'number'`：
 
 ```js
 typeof NaN; // -> 'number'
-NaN instanceof Number; // -> false
 ```
 
 ### 💡 说明：
@@ -795,7 +794,7 @@ NaN instanceof Number; // -> false
 `typeof` 和 `instanceof` 运算符的工作原理：
 
 - [**12.5.5** `typeof` 操作符](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
-- [**12.10.4** Runtime Semantics: InstanceofOperator(`O`,`C`)](https://www.ecma-international.org/ecma-262/#sec-instanceofoperator)
+- [**12.10.4** 运行时语法：InstanceofOperator(`O`,`C`)](https://www.ecma-international.org/ecma-262/#sec-instanceofoperator)
 
 ## `[]` 和 `null` 是对象
 
@@ -813,9 +812,9 @@ null instanceof Object; // false
 
 - [**12.5.5** `typeof` 操作符](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
 
-根据规范，`typeof` 操作符返回一个字符串 [Table 35: `typeof` Operator Results](https://www.ecma-international.org/ecma-262/#table-35)。对于没有 `[[Call]]` 实现的 `null`、普通对象、标准特异对象和非标准特异对象，它返回字符串 `"object“`。
+根据规范，`typeof` 操作符返回一个字符串，且必须符合 [Table 35: `typeof` 操作符 返回值](https://www.ecma-international.org/ecma-262/#table-35)。对于没有实现 `[[Call]]` 的 `null`、普通对象、标准特异对象和非标准特异对象，它返回字符串 `"object“`。
 
-但是，您可以使用 `toString` 方法检查对象的类型。
+但是，你可以使用 `toString` 方法检查对象的类型。
 
 ```js
 Object.prototype.toString.call([]);
