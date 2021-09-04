@@ -58,7 +58,7 @@ $ npm install -g wtfjs
   - [`true` 不等于 `![]`，也不等于 `[]`](#true-%E4%B8%8D%E7%AD%89%E4%BA%8E-%E4%B9%9F%E4%B8%8D%E7%AD%89%E4%BA%8E-)
   - [true 是 false](#true-%E6%98%AF-false)
   - [baNaNa](#banana)
-  - [`NaN` 不是一个 `NaN`](#nan-%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA-nan)
+  - [`NaN` 不是 `NaN`](#nan-%E4%B8%8D%E6%98%AF-nan)
   - [它是 fail](#%E5%AE%83%E6%98%AF-fail)
   - [`[]` 是 `true`, 但它不等于 `true`](#-%E6%98%AF-true-%E4%BD%86%E5%AE%83%E4%B8%8D%E7%AD%89%E4%BA%8E-true)
   - [`null` 是 false, 但又不等于 `false`](#null-%E6%98%AF-false-%E4%BD%86%E5%8F%88%E4%B8%8D%E7%AD%89%E4%BA%8E-false)
@@ -266,7 +266,7 @@ false == "false"; // -> false
 "b" + "a" + +"a" + "a";
 ```
 
-用 JavaScript 写的老派笑话：
+这是用 JavaScript 写的老派笑话，原版如下：
 
 ```js
 "foo" + +"bar"; // -> 'fooNaN'
@@ -277,8 +277,9 @@ false == "false"; // -> false
 这个表达式可以转化成 `'foo' + (+'bar')`，但无法将`'bar'`强制转化成数值。
 
 - [**12.8.3** 加法运算符 (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
+- [12.5.6 一元 + 运算符](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
 
-## `NaN` 不是一个 `NaN`
+## `NaN` 不是 `NaN`
 
 ```js
 NaN === NaN; // -> false
@@ -288,19 +289,19 @@ NaN === NaN; // -> false
 
 规范严格定义了这种行为背后的逻辑：
 
-> 1. 如果 `Type(x)` 不同于 `Type(y)`, return **false**.
+> 1. 如果 `Type(x)` 不同于 `Type(y)`，返回 **false**。
 > 2. 如果 `Type(x)` 数值, 然后
->    1. 如果 `x` 是 **NaN**, return **false**.
->    2. 如果 `y` 是 **NaN**, return **false**.
->    3. … … …
+>    1. 如果 `x` 是 **NaN**，返回 **false**。
+>    2. 如果 `y` 是 **NaN**，返回 **false**。
+>    3. ……
 >
 > &mdash; [**7.2.14** 严格模式相等比较 ](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)
 
-遵循 IEEE 的“NaN”的定义：
+根据 IEEE 对 NaN 的定义：
 
-> 有四种可能的相互排斥的关系：小于，等于，大于和无序。 当至少一个操作数是 NaN 时，便是最后一种情况。每个 NaN 都要比较无穷无尽的一切，包括自己。
+> 有四种可能的相互排斥的关系：小于、等于、大于和无序。当比较操作中至少一个操作数是 NaN 时，便是无序的关系。换句话说，NaN 对任何事物包括其本身比较都应当是无序关系。
 >
-> &mdash; [“对于 IEEE754 NaN 值的所有比较返回 false 的理由是什么？”](https://stackoverflow.com/questions/1565164/1573715#1573715) at StackOverflow
+> &mdash; StackOverflow 上的 [“为什么对于 IEEE754 NaN 值的所有比较返回 false？”](https://stackoverflow.com/questions/1565164/1573715#1573715)
 
 ## 它是 fail
 
