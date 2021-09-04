@@ -480,10 +480,10 @@ Number.MIN_VALUE > 0; // -> true
 
 > ⚠️ V8 v5.5 或更低版本中出现的 Bug（Node.js <= 7） ⚠️
 
-你们所有人都知道的关于讨厌的 _undefined 不是 function_ ，但是这个呢？
+大家都知道 _undefined 不是 function_ 对吧？但是你知道这个吗？
 
 ```js
-// Declare a class which extends null
+// 声明一个继承null的类
 class Foo extends null {}
 // -> [Function: Foo]
 
@@ -494,7 +494,7 @@ new Foo() instanceof null;
 
 ### 💡 说明：
 
-这不是规范的一部分。这只是一个错误，现在它已被修复，所以将来不会有这个问题。
+这不是规范的一部分。这只是一个缺陷，且已经修复了。所以将来不会有这个问题。
 
 ## 数组相加
 
