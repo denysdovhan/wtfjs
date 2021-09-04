@@ -96,7 +96,7 @@ $ npm install -g wtfjs
   - [这是多重继承吗？](#%E8%BF%99%E6%98%AF%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF%E5%90%97)
   - [yield 返回自身的生成器](#yield-%E8%BF%94%E5%9B%9E%E8%87%AA%E8%BA%AB%E7%9A%84%E7%94%9F%E6%88%90%E5%99%A8)
   - [类的类](#%E7%B1%BB%E7%9A%84%E7%B1%BB)
-  - [非强制对象](#%E9%9D%9E%E5%BC%BA%E5%88%B6%E5%AF%B9%E8%B1%A1)
+  - [不可转换类型的对象](#%E4%B8%8D%E5%8F%AF%E8%BD%AC%E6%8D%A2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AF%B9%E8%B1%A1)
   - [棘手的箭头功能](#%E6%A3%98%E6%89%8B%E7%9A%84%E7%AE%AD%E5%A4%B4%E5%8A%9F%E8%83%BD)
   - [箭头函数不能作为构造器](#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%8D%E8%83%BD%E4%BD%9C%E4%B8%BA%E6%9E%84%E9%80%A0%E5%99%A8)
   - [`arguments` 和箭头函数](#arguments-%E5%92%8C%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0)
@@ -1435,9 +1435,9 @@ class {
 - [**14.3** 方法定义](https://www.ecma-international.org/ecma-262/#sec-method-definitions)
 - [**14.5** 类定义](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
 
-## 非强制对象
+## 不可转换类型的对象
 
-有着名的符号，有一种方法可以摆脱类型的强制。看一看：
+有一种方法可以摆脱类型的转换，那就是使用内置符号：
 
 ```js
 function nonCoercible(val) {
@@ -1458,13 +1458,13 @@ function nonCoercible(val) {
 现在我们可以这样使用：
 
 ```js
-// objects
+// 对象
 const foo = nonCoercible({ foo: "foo" });
 
 foo * 10; // -> TypeError: Trying to coerce non-coercible object
 foo + "evil"; // -> TypeError: Trying to coerce non-coercible object
 
-// strings
+// 字符串
 const bar = nonCoercible("bar");
 
 bar + "1"; // -> TypeError: Trying to coerce non-coercible object
@@ -1473,7 +1473,7 @@ bar === "bar"; // -> false
 bar.toString() === "bar"; // -> true
 bar == "bar"; // -> TypeError: Trying to coerce non-coercible object
 
-// numbers
+// 数字
 const baz = nonCoercible(1);
 
 baz == 1; // -> TypeError: Trying to coerce non-coercible object
@@ -1483,8 +1483,8 @@ baz.valueOf() === 1; // -> true
 
 ### 💡 说明：
 
-- [A gist by Sergey Rubanov](https://gist.github.com/chicoxyzzy/5dd24608e886adf5444499896dff1197)
-- [**6.1.5.1** Well-Known Symbols](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
+- [Sergey Rubanov 的 gist](https://gist.github.com/chicoxyzzy/5dd24608e886adf5444499896dff1197)
+- [**6.1.5.1** 内置符号](https://www.ecma-international.org/ecma-262/#sec-well-known-symbols)
 
 ## 棘手的箭头功能
 
