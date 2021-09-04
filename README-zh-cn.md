@@ -1190,10 +1190,10 @@ c[c][c]('console.log("WTF?")')(); // > WTF
 }
 ```
 
-然后我们将该对象传递给模板文字，因此 `toString` 方法调用该对象。这就是为什么我们得到字符串 `'[object Object]'`。
+然后我们将该对象传递给模板文字，`toString` 方法调用该对象。这就是为什么我们得到字符串 `'[object Object]'`。
 
-- [**12.2.9** Template Literals](https://www.ecma-international.org/ecma-262/#sec-template-literals)
-- [Object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
+- [**12.2.9** 模板字面量](https://www.ecma-international.org/ecma-262/#sec-template-literals)
+- [对象初始化](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer) at MDN
 
 ## 使用默认值解构
 
