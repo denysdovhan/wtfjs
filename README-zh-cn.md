@@ -83,7 +83,7 @@ $ npm install -g wtfjs
   - [正则表达式的加法](#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%8A%A0%E6%B3%95)
   - [字符串不是 `String` 的实例](#%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8D%E6%98%AF-string-%E7%9A%84%E5%AE%9E%E4%BE%8B)
   - [用反引号调用函数](#%E7%94%A8%E5%8F%8D%E5%BC%95%E5%8F%B7%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0)
-  - [调用 调用 调用](#%E8%B0%83%E7%94%A8-%E8%B0%83%E7%94%A8-%E8%B0%83%E7%94%A8)
+  - [到底 call 了谁](#%E5%88%B0%E5%BA%95-call-%E4%BA%86%E8%B0%81)
   - [一个 `constructor` 属性](#%E4%B8%80%E4%B8%AA-constructor-%E5%B1%9E%E6%80%A7)
   - [将对象做为另一个对象的 key](#%E5%B0%86%E5%AF%B9%E8%B1%A1%E5%81%9A%E4%B8%BA%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84-key)
   - [访问原型 `__proto__`](#%E8%AE%BF%E9%97%AE%E5%8E%9F%E5%9E%8B-__proto__)
@@ -1033,13 +1033,13 @@ function f(...args) {
 }
 ```
 
-毫无疑问，你知道你可以这样调用这个函数：
+你肯定知道调用这个函数的方式应当是：
 
 ```js
 f(1, 2, 3); // -> [ 1, 2, 3 ]
 ```
 
-但是你知道你可以使用反引号来调用任何函数吗？
+但是你知道你还可以使用反引号调用任意函数吗？
 
 ```js
 f`true is ${true}, false is ${false}, array is ${[1, 2, 3]}`;
@@ -1051,23 +1051,23 @@ f`true is ${true}, false is ${false}, array is ${[1, 2, 3]}`;
 
 ### 💡 说明：
 
-那么，如果你熟悉 _标签模板字面量_ ，这根本就不是魔术。在上面的例子中，`f` 函数是模板字面量的标签。模板文字之前的标签允许您使用函数解析模板文字。标签函数的第一个参数包含字符串值的数组。其余的参数与表达式有关。例：
+其实，如果你熟悉 _标签模板字面量_，你会知道这不是什么魔法。在上面的例子中，`f` 函数是模板字面量的标签。你可以定义这个标签以使用函数解析模板文字。标签函数的第一个参数是包含字符串的数组，剩余的参数与表达式有关。例：
 
 ```js
 function template(strings, ...keys) {
-  // 用字符串和键做一些事情
+  // 操作字符串和键值
 }
 ```
 
-这是 React 社区很流行的库[💅 styled-components](https://www.styled-components.com/)的[背后的秘密](http://mxstbr.blog/2016/11/styled-components-magic-explained/)。
+这也是在 React 社区很流行的库[💅 styled-components](https://www.styled-components.com/)的[背后的秘密](http://mxstbr.blog/2016/11/styled-components-magic-explained/)。
 
 规范的链接：
 
-- [**12.3.7** Tagged Templates](https://www.ecma-international.org/ecma-262/#sec-tagged-templates)
+- [**12.3.7** 标签模板](https://www.ecma-international.org/ecma-262/#sec-tagged-templates)
 
-## 调用 调用 调用
+## 到底 call 了谁
 
-> 发现于 [@cramforce](http://twitter.com/cramforce)
+> 由 [@cramforce](http://twitter.com/cramforce) 发现
 
 ```js
 console.log.call.call.call.call.call.apply(a => a, [1, 2]);
@@ -1075,7 +1075,7 @@ console.log.call.call.call.call.call.apply(a => a, [1, 2]);
 
 ### 💡 说明：
 
-注意，可能会打破你的头脑！ 尝试在您的头脑中重现此代码：我们使用`apply`方法应用`call`方法。 阅读更多：
+注意，这可能会击碎你的三观！尝试在您的头脑中重现此代码：我们使用 `apply` 方法调用 `call` 方法。阅读更多：
 
 - [**19.2.3.3** Function.prototype.call(`thisArg`, ...`args`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.call)
 - [**19.2.3.1 ** Function.prototype.apply(`thisArg`, `argArray`)](https://www.ecma-international.org/ecma-262/#sec-function.prototype.apply)
