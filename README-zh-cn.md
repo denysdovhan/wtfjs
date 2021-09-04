@@ -1412,7 +1412,7 @@ typeof new class {
 
 ### 💡 说明：
 
-ECMAScript 5 时代以来，关键字允许访问属性。所以请考虑一下这个简单的对象示例：
+ECMAScript 5 时代以来，允许 _关键字_ 作为 _属性名称_。请看下面这个简单的对象示例：
 
 ```js
 const foo = {
@@ -1420,7 +1420,7 @@ const foo = {
 };
 ```
 
-还有 ES6 标准速记方法定义。此外，类可能是匿名的。因此，如果我们放弃 `: function` 部分，我们将得到：
+还有 ES6 标准中的简写方法定义。此外，类也可以是匿名的。因此，如果我们删去 `: function` 部分，将会得到：
 
 ```js
 class {
@@ -1432,8 +1432,8 @@ class {
 
 在这里阅读更多
 
-- [**14.3** Method Definitions](https://www.ecma-international.org/ecma-262/#sec-method-definitions)
-- [**14.5** Class Definitions](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
+- [**14.3** 方法定义](https://www.ecma-international.org/ecma-262/#sec-method-definitions)
+- [**14.5** 类定义](https://www.ecma-international.org/ecma-262/#sec-class-definitions)
 
 ## 非强制对象
 
