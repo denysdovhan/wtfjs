@@ -114,8 +114,8 @@ $ npm install -g wtfjs
   - [`min` 大于 `max`](#min-%E5%A4%A7%E4%BA%8E-max)
   - [`arguments` 绑定](#arguments-%E7%BB%91%E5%AE%9A)
   - [来自地狱的 `alert`](#%E6%9D%A5%E8%87%AA%E5%9C%B0%E7%8B%B1%E7%9A%84-alert)
-  - [An infinite timeout](#an-infinite-timeout)
-  - [A `setTimeout` object](#a-settimeout-object)
+  - [没有尽头的计时](#%E6%B2%A1%E6%9C%89%E5%B0%BD%E5%A4%B4%E7%9A%84%E8%AE%A1%E6%97%B6)
+  - [`setTimeout` 对象](#settimeout-%E5%AF%B9%E8%B1%A1)
   - [Double dot](#double-dot)
   - [Extra Newness](#extra-newness)
   - [Why you should use semicolons](#why-you-should-use-semicolons)
@@ -1978,22 +1978,22 @@ a(1); // > "hello"
 - [JavaScript 字符转义序列](https://mathiasbynens.be/notes/javascript-escapes#octal)
 - [多行 JavaScript 字符串](https://davidwalsh.name/multiline-javascript-strings)
 
-## An infinite timeout
+## 没有尽头的计时
 
-Guess what would happen if we set an infinite timeout?
+如果我们对 `setTimeout` 赋予无限大会如何？
 
 ```js
 setTimeout(() => console.log("called"), Infinity); // -> <timeoutId>
 // > 'called'
 ```
 
-It will executed immediately instead of infinity delay.
+结果是，它会立即运行，并没有等待无限长的时间。
 
-### 💡 Explanation:
+### 💡 说明：
 
-Usually, runtime stores the delay as a 32-bit signed integer internally. This causes an integer overflow, resulting in the timeout being executed immediately.
+通常运行时内部会将延时存储为一个32位的有符号整数，而上述代码会导致运行时在解析延时参数时发生整数溢出，从而使函数立即执行而不等待。
 
-For example, in Node.js we will get this warning:
+例如，在 Node.js 中我们可以看到这样的警告信息：
 
 ```
 (node:1731) TimeoutOverflowWarning: Infinity does not fit into a 32-bit signed integer.
@@ -2002,51 +2002,53 @@ Timeout duration was set to 1.
 ```
 
 - [WindowOrWorkerGlobalScope.setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) on MDN
-- [Node.js Documentation on Timers](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_args)
-- [Timers](https://www.w3.org/TR/2011/WD-html5-20110525/timers.html) on W3C
+- [Node.js 文档中关于计时器的章节](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_args)
+- W3C 上的 [计时器]](https://www.w3.org/TR/2011/WD-html5-20110525/timers.html)
 
-## A `setTimeout` object
+## `setTimeout` 对象
 
-Guess what would happen if we set an callback that's not a function to `setTimeout`?
+如果我们给 `setTimeout` 的回调函数参数传非函数值会发生什么？
 
 ```js
 setTimeout(123, 100); // -> <timeoutId>
 // > 'called'
 ```
 
-This is fine.
+没问题。
 
 ```js
 setTimeout('{a: 1}', 100); // -> <timeoutId>
 // > 'called'
 ```
 
-This is also fine.
+这个也没问题。
 
 ```js
 setTimeout({a: 1}, 100); // -> <timeoutId>
 // > 'Uncaught SyntaxError: Unexpected identifier               setTimeout (async) (anonymous) @ VM__:1'
+// 未捕获的语法错误：非预期的标识符
 ```
 
-This throws an **SyntaxError**.
+抛出了一个 **SyntaxError**（语法错误）。
 
-Note that this can easily happen if your function returns an object and you call it here instead of passing it! What if the content - policy is set to `self`?
+这种错误很容易发生，尤其是当你有个函数返回一个对象，但是你忘了将其传进函数，直接就在这里调用了！不过，如果 `content-policy` 设置为 `self` 会怎么样呢？
 
 ```js
 setTimeout(123, 100); // -> <timeoutId>
 // > console.error("[Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'report-sample' 'self' ")
+// [仅报告] 拒绝将字符串当作JavaScript求值，因为内容安全策略（CSP，Content Security Policy）指令被设置为 "script-src 'report-sample' 'self'"，在该指令模式下不允许 'unsafe-eval' 的脚本源。
 ```
 
-The console refuses to run it at all!
+终端会拒绝执行！
 
-### 💡 Explanation:
+### 💡 说明：
 
-`WindowOrWorkerGlobalScope.setTimeout()` can be called with `code` as first argument, which will be passed on to `eval`, which is bad. Eval will coerce her input to String, and evaluate what is produced, so Objects becomes `'[object Object]'` which has hmmm ...  an `'Unexpected identifier'`!
+`WindowOrWorkerGlobalScope.setTimeout()` 的第一个参数可以是代码（`code`），代码会被传递到 `eval` 函数，这是不好的。`eval` 会把所有输入强制转换为字符串，然后进行求值，那么对象会变成 `'[object Object]'`；嗯，你也看到了，这里确实有一个非法标识符 `'Unexpected identifier'`。
 
 - [eval()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval) on MDN (don't use this)
 - [WindowOrWorkerGlobalScope.setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) on MDN
-- [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
-- [Timers](https://www.w3.org/TR/2011/WD-html5-20110525/timers.html) on W3C
+- [内容安全策略](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
+- W3C 上的 [计时器](https://www.w3.org/TR/2011/WD-html5-20110525/timers.html)
 
 ## Double dot
 
