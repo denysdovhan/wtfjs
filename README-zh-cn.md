@@ -1936,7 +1936,7 @@ Infinity > -Infinity; // -> true
 
 - [**15.8.2.11** Math.max](https://262.ecma-international.org/5.1/#sec-15.8.2.11)
 - [**15.8.2.11** Math.min](https://262.ecma-international.org/5.1/#sec-15.8.2.12)
-- [Why is `Math.max()` less than `Math.min()`?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min)
+- [为什么 `Math.max()` 小于 `Math.min()`？](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min)
 
 ## `arguments` binding
 
