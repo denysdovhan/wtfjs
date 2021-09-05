@@ -117,7 +117,7 @@ $ npm install -g wtfjs
   - [没有尽头的计时](#%E6%B2%A1%E6%9C%89%E5%B0%BD%E5%A4%B4%E7%9A%84%E8%AE%A1%E6%97%B6)
   - [`setTimeout` 对象](#settimeout-%E5%AF%B9%E8%B1%A1)
   - [点点运算符](#%E7%82%B9%E7%82%B9%E8%BF%90%E7%AE%97%E7%AC%A6)
-  - [Extra Newness](#extra-newness)
+  - [再 new 一次](#%E5%86%8D-new-%E4%B8%80%E6%AC%A1)
   - [Why you should use semicolons](#why-you-should-use-semicolons)
   - [Split a string by a space](#split-a-string-by-a-space)
   - [A stringified string](#a-stringified-string)
@@ -2086,9 +2086,9 @@ setTimeout(123, 100); // -> <timeoutId>
 - [JavaScript 中 toString 的用法](https://stackoverflow.com/questions/6853865/usage-of-tostring-in-javascript/6853910#6853910) on StackOverflow
 - [为什么 10..toString() 可行，而 10.toString() 却不行？](https://stackoverflow.com/questions/13149282/why-does-10-tostring-work-but-10-tostring-does-not/13149301#13149301)
 
-## Extra Newness
+## 再 new 一次
 
-I present this as an oddity for your amusement.
+这仅仅是一个用于娱乐的例子。
 
 ```js
 class Foo extends Function {
@@ -2101,11 +2101,11 @@ class Foo extends Function {
 new new Foo(":D")().val; // -> ':D'
 ```
 
-### 💡 Explanation:
+### 💡 说明：
 
-Constructors in JavaScript are just functions with some special treatment. By extending Function using the class syntax you create a class that, when instantiated, is now a function, which you can then additionally instantiate.
+JavaScript 与其他面向对象语言不同，它的构造函数仅是一个比较特殊的函数。虽然class语法糖让你可以创建一个字面上的类，但实例化后它就变成了函数，因此它可以再次实例化。
 
-While not exhaustively tested, I believe the last statement can be analyzed thus:
+虽然我没有测试过，但我觉得最后的那个表达式应该是这样分析的：
 
 ```js
 new new Foo(":D")().val(new newFooInstance()).val;
@@ -2113,7 +2113,7 @@ veryNewFooInstance.val;
 // -> ':D'
 ```
 
-As a tiny addendum, doing `new Function('return "bar";')` of course creates a function with the body `return "bar";`. Since `super()` in the constructor of our `Foo` class is calling `Function`'s constructor, it should come as no surprise now to see that we can additionally manipulate things in there.
+再补充一下，运行 `new Function('return "bar";')` 必然会创建一个内容为 `return "bar";` 的函数对象。而`Foo`类的构造函数中的 `super()` 调用的是 `Function` 的构造函数，所以自然而然我们可以在它上面添加更多的操作。
 
 ```js
 class Foo extends Function {
@@ -2127,11 +2127,11 @@ class Foo extends Function {
 
 var foo = new new Foo(":D")("D:");
 foo.val; // -> 'D:'
-delete foo.val; // remove the instance prop 'val', deferring back to the prototype's 'val'.
+delete foo.val; // 移除这个实例的“val”属性，让它退回（defer back）到他的原型的“val”属性
 foo.val; // -> ':D'
 ```
 
-- [Class Extends Function: Extra Newness](https://github.com/denysdovhan/wtfjs/issues/78)
+- [扩展Function的类：再new一次](https://github.com/denysdovhan/wtfjs/issues/78)
 
 ## Why you should use semicolons
 
