@@ -124,6 +124,7 @@ $ npm install -g wtfjs
   - [对数字和 `true` 的非严格相等比较](#%E5%AF%B9%E6%95%B0%E5%AD%97%E5%92%8C-true-%E7%9A%84%E9%9D%9E%E4%B8%A5%E6%A0%BC%E7%9B%B8%E7%AD%89%E6%AF%94%E8%BE%83)
 - [其他资源](#%E5%85%B6%E4%BB%96%E8%B5%84%E6%BA%90)
 - [🤝 捐赠支持](#-%E6%8D%90%E8%B5%A0%E6%94%AF%E6%8C%81)
+- [🎓 许可证](#-%E8%AE%B8%E5%8F%AF%E8%AF%81)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <!-- prettier-ignore-end -->
@@ -2265,6 +2266,7 @@ Boolean(1.1); // -> true
 | **Ethereum**     | `0x6aF39C917359897ae6969Ad682C14110afe1a0a1` |      <img src="https://user-images.githubusercontent.com/3459374/107130370-55b24000-68d5-11eb-93f5-075355c7fcd4.png" width="120px"/>       |
 
 > **⚠️ 提示：** 我现居乌克兰，乌克兰的银行账户没办法绑定PayPal或Stripe之类的账户。所以我没法开启 Github Sponsors、OpenCollective 和其他依赖于这些服务的捐赠渠道。对不起，目前您只能通过这些方式支持我。
+
 # 🎓 许可证
 
 [![CC 4.0][license-image]][license-url]
