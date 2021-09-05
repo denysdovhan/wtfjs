@@ -1920,7 +1920,7 @@ Math.min() < Math.max(); // -> false
 
 ### 💡 说明：
 
-This is a simple one. Let's consider each part of this expression separately:
+这是一个简单的例子。我们一步一步来：
 
 ```js
 Math.min(); // -> Infinity
@@ -1928,11 +1928,11 @@ Math.max(); // -> -Infinity
 Infinity > -Infinity; // -> true
 ```
 
-Why so? Well, `Math.max()` is not the same thing as `Number.MAX_VALUE`. It does not return the largest possible number.
+为什么是这样呢？其实 `Math.max()` 并不会返回最大的正数，即 `Number.MAX_VALUE`。
 
-`Math.max` takes arguments, tries to convert the to numbers, compares each one and then returns the largest remaining. If no arguments are given, the result is −∞. If any value is `NaN`, the result is `NaN`.
+`Math.max` 接受两个参数，将它们转换到数字，比较之后返回最大的那个。若没有传入参数，结果将是 -∞。若参数中存在 `NaN`，则返回 `NaN`。
 
-The opposite is happening for `Math.min`. `Math.min` returns ∞, if no arguments are given.
+反过来，当 `Math.min` 没有传入参数，会返回 ∞。
 
 - [**15.8.2.11** Math.max](https://262.ecma-international.org/5.1/#sec-15.8.2.11)
 - [**15.8.2.11** Math.min](https://262.ecma-international.org/5.1/#sec-15.8.2.12)
