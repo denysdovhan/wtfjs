@@ -118,12 +118,12 @@ $ npm install -g wtfjs
   - [`setTimeout` 对象](#settimeout-%E5%AF%B9%E8%B1%A1)
   - [点点运算符](#%E7%82%B9%E7%82%B9%E8%BF%90%E7%AE%97%E7%AC%A6)
   - [再 new 一次](#%E5%86%8D-new-%E4%B8%80%E6%AC%A1)
-  - [Why you should use semicolons](#why-you-should-use-semicolons)
-  - [Split a string by a space](#split-a-string-by-a-space)
-  - [A stringified string](#a-stringified-string)
-  - [Non-strict comparison of a number to `true`](#non-strict-comparison-of-a-number-to-true)
+  - [你应该用上分号](#%E4%BD%A0%E5%BA%94%E8%AF%A5%E7%94%A8%E4%B8%8A%E5%88%86%E5%8F%B7)
+  - [用空格分割（split）字符串](#%E7%94%A8%E7%A9%BA%E6%A0%BC%E5%88%86%E5%89%B2split%E5%AD%97%E7%AC%A6%E4%B8%B2)
+  - [对字符串stringify](#%E5%AF%B9%E5%AD%97%E7%AC%A6%E4%B8%B2stringify)
+  - [对数字和 `true` 的非严格相等比较](#%E5%AF%B9%E6%95%B0%E5%AD%97%E5%92%8C-true-%E7%9A%84%E9%9D%9E%E4%B8%A5%E6%A0%BC%E7%9B%B8%E7%AD%89%E6%AF%94%E8%BE%83)
 - [其他资源](#%E5%85%B6%E4%BB%96%E8%B5%84%E6%BA%90)
-- [🎓 License](#-license)
+- [🤝 捐赠支持](#-%E6%8D%90%E8%B5%A0%E6%94%AF%E6%8C%81)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <!-- prettier-ignore-end -->
@@ -2133,9 +2133,9 @@ foo.val; // -> ':D'
 
 - [扩展Function的类：再new一次](https://github.com/denysdovhan/wtfjs/issues/78)
 
-## Why you should use semicolons
+## 你应该用上分号
 
-Writing some standard JavaScript… and then BOOM!
+下面这个应该是标准的 JavaScript……吧？不，它炸了！
 
 ```js
 class SomeClass {
@@ -2146,13 +2146,13 @@ class SomeClass {
 new SomeClass().array; // -> 'str'
 ```
 
-What the …?
+woc……？
 
-### 💡 Explanation:
+### 💡 说明：
 
-Once again, this is all thanks to the Automatic Semicolon Insertion.
+嗯，你没猜错，这又是自动分号插入的功劳。
 
-An example above is basically the same as:
+上面这个例子实际上会被转换为：
 
 ```js
 class SomeClass {
@@ -2160,95 +2160,112 @@ class SomeClass {
 }
 ```
 
-You basically assign a string `str` into an `array` property.
+看到了吧，`str` 这个字符串被赋值到属性 `array` 上。
 
-- [An original tweet with an example](https://twitter.com/SeaRyanC/status/1148726605222535168) by Ryan Cavanaugh
-- [TC39 meeting when they debated about it](https://github.com/tc39/notes/blob/master/meetings/2017-09/sept-26.md)
+- Ryan Cavanaugh 发布的 [关于这个例子的原创推特](https://twitter.com/SeaRyanC/status/1148726605222535168)
+- [TC39 会议中关于它的讨论](https://github.com/tc39/notes/blob/master/meetings/2017-09/sept-26.md)
 
-## Split a string by a space
+## 用空格分割（split）字符串
 
-Have you ever tried to split a string by a space?
+你试过用空格分割字符串吗？
 
 ```js
 "".split(""); // -> []
-// but…
+// 但是……
 "".split(" "); // -> [""]
 ```
 
-### 💡 Explanation:
+### 💡 说明：
 
-This is expected behaviour. It's responsibility is to divide the input string every time a separator occurs in that input string. When you pass in an empty string it'll never find a separator and thus return that string.
+这是预期行为。它会在输入的字符串中遍历，一旦发现分隔符，就在此处分割。但若你传入的是空字符串，它找不到分隔符，因此返回该字符串。
 
-Let's quote the specification:
+规范引用如下：
 
-> The substrings are determined by searching from left to right for occurrences of `separator`; these occurrences are not part of any String in the returned array, but serve to divide up the String value.
+> 它会从左向右搜索字符串，并根据 `separator`（分隔符）决定子字符串的分割位置；分割位置的字符仅用于分割，不会包含在返回的数组中。
 
 - [**22.1.3.21** String.prototype.split](https://tc39.es/ecma262/#sec-string.prototype.split)
-- [An original tween with an example](https://twitter.com/SeaRyanC/status/1331656278104440833) by Ryan Cavanaugh
-- [A tween with an explanation](https://twitter.com/kl13nt/status/1331742810932916227?s=20) by Nabil Tharwat
+- Ryan Cavanaugh 发布的 [关于这个例子的原创推特](https://twitter.com/SeaRyanC/status/1331656278104440833)
+- Nabil Tharwat 发布的 [包含解释的推特](https://twitter.com/kl13nt/status/1331742810932916227?s=20)
 
-## A stringified string
+## 对字符串stringify
 
-This caused a bug that I've been solving for a few days:
+这会导致一个缺陷，我曾经修了好几天：
 
 ```js
 JSON.stringify("production") === "production"; // -> false
 ```
 
-### 💡 Explanation:
+### 💡 说明：
 
-Let's see what `JSON.stringify` is returning:
+先看看 `JSON.stringify` 的返回值：
 
 ```js
 JSON.stringify("production"); // -> '"production"'
 ```
 
-It is actually a stringified string, so it's true:
+原来是被“字串化”了，所以这也难怪：
 
 ```js
 '"production"' === "production"; // -> false
 ```
 
-- [ECMA-404 The JSON Data Interchange Standard.](https://www.json.org/json-en.html)
+- [ECMA-404 JSON 数据内部变动标准](https://www.json.org/json-en.html)
 
-## Non-strict comparison of a number to `true`
+## 对数字和 `true` 的非严格相等比较
 
 ```js
 1 == true; // -> true
-// but…
+// 但是……
 Boolean(1.1); // -> true
 1.1 == true; // -> false
 ```
 
-### 💡 Explanation:
+### 💡 说明：
 
-According to the specification:
+根据规范：
 
-> The comparison x == y, where x and y are values, produces true or false. Such a comparison is performed as follows:
+> 比较 x == y 时，当x和y都有值，会返回 true 或 false。比较过程如下所述：
 >
-> 4. If `Type(x)` is Number and `Type(y)` is String, return the result of the comparison `x == ! ToNumber(y)`.
+> 4. 若 `Type(x)` 是数字且 `Type(y)` 是字符串，则会返回 `x == ! ToNumber(y)` 的结果。
 
-So this comparison is performed like this:
+所以比较过程是这样的：
 
 ```js
 1 == true;
 1 == Number(true);
 1 == 1; // -> true
-// but…
+// 但是……
 1.1 == true;
 1.1 == Number(true);
 1.1 == 1; // -> false
 ```
 
-- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
+- [**7.2.15** 抽象相等比较](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 # 其他资源
 
-- [wtfjs.com](http://wtfjs.com/) — 这是一组非常特别的不规范，不一致的地方，以及那些对于网络语言来说非常痛苦的不直观的时刻。
-- [Wat](https://www.destroyallsoftware.com/talks/wat) — A lightning talk by Gary Bernhardt from CodeMash 2012
-- [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — 凯尔。辛普森一家谈到了前两次试图从 JavaScript 中“拉出疯狂”的尝试。他希望帮助您生成更干净、更优雅、更可读的代码，然后鼓励人们为开源社区做出贡献。
+- [wtfjs.com](http://wtfjs.com/) — 一些非常特别的不规范与不一致的集合，以及对于web编程语言来说非常痛苦的时光。
+- [Wat](https://www.destroyallsoftware.com/talks/wat) — CodeMash 2012 中 Gary Bernhardt 的演讲
+- [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — Kyle Simpsons 在 Forward 2 的演讲，描述了“疯狂的 JavaScript”。他希望帮助你写出更干净、更优雅、更易读的代码，鼓励人们为开源社区做出贡献。
+- [Zeros in JavaScript](http://zero.milosz.ca/) — 针对 JavaScript 中的 `==`、`===`、`+` 和 `*` 的真值表。
 
-# 🎓 License
+# 🤝 捐赠支持
+
+你好！这个项目是我在空闲时间做的，作为我的主要工作的补充。我希望你在阅读这篇文章时保持愉快的心情。请考虑支持我🙏。
+
+每一次捐赠对我来说意义重大。你的捐赠是对我的工作的肯定：我的工作有价值。
+
+**🙏 感谢您的支持！ 🙏**
+
+| 服务          |                     链接                     |                                                                   动作                                                                   |
+| ---------------- | :------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------: |
+| **Patreon**      |        [Become a patron][patreon-url]        | <a href="https://patreon.com/denysdovhan"><img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="120px"></a> |
+| **BuyMeACoffee** |     [Buy me a cup of ☕️ or 🥤][bmc-url]     |    <a href="https://buymeacoffee.com/denysdovhan"><img src="https://cdn.buymeacoffee.com/buttons/default-black.png" width="120px"></a>     |
+| **Bitcoin**      |     `1EJsKs6rPsqa7QLoVLpe3wgcdL9Q8WmDxE`     |      <img src="https://user-images.githubusercontent.com/3459374/107130426-0ae4f800-68d6-11eb-9b86-15bf33467615.png" width="120px"/>       |
+| **Ethereum**     | `0x6aF39C917359897ae6969Ad682C14110afe1a0a1` |      <img src="https://user-images.githubusercontent.com/3459374/107130370-55b24000-68d5-11eb-93f5-075355c7fcd4.png" width="120px"/>       |
+
+> **⚠️ 提示：** 我现居乌克兰，乌克兰的银行账户没办法绑定PayPal或Stripe之类的账户。所以我没法开启 Github Sponsors、OpenCollective 和其他依赖于这些服务的捐赠渠道。对不起，目前您只能通过这些方式支持我。
+# 🎓 许可证
 
 [![CC 4.0][license-image]][license-url]
 
@@ -2258,3 +2275,7 @@ So this comparison is performed like this:
 [license-image]: https://img.shields.io/badge/License-WTFPL%202.0-lightgrey.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/wtfjs
 [npm-image]: https://img.shields.io/npm/v/wtfjs.svg?style=flat-square
+[patreon-url]: https://patreon.com/denysdovhan
+[patreon-image]: https://img.shields.io/badge/support-patreon-F96854.svg?style=flat-square
+[bmc-url]: https://patreon.com/denysdovhan
+[bmc-image]: https://img.shields.io/badge/support-buymeacoffee-222222.svg?style=flat-square
