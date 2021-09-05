@@ -112,8 +112,8 @@ $ npm install -g wtfjs
   - [resolve() 不会返回 Promise 实例](#resolve-%E4%B8%8D%E4%BC%9A%E8%BF%94%E5%9B%9E-promise-%E5%AE%9E%E4%BE%8B)
   - [`{}{}` 是 undefined](#-%E6%98%AF-undefined)
   - [`min` 大于 `max`](#min-%E5%A4%A7%E4%BA%8E-max)
-  - [`arguments` binding](#arguments-binding)
-  - [An `alert` from hell](#an-alert-from-hell)
+  - [`arguments` 绑定](#arguments-%E7%BB%91%E5%AE%9A)
+  - [来自地狱的 `alert`](#%E6%9D%A5%E8%87%AA%E5%9C%B0%E7%8B%B1%E7%9A%84-alert)
   - [An infinite timeout](#an-infinite-timeout)
   - [A `setTimeout` object](#a-settimeout-object)
   - [Double dot](#double-dot)
@@ -1938,9 +1938,9 @@ Infinity > -Infinity; // -> true
 - [**15.8.2.11** Math.min](https://262.ecma-international.org/5.1/#sec-15.8.2.12)
 - [为什么 `Math.max()` 小于 `Math.min()`？](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min)
 
-## `arguments` binding
+## `arguments` 绑定
 
-Consider this function:
+考虑以下函数：
 
 ```js
 function a(x) {
@@ -1952,15 +1952,15 @@ a(); // > undefined
 a(1); // > "hello"
 ```
 
-### 💡 Explanation:
+### 💡 说明
 
-`arguments` is an Array-like object that contains the values of the arguments passed to that function. When no arguments are passed, then there's no `x` to override.
+`arguments` 是一个类数组对象，包含了所有传入当前函数的参数。当没有传入参数时，该对象中就不存在 `x` 属性，也就无法覆盖。
 
-- [The arguments object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments) on MDN
+- [arguments 对象](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments) on MDN
 
-## An `alert` from hell
+## 来自地狱的 `alert`
 
-This on is literally from hell:
+如题，从地狱而来的代码：
 
 ```js
 [666]["\155\141\160"]["\143\157\156\163\164\162\165\143\164\157\162"](
@@ -1968,15 +1968,15 @@ This on is literally from hell:
 )(666); // alert(666)
 ```
 
-### 💡 Explanation:
+### 💡 说明
 
-This one is based on octal escape sequences and multiple strings.
+这一串代码是基于多个采用了八进制转义序列的字符串构造的。
 
-Any character with a character code lower than 256 (i.e. any character in the extended ASCII range) can be escaped using its octal-encoded character code, prefixed with `\`. An example above is basically and `alert` ecoded by octal escape sequances.
+任何码值小于256的字符（又称扩展ASCII码表域）都可以用 `\` 加上其八进制代码的转义方式写出来。上面这个简单的例子就是将 `alert` 编码到八进制转义序列。
 
-- [Martin Kleppe tweet about it](https://twitter.com/aemkei/status/897172907222237185)
-- [JavaScript character escape sequences](https://mathiasbynens.be/notes/javascript-escapes#octal)
-- [Multi-Line JavaScript Strings](https://davidwalsh.name/multiline-javascript-strings)
+- [Martin Kleppe 的推特](https://twitter.com/aemkei/status/897172907222237185)
+- [JavaScript 字符转义序列](https://mathiasbynens.be/notes/javascript-escapes#octal)
+- [多行 JavaScript 字符串](https://davidwalsh.name/multiline-javascript-strings)
 
 ## An infinite timeout
 
