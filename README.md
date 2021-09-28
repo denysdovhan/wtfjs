@@ -1640,6 +1640,10 @@ var obj = { property: 1 };
 var array = ["property"];
 
 obj[array]; // -> 1
+
+// this also works with nested arrays
+var nestedArray = [[[[[[[[[["property"]]]]]]]]]];
+obj[nestedArray]; // -> 1
 ```
 
 What about pseudo-multidimensional arrays?
