@@ -122,6 +122,8 @@ Currently, there are these translations of **wtfjs**:
   - [Split a string by a space](#split-a-string-by-a-space)
   - [A stringified string](#a-stringified-string)
   - [Non-strict comparison of a number to `true`](#non-strict-comparison-of-a-number-to-true)
+  - [Casting type data](#casting-type-data)
+  - [Alternative to parseInt](#alternative-to-parseint)
 - [📚 Other resources](#-other-resources)
 - [🤝 Supporting](#-supporting)
 - [🎓 License](#-license)
@@ -2212,6 +2214,26 @@ Boolean(1.1); // -> true
 1.1 == true; // -> false
 ```
 
+## Casting type data
+```js
+var nowYears = "2021"
+var nextYears = 2022
+
+Number(nowYears) // 2021
+String(nextYears) // "2021"
+
+typeof Number(nowYears) // number
+typeof String(nextYears) // string
+```
+
+## Alternative to parseInt
+```js
+var nowYears = "2021"
+
++nowYears // 2021
+parseInt(nowYears) // 2021
+```
+
 ### 💡 Explanation:
 
 According to the specification:
@@ -2272,3 +2294,7 @@ Every single donation is important. Your donation is gonna make a clear statemen
 [patreon-image]: https://img.shields.io/badge/support-patreon-F96854.svg?style=flat-square
 [bmc-url]: https://patreon.com/denysdovhan
 [bmc-image]: https://img.shields.io/badge/support-buymeacoffee-222222.svg?style=flat-square
+
+<h2 style="color:blue;font-weight:bold;float:right">
+  <a href="#what-the-fck-javascript" style="text-decoration:none;display:inline-block;"> Scroll Top </a> 
+</h2>
