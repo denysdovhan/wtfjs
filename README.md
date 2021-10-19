@@ -2295,6 +2295,6 @@ Every single donation is important. Your donation is gonna make a clear statemen
 [bmc-url]: https://patreon.com/denysdovhan
 [bmc-image]: https://img.shields.io/badge/support-buymeacoffee-222222.svg?style=flat-square
 
-<h2 style="color:blue;font-weight:bold;float:right">
-  <a href="#what-the-fck-javascript" style="text-decoration:none;display:inline-block;"> Scroll Top </a> 
-</h2>
+<p align="right" style="padding: 5px; border-radius: 100%; background-color: blue; font-size: 2.5rem;">
+  <b><a href="#what-the-fck-javascript">Scroll On Top</a></b>
+</p>
