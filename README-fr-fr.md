@@ -27,10 +27,16 @@ La source du _package_ est disponible ici: <https://github.com/denysdovhan/wtfjs
 
 # Traductions
 
-Actuellement, il existe des traductions de ** wtfjs ** pour les langues suivantes :
+Actuellement, il existe des traductions de **wtfjs** pour les langues suivantes :
 
+- [English (original)](./README.md)
 - [中文版](./README-zh-cn.md)
-- [Français](./README-fr-fr.md)
+- [हिंदी](./README-hi.md)
+- [Português do Brasil](./README-pt-br.md)
+- [Polski](./README-pl-pl.md)
+- [Italiano](./README-it-it.md)
+- [Russian](https://habr.com/ru/company/mailru/blog/335292/) (on Habr.com)
+- [한국어](./README-kr.md)
 
 [**Demander une autre traduction**][tr-request]
 
