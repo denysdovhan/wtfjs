@@ -105,7 +105,6 @@ Currently, there are these translations of **wtfjs**:
   - [Tricky return](#tricky-return)
   - [Chaining assignments on object](#chaining-assignments-on-object)
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
-  - [Null and Relational Operators](#null-and-relational-operators)
   - [`Number.toFixed()` display different numbers](#numbertofixed-display-different-numbers)
   - [`Math.max()` less than `Math.min()`](#mathmax-less-than-mathmin)
   - [Comparing `null` to `0`](#comparing-null-to-0)
@@ -1667,19 +1666,6 @@ The brackets `[]` operator converts the passed expression using `toString`. Conv
 ["property"].toString(); // -> 'property'
 ```
 
-## Null and Relational Operators
-
-```js
-null > 0; // false
-null == 0; // false
-
-null >= 0; // true
-```
-
-### 💡 Explanation:
-
-Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `true`. Read in-depth explanation for this [here](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274).
-
 ## `Number.toFixed()` display different numbers
 
 `Number.toFixed()` can behave a bit strange in different browsers. Check out this example:
@@ -1784,6 +1770,7 @@ true;
 
 - [**7.2.12** Abstract Relational Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-relational-comparison)
 - [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
+- [An in-depth explanation](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274)
 
 ## Same variable redeclaration
 
