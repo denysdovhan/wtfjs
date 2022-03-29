@@ -113,7 +113,6 @@ Currently, there are these translations of **wtfjs**:
   - [Default behavior Array.prototype.sort()](#default-behavior-arrayprototypesort)
   - [resolve() won't return Promise instance](#resolve-wont-return-promise-instance)
   - [`{}{}` is undefined](#-is-undefined)
-  - [`min` is greater than `max`](#min-is-greater-than-max)
   - [`arguments` binding](#arguments-binding)
   - [An `alert` from hell](#an-alert-from-hell)
   - [An infinite timeout](#an-infinite-timeout)
@@ -1722,18 +1721,32 @@ See for reference `NOTE 2` on the ECMA-262 definition for `toFixed`.
 - [**20.1.3.3** Number.prototype.toFixed (`fractionDigits`)](https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed)
 
 ## `Math.max()` less than `Math.min()`
+I find this example hilarious:
 
 ```js
-Math.min(1, 4, 7, 2); // -> 1
-Math.max(1, 4, 7, 2); // -> 7
-Math.min(); // -> Infinity
-Math.max(); // -> -Infinity
 Math.min() > Math.max(); // -> true
+Math.min() < Math.max(); // -> false
 ```
 
 ### 💡 Explanation:
 
-- [Why is Math.max() less than Math.min()?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min) by Charlie Harvey
+This is a simple one. Let's consider each part of this expression separately:
+
+```js
+Math.min(); // -> Infinity
+Math.max(); // -> -Infinity
+Infinity > -Infinity; // -> true
+```
+
+Why so? Well, `Math.max()` is not the same thing as `Number.MAX_VALUE`. It does not return the largest possible number.
+
+`Math.max` takes arguments, tries to convert the to numbers, compares each one and then returns the largest remaining. If no arguments are given, the result is −∞. If any value is `NaN`, the result is `NaN`.
+
+The opposite is happening for `Math.min`. `Math.min` returns ∞, if no arguments are given.
+
+- [**15.8.2.11** Math.max](https://262.ecma-international.org/5.1/#sec-15.8.2.11)
+- [**15.8.2.11** Math.min](https://262.ecma-international.org/5.1/#sec-15.8.2.12)
+- [Why is `Math.max()` less than `Math.min()`?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min) by Charlie Harvey
 
 ## Comparing `null` to `0`
 
@@ -1905,35 +1918,6 @@ if (true) {
 ```
 
 Surprisingly, it behaviors the same! You can guess here that `{foo: 'bar'}{}` is a block.
-
-## `min` is greater than `max`
-
-I find this example hilarious:
-
-```js
-Math.min() > Math.max(); // -> true
-Math.min() < Math.max(); // -> false
-```
-
-### 💡 Explanation:
-
-This is a simple one. Let's consider each part of this expression separately:
-
-```js
-Math.min(); // -> Infinity
-Math.max(); // -> -Infinity
-Infinity > -Infinity; // -> true
-```
-
-Why so? Well, `Math.max()` is not the same thing as `Number.MAX_VALUE`. It does not return the largest possible number.
-
-`Math.max` takes arguments, tries to convert the to numbers, compares each one and then returns the largest remaining. If no arguments are given, the result is −∞. If any value is `NaN`, the result is `NaN`.
-
-The opposite is happening for `Math.min`. `Math.min` returns ∞, if no arguments are given.
-
-- [**15.8.2.11** Math.max](https://262.ecma-international.org/5.1/#sec-15.8.2.11)
-- [**15.8.2.11** Math.min](https://262.ecma-international.org/5.1/#sec-15.8.2.12)
-- [Why is `Math.max()` less than `Math.min()`?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min)
 
 ## `arguments` binding
 
