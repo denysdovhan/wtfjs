@@ -1541,7 +1541,7 @@ new f(); // -> TypeError: f is not a constructor
 
 ### 💡 Explanation:
 
-Arrow functions cannot be used as constructors and will throw an error when used with new. Because has a lexical `this`, and do not have a `prototype` property, so it would not make much sense.
+Arrow functions cannot be used as constructors and will throw an error when used with `new`. Because they have a lexical `this`, and do not have a `prototype` property, so it would not make much sense.
 
 ## `arguments` and arrow functions
 
