@@ -167,7 +167,7 @@ const foo = function() {};
 true;
 ```
 
-참조 [`[]`은 truthy 이지만 `true`은 아니다](#-is-truthy-but-not-true).
+참조 [`[]`은 truthy 이지만 `true`은 아니다](#%EC%9D%80-truthy-%EC%9D%B4%EC%A7%80%EB%A7%8C-true%EB%8A%94-%EC%95%84%EB%8B%88%EB%8B%A4).
 
 - [**12.5.9** 논리 연산자 NOT (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.13** 추상 평등](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
