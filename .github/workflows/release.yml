@@ -8,15 +8,28 @@ jobs:
     name: Prepare release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Install
-        uses: bahmutov/npm-install@v1
-      - name: Generate TOC
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+
+      - name: ⬇️ Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: ⬢ Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '*'
+          cache: npm
+
+      - name: 📦 Install Packages
+        run: npm ci
+
+      - name: 📝 Generate TOC
         run: npm run toc
-      - name: Format files
+
+      - name: 💅 Format files
         run: npm run format
-      - name: Release
+
+      - name: 🚀 Release
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
