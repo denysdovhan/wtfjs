@@ -7,8 +7,8 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "toc": "doctoc --github --title '# Table of Contents' --maxlevel 2 README*.md",
-    "format": "prettier --write '*.{json,js}'"
+    "toc": "npx doctoc --github --title '# Table of Contents' --maxlevel 2 README*.md",
+    "format": "npx prettier --write '*.{json,js}'"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
   "homepage": "https://github.com/denysdovhan/wtfjs#readme",
   "devDependencies": {
     "@semantic-release/git": "^9.0.0",
+    "doctoc": "^2.1.0",
     "husky": "^0.14.3",
     "lint-staged": "^10.5.3",
     "prettier": "^1.14.2",
@@ -40,7 +41,6 @@
     "boxen": "^1.1.0",
     "chalk": "^1.1.1",
     "default-pager": "^1.1.0",
-    "doctoc": "^2.1.0",
     "meow": "^3.7.0",
     "msee": "^0.3.3",
     "through2": "^2.0.2",
