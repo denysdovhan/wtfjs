@@ -6,9 +6,11 @@
     "wtfjs": "wtfjs.js"
   },
   "scripts": {
-    "precommit": "lint-staged",
     "toc": "npx doctoc --github --title '# Table of Contents' --maxlevel 2 README*.md",
-    "format": "npx prettier --write '*.{json,js}'"
+    "format": "prettier --write --ignore-unknown .",
+    "test": "prettier --check --ignore-unknown .",
+    "release": "npx semantic-release",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -32,9 +34,9 @@
   "devDependencies": {
     "@semantic-release/git": "^9.0.0",
     "doctoc": "^2.1.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^10.5.3",
-    "prettier": "^1.14.2",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.4.0",
+    "prettier": "^2.6.2",
     "semantic-release": "^17.3.7"
   },
   "dependencies": {
@@ -48,11 +50,20 @@
   },
   "lint-staged": {
     "README*.md": [
-      "npm run toc"
+      "npm run toc",
+      "npm run format"
     ],
-    "*.{js,json}": [
-      "prettier --write"
+    "**/*": [
+      "npm run format"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "prettier": {
+    "embeddedLanguageFormatting": "off"
   },
   "release": {
     "plugins": [
