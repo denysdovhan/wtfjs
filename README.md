@@ -33,7 +33,7 @@ The source is available here: <https://github.com/denysdovhan/wtfjs>
 
 Currently, there are these translations of **wtfjs**:
 
-- [中文版](./README-zh-cn.md)
+- [中文](./README-zh-cn.md)
 - [हिंदी](./README-hi.md)
 - [Français](./README-fr-fr.md)
 - [Português do Brasil](./README-pt-br.md)
@@ -1895,7 +1895,7 @@ Write them in the console. They will return the value defined in the last object
 
 When inspecting each `{}`, they returns undefined. If you inspect `{foo: 'bar'}{}`, you will find `{foo: 'bar'}` is `'bar'`.
 
-There are two meanings for `{}`: an object or a block. For example, the `{}` in `() => {}` means block. So we need to use `() => ({}`) to return an object.
+There are two meanings for `{}`: an object or a block. For example, the `{}` in `() => {}` means block. So we need to use `() => ({})` to return an object.
 
 Let's use `{foo: 'bar'}` as a block. Write this snippet in your console:
 
