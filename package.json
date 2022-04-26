@@ -49,7 +49,10 @@
     "update-notifier": "^2.0.0"
   },
   "lint-staged": {
-    "README*.md": "npm run toc",
+    "README*.md": [
+      "npm run toc",
+      "prettier --write --ignore-unknown"
+    ],
     "**/*": "prettier --write --ignore-unknown"
   },
   "husky": {
