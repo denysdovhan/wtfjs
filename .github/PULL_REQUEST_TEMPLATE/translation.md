@@ -1,4 +1,4 @@
-<!-- 
+<!--
 **If you want a translation, please, make one.** Issues with translation requests will be closed in favor of PRs.
 
 Before sending a PR with translation, please check if there are any existing PRs with translation to your language.

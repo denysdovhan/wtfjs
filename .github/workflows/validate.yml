@@ -1,11 +1,11 @@
-name: Release
+name: Validate
 on:
   push:
-    branches:
-      - master
+  pull_request:
+
 jobs:
-  release:
-    name: Prepare release
+  validate:
+    name: Validate
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel Previous Runs
@@ -23,14 +23,5 @@ jobs:
       - name: 📦 Install Packages
         run: npm ci
 
-      - name: 📝 Generate TOC
-        run: npm run toc
-
-      - name: 💅 Format files
-        run: npm run format
-
-      - name: 🚀 Release
-        run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: 💅 Check formatting
+        run: npm test

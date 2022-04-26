@@ -1,3 +1,5 @@
+[![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua/)
+
 # What the f\*ck JavaScript?
 
 [![WTFPL 2.0][license-image]][license-url]
@@ -103,7 +105,6 @@ Currently, there are these translations of **wtfjs**:
   - [Tricky return](#tricky-return)
   - [Chaining assignments on object](#chaining-assignments-on-object)
   - [Accessing object properties with arrays](#accessing-object-properties-with-arrays)
-  - [Null and Relational Operators](#null-and-relational-operators)
   - [`Number.toFixed()` display different numbers](#numbertofixed-display-different-numbers)
   - [`Math.max()` less than `Math.min()`](#mathmax-less-than-mathmin)
   - [Comparing `null` to `0`](#comparing-null-to-0)
@@ -111,7 +112,6 @@ Currently, there are these translations of **wtfjs**:
   - [Default behavior Array.prototype.sort()](#default-behavior-arrayprototypesort)
   - [resolve() won't return Promise instance](#resolve-wont-return-promise-instance)
   - [`{}{}` is undefined](#-is-undefined)
-  - [`min` is greater than `max`](#min-is-greater-than-max)
   - [`arguments` binding](#arguments-binding)
   - [An `alert` from hell](#an-alert-from-hell)
   - [An infinite timeout](#an-infinite-timeout)
@@ -812,9 +812,9 @@ null instanceof Object; // false
 
 The behavior of `typeof` operator is defined in this section of the specification:
 
-- [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
+- [**13.5.3** The `typeof` Operator](https://262.ecma-international.org/12.0/#sec-typeof-operator)
 
-According to the specification, the `typeof` operator returns a string according to [Table 35: `typeof` Operator Results](https://www.ecma-international.org/ecma-262/#table-35). For `null`, ordinary, standard exotic and non-standard exotic objects, which do not implement `[[Call]]`, it returns the string `"object"`.
+According to the specification, the `typeof` operator returns a string according to [Table 37: `typeof` Operator Results](https://262.ecma-international.org/12.0/#table-typeof-operator-results). For `null`, ordinary, standard exotic and non-standard exotic objects, which do not implement `[[Call]]`, it returns the string `"object"`.
 
 However, you can check the type of an object by using the `toString` method.
 
@@ -1539,7 +1539,7 @@ new f(); // -> TypeError: f is not a constructor
 
 ### 💡 Explanation:
 
-Arrow functions cannot be used as constructors and will throw an error when used with new. Because has a lexical `this`, and do not have a `prototype` property, so it would not make much sense.
+Arrow functions cannot be used as constructors and will throw an error when used with `new`. Because they have a lexical `this`, and do not have a `prototype` property, so it would not make much sense.
 
 ## `arguments` and arrow functions
 
@@ -1665,19 +1665,6 @@ The brackets `[]` operator converts the passed expression using `toString`. Conv
 ["property"].toString(); // -> 'property'
 ```
 
-## Null and Relational Operators
-
-```js
-null > 0; // false
-null == 0; // false
-
-null >= 0; // true
-```
-
-### 💡 Explanation:
-
-Long story short, if `null` is less than `0` is `false`, then `null >= 0` is `true`. Read in-depth explanation for this [here](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274).
-
 ## `Number.toFixed()` display different numbers
 
 `Number.toFixed()` can behave a bit strange in different browsers. Check out this example:
@@ -1721,17 +1708,32 @@ See for reference `NOTE 2` on the ECMA-262 definition for `toFixed`.
 
 ## `Math.max()` less than `Math.min()`
 
+I find this example hilarious:
+
 ```js
-Math.min(1, 4, 7, 2); // -> 1
-Math.max(1, 4, 7, 2); // -> 7
-Math.min(); // -> Infinity
-Math.max(); // -> -Infinity
 Math.min() > Math.max(); // -> true
+Math.min() < Math.max(); // -> false
 ```
 
 ### 💡 Explanation:
 
-- [Why is Math.max() less than Math.min()?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min) by Charlie Harvey
+This is a simple one. Let's consider each part of this expression separately:
+
+```js
+Math.min(); // -> Infinity
+Math.max(); // -> -Infinity
+Infinity > -Infinity; // -> true
+```
+
+Why so? Well, `Math.max()` is not the same thing as `Number.MAX_VALUE`. It does not return the largest possible number.
+
+`Math.max` takes arguments, tries to convert the to numbers, compares each one and then returns the largest remaining. If no arguments are given, the result is −∞. If any value is `NaN`, the result is `NaN`.
+
+The opposite is happening for `Math.min`. `Math.min` returns ∞, if no arguments are given.
+
+- [**15.8.2.11** Math.max](https://262.ecma-international.org/5.1/#sec-15.8.2.11)
+- [**15.8.2.11** Math.min](https://262.ecma-international.org/5.1/#sec-15.8.2.12)
+- [Why is `Math.max()` less than `Math.min()`?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min) by Charlie Harvey
 
 ## Comparing `null` to `0`
 
@@ -1782,6 +1784,7 @@ true;
 
 - [**7.2.12** Abstract Relational Comparison](https://www.ecma-international.org/ecma-262/#sec-abstract-relational-comparison)
 - [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
+- [An in-depth explanation](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274)
 
 ## Same variable redeclaration
 
@@ -1904,35 +1907,6 @@ if (true) {
 
 Surprisingly, it behaviors the same! You can guess here that `{foo: 'bar'}{}` is a block.
 
-## `min` is greater than `max`
-
-I find this example hilarious:
-
-```js
-Math.min() > Math.max(); // -> true
-Math.min() < Math.max(); // -> false
-```
-
-### 💡 Explanation:
-
-This is a simple one. Let's consider each part of this expression separately:
-
-```js
-Math.min(); // -> Infinity
-Math.max(); // -> -Infinity
-Infinity > -Infinity; // -> true
-```
-
-Why so? Well, `Math.max()` is not the same thing as `Number.MAX_VALUE`. It does not return the largest possible number.
-
-`Math.max` takes arguments, tries to convert the to numbers, compares each one and then returns the largest remaining. If no arguments are given, the result is −∞. If any value is `NaN`, the result is `NaN`.
-
-The opposite is happening for `Math.min`. `Math.min` returns ∞, if no arguments are given.
-
-- [**15.8.2.11** Math.max](https://262.ecma-international.org/5.1/#sec-15.8.2.11)
-- [**15.8.2.11** Math.min](https://262.ecma-international.org/5.1/#sec-15.8.2.12)
-- [Why is `Math.max()` less than `Math.min()`?](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min)
-
 ## `arguments` binding
 
 Consider this function:
@@ -2036,7 +2010,7 @@ The console refuses to run it at all!
 
 ### 💡 Explanation:
 
-`WindowOrWorkerGlobalScope.setTimeout()` can be called with `code` as first argument, which will be passed on to `eval`, which is bad. Eval will coerce her input to String, and evaluate what is produced, so Objects becomes `'[object Object]'` which has hmmm ...  an `'Unexpected identifier'`!
+`WindowOrWorkerGlobalScope.setTimeout()` can be called with `code` as first argument, which will be passed on to `eval`, which is bad. Eval will coerce her input to String, and evaluate what is produced, so Objects becomes `'[object Object]'` which has hmmm ... an `'Unexpected identifier'`!
 
 - [eval()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval) on MDN (don't use this)
 - [WindowOrWorkerGlobalScope.setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) on MDN

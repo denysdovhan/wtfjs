@@ -21,33 +21,32 @@ const cli = meow(
     "",
     "Examples",
     "  wtfjs",
-    "  wtfjs --lang pt-br"
+    "  wtfjs --lang pt-br",
   ],
   {
-    string: ["lang"],
-    alias: {
-      l: "lang",
-      h: "help"
+    flags: {
+      lang: {
+        type: "string",
+        alias: "l",
+        default: "",
+      },
     },
-    default: {
-      lang: ""
-    }
   }
 );
 
 const boxenOpts = {
   borderColor: "yellow",
   margin: {
-    bottom: 1
+    bottom: 1,
   },
   padding: {
     right: 1,
-    left: 1
-  }
+    left: 1,
+  },
 };
 
 const mseeOpts = {
-  paragraphEnd: "\n\n"
+  paragraphEnd: "\n\n",
 };
 
 const notifier = updateNotifier({ pkg });
@@ -55,7 +54,7 @@ const notifier = updateNotifier({ pkg });
 process.env.PAGER = process.env.PAGER || "less";
 process.env.LESS = process.env.LESS || "FRX";
 
-const lang = cli.flags.lang
+const lang = (cli.flags.lang || "")
   .toLowerCase()
   .split("-")
   .map((l, i) => (i === 0 ? l : l.toUpperCase()))
@@ -66,7 +65,7 @@ const translation = join(
   !lang ? "./README.md" : `./README-${lang}.md`
 );
 
-fs.stat(translation, function(err, stats) {
+fs.stat(translation, function (err, stats) {
   if (err) {
     console.log("The %s translation does not exist", chalk.bold(lang));
     return;
@@ -74,14 +73,12 @@ fs.stat(translation, function(err, stats) {
 
   fs.createReadStream(translation)
     .pipe(
-      obj(function(chunk, enc, cb) {
+      obj(function (chunk, enc, cb) {
         const message = [];
 
         if (notifier.update) {
           message.push(
-            `Update available: {green.bold ${
-              notifier.update.latest
-            }} {dim current: ${notifier.update.current}}`
+            `Update available: {green.bold ${notifier.update.latest}} {dim current: ${notifier.update.current}}`
           );
           message.push(`Run {blue npm install -g ${pkg.name}} to update.`);
           this.push(boxen(message.join("\n"), boxenOpts));
