@@ -1,0 +1,27 @@
+name: Validate
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+
+      - name: ⬇️ Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: ⬢ Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "*"
+          cache: npm
+
+      - name: 📦 Install Packages
+        run: npm ci
+
+      - name: 💅 Check formatting
+        run: npm test
