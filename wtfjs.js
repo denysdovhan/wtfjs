@@ -24,13 +24,12 @@ const cli = meow(
     "  wtfjs --lang pt-br",
   ],
   {
-    string: ["lang"],
-    alias: {
-      l: "lang",
-      h: "help",
-    },
-    default: {
-      lang: "",
+    flags: {
+      lang: {
+        type: "string",
+        alias: "l",
+        default: "",
+      },
     },
   }
 );
@@ -55,7 +54,7 @@ const notifier = updateNotifier({ pkg });
 process.env.PAGER = process.env.PAGER || "less";
 process.env.LESS = process.env.LESS || "FRX";
 
-const lang = cli.flags.lang
+const lang = (cli.flags.lang || "")
   .toLowerCase()
   .split("-")
   .map((l, i) => (i === 0 ? l : l.toUpperCase()))
