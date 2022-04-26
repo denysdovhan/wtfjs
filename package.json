@@ -7,8 +7,8 @@
   },
   "scripts": {
     "toc": "npx doctoc --github --title '# Table of Contents' --maxlevel 2 README*.md",
-    "format": "prettier --write --ignore-unknown .",
-    "test": "prettier --check --ignore-unknown .",
+    "format": "prettier --write .",
+    "test": "prettier --check .",
     "release": "npx semantic-release",
     "prepare": "husky install"
   },
@@ -49,13 +49,8 @@
     "update-notifier": "^2.0.0"
   },
   "lint-staged": {
-    "README*.md": [
-      "npm run toc",
-      "npm run format"
-    ],
-    "**/*": [
-      "npm run format"
-    ]
+    "README*.md": "npm run toc",
+    "**/*": "prettier --write --ignore-unknown"
   },
   "husky": {
     "hooks": {
