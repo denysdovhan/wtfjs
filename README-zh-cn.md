@@ -11,7 +11,7 @@ JavaScript 是一个不错的语言。它的语法简单，生态系统也很庞
 
 我们知道，JavaScript 是一个非常有趣的语言，但同时也充满了各种奇怪的行为。这些奇怪的行为有时会搞砸我们的日常工作，有时则会让我们忍俊不禁。
 
-WTFJS 的灵感源于 [Brian Leroux](https://twitter.com/brianleroux)。这个列表受到他 [在2012年的 dotJS 上的演讲 **“WTFJS”**](https://www.youtube.com/watch?v=et8xNAc2ic8) 的高度启发：
+WTFJS 的灵感源于 [Brian Leroux](https://twitter.com/brianleroux)。这个列表受到他 [在 2012 年的 dotJS 上的演讲 **“WTFJS”**](https://www.youtube.com/watch?v=et8xNAc2ic8) 的高度启发：
 
 [![dotJS 2012 - Brian Leroux - WTFJS](https://img.youtube.com/vi/et8xNAc2ic8/0.jpg)](https://www.youtube.com/watch?v=et8xNAc2ic8)
 
@@ -103,15 +103,13 @@ $ npm install -g wtfjs
   - [棘手的返回](#%E6%A3%98%E6%89%8B%E7%9A%84%E8%BF%94%E5%9B%9E)
   - [对象的链式赋值](#%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%93%BE%E5%BC%8F%E8%B5%8B%E5%80%BC)
   - [使用数组访问对象属性](#%E4%BD%BF%E7%94%A8%E6%95%B0%E7%BB%84%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7)
-  - [Null 和关系运算符](#null-%E5%92%8C%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6)
   - [`Number.toFixed()` 显示不同的数字](#numbertofixed-%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%90%8C%E7%9A%84%E6%95%B0%E5%AD%97)
-  - [`Math.max()` 小于 `Math.min()`](#mathmax-%E5%B0%8F%E4%BA%8E-mathmin)
+  - [`min` 大于 `max`](#min-%E5%A4%A7%E4%BA%8E-max)
   - [比较 `null` 和 `0`](#%E6%AF%94%E8%BE%83-null-%E5%92%8C-0)
   - [相同变量重复声明](#%E7%9B%B8%E5%90%8C%E5%8F%98%E9%87%8F%E9%87%8D%E5%A4%8D%E5%A3%B0%E6%98%8E)
   - [Array.prototype.sort() 的默认行为](#arrayprototypesort-%E7%9A%84%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA)
   - [resolve() 不会返回 Promise 实例](#resolve-%E4%B8%8D%E4%BC%9A%E8%BF%94%E5%9B%9E-promise-%E5%AE%9E%E4%BE%8B)
   - [`{}{}` 是 undefined](#-%E6%98%AF-undefined)
-  - [`min` 大于 `max`](#min-%E5%A4%A7%E4%BA%8E-max)
   - [`arguments` 绑定](#arguments-%E7%BB%91%E5%AE%9A)
   - [来自地狱的 `alert`](#%E6%9D%A5%E8%87%AA%E5%9C%B0%E7%8B%B1%E7%9A%84-alert)
   - [没有尽头的计时](#%E6%B2%A1%E6%9C%89%E5%B0%BD%E5%A4%B4%E7%9A%84%E8%AE%A1%E6%97%B6)
@@ -120,7 +118,7 @@ $ npm install -g wtfjs
   - [再 new 一次](#%E5%86%8D-new-%E4%B8%80%E6%AC%A1)
   - [你应该用上分号](#%E4%BD%A0%E5%BA%94%E8%AF%A5%E7%94%A8%E4%B8%8A%E5%88%86%E5%8F%B7)
   - [用空格分割（split）字符串](#%E7%94%A8%E7%A9%BA%E6%A0%BC%E5%88%86%E5%89%B2split%E5%AD%97%E7%AC%A6%E4%B8%B2)
-  - [对字符串stringify](#%E5%AF%B9%E5%AD%97%E7%AC%A6%E4%B8%B2stringify)
+  - [对字符串 stringify](#%E5%AF%B9%E5%AD%97%E7%AC%A6%E4%B8%B2-stringify)
   - [对数字和 `true` 的非严格相等比较](#%E5%AF%B9%E6%95%B0%E5%AD%97%E5%92%8C-true-%E7%9A%84%E9%9D%9E%E4%B8%A5%E6%A0%BC%E7%9B%B8%E7%AD%89%E6%AF%94%E8%BE%83)
 - [其他资源](#%E5%85%B6%E4%BB%96%E8%B5%84%E6%BA%90)
 - [🤝 捐赠支持](#-%E6%8D%90%E8%B5%A0%E6%94%AF%E6%8C%81)
@@ -469,7 +467,7 @@ document.all == null; // -> true
 > 这个有意的对违反标准的规范明确地允许该 API 与 `undefined` 使用[严格相等比较](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)得出 `false` 而使用[抽象相等比较](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison) 得出 `true`。
 >
 > &mdash; [“废弃功能 - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec
-> &mdash; YDKJS（你不懂JS） - 类型与语法 中的 [“第 4 章 - ToBoolean - 假值](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects)
+> &mdash; YDKJS（你不懂 JS） - 类型与语法 中的 [“第 4 章 - ToBoolean - 假值](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects)
 
 ## 最小值大于零
 
@@ -509,7 +507,7 @@ new Foo() instanceof null;
 
 这不是规范的一部分。这只是一个缺陷，且已经修复了。所以将来不会有这个问题。
 
-### Super constructor null of Foo is not a constructor (Foo的超类的构造函数null不是构造函数)
+### Super constructor null of Foo is not a constructor (Foo 的超类的构造函数 null 不是构造函数)
 
 这是前述缺陷的后续行为，在现代环境中可以复现（在 Chrome 71 和 Node.js v11.8.0 测试成功）。
 
@@ -823,9 +821,9 @@ null instanceof Object; // false
 
 `typeof` 运算符的行为在本节的规范中定义：
 
-- [**12.5.5** `typeof` 操作符](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
+- [**13.5.3** `typeof` 操作符](https://262.ecma-international.org/12.0/#sec-typeof-operator)
 
-根据规范，`typeof` 操作符返回一个字符串，且必须符合 [Table 35: `typeof` 操作符 返回值](https://www.ecma-international.org/ecma-262/#table-35)。对于没有实现 `[[Call]]` 的 `null`、普通对象、标准特异对象和非标准特异对象，它返回字符串 `"object“`。
+根据规范，`typeof` 操作符返回一个字符串，且必须符合 [Table 37: `typeof` 操作符 返回值](https://262.ecma-international.org/12.0/#table-typeof-operator-results)。对于没有实现 `[[Call]]` 的 `null`、普通对象、标准特异对象和非标准特异对象，它返回字符串 `"object“`。
 
 但是，你可以使用 `toString` 方法检查对象的类型。
 
@@ -866,6 +864,7 @@ Object.prototype.toString.call(null);
 0.1 + 0.2; // -> 0.30000000000000004
 0.1 + 0.2 === 0.3; // -> false
 ```
+
 ### 💡 说明：
 
 来自于 StackOverflow 上的问题[“浮点计算坏了？”](https://stackoverflow.com/questions/588004/is-floating-point-math-broken)的答案：
@@ -1546,7 +1545,7 @@ new f(); // -> TypeError: f is not a constructor
 
 ### 💡 说明：
 
-箭头函数不能作为构造函数调用，并且会在 new 的时候抛出错误。因为它具有词域 `this`，而且它也没有 `prototype` 属性，所以这样做没什么意义。
+箭头函数不能作为构造函数调用，并且会在 `new` 的时候抛出错误。因为它具有词域 `this`，而且它也没有 `prototype` 属性，所以这样做没什么意义。
 
 ## `arguments` 和箭头函数
 
@@ -1672,20 +1671,6 @@ map["11,2,3"]; // -> true
 ["property"].toString(); // -> 'property'`
 ```
 
-## Null 和关系运算符
-
-```js
-null > 0; // false
-null == 0; // false
-
-null >= 0; // true
-```
-
-### 💡 说明：
-
-长话短说，如果 `null` 小于 `0` 是 `false`，那么 `null >= 0` 则是 `true`。
-请阅读[这里](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274)的详细解释。
-
 ## `Number.toFixed()` 显示不同的数字
 
 `Number.toFixed()` 在不同的浏览器中会表现得有点奇怪。看看这个例子：
@@ -1720,13 +1705,40 @@ null >= 0; // true
 
 在这里，那个结尾的 "5" 实际上是一个极其小的略小于 5 的分数。将其以任何常理的长度取整它都会被看作一个 5，但它在内部通常不是 5。
 
-然而 IE11 会直接在这个数字后面补0，甚至在 toFixed(20) 的时候也是这样，因为它看起来强制取整了值来减少硬件限制带来的问题。
+然而 IE11 会直接在这个数字后面补 0，甚至在 toFixed(20) 的时候也是这样，因为它看起来强制取整了值来减少硬件限制带来的问题。
 
 详见 ECMA-262 中 `NOTE 2` 的 `toFixed` 的定义。
 
 - [**20.1.3.3** Number.prototype.toFixed (`fractionDigits`)](https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed)
 
-## `Math.max()` 小于 `Math.min()`
+## `min` 大于 `max`
+
+我发现一个神奇的例子：
+
+```js
+Math.min() > Math.max(); // -> true
+Math.min() < Math.max(); // -> false
+```
+
+### 💡 说明：
+
+这是一个简单的例子。我们一步一步来：
+
+```js
+Math.min(); // -> Infinity
+Math.max(); // -> -Infinity
+Infinity > -Infinity; // -> true
+```
+
+为什么是这样呢？其实 `Math.max()` 并不会返回最大的正数，即 `Number.MAX_VALUE`。
+
+`Math.max` 接受两个参数，将它们转换到数字，比较之后返回最大的那个。若没有传入参数，结果将是 -∞。若参数中存在 `NaN`，则返回 `NaN`。
+
+反过来，当 `Math.min` 没有传入参数，会返回 ∞。
+
+- [**15.8.2.11** Math.max](https://262.ecma-international.org/5.1/#sec-15.8.2.11)
+- [**15.8.2.11** Math.min](https://262.ecma-international.org/5.1/#sec-15.8.2.12)
+- [为什么 `Math.max()` 小于 `Math.min()`？](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min)## `Math.max()` 小于 `Math.min()`
 
 ```js
 Math.min(1, 4, 7, 2); // -> 1
@@ -1788,6 +1800,7 @@ true;
 
 - [**7.2.12** 抽象关系比较](https://www.ecma-international.org/ecma-262/#sec-abstract-relational-comparison)
 - [**7.2.13** 抽象相等比较](https://www.ecma-international.org/ecma-262/#sec-abstract-equality-comparison)
+- [一篇深入浅出的说明](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274)
 
 ## 相同变量重复声明
 
@@ -1872,7 +1885,7 @@ thePromise.then(value => {
 
 ### 💡 说明：
 
-> 此函数将类 promise 对象的多层嵌套平铺到单层嵌套。（例如上述的promise函数resolve了另一个会resolve出其他对象的promise函数）
+> 此函数将类 promise 对象的多层嵌套平铺到单层嵌套。（例如上述的 promise 函数 resolve 了另一个会 resolve 出其他对象的 promise 函数）
 
 &ndash; [MDN 上的 Promise.resolve()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
 
@@ -1910,35 +1923,6 @@ if (true) {
 
 啊哈，一样的结果！所以 `{foo: 'bar'}{}` 中的花括号就是表示代码块。
 
-## `min` 大于 `max`
-
-我发现一个神奇的例子：
-
-```js
-Math.min() > Math.max(); // -> true
-Math.min() < Math.max(); // -> false
-```
-
-### 💡 说明：
-
-这是一个简单的例子。我们一步一步来：
-
-```js
-Math.min(); // -> Infinity
-Math.max(); // -> -Infinity
-Infinity > -Infinity; // -> true
-```
-
-为什么是这样呢？其实 `Math.max()` 并不会返回最大的正数，即 `Number.MAX_VALUE`。
-
-`Math.max` 接受两个参数，将它们转换到数字，比较之后返回最大的那个。若没有传入参数，结果将是 -∞。若参数中存在 `NaN`，则返回 `NaN`。
-
-反过来，当 `Math.min` 没有传入参数，会返回 ∞。
-
-- [**15.8.2.11** Math.max](https://262.ecma-international.org/5.1/#sec-15.8.2.11)
-- [**15.8.2.11** Math.min](https://262.ecma-international.org/5.1/#sec-15.8.2.12)
-- [为什么 `Math.max()` 小于 `Math.min()`？](https://charlieharvey.org.uk/page/why_math_max_is_less_than_math_min)
-
 ## `arguments` 绑定
 
 考虑以下函数：
@@ -1973,7 +1957,7 @@ a(1); // > "hello"
 
 这一串代码是基于多个采用了八进制转义序列的字符串构造的。
 
-任何码值小于256的字符（又称扩展ASCII码表域）都可以用 `\` 加上其八进制代码的转义方式写出来。上面这个简单的例子就是将 `alert` 编码到八进制转义序列。
+任何码值小于 256 的字符（又称扩展 ASCII 码表域）都可以用 `\` 加上其八进制代码的转义方式写出来。上面这个简单的例子就是将 `alert` 编码到八进制转义序列。
 
 - [Martin Kleppe 的推特](https://twitter.com/aemkei/status/897172907222237185)
 - [JavaScript 字符转义序列](https://mathiasbynens.be/notes/javascript-escapes#octal)
@@ -1992,7 +1976,7 @@ setTimeout(() => console.log("called"), Infinity); // -> <timeoutId>
 
 ### 💡 说明：
 
-通常运行时内部会将延时存储为一个32位的有符号整数，而上述代码会导致运行时在解析延时参数时发生整数溢出，从而使函数立即执行而不等待。
+通常运行时内部会将延时存储为一个 32 位的有符号整数，而上述代码会导致运行时在解析延时参数时发生整数溢出，从而使函数立即执行而不等待。
 
 例如，在 Node.js 中我们可以看到这样的警告信息：
 
@@ -2104,7 +2088,7 @@ new new Foo(":D")().val; // -> ':D'
 
 ### 💡 说明：
 
-JavaScript 与其他面向对象语言不同，它的构造函数仅是一个比较特殊的函数。虽然class语法糖让你可以创建一个字面上的类，但实例化后它就变成了函数，因此它可以再次实例化。
+JavaScript 与其他面向对象语言不同，它的构造函数仅是一个比较特殊的函数。虽然 class 语法糖让你可以创建一个字面上的类，但实例化后它就变成了函数，因此它可以再次实例化。
 
 虽然我没有测试过，但我觉得最后的那个表达式应该是这样分析的：
 
@@ -2132,7 +2116,7 @@ delete foo.val; // 移除这个实例的“val”属性，让它退回（defer b
 foo.val; // -> ':D'
 ```
 
-- [扩展Function的类：再new一次](https://github.com/denysdovhan/wtfjs/issues/78)
+- [扩展 Function 的类：再 new 一次](https://github.com/denysdovhan/wtfjs/issues/78)
 
 ## 你应该用上分号
 
@@ -2188,7 +2172,7 @@ class SomeClass {
 - Ryan Cavanaugh 发布的 [关于这个例子的原创推特](https://twitter.com/SeaRyanC/status/1331656278104440833)
 - Nabil Tharwat 发布的 [包含解释的推特](https://twitter.com/kl13nt/status/1331742810932916227?s=20)
 
-## 对字符串stringify
+## 对字符串 stringify
 
 这会导致一个缺陷，我曾经修了好几天：
 
@@ -2225,7 +2209,7 @@ Boolean(1.1); // -> true
 
 根据规范：
 
-> 比较 x == y 时，当x和y都有值，会返回 true 或 false。比较过程如下所述：
+> 比较 x == y 时，当 x 和 y 都有值，会返回 true 或 false。比较过程如下所述：
 >
 > 4. 若 `Type(x)` 是数字且 `Type(y)` 是字符串，则会返回 `x == ! ToNumber(y)` 的结果。
 
@@ -2245,27 +2229,27 @@ Boolean(1.1); // -> true
 
 # 其他资源
 
-- [wtfjs.com](http://wtfjs.com/) — 一些非常特别的不规范与不一致的集合，以及对于web编程语言来说非常痛苦的时光。
+- [wtfjs.com](http://wtfjs.com/) — 一些非常特别的不规范与不一致的集合，以及对于 web 编程语言来说非常痛苦的时光。
 - [Wat](https://www.destroyallsoftware.com/talks/wat) — CodeMash 2012 中 Gary Bernhardt 的演讲
 - [What the... JavaScript?](https://www.youtube.com/watch?v=2pL28CcEijU) — Kyle Simpsons 在 Forward 2 的演讲，描述了“疯狂的 JavaScript”。他希望帮助你写出更干净、更优雅、更易读的代码，鼓励人们为开源社区做出贡献。
 - [Zeros in JavaScript](http://zero.milosz.ca/) — 针对 JavaScript 中的 `==`、`===`、`+` 和 `*` 的真值表。
 
 # 🤝 捐赠支持
 
-你好！这个项目是我在空闲时间做的，作为我的主要工作的补充。我希望你在阅读这篇文章时保持愉快的心情。请考虑支持我🙏。
+你好！这个项目是我在空闲时间做的，作为我的主要工作的补充。我希望你在阅读这篇文章时保持愉快的心情。请考虑支持我 🙏。
 
 每一次捐赠对我来说意义重大。你的捐赠是对我的工作的肯定：我的工作有价值。
 
 **🙏 感谢您的支持！ 🙏**
 
-| 服务          |                     链接                     |                                                                   动作                                                                   |
+| 服务             |                     链接                     |                                                                    动作                                                                    |
 | ---------------- | :------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------: |
 | **Patreon**      |        [Become a patron][patreon-url]        | <a href="https://patreon.com/denysdovhan"><img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="120px"></a> |
 | **BuyMeACoffee** |     [Buy me a cup of ☕️ or 🥤][bmc-url]     |    <a href="https://buymeacoffee.com/denysdovhan"><img src="https://cdn.buymeacoffee.com/buttons/default-black.png" width="120px"></a>     |
 | **Bitcoin**      |     `1EJsKs6rPsqa7QLoVLpe3wgcdL9Q8WmDxE`     |      <img src="https://user-images.githubusercontent.com/3459374/107130426-0ae4f800-68d6-11eb-9b86-15bf33467615.png" width="120px"/>       |
 | **Ethereum**     | `0x6aF39C917359897ae6969Ad682C14110afe1a0a1` |      <img src="https://user-images.githubusercontent.com/3459374/107130370-55b24000-68d5-11eb-93f5-075355c7fcd4.png" width="120px"/>       |
 
-> **⚠️ 提示：** 我现居乌克兰，乌克兰的银行账户没办法绑定PayPal或Stripe之类的账户。所以我没法开启 Github Sponsors、OpenCollective 和其他依赖于这些服务的捐赠渠道。对不起，目前您只能通过这些方式支持我。
+> **⚠️ 提示：** 我现居乌克兰，乌克兰的银行账户没办法绑定 PayPal 或 Stripe 之类的账户。所以我没法开启 Github Sponsors、OpenCollective 和其他依赖于这些服务的捐赠渠道。对不起，目前您只能通过这些方式支持我。
 
 # 🎓 许可证
 
