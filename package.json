@@ -40,7 +40,7 @@
     "semantic-release": "^17.3.7"
   },
   "dependencies": {
-    "boxen": "^1.1.0",
+    "boxen": "^6.2.1",
     "chalk": "^5.0.1",
     "default-pager": "^1.1.0",
     "meow": "^9.0.0",
