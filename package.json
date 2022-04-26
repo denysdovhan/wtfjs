@@ -43,7 +43,7 @@
     "boxen": "^1.1.0",
     "chalk": "^1.1.1",
     "default-pager": "^1.1.0",
-    "meow": "^3.7.0",
+    "meow": "^10.1.2",
     "msee": "^0.3.3",
     "through2": "^2.0.2",
     "update-notifier": "^2.0.0"
