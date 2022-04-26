@@ -153,7 +153,7 @@ const foo = function() {};
 考虑一下这一步：
 
 ```js
-true == "true"; // -> true
+true == "true"; // -> false
 false == "false"; // -> false
 
 // 'false' 不是空字符串，所以它的值是 true
