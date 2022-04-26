@@ -1721,6 +1721,7 @@ See for reference `NOTE 2` on the ECMA-262 definition for `toFixed`.
 - [**20.1.3.3** Number.prototype.toFixed (`fractionDigits`)](https://www.ecma-international.org/ecma-262//#sec-number.prototype.tofixed)
 
 ## `Math.max()` less than `Math.min()`
+
 I find this example hilarious:
 
 ```js
