@@ -1054,7 +1054,7 @@ f`true is ${true}, false is ${false}, array is ${[1, 2, 3]}`;
 
 ### 💡 Explanation:
 
-Well, this is not magic at all if you're familiar with _Tagged template literals_. In the example above, `f` function is a tag for template literal. Tags before template literal allow you to parse template literals with a function. The first argument of a tag function contains an array of string values. The remaining arguments are related to the expressions. Example:
+Well, this is not magic at all if you're familiar with _Tagged template literals_. In the example above, `f` function is a tag for template literal. Tags before template literal allows you to parse template literals with a function. The first argument of a tag function contains an array of string values. The remaining arguments are related to the expressions. Example:
 
 ```js
 function template(strings, ...keys) {
