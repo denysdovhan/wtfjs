@@ -35,7 +35,7 @@
     "@semantic-release/git": "^10.0.1",
     "doctoc": "^2.1.0",
     "husky": "^7.0.4",
-    "lint-staged": "^12.4.0",
+    "lint-staged": "^13.0.0",
     "prettier": "^2.6.2",
     "semantic-release": "^19.0.2"
   },
