@@ -46,7 +46,7 @@
     "meow": "^9.0.0",
     "msee": "^0.3.3",
     "through2": "^4.0.2",
-    "update-notifier": "^5.1.0"
+    "update-notifier": "^6.0.2"
   },
   "lint-staged": {
     "README*.md": [
