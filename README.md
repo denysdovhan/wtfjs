@@ -122,6 +122,7 @@ Currently, there are these translations of **wtfjs**:
   - [Split a string by a space](#split-a-string-by-a-space)
   - [A stringified string](#a-stringified-string)
   - [Non-strict comparison of a number to `true`](#non-strict-comparison-of-a-number-to-true)
+  - [setTimeout with zero delay](#settimeout-with-zero-delay)
 - [📚 Other resources](#-other-resources)
 - [🤝 Supporting](#-supporting)
 - [🎓 License](#-license)
@@ -2211,6 +2212,31 @@ So this comparison is performed like this:
 ```
 
 - [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
+
+## setTimeout with zero delay
+```
+setTimeout(() => {
+  console.log("Foo");
+}, 0);
+
+console.log("Bar");
+```
+
+The output for the above block of code returns:
+```
+Bar
+Foo
+```
+
+### 💡 Explanation:
+Although, `setTimeout` is called with `0ms` delay. It still waits for all the lines of code in the document to finish execution before it could print this.
+
+The reason being, setTimeout which is a part of Web APIs maintains its own stack which when popped goes into the callback queue/task queue. JavaScript executes all the lines of a document using the traditional call stack. The callback queue pushes the callback to the call stack only when the call stack is empty (when the entire document has been executed).
+
+**Links:**
+- [JSConf EU - What the heck is event loop anyway?](https://www.youtube.com/watch?v=8aGhZQkoFbQ&t=1560s) by Philip Roberts
+- [MDN Web Docs for Web APIs](https://developer.mozilla.org/en-US/docs/Web/API)
+- [JS Visualizer](https://www.jsv9000.app/)
 
 # 📚 Other resources
 
