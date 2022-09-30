@@ -339,7 +339,7 @@ NaN === 0 / 0; // -> false
 关于 `NaN === NaN` 的更多细节，请参阅上一个例子。
 
 - [这是 TC39 中关于 Object.is 的规范](https://tc39.es/ecma262/#sec-object.is)
-- MDN 上的[相等比较与相同值比较]](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
+- MDN 上的[相等比较与相同值比较](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
 
 ## 它是 fail
 
