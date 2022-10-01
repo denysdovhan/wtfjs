@@ -122,6 +122,8 @@ Currently, there are these translations of **wtfjs**:
   - [Split a string by a space](#split-a-string-by-a-space)
   - [A stringified string](#a-stringified-string)
   - [Non-strict comparison of a number to `true`](#non-strict-comparison-of-a-number-to-true)
+  - [Calling embedded entities (hidden access to global scope)](#calling-embedded-entities)
+  - [Calling embedded entities part 2](#calling-embedded-entities-part-2)
 - [📚 Other resources](#-other-resources)
 - [🤝 Supporting](#-supporting)
 - [🎓 License](#-license)
@@ -2209,6 +2211,71 @@ So this comparison is performed like this:
 1.1 == Number(true);
 1.1 == 1; // -> false
 ```
+
+
+## Calling embedded entities
+
+```js
+void function() {
+  onhashchange = e => console.log(e)
+}()
+```
+
+### 💡 Explanation:
+
+In this case there will be a call of an IFE function inside which the reference to the global window area is hidden.
+This is where hoisting works.
+
+This code can be represented as:
+```js
+void function() {
+  window.onhashchange = e => console.log(e)
+}()
+
+// or
+
+window.onhashchange = e => console.log(e)
+```
+
+And the same code is similar to this code:
+```js
+addEventListener('hashchange', function(event){ console.log(event) })
+```
+
+The hashchange event is fired when the fragment identifier of the URL has changed (the part of the URL beginning with and following the # symbol).
+You can use the hashchange event in an addEventListener method or use the onhashchange event handler property.
+
+If you need to use a local variable, just put the keyword of your choice:
+- var
+- let
+- const
+
+Other "hidden" global objects work in the same way. [For example, what will happen here?](#calling-embedded-entities-part-2)
+
+# Calling embedded entities part 2
+
+```js
+function foo() {
+    location = "https://google.com"
+    console.log(location)
+}
+
+foo()
+
+```
+
+### 💡 Explanation:
+
+This code is similar to the code:
+
+```js
+window.location.href = "https://google.com"
+```
+
+The following will happen: Your page will redirect
+
+
+
 
 - [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
