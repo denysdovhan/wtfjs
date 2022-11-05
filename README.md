@@ -2147,7 +2147,7 @@ Have you ever tried to split a string by a space?
 
 ### 💡 Explanation:
 
-This is expected behaviour. It's responsibility is to divide the input string every time a separator occurs in that input string. When you pass in an empty string it'll never find a separator and thus return that string.
+This is expected behaviour. Its responsibility is to divide the input string every time a separator occurs in that input string. When you pass in an empty string it'll never find a separator and thus return that string.
 
 Let's quote the specification:
 
