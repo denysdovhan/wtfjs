@@ -31,7 +31,8 @@ $ npm install -g wtfjs
 
 如今，**wtfjs** 已被翻譯成多種語言:
 
-- [中文](./README-zh-cn.md)
+- [简体中文](./README-zh-cn.md)
+- [繁體中文](./README-zh-tw.md)
 - [हिंदी](./README-hi.md)
 - [Français](./README-fr-fr.md)
 - [Português do Brasil](./README-pt-br.md)
