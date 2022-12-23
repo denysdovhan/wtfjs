@@ -476,7 +476,7 @@ Number.MIN_VALUE > 0; // -> true
 
 > `Number.MIN_VALUE` is `5e-324`, i.e. the smallest positive number that can be represented within float precision, i.e. that's as close as you can get to zero. It defines the best resolution that floats can give you.
 >
-> Now the overall smallest value is `Number.NEGATIVE_INFINITY` although it's not really numeric in a strict sense.
+> Now the overall smallest value is `Number.NEGATIVE_INFINITY` although it's not really numeric in a strict sense. Rather, unused permutations of the bits used to represent a floating point numbers are used to represent a number beyond the smallest representable floating point number.
 >
 > &mdash; [“Why is `0` less than `Number.MIN_VALUE` in JavaScript?”](https://stackoverflow.com/questions/26614728/why-is-0-less-than-number-min-value-in-javascript) at StackOverflow
 
