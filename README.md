@@ -1933,7 +1933,7 @@ a(1); // > "hello"
 
 ## An `alert` from hell
 
-This on is literally from hell:
+This one is literally from hell:
 
 ```js
 [666]["\155\141\160"]["\143\157\156\163\164\162\165\143\164\157\162"](
