@@ -37,7 +37,7 @@
     "husky": "^8.0.1",
     "lint-staged": "^13.0.0",
     "prettier": "^2.6.2",
-    "semantic-release": "^19.0.2"
+    "semantic-release": "^20.1.1"
   },
   "dependencies": {
     "boxen": "^7.0.0",
