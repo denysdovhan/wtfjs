@@ -1960,7 +1960,7 @@ setTimeout(() => console.log("called"), Infinity); // -> <timeoutId>
 // > 'called'
 ```
 
-It will executed immediately instead of infinity delay.
+It will execute immediately instead of having an infinite delay.
 
 ### 💡 Explanation:
 
