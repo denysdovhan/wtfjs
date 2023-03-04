@@ -57,7 +57,8 @@ $ npm install -g wtfjs
 
 [tr-request]: https://github.com/denysdovhan/wtfjs/blob/master/CONTRIBUTING.md#translations
 
-**Note:** Translations are maintained by their translators. They may not contain every example, and existing examples may be outdated.
+<!-- **Note:** Translations are maintained by their translators. They may not contain every example, and existing examples may be outdated. -->
+**نکته:** ترجمه ها توسط مترجم هاشون نگهداری میشن، ممکنه همه‌ی مطالب رو نداشته باشن و یا مطلب ترجمه شده تغییر کرده باشه.
 
 <!-- prettier-ignore-start -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
