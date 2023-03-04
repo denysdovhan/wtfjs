@@ -11,7 +11,8 @@
 [comment]: <> (> A list of funny and tricky JavaScript examples)
 > یه لیست از مثال های جالب و نکته‌دار جاوا اسکریپت
 
-JavaScript is a great language. It has a simple syntax, large ecosystem and, what is most important, a great community.
+[comment]: <> (JavaScript is a great language. It has a simple syntax, large ecosystem and, what is most important, a great community.)
+جاوا اسکریپت یک زبون عالی هست. سینتکس ساده، زیست‌بوم بزرگ و از همه مهم تر یه کامیونیتی عالی داره. 
 
 At the same time, we all know that JavaScript is quite a funny language with tricky parts. Some of them can quickly turn our everyday job into hell, and some of them can make us laugh out loud.
 
