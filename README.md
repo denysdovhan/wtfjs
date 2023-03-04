@@ -37,9 +37,11 @@ $ npm install -g wtfjs
 <!-- The source is available here: <https://github.com/denysdovhan/wtfjs> -->
 منبع اصلی اینجا در دسترس هست: <https://github.com/denysdovhan/wtfjs>
 
-# Translations
+<!-- # Translations -->
+# ترجمه ها
 
-Currently, there are these translations of **wtfjs**:
+<!-- # Currently, there are these translations of **wtfjs**: -->
+در زمان حال، این ترجمه ها از **wtfjs** موجود هست:
 
 - [中文](./README-zh-cn.md)
 - [हिंदी](./README-hi.md)
