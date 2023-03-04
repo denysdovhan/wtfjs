@@ -1,6 +1,6 @@
 [![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua/)
 
-[comment]: <> (# What the f\*ck JavaScript?)
+<!-- What the f\*ck JavaScript? -->
 # جاوا اسکریپت چه لعنتی‌ای هست؟
 
 [![WTFPL 2.0][license-image]][license-url]
@@ -8,16 +8,16 @@
 [![Patreon][patreon-image]][patreon-url]
 [![Buy Me A Coffee][bmc-image]][bmc-url]
 
-[comment]: <> (> A list of funny and tricky JavaScript examples)
+<!-- A list of funny and tricky JavaScript examples -->
 > یه لیست از مثال های جالب و نکته‌دار جاوا اسکریپت
 
-[comment]: <> (JavaScript is a great language. It has a simple syntax, large ecosystem and, what is most important, a great community.)
+<!-- JavaScript is a great language. It has a simple syntax, large ecosystem and, what is most important, a great community. -->
 جاوا اسکریپت یک زبون عالی هست. سینتکس ساده، زیست‌بوم بزرگ و از همه مهم تر یه کامیونیتی عالی داره. 
 
-<!-- The original idea for WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux). This list is highly inspired by his talk [“WTFJS” at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8): -->
+<!-- At the same time, we all know that JavaScript is quite a funny language with tricky parts. Some of them can quickly turn our everyday job into hell, and some of them can make us laugh out loud. -->
 و در عین حال، هممون میدونیم که جاوا اسکریپت خیلی زبون جالب با بخش های نکته‌داری هست. بعضی از اونها میتونن خیلی سریع کار هر روزمون رو به جهنم تبدیل کنن و بعضی از اونها میتونن باعث بشن با صدای بلند بخندیم.  
 
-[comment]: <> (The original idea for WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux). This list is highly inspired by his talk [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):)
+<!-- The original idea for WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux). This list is highly inspired by his talk [“WTFJS” at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8): -->
 صاحب ایده‌ی اصلی WTFJS برای [Brian Leroux](https://twitter.com/brianleroux) هست. 
 
 [![dotJS 2012 - Brian Leroux - WTFJS](https://img.youtube.com/vi/et8xNAc2ic8/0.jpg)](https://www.youtube.com/watch?v=et8xNAc2ic8)
