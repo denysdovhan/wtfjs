@@ -34,7 +34,8 @@ $ npm install -g wtfjs
 <!-- You should be able to run `wtfjs` at the command line now. This will open the manual in your selected `$PAGER`. Otherwise, you may continue reading on here. -->
 حالا باید بتونید با دستور `wtfjs` اجرا کنید. این کتابچه رو باز میکنه داخل `$PAGER` انتخاب شده. وگرنه میتونید از همین جا هم بخونید. (چون نتونستیم زبون فارسی رو به طور رسمی اضافه کنیم به منبع اصلی، زبون فارسی در دسترس نیست با این روش.)
 
-The source is available here: <https://github.com/denysdovhan/wtfjs>
+<!-- The source is available here: <https://github.com/denysdovhan/wtfjs> -->
+منبع اصلی اینجا در دسترس هست: <https://github.com/denysdovhan/wtfjs>
 
 # Translations
 
