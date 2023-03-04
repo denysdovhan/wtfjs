@@ -18,7 +18,7 @@
 و در عین حال، هممون میدونیم که جاوا اسکریپت خیلی زبون جالب با بخش های نکته‌داری هست. بعضی از اونها میتونن خیلی سریع کار هر روزمون رو به جهنم تبدیل کنن و بعضی از اونها میتونن باعث بشن با صدای بلند بخندیم.  
 
 [comment]: <> (The original idea for WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux). This list is highly inspired by his talk [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):)
-صاحب ایده‌ی اصلی WTFJS برای [Brian Leroux](https://twitter.com/brianleroux) هست.
+صاحب ایده‌ی اصلی WTFJS برای [Brian Leroux](https://twitter.com/brianleroux) هست. 
 
 [![dotJS 2012 - Brian Leroux - WTFJS](https://img.youtube.com/vi/et8xNAc2ic8/0.jpg)](https://www.youtube.com/watch?v=et8xNAc2ic8)
 
