@@ -8,7 +8,8 @@
 [![Patreon][patreon-image]][patreon-url]
 [![Buy Me A Coffee][bmc-image]][bmc-url]
 
-> A list of funny and tricky JavaScript examples
+[comment]: <> (> A list of funny and tricky JavaScript examples)
+> یه لیست از مثال های جالب و نکته‌دار جاوا اسکریپت
 
 JavaScript is a great language. It has a simple syntax, large ecosystem and, what is most important, a great community.
 
