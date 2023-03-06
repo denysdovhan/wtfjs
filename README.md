@@ -154,7 +154,8 @@ $ npm install -g wtfjs
 <!-- The primary goal of this list is to collect some crazy examples and explain how they work, if possible. Just because it's fun to learn something that we didn't know before. -->
 هدف اولیه‌ی این لیست، جمع کردن یکسری مثال های عجیب و توضیح دادن اینکه چطور کار میکنن هست. صرفا چون جالبه یاد گرفتن چیزی که قبلا نمیدونستیمش.
 
-If you are a beginner, you can use these notes to get a deeper dive into JavaScript. I hope these notes will motivate you to spend more time reading the specification.
+<!-- If you are a beginner, you can use these notes to get a deeper dive into JavaScript. I hope these notes will motivate you to spend more time reading the specification. -->
+اگر تازه کار هستید، میتونید از این مطالب استفاده کنید تا توی جاوا اسکریپت عمیق تر بشید. امیدوارم این قسمت باعث شده باشه انگیزه‌ی بیشتری داشته باشید برای خوندن مطالب.
 
 If you are a professional developer, you can consider these examples as a great reference for all of the quirks and unexpected edges of our beloved JavaScript.
 
