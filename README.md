@@ -191,6 +191,9 @@ console.log("hello, world!"); // > hello, world!
 true;
 ```
 
+- [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison) 
+
 <!--
 
 Array is equal not array:
