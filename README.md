@@ -173,7 +173,7 @@ $ npm install -g wtfjs
 console.log("hello, world!"); // > hello, world!
 ```
 
-# 👀 Examples
+# 👀 Examples (مثال ها)
 
 ## `[]` is equal `![]`
 
