@@ -160,7 +160,8 @@ $ npm install -g wtfjs
 <!-- If you are a professional developer, you can consider these examples as a great reference for all of the quirks and unexpected edges of our beloved JavaScript. -->
 اگر برنامه‌نویس سنیوری هستید، میتونید این مثال هارو به عنوان یک منبع عالی برای همه‌ی قسمت های عجیب و غریب جاوا اسکریپت محبوبمون در نظر بگیرید.
 
-In any case, just read this. You're probably going to find something new.
+<!-- In any case, just read this. You're probably going to find something new. -->
+در هر صورت، فقط بخونید این مطالب رو. قطعا قراره چیزای جدیدی یاد بگیرید.
 
 > **⚠️ Note:** If you enjoy reading this document, please, [consider supporting the author of this collection](#-supporting).
 
