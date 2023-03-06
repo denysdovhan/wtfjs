@@ -143,11 +143,13 @@ $ npm install -g wtfjs
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <!-- prettier-ignore-end -->
 
-# 💪🏻 Motivation
+# 💪🏻 Motivation (انگیزه)
 
-> Just for fun
+<!-- > Just for fun -->
+> فقط برای سرگرمی
 >
-> &mdash; _[**“Just for Fun: The Story of an Accidental Revolutionary”**](https://en.wikipedia.org/wiki/Just_for_Fun), Linus Torvalds_
+<!-- > &mdash; _[**“Just for Fun: The Story of an Accidental Revolutionary”**](https://en.wikipedia.org/wiki/Just_for_Fun), Linus Torvalds_ -->
+> &mdash; _[**“فقط برای سرگرمی: داستان یک انقلاب تصادفی”**](https://en.wikipedia.org/wiki/Just_for_Fun), Linus Torvalds_
 
 The primary goal of this list is to collect some crazy examples and explain how they work, if possible. Just because it's fun to learn something that we didn't know before.
 
