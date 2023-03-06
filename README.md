@@ -157,7 +157,8 @@ $ npm install -g wtfjs
 <!-- If you are a beginner, you can use these notes to get a deeper dive into JavaScript. I hope these notes will motivate you to spend more time reading the specification. -->
 اگر تازه کار هستید، میتونید از این مطالب استفاده کنید تا توی جاوا اسکریپت عمیق تر بشید. امیدوارم این قسمت باعث شده باشه انگیزه‌ی بیشتری داشته باشید برای خوندن مطالب.
 
-If you are a professional developer, you can consider these examples as a great reference for all of the quirks and unexpected edges of our beloved JavaScript.
+<!-- If you are a professional developer, you can consider these examples as a great reference for all of the quirks and unexpected edges of our beloved JavaScript. -->
+اگر برنامه‌نویس سنیوری هستید، میتونید این مثال هارو به عنوان یک منبع عالی برای همه‌ی قسمت های عجیب و غریب جاوا اسکریپت محبوبمون در نظر بگیرید.
 
 In any case, just read this. You're probably going to find something new.
 
