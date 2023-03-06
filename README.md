@@ -168,23 +168,9 @@ $ npm install -g wtfjs
 
 # ✍🏻 Notation (نشانه گذاری)
 
-**`// ->`** is used to show the result of an expression. For example:
-
-```js
-1 + 1; // -> 2
-```
-
-**`// >`** means the result of `console.log` or another output. For example:
-
+عبارت < توی کامنت ها، به معنی نتیجه ی لاگ توی کنسول مربوط به اون خط هست یا نتیجه‌ی هر خروجی دیگه‌ای. برای مثال:
 ```js
 console.log("hello, world!"); // > hello, world!
-```
-
-**`//`** is just a comment used for explanations. Example:
-
-```js
-// Assigning a function to foo constant
-const foo = function() {};
 ```
 
 # 👀 Examples
