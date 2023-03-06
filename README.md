@@ -166,7 +166,7 @@ $ npm install -g wtfjs
 <!-- > **⚠️ Note:** If you enjoy reading this document, please, [consider supporting the author of this collection](#-supporting). -->
 > **⚠️ نکته:** اگر از خوندن این منبع لذت میبرید، لطفا [حمایت از نویسنده‌ی این مطالب رو در نظر بگیرید](#-supporting)
 
-# ✍🏻 Notation
+# ✍🏻 Notation (نشانه گذاری)
 
 **`// ->`** is used to show the result of an expression. For example:
 
