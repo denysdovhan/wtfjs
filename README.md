@@ -175,7 +175,21 @@ console.log("hello, world!"); // > hello, world!
 
 # 👀 Examples (مثال ها)
 
-## `[]` is equal `![]`
+آرایه، مساوی !آرایه هست:
+```js
+[] == ![]; // -> true
+```
+### 💡 توضیح:
+عملگر == توی جاوا اسکریپت، مقدار هر طرف رو تبدیل میکنه به اعداد تا اونهارو مقایسه کنه، توی این مثال هر دو طرف میشن 0 به دلایلی، آرایه‌ها مقدار های truthy هستن داخل جاوا اسکریپت پس سمت راست ! یک مقدار truthy میشه false که 0 هم یک مقدار falsy هست. همچنین در سمت چپ یک آرایه ی خالی هنگام تبدیل شدن به یک عدد، میشه صفر که خودش باز هم falsy هست یا مخالف truthy بودن.
+ساده شده ی این عبارت برای درک بهتر:
+```js
++[] == +![];
+0 == +false;
+0 == 0;
+true;
+```
+
+<!-- ## `[]` is equal `![]`
 
 Array is equal not array:
 
@@ -199,7 +213,7 @@ true;
 See also [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
 
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
-- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison) -->
 
 ## `true` is not equal `![]`, but not equal `[]` too
 
