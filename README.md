@@ -175,6 +175,8 @@ console.log("hello, world!"); // > hello, world!
 
 # 👀 Examples (مثال ها)
 
+## `[]` is equal `![]`
+
 آرایه، مساوی !آرایه هست:
 ```js
 [] == ![]; // -> true
@@ -189,7 +191,7 @@ console.log("hello, world!"); // > hello, world!
 true;
 ```
 
-<!-- ## `[]` is equal `![]`
+<!--
 
 Array is equal not array:
 
