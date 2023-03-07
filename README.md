@@ -338,7 +338,7 @@ false == "false"; // -> false
 
 ## baNaNa
 
-```js
+<!-- ```js
 "b" + "a" + +"a" + "a"; // -> 'baNaNa'
 ```
 
@@ -350,7 +350,17 @@ This is an old-school joke in JavaScript, but remastered. Here's the original on
 
 ### 💡 Explanation:
 
-The expression is evaluated as `'foo' + (+'bar')`, which converts `'bar'` to not a number.
+The expression is evaluated as `'foo' + (+'bar')`, which converts `'bar'` to not a number. -->
+
+یه جک خیلی قدیمی جاوا اسکریپت:
+```js
+"b" + "a" + +"a" + "a"; // -> 'baNaNa'
+```
+### 💡 توضیح:
+اتفاقی که اینجا میوفته، اینه که اینجا + +"a" عملگر + قبل از "a"‌ باعث تبدیل شدن "a" به تایپ number میشه که حاصل این قضیه، برابر با NaN هست پس در واقع:
+```js
+"b" + "a" + NaN + "a"; // -> 'baNaNa
+```
 
 - [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 - [12.5.6 Unary + Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
