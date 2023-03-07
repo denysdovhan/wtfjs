@@ -367,7 +367,7 @@ The expression is evaluated as `'foo' + (+'bar')`, which converts `'bar'` to not
 
 ## `NaN` is not a `NaN`
 
-```js
+<!-- ```js
 NaN === NaN; // -> false
 ```
 
@@ -386,7 +386,22 @@ The specification strictly defines the logic behind this behavior:
 Following the definition of `NaN` from the IEEE:
 
 > Four mutually exclusive relations are possible: less than, equal, greater than, and unordered. The last case arises when at least one operand is NaN. Every NaN shall compare unordered with everything, including itself.
+> -->
+
+حاصل این عبارت میشه false:
+```js
+NaN === NaN; // -> false
+```
+### 💡 توضیح:
+این نتیجه برمی‌گرده به نحوه‌ی کار این عملگر، اگر تایپ مقدار دو طرف متفاوت باشه false برمیگردونه و اگر تایپ یکی از مقدار ها number باشه، کافیه یکی از اون مقدار ها NaN باشه تا این عملگر false برگردونه یا توضیح اصلی‌ای که تو داکیومنت نوشته شده:
+> 1. If `Type(x)` is different from `Type(y)`, return **false**.
+> 2. If `Type(x)` is Number, then
+>    1. If `x` is **NaN**, return **false**.
+>    2. If `y` is **NaN**, return **false**.
+>    3. … … …
 >
+> &mdash; [**7.2.14** Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)
+و چون تایپ NaN هم number هست، می‌تونیم نتیجه بگیریم که موقع مقایسه کردن NaN با هر مقدار دیگه‌ای همیشه false برمیگردونه.
 > &mdash; [“What is the rationale for all comparisons returning false for IEEE754 NaN values?”](https://stackoverflow.com/questions/1565164/1573715#1573715) at StackOverflow
 
 ## `Object.is()` and `===` weird cases
