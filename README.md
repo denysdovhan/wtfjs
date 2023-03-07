@@ -403,6 +403,7 @@ NaN === NaN; // -> false
 > &mdash; [**7.2.14** Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)
 
 > &mdash; [“What is the rationale for all comparisons returning false for IEEE754 NaN values?”](https://stackoverflow.com/questions/1565164/1573715#1573715) at StackOverflow
+\n
 و چون تایپ NaN هم number هست، می‌تونیم نتیجه بگیریم که موقع مقایسه کردن NaN با هر مقدار دیگه‌ای همیشه false برمیگردونه.
 
 ## `Object.is()` and `===` weird cases
