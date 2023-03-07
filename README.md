@@ -224,7 +224,28 @@ See also [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
 
 ## `true` is not equal `![]`, but not equal `[]` too
 
-Array is not equal `true`, but not Array is not equal `true` too;
+آرایه، مساوی true نیست ولی !آرایه هم مساوی true نیست، هر دو تا مساوی false هستن. برای مثال:
+```js
+true == []; // -> false 
+true == ![]; // -> false 
+false == []; // -> true 
+false == ![]; // -> true
+```
+### 💡 توضیح:‍‍
+قبلا هم گفتیم، آرایه مساوی true نیست، !آرایه هم همینطور. دلیلش هم این هست که همونطور که قبلا گفتیم، عملگر == مقدار ها رو تبدیل به عدد میکنه و سپس مقایسه میکنه:
+```js
+toNumber(true); // -> 1 
+toNumber([]); // -> 0 
+1 == 0; // -> false
+```
+و حالا دلیل اینکه چرا زمانی که برابر false میکنیم هر دو رو، true برمیگردونن:
+```js
+toNumber(false); // -> 0
+toNumber([]); // -> 0
+0 == 0; // -> true
+```
+
+<!-- Array is not equal `true`, but not Array is not equal `true` too;
 Array is equal `false`, not Array is equal `false` too:
 
 ```js
@@ -275,7 +296,7 @@ false == ![]; // -> true
 ![]; // -> false
 
 false == false; // -> true
-```
+``` -->
 
 - [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
