@@ -1,37 +1,47 @@
 [![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua/)
 
-# What the f\*ck JavaScript?
+<!-- What the f\*ck JavaScript? -->
+# جاوا اسکریپت چه لعنتی‌ای هست؟
 
 [![WTFPL 2.0][license-image]][license-url]
 [![NPM version][npm-image]][npm-url]
 [![Patreon][patreon-image]][patreon-url]
 [![Buy Me A Coffee][bmc-image]][bmc-url]
 
-> A list of funny and tricky JavaScript examples
+<!-- A list of funny and tricky JavaScript examples -->
+> یه لیست از مثال های جالب و نکته‌دار جاوا اسکریپت
 
-JavaScript is a great language. It has a simple syntax, large ecosystem and, what is most important, a great community.
+<!-- JavaScript is a great language. It has a simple syntax, large ecosystem and, what is most important, a great community. -->
+جاوا اسکریپت یک زبون عالی هست. سینتکس ساده، زیست‌بوم بزرگ و از همه مهم تر یه کامیونیتی عالی داره. 
 
-At the same time, we all know that JavaScript is quite a funny language with tricky parts. Some of them can quickly turn our everyday job into hell, and some of them can make us laugh out loud.
+<!-- At the same time, we all know that JavaScript is quite a funny language with tricky parts. Some of them can quickly turn our everyday job into hell, and some of them can make us laugh out loud. -->
+و در عین حال، هممون میدونیم که جاوا اسکریپت خیلی زبون جالب با بخش های نکته‌داری هست. بعضی از اونها میتونن خیلی سریع کار هر روزمون رو به جهنم تبدیل کنن و بعضی از اونها میتونن باعث بشن با صدای بلند بخندیم.  
 
-The original idea for WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux). This list is highly inspired by his talk [**“WTFJS”** at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8):
+<!-- The original idea for WTFJS belongs to [Brian Leroux](https://twitter.com/brianleroux). This list is highly inspired by his talk [“WTFJS” at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8): -->
+صاحب ایده‌ی اصلی WTFJS برای [Brian Leroux](https://twitter.com/brianleroux) هست. بخش بزرگی از این لیست از سخنرانی همین فرد توی [“WTFJS” at dotJS 2012](https://www.youtube.com/watch?v=et8xNAc2ic8) الهام گرفته شده:  
 
 [![dotJS 2012 - Brian Leroux - WTFJS](https://img.youtube.com/vi/et8xNAc2ic8/0.jpg)](https://www.youtube.com/watch?v=et8xNAc2ic8)
 
 # Node Packaged Manuscript
 
-You can install this handbook using `npm`. Just run:
+<!-- You can install this handbook using `npm`. Just run: -->
+میتونید این کتاب رو با استفاده از `npm` هم با این دستور نصب کنید:
 
 ```
 $ npm install -g wtfjs
 ```
 
-You should be able to run `wtfjs` at the command line now. This will open the manual in your selected `$PAGER`. Otherwise, you may continue reading on here.
+<!-- You should be able to run `wtfjs` at the command line now. This will open the manual in your selected `$PAGER`. Otherwise, you may continue reading on here. -->
+حالا باید بتونید با دستور `wtfjs` اجرا کنید. این کتابچه رو باز میکنه داخل `$PAGER` انتخاب شده. وگرنه میتونید از همین جا هم بخونید. (چون نتونستیم زبون فارسی رو به طور رسمی اضافه کنیم به منبع اصلی، زبون فارسی در دسترس نیست با این روش.)
 
-The source is available here: <https://github.com/denysdovhan/wtfjs>
+<!-- The source is available here: <https://github.com/denysdovhan/wtfjs> -->
+منبع اصلی اینجا در دسترس هست: <https://github.com/denysdovhan/wtfjs>
 
-# Translations
+<!-- # Translations -->
+# ترجمه ها
 
-Currently, there are these translations of **wtfjs**:
+<!-- # Currently, there are these translations of **wtfjs**: -->
+در زمان حال، این ترجمه ها از **wtfjs** موجود هست:
 
 - [中文](./README-zh-cn.md)
 - [हिंदी](./README-hi.md)
@@ -42,16 +52,20 @@ Currently, there are these translations of **wtfjs**:
 - [Russian](https://habr.com/ru/company/mailru/blog/335292/) (on Habr.com)
 - [한국어](./README-kr.md)
 
-[**Help translating to your language**][tr-request]
+<!-- [**Help translating to your language**][tr-request] -->
+[**مشارکت برای ترجمه کردن**][tr-request]
 
 [tr-request]: https://github.com/denysdovhan/wtfjs/blob/master/CONTRIBUTING.md#translations
 
-**Note:** Translations are maintained by their translators. They may not contain every example, and existing examples may be outdated.
+<!-- **Note:** Translations are maintained by their translators. They may not contain every example, and existing examples may be outdated. -->
+**نکته:** ترجمه ها توسط مترجم هاشون نگهداری میشن، ممکنه همه‌ی مطالب رو نداشته باشن و یا مطلب ترجمه شده تغییر کرده باشه.
 
 <!-- prettier-ignore-start -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-# Table of Contents
+
+<!-- # Table of Contents -->
+# فهرست مطالب
 
 - [💪🏻 Motivation](#-motivation)
 - [✍🏻 Notation](#-notation)
@@ -129,46 +143,60 @@ Currently, there are these translations of **wtfjs**:
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <!-- prettier-ignore-end -->
 
-# 💪🏻 Motivation
+# 💪🏻 Motivation (انگیزه)
 
-> Just for fun
+<!-- > Just for fun -->
+> فقط برای سرگرمی
 >
-> &mdash; _[**“Just for Fun: The Story of an Accidental Revolutionary”**](https://en.wikipedia.org/wiki/Just_for_Fun), Linus Torvalds_
+<!-- > &mdash; _[**“Just for Fun: The Story of an Accidental Revolutionary”**](https://en.wikipedia.org/wiki/Just_for_Fun), Linus Torvalds_ -->
+> &mdash; _[**“فقط برای سرگرمی: داستان یک فرد انقلابی تصادفی”**](https://en.wikipedia.org/wiki/Just_for_Fun), Linus Torvalds_
 
-The primary goal of this list is to collect some crazy examples and explain how they work, if possible. Just because it's fun to learn something that we didn't know before.
+<!-- The primary goal of this list is to collect some crazy examples and explain how they work, if possible. Just because it's fun to learn something that we didn't know before. -->
+هدف اولیه‌ی این لیست، جمع کردن یکسری مثال های عجیب و توضیح دادن اینکه چطور کار میکنن هست. صرفا چون جالبه یاد گرفتن چیزی که قبلا نمیدونستیمش.
 
-If you are a beginner, you can use these notes to get a deeper dive into JavaScript. I hope these notes will motivate you to spend more time reading the specification.
+<!-- If you are a beginner, you can use these notes to get a deeper dive into JavaScript. I hope these notes will motivate you to spend more time reading the specification. -->
+اگر تازه کار هستید، میتونید از این مطالب استفاده کنید تا توی جاوا اسکریپت عمیق تر بشید. امیدوارم این قسمت باعث شده باشه انگیزه‌ی بیشتری داشته باشید برای خوندن مطالب.
 
-If you are a professional developer, you can consider these examples as a great reference for all of the quirks and unexpected edges of our beloved JavaScript.
+<!-- If you are a professional developer, you can consider these examples as a great reference for all of the quirks and unexpected edges of our beloved JavaScript. -->
+اگر برنامه‌نویس سنیوری هستید، میتونید این مثال هارو به عنوان یک منبع عالی برای همه‌ی قسمت های عجیب و غریب جاوا اسکریپت محبوبمون در نظر بگیرید.
 
-In any case, just read this. You're probably going to find something new.
+<!-- In any case, just read this. You're probably going to find something new. -->
+در هر صورت، فقط بخونید این مطالب رو. قطعا قراره چیزای جدیدی یاد بگیرید.
 
-> **⚠️ Note:** If you enjoy reading this document, please, [consider supporting the author of this collection](#-supporting).
+<!-- > **⚠️ Note:** If you enjoy reading this document, please, [consider supporting the author of this collection](#-supporting). -->
+> **⚠️ نکته:** اگر از خوندن این منبع لذت میبرید، لطفا [حمایت از نویسنده‌ی این مطالب رو در نظر بگیرید](#-supporting)
 
-# ✍🏻 Notation
+# ✍🏻 Notation (نشانه گذاری)
 
-**`// ->`** is used to show the result of an expression. For example:
-
-```js
-1 + 1; // -> 2
-```
-
-**`// >`** means the result of `console.log` or another output. For example:
-
+عبارت < توی کامنت ها، به معنی نتیجه ی لاگ توی کنسول مربوط به اون خط هست یا نتیجه‌ی هر خروجی دیگه‌ای. برای مثال:
 ```js
 console.log("hello, world!"); // > hello, world!
 ```
 
-**`//`** is just a comment used for explanations. Example:
-
-```js
-// Assigning a function to foo constant
-const foo = function() {};
-```
-
-# 👀 Examples
+# 👀 Examples (مثال ها)
 
 ## `[]` is equal `![]`
+
+آرایه، مساوی !آرایه هست:
+```js
+[] == ![]; // -> true
+```
+### 💡 توضیح:
+عملگر == توی جاوا اسکریپت، مقدار هر طرف رو تبدیل میکنه به اعداد تا اونهارو مقایسه کنه، توی این مثال هر دو طرف میشن 0 به دلایلی، آرایه‌ها مقدار های truthy هستن داخل جاوا اسکریپت پس سمت راست ! یک مقدار truthy میشه false که 0 هم یک مقدار falsy هست. همچنین در سمت چپ یک آرایه ی خالی هنگام تبدیل شدن به یک عدد، میشه صفر که خودش باز هم falsy هست یا مخالف truthy بودن.
+ساده شده ی این عبارت برای درک بهتر:
+```js
++[] == +![];
+0 == +false;
+0 == 0;
+true;
+```
+
+همچنین این مطلب رو هم میتونید بخونید [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
+
+- [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison) 
+
+<!--
 
 Array is equal not array:
 
@@ -192,11 +220,32 @@ true;
 See also [`[]` is truthy, but not `true`](#-is-truthy-but-not-true).
 
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
-- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
+- [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison) -->
 
 ## `true` is not equal `![]`, but not equal `[]` too
 
-Array is not equal `true`, but not Array is not equal `true` too;
+آرایه، مساوی true نیست ولی !آرایه هم مساوی true نیست، هر دو تا مساوی false هستن. برای مثال:
+```js
+true == []; // -> false 
+true == ![]; // -> false 
+false == []; // -> true 
+false == ![]; // -> true
+```
+### 💡 توضیح:‍‍
+قبلا هم گفتیم، آرایه مساوی true نیست، !آرایه هم همینطور. دلیلش هم این هست که همونطور که قبلا گفتیم، عملگر == مقدار ها رو تبدیل به عدد میکنه و سپس مقایسه میکنه:
+```js
+toNumber(true); // -> 1 
+toNumber([]); // -> 0 
+1 == 0; // -> false
+```
+و حالا دلیل اینکه چرا زمانی که برابر false میکنیم هر دو رو، true برمیگردونن:
+```js
+toNumber(false); // -> 0
+toNumber([]); // -> 0
+0 == 0; // -> true
+```
+
+<!-- Array is not equal `true`, but not Array is not equal `true` too;
 Array is equal `false`, not Array is equal `false` too:
 
 ```js
@@ -247,13 +296,13 @@ false == ![]; // -> true
 ![]; // -> false
 
 false == false; // -> true
-```
+``` -->
 
 - [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 ## true is false
 
-```js
+<!-- ```js
 !!"false" == !!"true"; // -> true
 !!"false" === !!"true"; // -> true
 ```
@@ -270,13 +319,26 @@ false == "false"; // -> false
 // 'false' is not the empty string, so it's a truthy value
 !!"false"; // -> true
 !!"true"; // -> true
-```
+``` -->
 
+اگر بخواید !!"false" و !!"true" رو چه با عملگر == و چه با === تست کنید، true برمیگردونه.
+### 💡 توضیح:
+اول با این مثال شروع می‌کنيم که: 
+```js
+true == "true"; // -> false 
+false == "false"; // -> false
+```
+چون عملگر == تبدیل میکنه به عدد، توی مثال اول از چپ به راست 1 یا همون true که تبدیل شده به عدد شده و سپس NaN که نتیجه ی تبدیل "false" به عدد هست، برابر نیستن. مثال دوم هم به همین شکل هست با این تفاوت که false هنگام تبدیل شدن به عدد، میشه 0. حالا برگردیم به بحث اصلیمون:
+```js
+!!"false"; // -> true 
+!!"true"; // -> true
+```
+توی مثال اول چون String خالی نیست، به عنوان یک مقدار true در نظر گرفته میشه، با ! اول تبدیل میشه به false و با عملگر ! دوم دوباره تبدیل میشه به true. توی مثال دوم هم به همین صورت هست.
 - [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
 ## baNaNa
 
-```js
+<!-- ```js
 "b" + "a" + +"a" + "a"; // -> 'baNaNa'
 ```
 
@@ -288,14 +350,24 @@ This is an old-school joke in JavaScript, but remastered. Here's the original on
 
 ### 💡 Explanation:
 
-The expression is evaluated as `'foo' + (+'bar')`, which converts `'bar'` to not a number.
+The expression is evaluated as `'foo' + (+'bar')`, which converts `'bar'` to not a number. -->
+
+یه جک خیلی قدیمی جاوا اسکریپت:
+```js
+"b" + "a" + +"a" + "a"; // -> 'baNaNa'
+```
+### 💡 توضیح:
+اتفاقی که اینجا میوفته، اینه که اینجا + +"a" عملگر + قبل از "a"‌ باعث تبدیل شدن "a" به تایپ number میشه که حاصل این قضیه، برابر با NaN هست پس در واقع:
+```js
+"b" + "a" + NaN + "a"; // -> 'baNaNa
+```
 
 - [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
 - [12.5.6 Unary + Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
 
 ## `NaN` is not a `NaN`
 
-```js
+<!-- ```js
 NaN === NaN; // -> false
 ```
 
@@ -314,12 +386,51 @@ The specification strictly defines the logic behind this behavior:
 Following the definition of `NaN` from the IEEE:
 
 > Four mutually exclusive relations are possible: less than, equal, greater than, and unordered. The last case arises when at least one operand is NaN. Every NaN shall compare unordered with everything, including itself.
+> -->
+
+حاصل این عبارت میشه false:
+```js
+NaN === NaN; // -> false
+```
+### 💡 توضیح:
+این نتیجه برمی‌گرده به نحوه‌ی کار این عملگر، اگر تایپ مقدار دو طرف متفاوت باشه false برمیگردونه و اگر تایپ یکی از مقدار ها number باشه، کافیه یکی از اون مقدار ها NaN باشه تا این عملگر false برگردونه یا توضیح اصلی‌ای که تو داکیومنت نوشته شده:
+> 1. If `Type(x)` is different from `Type(y)`, return **false**.
+> 2. If `Type(x)` is Number, then
+>    1. If `x` is **NaN**, return **false**.
+>    2. If `y` is **NaN**, return **false**.
+>    3. … … …
 >
+> &mdash; [**7.2.14** Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)
+
 > &mdash; [“What is the rationale for all comparisons returning false for IEEE754 NaN values?”](https://stackoverflow.com/questions/1565164/1573715#1573715) at StackOverflow
 
-## `Object.is()` and `===` weird cases
+## `Object.is()` and `===` weird cases (موارد عجیب)
 
-`Object.is()` determines if two values have the same value or not. It works similar to the `===` operator but there are a few weird cases:
+متد Object.is() تعیین میکنه که دو مقدار یکسان هستن یا نه، مثل === کار میکنه ولی یکسری موارد عجیبی وجود داره:
+```javascript
+Object.is(NaN, NaN); // -> true 
+NaN === NaN; // -> false 
+```
+
+```javascript
+Object.is(-0, 0); // -> false 
+-0 === 0; // -> true 
+```
+
+```javascript
+Object.is(NaN, 0 / 0); // -> true 
+NaN === 0 / 0; // -> false
+```
+
+### 💡 توضیح:
+همونطور که توی مطالب قبلی گفتیم، NaN و NaN هنگام مقایسه با عملگر === مساوی نیستن ولی هنگام استفاده از Object.is این مشکل حل شده.‌ 0 و 0- هم مساوی هستن ولی مقدارشون به طور دقیق یکسان نیست.
+
+همچنین برای توضیحات بیشتر در مورد `NaN === NaN`، میتونید این منابع رو هم مطالعه بکنید.
+
+- [Here are the TC39 specs about Object.is](https://tc39.es/ecma262/#sec-object.is)
+- [Equality comparisons and sameness](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness) on MDN
+
+<!-- `Object.is()` determines if two values have the same value or not. It works similar to the `===` operator but there are a few weird cases:
 
 ```javascript
 Object.is(NaN, NaN); // -> true
@@ -338,14 +449,48 @@ In JavaScript lingo, `NaN` and `NaN` are the same value but they're not strictly
 
 Similarly, `-0` and `0` are strictly equal, but they're not the same value.
 
-For more details about `NaN === NaN`, see the above case.
-
-- [Here are the TC39 specs about Object.is](https://tc39.es/ecma262/#sec-object.is)
-- [Equality comparisons and sameness](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness) on MDN
+For more details about `NaN === NaN`, see the above case. -->
 
 ## It's a fail
 
-You would not believe, but …
+شاید باور نکنید ولی...
+```js
+(![] + [])[+[]] +
+  (![] + [])[+!+[]] +
+  ([![]] + [][[]])[+!+[] + [+[]]] +
+  (![] + [])[!+[] + !+[]];
+// -> 'fail'
+```
+### 💡 توضیح:
+با تیکه تیکه کردن این کد به بخش های کوچک تر، متوجه این الگو میشیم:
+```js
+![] + []; // -> 'false'
+![]; // -> false
+```
+با اضافه کردن [] به false، به خاطر یکسری عملیات های داخلی زبان
+(`binary + Operator` -> `ToPrimitive` -> `[[DefaultValue]]`)
+در نهایت به همچین چیزی تبدیل میشه:
+```js
+![] + [].toString(); // 'false'
+```
+که می‌تونیم به اولین کاراکترش دسترسی داشته باشیم:
+```js
+"false"[0]; // -> 'f'
+```
+بقیه‌ی حروف هم ساده هستن ولی i به صورت تشکیل یک String با مقدار `'falseundefined'` و گرفتن ایندکس دهمش با استفاده از `['10']` به دست میاد.
+چند تا مثال جالب بیشتر:
+```js
++![]          // -> 0
++!![]         // -> 1
+!![]          // -> true
+![]           // -> false
+[][[]]        // -> undefined
++!![] / +![]  // -> Infinity
+[] + {}       // -> "[object Object]"
++{}           // -> NaN
+```
+
+<!-- You would not believe, but …
 
 ```js
 (![] + [])[+[]] +
@@ -389,14 +534,31 @@ More examples:
 +!![] / +![]  // -> Infinity
 [] + {}       // -> "[object Object]"
 +{}           // -> NaN
-```
+``` -->
 
 - [Brainfuck beware: JavaScript is after you!](http://patriciopalladino.com/blog/2012/08/09/non-alphanumeric-javascript.html)
-- [Writing a sentence without using the Alphabet](https://bluewings.github.io/en/writing-a-sentence-without-using-the-alphabet/#weird-javascript-generator) — generate any phrase using JavaScript
+<!-- - [Writing a sentence without using the Alphabet](https://bluewings.github.io/en/writing-a-sentence-without-using-the-alphabet/#weird-javascript-generator) — generate any phrase using JavaScript -->
+- [Writing a sentence without using the Alphabet](https://bluewings.github.io/en/writing-a-sentence-without-using-the-alphabet/#weird-javascript-generator) — تولید کردن هر عبارتی توی جاوا اسکریپت
 
 ## `[]` is truthy, but not `true`
 
-An array is a truthy value, however, it's not equal to `true`.
+یک آرایه، مقدار truthyای هست ولی مساوی `true` نیست.
+```js
+!![] // -> true 
+[] == true // -> false
+```
+### 💡 توضیح:
+وقتی مقدار های truthy رو با true مقایسه میکنیم، false میگیریم چون مقدار های truthy دقیقا مساوی true نیستن. صرفا مقدار هایی هستن که هنگام تبدیل شدن به boolean، میشن true.
+هر چند یکسری استثنا ها وجود دارن، مثلا هنگام مقایسه‌ی 1 با true چون وقتی true به number تبدیل میشه نتیجه 1 هست، true برمیگردونه:
+```js
+1 == true // -> true
+```
+بعد از تبدیل true به number:
+```js
+1 == 1 // -> true
+```
+
+<!-- An array is a truthy value, however, it's not equal to `true`.
 
 ```js
 !![]       // -> true
@@ -405,7 +567,7 @@ An array is a truthy value, however, it's not equal to `true`.
 
 ### 💡 Explanation:
 
-Here are links to the corresponding sections in the ECMA-262 specification:
+Here are links to the corresponding sections in the ECMA-262 specification: -->
 
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
