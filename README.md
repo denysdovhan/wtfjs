@@ -488,7 +488,7 @@ For more details about `NaN === NaN`, see the above case. -->
 +!![] / +![]  // -> Infinity
 [] + {}       // -> "[object Object]"
 +{}           // -> NaN
-``` 
+```
 
 <!-- You would not believe, but …
 
