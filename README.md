@@ -404,9 +404,33 @@ NaN === NaN; // -> false
 
 > &mdash; [“What is the rationale for all comparisons returning false for IEEE754 NaN values?”](https://stackoverflow.com/questions/1565164/1573715#1573715) at StackOverflow
 
-## `Object.is()` and `===` weird cases
+## `Object.is()` and `===` weird cases (موارد عجیب)
 
-`Object.is()` determines if two values have the same value or not. It works similar to the `===` operator but there are a few weird cases:
+متد Object.is() تعیین میکنه که دو مقدار یکسان هستن یا نه، مثل === کار میکنه ولی یکسری موارد عجیبی وجود داره:
+```javascript
+Object.is(NaN, NaN); // -> true 
+NaN === NaN; // -> false 
+```
+
+```javascript
+Object.is(-0, 0); // -> false 
+-0 === 0; // -> true 
+```
+
+```javascript
+Object.is(NaN, 0 / 0); // -> true 
+NaN === 0 / 0; // -> false
+```
+
+### 💡 توضیح:
+همونطور که توی مطالب قبلی گفتیم، NaN و NaN هنگام مقایسه با عملگر === مساوی نیستن ولی هنگام استفاده از Object.is این مشکل حل شده.‌ 0 و 0- هم مساوی هستن ولی مقدارشون به طور دقیق یکسان نیست.
+
+همچنین برای توضیحات بیشتر در مورد `NaN === NaN`، میتونید این منابع رو هم مطالعه بکنید.
+
+- [Here are the TC39 specs about Object.is](https://tc39.es/ecma262/#sec-object.is)
+- [Equality comparisons and sameness](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness) on MDN
+
+<!-- `Object.is()` determines if two values have the same value or not. It works similar to the `===` operator but there are a few weird cases:
 
 ```javascript
 Object.is(NaN, NaN); // -> true
@@ -425,10 +449,7 @@ In JavaScript lingo, `NaN` and `NaN` are the same value but they're not strictly
 
 Similarly, `-0` and `0` are strictly equal, but they're not the same value.
 
-For more details about `NaN === NaN`, see the above case.
-
-- [Here are the TC39 specs about Object.is](https://tc39.es/ecma262/#sec-object.is)
-- [Equality comparisons and sameness](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness) on MDN
+For more details about `NaN === NaN`, see the above case. -->
 
 ## It's a fail
 
