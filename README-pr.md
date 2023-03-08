@@ -574,7 +574,21 @@ Here are links to the corresponding sections in the ECMA-262 specification: -->
 
 ## `null` is falsy, but not `false`
 
-Despite the fact that `null` is a falsy value, it's not equal to `false`.
+با وجود اینکه null یک مقدار falsy هست، مساوی false نیست:
+```js
+!!null; // -> false
+null == false; // -> false
+```
+ولی مقدار های falsy دیگه مثل 0 یا ""، مساوی false هستن:
+```js
+0 == false; // -> true
+"" == false; // -> true
+```
+
+### 💡 توضیح:
+توضیح این قسمت هم مربوط میشه به توضیحات مثال های قبل، داخل این لینک میتونید مطالعه بکنید دلیلش رو به صورت عمیق تر:
+
+<!-- Despite the fact that `null` is a falsy value, it's not equal to `false`.
 
 ```js
 !!null; // -> false
@@ -590,7 +604,7 @@ At the same time, other falsy values, like `0` or `''` are equal to `false`.
 
 ### 💡 Explanation:
 
-The explanation is the same as for previous example. Here's the corresponding link:
+The explanation is the same as for previous example. Here's the corresponding link: -->
 
 - [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 
