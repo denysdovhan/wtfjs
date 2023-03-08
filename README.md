@@ -453,7 +453,44 @@ For more details about `NaN === NaN`, see the above case. -->
 
 ## It's a fail
 
-You would not believe, but …
+شاید باور نکنید ولی...
+```js
+(![] + [])[+[]] +
+  (![] + [])[+!+[]] +
+  ([![]] + [][[]])[+!+[] + [+[]]] +
+  (![] + [])[!+[] + !+[]];
+// -> 'fail'
+```
+### 💡 توضیح:
+با تیکه تیکه کردن این کد به بخش های کوچک تر، متوجه این الگو میشیم:
+```js
+![] + []; // -> 'false'
+![]; // -> false
+```
+با اضافه کردن [] به false، به خاطر یکسری عملیات های داخلی زبان:
+(`binary + Operator` -> `ToPrimitive` -> `[[DefaultValue]]`)
+در نهایت به همچین چیزی تبدیل میشه:
+```js
+![] + [].toString(); // 'false'
+```
+که می‌تونیم به اولین کاراکترش دسترسی داشته باشیم:
+```js
+"false"[0]; // -> 'f'
+```
+بقیه‌ی حروف هم ساده هستن ولی i به صورت تشکیل یک String با مقدار 'falseundefined' و گرفتن ایندکس دهمش به دست میاد.
+چند تا مثال جالب بیشتر:
+```js
++![]          // -> 0
++!![]         // -> 1
+!![]          // -> true
+![]           // -> false
+[][[]]        // -> undefined
++!![] / +![]  // -> Infinity
+[] + {}       // -> "[object Object]"
++{}           // -> NaN
+``` 
+
+<!-- You would not believe, but …
 
 ```js
 (![] + [])[+[]] +
@@ -497,7 +534,7 @@ More examples:
 +!![] / +![]  // -> Infinity
 [] + {}       // -> "[object Object]"
 +{}           // -> NaN
-```
+``` -->
 
 - [Brainfuck beware: JavaScript is after you!](http://patriciopalladino.com/blog/2012/08/09/non-alphanumeric-javascript.html)
 - [Writing a sentence without using the Alphabet](https://bluewings.github.io/en/writing-a-sentence-without-using-the-alphabet/#weird-javascript-generator) — generate any phrase using JavaScript
