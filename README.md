@@ -542,7 +542,23 @@ More examples:
 
 ## `[]` is truthy, but not `true`
 
-An array is a truthy value, however, it's not equal to `true`.
+یک آرایه، مقدار truthyای هست ولی مساوی true نیست.
+```js
+!![] // -> true 
+[] == true // -> false
+```
+### 💡 توضیح:
+وقتی مقدار های truthy رو با true مقایسه میکنیم، false میگیریم چون مقدار های truthy دقیقا مساوی true نیستن. صرفا مقدار هایی هستن که هنگام تبدیل شدن به boolean، میشن true.
+هر چند یکسری استثنا ها وجود دارن، مثلا هنگام مقایسه‌ی 1 با true چون وقتی true به number تبدیل میشه نتیجه 1 هست، true برمیگردونه:
+```js
+1 == true // -> true
+```
+بعد از تبدیل true به number:
+```js
+1 == 1 // -> true
+```
+
+<!-- An array is a truthy value, however, it's not equal to `true`.
 
 ```js
 !![]       // -> true
@@ -551,7 +567,7 @@ An array is a truthy value, however, it's not equal to `true`.
 
 ### 💡 Explanation:
 
-Here are links to the corresponding sections in the ECMA-262 specification:
+Here are links to the corresponding sections in the ECMA-262 specification: -->
 
 - [**12.5.9** Logical NOT Operator (`!`)](https://www.ecma-international.org/ecma-262/#sec-logical-not-operator)
 - [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
