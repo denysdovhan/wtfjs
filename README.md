@@ -542,7 +542,7 @@ More examples:
 
 ## `[]` is truthy, but not `true`
 
-یک آرایه، مقدار truthyای هست ولی مساوی true نیست.
+یک آرایه، مقدار truthyای هست ولی مساوی `true` نیست.
 ```js
 !![] // -> true 
 [] == true // -> false
