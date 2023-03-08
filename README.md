@@ -468,7 +468,8 @@ For more details about `NaN === NaN`, see the above case. -->
 ![]; // -> false
 ```
 با اضافه کردن [] به false، به خاطر یکسری عملیات های داخلی زبان:
-<br></br>
+
+
 (`binary + Operator` -> `ToPrimitive` -> `[[DefaultValue]]`)
 در نهایت به همچین چیزی تبدیل میشه:
 ```js
