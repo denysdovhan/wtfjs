@@ -574,12 +574,12 @@ Here are links to the corresponding sections in the ECMA-262 specification: -->
 
 ## `null` is falsy, but not `false`
 
-با وجود اینکه null یک مقدار falsy هست، مساوی false نیست:
+با وجود اینکه `null` یک مقدار falsy هست، مساوی `false` نیست:
 ```js
 !!null; // -> false
 null == false; // -> false
 ```
-ولی مقدار های falsy دیگه مثل 0 یا ""، مساوی false هستن:
+ولی مقدار های falsy دیگه مثل `0` یا `''`، مساوی `false` هستن:
 ```js
 0 == false; // -> true
 "" == false; // -> true
