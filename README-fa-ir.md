@@ -628,7 +628,9 @@ document.all == null; // -> true
 ```
 ### 💡 توضیح:
 > متد document.all استفاده میشه برای دسترسی به المنت های DOM داخل ورژن های قدیمی IE. با اینکه یک استاندارد نبود، به طور گسترده‌ای داخل کد های قدیمی جاوا اسکریپت استفاده شده. زمانی که با api های جدید مثل document.getElementById این متد به یک متد منسوخ شده تبدیل شد و لازم بود که تصمیم گرفته بشه چه کاری باهاش انجام بشه. به خاطر استفاده‌ی گسترده‌اش تصمیم گرفتن api رو همچنان نگه دارن ولی یه نقص عمدی معرفی کنن. دلیلی که false برمیگردونه هنگام استفاده از عملگر === با undefined ولی true با ==، به خاطر همون نقص عمدی هست.
-
+>
+> &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec
+> &mdash; [“Chapter 4 - ToBoolean - Falsy values”](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects) at YDKJS - Types & Grammar
 <!-- > ⚠️ This is part of the Browser API and won't work in a Node.js environment ⚠️
 
 Despite the fact that `document.all` is an array-like object and it gives access to the DOM nodes in the page, it responds to the `typeof` function as `undefined`.
@@ -655,9 +657,6 @@ document.all == null; // -> true
 
 > `document.all` used to be a way to access DOM elements, in particular with old versions of IE. While it has never been a standard it was broadly used in the old age JS code. When the standard progressed with new APIs (such as `document.getElementById`) this API call became obsolete and the standard committee had to decide what to do with it. Because of its broad use they decided to keep the API but introduce a willful violation of the JavaScript specification.
 > The reason why it responds to `false` when using the [Strict Equality Comparison](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison) with `undefined` while `true` when using the [Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison) is due to the willful violation of the specification that explicitly allows that. -->
->
-> &mdash; [“Obsolete features - document.all”](https://html.spec.whatwg.org/multipage/obsolete.html#dom-document-all) at WhatWG - HTML spec
-> &mdash; [“Chapter 4 - ToBoolean - Falsy values”](https://github.com/getify/You-Dont-Know-JS/blob/0d79079b61dad953bbfde817a5893a49f7e889fb/types%20%26%20grammar/ch4.md#falsy-objects) at YDKJS - Types & Grammar
 
 ## Minimal value is greater than zero
 
