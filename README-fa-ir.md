@@ -611,6 +611,7 @@ The explanation is the same as for previous example. Here's the corresponding li
 ## `document.all` is an object, but it is undefined
 
 > ⚠️ این قسمت مربوط میشه به جاوا اسکریپت سمت مرورگر، نه ران‌تایم هایی مثل نود جی اس ⚠️
+
 با وجود اینکه document.all یک آبجکت آرایه مانندی هست و بهمون دسترسی به DOM nodes صفحه رو میده، وقتی روش typeof زده بشه undefined برمیگردونه.
 ```js
 document.all instanceof Object; // -> true
