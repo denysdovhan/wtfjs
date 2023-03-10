@@ -687,7 +687,25 @@ Number.MIN_VALUE > 0; // -> true
 
 ## function is not a function
 
-> ⚠️ A bug present in V8 v5.5 or lower (Node.js <=7) ⚠️
+> ⚠️ این باگ فقط توی V8 ورژن 5.5 یا کمتر و ورژن نود جی اس 7 یا کمتر وجود داره ⚠️
+
+اکثرتون در مورد ارور _undefined is not a function_ میدونید، ولی این چطور؟
+
+```js
+// Declare a class which extends null
+class Foo extends null {}
+// -> [Function: Foo]
+
+new Foo() instanceof null;
+// > TypeError: function is not a function
+// >     at … … …
+```
+
+### 💡 توضیح:
+
+این نتیجه، قسمتی از یک اتفاق خاص نیست و صرفا یه باگ بوده که توی ورژن های بعدی رفع شده و نباید مشکلی وجود داشته باشه.
+
+<!-- > ⚠️ A bug present in V8 v5.5 or lower (Node.js <=7) ⚠️
 
 All of you know about the annoying _undefined is not a function_, but what about this?
 
@@ -703,7 +721,7 @@ new Foo() instanceof null;
 
 ### 💡 Explanation:
 
-This is not a part of the specification. It's just a bug that has now been fixed, so there shouldn't be a problem with it in the future.
+This is not a part of the specification. It's just a bug that has now been fixed, so there shouldn't be a problem with it in the future. -->
 
 ### Super constructor null of Foo is not a constructor
 
