@@ -725,7 +725,62 @@ This is not a part of the specification. It's just a bug that has now been fixed
 
 ### Super constructor null of Foo is not a constructor
 
-It's continuation of story with previous bug in modern environment (tested with Chrome 71 and Node.js v11.8.0).
+این مبحث هم ادامه‌ی باگ قبلی که توی محیط مدرن (تست شده با کروم 71 و نود جی‌اس v11.8.0) هست.
+
+```js
+class Foo extends null {}
+new Foo() instanceof null;
+// > TypeError: Super constructor null of Foo is not a constructor
+```
+
+### 💡 توضیح:
+
+این یک باگ نیست، چون:
+
+```js
+Object.getPrototypeOf(Foo.prototype); // -> null
+```
+
+اگر یک کلاس کانستراکتور نداشت، از prototype chain کانستراکتور یه مرحله بالاتر صدا زده میشه ولی اینجا توی اون هم کانستراکتور وجود نداره و null هم یه آبجکت هست:
+
+```js
+typeof null === "object";
+```
+
+و به همین دلیل، میتونید ازش ارث‌بری کنید (هرچند توی دنیای OOP، چنین شرایطی اذیت کننده هست) ولی نمیتونید کانستراکتور null رو صدا بزنید و اگر این کد رو تغییر بدید:
+
+```js
+class Foo extends null {
+  constructor() {
+    console.log("something");
+  }
+}
+```
+
+این ارور رو میبینید:
+
+```
+ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor
+```
+
+و اگر توی کانستراکتور کلاس از super استفاده کنید:
+
+```js
+class Foo extends null {
+  constructor() {
+    console.log(111);
+    super();
+  }
+}
+```
+
+جی اس یه ارور throw میکنه:
+
+```
+TypeError: Super constructor null of Foo is not a constructor
+```
+
+<!-- It's continuation of story with previous bug in modern environment (tested with Chrome 71 and Node.js v11.8.0).
 
 ```js
 class Foo extends null {}
@@ -778,7 +833,7 @@ JS throws an error:
 
 ```
 TypeError: Super constructor null of Foo is not a constructor
-```
+``` -->
 
 - [An explanation of this issue](https://github.com/denysdovhan/wtfjs/pull/102#discussion_r259143582) by [@geekjob](https://github.com/geekjob)
 
