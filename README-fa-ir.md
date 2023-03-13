@@ -894,6 +894,8 @@ a.toString(); // -> ',,'
 ### 💡 توضیح:
 
 > قضیه‌ی Trailing commas که گاها بهش "final commas" هم میگن، میتونه هنگام اضافه کردن المنت جدید، پارامتر ها یا پراپرتی ها کاربرد داشته باشه. اگر می‌خواید پراپرتی جدیدی اضافه کنید، میتونید خیلی ساده یه خط جدید بدون تغییر دادن خط قبلی اضافه کنید اگه اون خط از trailing comma استفاده میکنه. همچنین باعث میشه diff های ورژن کنترلر هایی مثل گیت تمیز تر باشه و ادیت کردن کد کمتر دردسر ساز باشه.
+>
+> &mdash; [Trailing commas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas) at MDN
 <!-- You've created an array with 4 empty elements. Despite all, you'll get an array with three elements, because of trailing commas:
 ```js
 let a = [, , ,];
@@ -903,8 +905,6 @@ a.toString(); // -> ',,'
 ### 💡 Explanation:
 
 > **Trailing commas** (sometimes called "final commas") can be useful when adding new elements, parameters, or properties to JavaScript code. If you want to add a new property, you can simply add a new line without modifying the previously last line if that line already uses a trailing comma. This makes version-control diffs cleaner and editing code might be less troublesome. -->
->
-> &mdash; [Trailing commas](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Trailing_commas) at MDN
 
 ## Array equality is a monster
 
