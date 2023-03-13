@@ -839,7 +839,26 @@ TypeError: Super constructor null of Foo is not a constructor
 
 ## Adding arrays
 
-What if you try to add two arrays?
+اگر بخواید دو تا آرایه رو جمع کنید چه اتفاقی می‌افته؟
+```js
+[1, 2, 3] + [4, 5, 6]; // -> '1,2,34,5,6'
+```
+### 💡 توضیح:
+این نتیجه به صورت گام به گام اینطوری به دست میاد:
+```js
+[1, 2, 3] +
+  [4, 5, 6][
+    // call toString()
+    (1, 2, 3)
+  ].toString() +
+  [4, 5, 6].toString();
+// concatenation
+"1,2,3" + "4,5,6";
+// ->
+("1,2,34,5,6");
+```
+
+<!-- What if you try to add two arrays?
 
 ```js
 [1, 2, 3] + [4, 5, 6]; // -> '1,2,34,5,6'
@@ -860,7 +879,7 @@ The concatenation happens. Step-by-step, it looks like this:
 "1,2,3" + "4,5,6";
 // ->
 ("1,2,34,5,6");
-```
+``` -->
 
 ## Trailing commas in array
 
