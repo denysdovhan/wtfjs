@@ -908,7 +908,7 @@ a.toString(); // -> ',,'
 
 ## Array equality is a monster
 
-Array equality is a monster in JS, as you can see below:
+برابر بودن آرایه ها توی جی‌اس، مثل یه اعجوبه می‌مونه همونطور که میتونید ببینید:
 
 ```js
 [] == ''   // -> true
@@ -934,7 +934,39 @@ Array equality is a monster in JS, as you can see below:
 
 [[[[[[ undefined ]]]]]] == 0  // true
 [[[[[[ undefined ]]]]]] == '' // true
-```
+``` 
+
+### 💡 توضیح:
+
+باید این مثال ها رو با دقت نگاه کنید. این رفتار توی بخش **7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison) توضیح داده شده.
+
+<!-- Array equality is a monster in JS, as you can see below:
+
+```js
+[] == ''   // -> true
+[] == 0    // -> true
+[''] == '' // -> true
+[0] == 0   // -> true
+[0] == ''  // -> false
+[''] == 0  // -> true
+
+[null] == ''      // true
+[null] == 0       // true
+[undefined] == '' // true
+[undefined] == 0  // true
+
+[[]] == 0  // true
+[[]] == '' // true
+
+[[[[[[]]]]]] == '' // true
+[[[[[[]]]]]] == 0  // true
+
+[[[[[[ null ]]]]]] == 0  // true
+[[[[[[ null ]]]]]] == '' // true
+
+[[[[[[ undefined ]]]]]] == 0  // true
+[[[[[[ undefined ]]]]]] == '' // true
+``` -->
 
 ### 💡 Explanation:
 
