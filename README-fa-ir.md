@@ -968,9 +968,9 @@ a.toString(); // -> ',,'
 [[[[[[ undefined ]]]]]] == '' // true
 ``` -->
 
-### 💡 Explanation:
+<!-- ### 💡 Explanation:
 
-You should watch very carefully for the above examples! The behaviour is described in section [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison) of the specification.
+You should watch very carefully for the above examples! The behaviour is described in section [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison) of the specification. -->
 
 ## `undefined` and `Number`
 
