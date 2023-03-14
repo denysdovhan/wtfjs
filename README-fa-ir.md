@@ -938,7 +938,7 @@ a.toString(); // -> ',,'
 
 ### 💡 توضیح:
 
-باید این مثال ها رو با دقت نگاه کنید. این رفتار توی بخش **7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison) توضیح داده شده.
+باید این مثال ها رو با دقت نگاه کنید. این رفتار توی بخش [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison) توضیح داده شده.
 
 <!-- Array equality is a monster in JS, as you can see below:
 
