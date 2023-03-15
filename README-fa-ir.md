@@ -974,7 +974,23 @@ You should watch very carefully for the above examples! The behaviour is describ
 
 ## `undefined` and `Number`
 
-If we don't pass any arguments into the `Number` constructor, we'll get `0`. The value `undefined` is assigned to formal arguments when there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
+اگه هیچ آرگیومنتی به کانستراکتور `Number` ندیم، `0` میگیریم. مقدار پیش فرض آرگیومنت ها وقتی چیزی بهشون داده نمیشه، `undefined` هست پس شاید انتظار داشته باشید که `Number` بدون آرگیومنت `undefined` رو به عنوان پارامتر میگیره، هر چند وقتی `undefined` بدید بهش `NaN` میگیرید.
+
+```js
+Number(); // -> 0
+Number(undefined); // -> NaN
+```
+
+### 💡 توضیح:
+
+با توجه به بدیهیات:
+
+1- اگر هیچ آرگیومنتی هنگام اجرا شدن این فانکشن بهش داده نشه، خروجی میشه 0+.
+2- وگرنه ToNumber(value) برگردونده میشه.
+3- در صورتی که undefined داده بشه، ToNumber(undefined) باید NaN برگردونه.
+
+بخش های مربوط برای مطالعه‌ی بیشتر:
+<!-- If we don't pass any arguments into the `Number` constructor, we'll get `0`. The value `undefined` is assigned to formal arguments when there are no actual arguments, so you might expect that `Number` without arguments takes `undefined` as a value of its parameter. However, when we pass `undefined`, we will get `NaN`.
 
 ```js
 Number(); // -> 0
@@ -989,7 +1005,7 @@ According to the specification:
 2. Else, let `n` be ? `ToNumber(value)`.
 3. In case of `undefined`, `ToNumber(undefined)` should return `NaN`.
 
-Here's the corresponding section:
+Here's the corresponding section: -->
 
 - [**20.1.1** The Number Constructor](https://www.ecma-international.org/ecma-262/#sec-number-constructor)
 - [**7.1.3** ToNumber(`argument`)](https://www.ecma-international.org/ecma-262/#sec-tonumber)
