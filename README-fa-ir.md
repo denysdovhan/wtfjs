@@ -1012,7 +1012,7 @@ Here's the corresponding section: -->
 
 ## `parseInt` is a bad guy
 
-فانکشن parseInt به موارد عجیبش معروف هست:
+فانکشن `parseInt` به موارد عجیبش معروف هست:
 
 ```js
 parseInt("f*ck"); // -> NaN
