@@ -1012,16 +1012,15 @@ Here's the corresponding section: -->
 
 ## `parseInt` is a bad guy
 
-`parseInt` is famous by its quirks:
+فانکشن parseInt به موارد عجیبش معروف هست:
 
 ```js
 parseInt("f*ck"); // -> NaN
 parseInt("f*ck", 16); // -> 15
 ```
+**💡 توضیح:** این اتفاق به این دلیل می‌افته که `parseInt` تا زمانی به پارس کردن و خوندن حرف به حرف ادامه میده که به حرفی برسه که نشناسه. حرف `f` هم داخل `'f*ck'` نماینده‌ی عدد `15` داخل هگزادسیمال هست.
 
-**💡 Explanation:** This happens because `parseInt` will continue parsing character-by-character until it hits a character it doesn't know. The `f` in `'f*ck'` is the hexadecimal digit `15`.
-
-Parsing `Infinity` to integer is something…
+تبدیل کردن Infinity به عدد یکی از این موارد هست:
 
 ```js
 //
@@ -1042,19 +1041,37 @@ parseInt("Infinity", 36); // -> 1461559270678...
 parseInt("Infinity", 37); // -> NaN
 ```
 
-Be careful with parsing `null` too:
+در مورد `null` هم دقت کنید:
 
 ```js
 parseInt(null, 24); // -> 23
 ```
 
-**💡 Explanation:**
+**💡 توضیح:**
+
+>اینجا `null` ابتدا تبدیل به تایپ string و `"null"` میشه و بعدش به عدد تبدیل میشه. از بیس های 0 تا 23، قابل تبدیل به هیچ عددی نیست پس NaN برمیگردونه ولی توی بیس 24 `"n"`، چهاردهمین حرف به اعداد اضافه میشه. توی بیس 31 هم `"u"`، بیست و یکمین حرف اضافه میشه و تمام String میتونه دی‌کد بشه. توی بیس های 37 و بیشتر هیچ عدد معتبری وجود نداره که بتونه بهش تبدیل بشه پس `NaN` برگردونده میشه.
+>
+> &mdash; [“parseInt(null, 24) === 23… wait, what?”](https://stackoverflow.com/questions/6459758/parseintnull-24-23-wait-what) at StackOverflow
+<!-- `parseInt` is famous by its quirks:
+
+```js
+parseInt("f*ck"); // -> NaN
+parseInt("f*ck", 16); // -> 15
+```
+
+**💡 Explanation:** This happens because `parseInt` will continue parsing character-by-character until it hits a character it doesn't know. The `f` in `'f*ck'` is the hexadecimal digit `15`.
+
+Parsing `Infinity` to integer is something…
+
+Be careful with parsing `null` too:
+
+**💡 Explanation:** -->
 
 > It's converting `null` to the string `"null"` and trying to convert it. For radixes 0 through 23, there are no numerals it can convert, so it returns NaN. At 24, `"n"`, the 14th letter, is added to the numeral system. At 31, `"u"`, the 21st letter, is added and the entire string can be decoded. At 37 on there is no longer any valid numeral set that can be generated and `NaN` is returned.
 >
 > &mdash; [“parseInt(null, 24) === 23… wait, what?”](https://stackoverflow.com/questions/6459758/parseintnull-24-23-wait-what) at StackOverflow
 
-Don't forget about octals:
+همچنین در مورد اوکتال ها هم:
 
 ```js
 parseInt("06"); // 6
@@ -1062,16 +1079,16 @@ parseInt("08"); // 8 if support ECMAScript 5
 parseInt("08"); // 0 if not support ECMAScript 5
 ```
 
-**💡 Explanation:** If the input string begins with "0", radix is eight (octal) or 10 (decimal). Exactly which radix is chosen is implementation-dependent. ECMAScript 5 specifies that 10 (decimal) is used, but not all browsers support this yet. For this reason always specify a radix when using `parseInt`.
+**💡 توضیح:** اگه string ورودی با "0" شروع بشه، نماینده‌ی بیس 8 (octal) یا بیس ده (decimal) هست. اینکه دقیقا کدومشون هست بستگی به ساختار داره. اکما اسکریپت 5 مشخص میکنه که بیس 10 (decimal) استفاده میشه ولی همه‌ی مرورگر ها هنوز این رو پشتیبانی نمیکنن، به همین دلیل همیشه موقع استفاده از parseInt بیس رو مشخص کنید.
 
-`parseInt` always convert input to string:
+فانکشن parseInt همیشه مقدار ورودی رو به String تبدیل میکنه:
 
 ```js
 parseInt({ toString: () => 2, valueOf: () => 1 }); // -> 2
 Number({ toString: () => 2, valueOf: () => 1 }); // -> 1
 ```
 
-Be careful while parsing floating point values
+هنگام تبدیل کردن float ها هم دقت کنید:
 
 ```js
 parseInt(0.000001); // -> 0
@@ -1079,7 +1096,19 @@ parseInt(0.0000001); // -> 1
 parseInt(1 / 1999999); // -> 5
 ```
 
-**💡 Explanation:** `ParseInt` takes a string argument and returns an integer of the specified radix. `ParseInt` also strips anything after and including the first non-digit in the string parameter. `0.000001` is converted to a string `"0.000001"` and the `parseInt` returns `0`. When `0.0000001` is converted to a string it is treated as `"1e-7"` and hence `parseInt` returns `1`. `1/1999999` is interpreted as `5.00000250000125e-7` and `parseInt` returns `5`.
+**💡 توضیح:** فانکشن `ParseInt` یه ورودی string میگیره و یه عدد با بیس مشخص شده برمیگردونه. `ParseInt` همچنین همه چیز بعد و خود کاراکتری که عدد نیست رو جدا میکنه داخل ورودی stringی که بهش داده میشه. `0.000001` به stringه `"0.000001"` تبدیل میشه و `parseInt` هم `0` برمیگردونه. وقتی که `0.0000001` به string تبدیل میشه تبدیل به "1e-7" شده بنابراین `parseInt` مقدار 1 رو برمیگردونه. `1/1999999` هم به صورت `5.00000250000125e-7`e-7 تفسیر میشه و `parseInt` مقدار 5 رو برمیگردونه.
+
+<!-- Don't forget about octals:
+
+**💡 Explanation:** If the input string begins with "0", radix is eight (octal) or 10 (decimal). Exactly which radix is chosen is implementation-dependent. ECMAScript 5 specifies that 10 (decimal) is used, but not all browsers support this yet. For this reason always specify a radix when using `parseInt`.
+
+`parseInt` always convert input to string:
+
+Be careful while parsing floating point values
+
+
+
+**💡 Explanation:** `ParseInt` takes a string argument and returns an integer of the specified radix. `ParseInt` also strips anything after and including the first non-digit in the string parameter. `0.000001` is converted to a string `"0.000001"` and the `parseInt` returns `0`. When `0.0000001` is converted to a string it is treated as `"1e-7"` and hence `parseInt` returns `1`. `1/1999999` is interpreted as `5.00000250000125e-7` and `parseInt` returns `5`. -->
 
 ## Math with `true` and `false`
 
