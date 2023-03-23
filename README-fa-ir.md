@@ -1112,7 +1112,37 @@ Be careful while parsing floating point values
 
 ## Math with `true` and `false`
 
-Let's do some math:
+یکم ریاضیات انجام بدیم:
+
+```js
+true + true; // -> 2
+(true + true) * (true + true) - true; // -> 3
+```
+
+هممم 🤔
+
+### 💡 توضیح:
+
+میتونیم مقدار هارو به عدد تبدیل کنیم با استفاده از کانستراکتور `Number`، واضح هست که `true` به `1` تبدیل میشه:
+
+```js
+Number(true); // -> 1
+```
+
+عملگر + خالی سعی میکنه که مقدار رو به عدد تبدیل کنه. می‌تونه عدد ها و اعشار ها رو که در قالب string هستن و مقدار های غیر `string` مثل true و `false` و `null` رو تبدیل کنه. اگر نتونه مقدار خاصی رو بخونه، `NaN` برمیگردونه. این یعنی میتونیم `true` رو به `1` راحت تر تبدیل کنیم:
+
+```js
++true; // -> 1
+```
+
+وقتی جمع یا ضرب انجام میدید، متد `ToNumber` اجرا میشه. با توجه به بدیهیات، این متد برمیگردونه:
+
+> If `argument` is **true**, return **1**. If `argument` is **false**, return **+0**.
+
+به همین دلیل میتونیم مقدار های boolean رو مثل عدد های معمولی جمع کنیم و جواب درست رو بگیریم.
+
+بخش های مربوط:
+<!-- Let's do some math:
 
 ```js
 true + true; // -> 2
@@ -1141,7 +1171,7 @@ When you're performing addition or multiplication, the `ToNumber` method is invo
 
 That's why we can add boolean values as regular numbers and get correct results.
 
-Corresponding sections:
+Corresponding sections: -->
 
 - [**12.5.6** Unary `+` Operator](https://www.ecma-international.org/ecma-262/#sec-unary-plus-operator)
 - [**12.8.3** The Addition Operator (`+`)](https://www.ecma-international.org/ecma-262/#sec-addition-operator-plus)
