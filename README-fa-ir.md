@@ -1192,7 +1192,7 @@ Corresponding sections: -->
 
 از اونجایی که نود جی‌اس بر پایه‌ی انجین V8 هست، کامنت های HTML توی ران تایم نود جی‌اس هم پشتیبانی میشن. علاوه بر این بخشی از مشخصه ها هستن:
 
-<!-- You will be impressed, but `<!--` (which is known as HTML comment) is a valid comment in JavaScript.
+<!--You will be impressed, but `<!--` (which is known as HTML comment) is a valid comment in JavaScript.
 
 ```js
 // valid comment
@@ -1203,9 +1203,9 @@ Corresponding sections: -->
 
 Impressed? HTML-like comments were intended to allow browsers that didn't understand the `<script>` tag to degrade gracefully. These browsers, e.g. Netscape 1.x are no longer popular. So there is really no point in putting HTML comments in your script tags anymore.
 
-Since Node.js is based on the V8 engine, HTML-like comments are supported by the Node.js runtime too. Moreover, they're a part of the specification:
+Since Node.js is based on the V8 engine, HTML-like comments are supported by the Node.js runtime too. Moreover, they're a part of the specification: -->
 
-<!-- - [**B.1.3** HTML-like Comments](https://www.ecma-international.org/ecma-262/#sec-html-like-comments) --> -->
+- [**B.1.3** HTML-like Comments](https://www.ecma-international.org/ecma-262/#sec-html-like-comments) 
 
 ## `NaN` is ~~not~~ a number
 
