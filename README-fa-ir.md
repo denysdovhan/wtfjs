@@ -1179,7 +1179,20 @@ Corresponding sections: -->
 
 ## HTML comments are valid in JavaScript
 
-You will be impressed, but `<!--` (which is known as HTML comment) is a valid comment in JavaScript.
+شاید براتون عجیب به نظر برسه، ولی `<!--` (که به عنوان کامنت HTML شناخته میشه) یه کامنت معتبر توی جاوا اسکریپت هست.
+
+```js
+// valid comment
+<!-- valid comment too
+```
+
+### 💡 توضیح:
+
+کامنت های HTML پشتیبانی میشن تا به مرورگر هایی که تگ `<script>` رو نمیفهمن، به راحتی نادیدشون بگیرن. مرورگر هایی مثل Netscape 1.x که دیگه مشهور نیستن پس هیچ مزیتی برای قرار دادن کامنت های HTML توی تگ script وجود نداره.
+
+از اونجایی که نود جی‌اس بر پایه‌ی انجین V8 هست، کامنت های HTML توی ران تایم نود جی‌اس هم پشتیبانی میشن. علاوه بر این بخشی از مشخصه ها هستن:
+
+<!-- You will be impressed, but `<!--` (which is known as HTML comment) is a valid comment in JavaScript.
 
 ```js
 // valid comment
@@ -1192,7 +1205,7 @@ Impressed? HTML-like comments were intended to allow browsers that didn't unders
 
 Since Node.js is based on the V8 engine, HTML-like comments are supported by the Node.js runtime too. Moreover, they're a part of the specification:
 
-- [**B.1.3** HTML-like Comments](https://www.ecma-international.org/ecma-262/#sec-html-like-comments)
+<!-- - [**B.1.3** HTML-like Comments](https://www.ecma-international.org/ecma-262/#sec-html-like-comments) --> -->
 
 ## `NaN` is ~~not~~ a number
 
