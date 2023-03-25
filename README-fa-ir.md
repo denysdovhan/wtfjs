@@ -1215,6 +1215,8 @@ Since Node.js is based on the V8 engine, HTML-like comments are supported by the
 typeof NaN; // -> 'number'
 ```
 
+### 💡 توضیح:
+
 توضیح اینکه چطوری عملگر های `typeof` و `instanceof` کار میکنن:
 
 <!-- Type of `NaN` is a `'number'`:
