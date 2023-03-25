@@ -1209,7 +1209,15 @@ Since Node.js is based on the V8 engine, HTML-like comments are supported by the
 
 ## `NaN` is ~~not~~ a number
 
-Type of `NaN` is a `'number'`:
+تایپ `NaN` مساوی با `'number'` هست:
+
+```js
+typeof NaN; // -> 'number'
+```
+
+توضیح اینکه چطوری عملگر های `typeof` و `instanceof` کار میکنن:
+
+<!-- Type of `NaN` is a `'number'`:
 
 ```js
 typeof NaN; // -> 'number'
@@ -1217,7 +1225,7 @@ typeof NaN; // -> 'number'
 
 ### 💡 Explanation:
 
-Explanations of how `typeof` and `instanceof` operators work:
+Explanations of how `typeof` and `instanceof` operators work: -->
 
 - [**12.5.5** The `typeof` Operator](https://www.ecma-international.org/ecma-262/#sec-typeof-operator)
 - [**12.10.4** Runtime Semantics: InstanceofOperator(`O`,`C`)](https://www.ecma-international.org/ecma-262/#sec-instanceofoperator)
