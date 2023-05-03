@@ -1250,7 +1250,7 @@ null instanceof Object; // false
 
 بر اساس داکیومنت، عملگر `typeof` یه string برمیگردونه با توجه به [Table 37: `typeof` Operator Results](https://262.ecma-international.org/12.0/#table-typeof-operator-results). برای `null`، آبجکت های معمولی استاندارد و یا غیر استاندارد، که `[[Call]]` پشتیبانی نمیکنن، string خروجی `"object"` برگردونده میشه.
 
-هر چند میتونید تایپ یک آبحکت رو با استفاده از متد `toString` چک کنید.
+هر چند میتونید تایپ یک آبجکت رو با استفاده از متد `toString` چک کنید.
 
 ```js
 Object.prototype.toString.call([]);
