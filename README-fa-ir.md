@@ -1242,15 +1242,15 @@ typeof null; // -> 'object'
 null instanceof Object; // false
 ```
 
-### 💡 Explanation:
+### 💡 توضیح:
 
-The behavior of `typeof` operator is defined in this section of the specification:
+این رفتار عملگر `typeof`، توی این بخش از داکیومنت توضیح داده شده:
 
 - [**13.5.3** The `typeof` Operator](https://262.ecma-international.org/12.0/#sec-typeof-operator)
 
-According to the specification, the `typeof` operator returns a string according to [Table 37: `typeof` Operator Results](https://262.ecma-international.org/12.0/#table-typeof-operator-results). For `null`, ordinary, standard exotic and non-standard exotic objects, which do not implement `[[Call]]`, it returns the string `"object"`.
+بر اساس داکیومنت، عملگر `typeof` یه string برمیگردونه با توجه به [Table 37: `typeof` Operator Results](https://262.ecma-international.org/12.0/#table-typeof-operator-results). برای `null`، آبجکت های معمولی استاندارد و یا غیر استاندارد، که `[[Call]]` پشتیبانی نمیکنن، string خروجی `"object"` برگردونده میشه.
 
-However, you can check the type of an object by using the `toString` method.
+هر چند میتونید تایپ یک آبحکت رو با استفاده از متد `toString` چک کنید.
 
 ```js
 Object.prototype.toString.call([]);
