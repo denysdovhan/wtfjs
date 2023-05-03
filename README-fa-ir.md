@@ -1238,7 +1238,7 @@ Explanations of how `typeof` and `instanceof` operators work: -->
 typeof []; // -> 'object'
 typeof null; // -> 'object'
 
-// however
+// با این حال
 null instanceof Object; // false
 ```
 
