@@ -1274,9 +1274,9 @@ Object.prototype.toString.call(null);
 10000000000000000 + 1.1; // -> 10000000000000002
 ```
 
-### 💡 Explanation:
+### 💡 توضیح:
 
-This is caused by IEEE 754-2008 standard for Binary Floating-Point Arithmetic. At this scale, it rounds to the nearest even number. Read more:
+عللی که باعث به وجود اومدن این میشه، استاندارد IEEE 754-2008 برای محاسبه کردن اعداد اعشاری هست. توی همچین مقیاسی، مقدارمون به نزدیک ترین عدد زوج تبدیل میشه. مطالعه‌ی بیشتر:
 
 - [**6.1.6** The Number Type](https://www.ecma-international.org/ecma-262/#sec-ecmascript-language-types-number-type)
 - [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) on Wikipedia
