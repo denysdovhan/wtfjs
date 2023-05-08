@@ -1283,20 +1283,20 @@ Object.prototype.toString.call(null);
 
 ## Precision of `0.1 + 0.2`
 
-A well-known joke. An addition of `0.1` and `0.2` is deadly precise:
+یه قضیه‌ی جالب مشهور، اینه که جمع `0.1` و `0.2` دقت بسیار بالایی دارن:
 
 ```js
 0.1 + 0.2; // -> 0.30000000000000004
 0.1 + 0.2 === 0.3; // -> false
 ```
 
-### 💡 Explanation:
+### 💡 توضیح:
 
-The answer for the [”Is floating point math broken?”](https://stackoverflow.com/questions/588004/is-floating-point-math-broken) question on StackOverflow:
+جواب [”Is floating point math broken?”](https://stackoverflow.com/questions/588004/is-floating-point-math-broken) توی استک اور فلو:
 
-> The constants `0.2` and `0.3` in your program will also be approximations to their true values. It happens that the closest `double` to `0.2` is larger than the rational number `0.2` but that the closest `double` to `0.3` is smaller than the rational number `0.3`. The sum of `0.1` and `0.2` winds up being larger than the rational number `0.3` and hence disagreeing with the constant in your code.
+> مقدار های 0.2 و `0.3` توی برنامه‌ی شما به مقدار های حقیقیشون رند میشن. چیزی که باعث این اتفاق میشه اینه که نزدیک ترین `double` به `0.2` بزرگ تر از عدد صحیح `0.2` هست ولی نزدیک ترین `double` به 0.3، کوچک تر از عدد صحیح 0.3 هست. حاصل جمع `0.1` و `0.2` باعث بزرگ تر شدن از عدد صحیح `0.3` و به همین دلیل، 0.1 + 0.2 === 0.3; داخل کدمون false برمیگردونه.
 
-This problem is so known that there is even a website called [0.30000000000000004.com](http://0.30000000000000004.com/). It occurs in every language that uses floating-point math, not just JavaScript.
+این قضیه به حدی شناخته شده هست که یه سایت به نام [0.30000000000000004.com](http://0.30000000000000004.com/) ساخته شده و داخل هر زبونی که floating-point ریاضیات رو استفاده میکنه هست، نه صرفا جاوا اسکریپت.
 
 ## Patching numbers
 
