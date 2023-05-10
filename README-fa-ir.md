@@ -1,7 +1,7 @@
 [![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua/)
 
 <!-- What the f\*ck JavaScript? -->
-# جاوا اسکریپت چه لعنتی‌ای هست؟
+# جاوا اسکریپت چه کوفتی هست؟
 
 [![WTFPL 2.0][license-image]][license-url]
 [![NPM version][npm-image]][npm-url]
