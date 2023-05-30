@@ -11,6 +11,9 @@ const updateNotifier = require("update-notifier");
 const pkg = require("./package.json");
 const meow = require("meow");
 
+
+
+//sgegut aff
 const cli = meow(
   [
     "Usage",
@@ -44,6 +47,9 @@ const boxenOpts = {
     left: 1,
   },
 };
+
+
+//hi all of them 
 
 const mseeOpts = {
   paragraphEnd: "\n\n",
