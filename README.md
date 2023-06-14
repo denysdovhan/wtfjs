@@ -41,6 +41,7 @@ Currently, there are these translations of **wtfjs**:
 - [Italiano](./README-it-it.md)
 - [Russian](https://habr.com/ru/company/mailru/blog/335292/) (on Habr.com)
 - [한국어](./README-kr.md)
+- [فارسی](./README-fa-ir.md)
 
 [**Help translating to your language**][tr-request]
 
