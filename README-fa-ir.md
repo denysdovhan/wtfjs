@@ -9,7 +9,7 @@
 [![Buy Me A Coffee][bmc-image]][bmc-url]
 
 <!-- A list of funny and tricky JavaScript examples -->
-> یه لیست از مثال های جالب و نکته‌دار جاوا اسکریپت
+> یه لیست از مثال های جالب و طنزآمیز جاوا اسکریپت
 
 <!-- JavaScript is a great language. It has a simple syntax, large ecosystem and, what is most important, a great community. -->
 جاوا اسکریپت یک زبون عالی هست. سینتکس ساده، زیست‌بوم بزرگ و از همه مهم تر یه کامیونیتی عالی داره. 
