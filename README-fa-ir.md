@@ -12,7 +12,7 @@
 > یه لیست از مثال های جالب و طنزآمیز جاوا اسکریپت
 
 <!-- JavaScript is a great language. It has a simple syntax, large ecosystem and, what is most important, a great community. -->
-جاوا اسکریپت یک زبون عالی هست. سینتکس ساده، زیست‌بوم بزرگ و از همه مهم تر یه کامیونیتی عالی داره. 
+جاوا اسکریپت یه زبون عالی هست. سینتکس ساده، اکوسیستم بزرگ و از همه مهم تر یه کامیونیتی عالی داره. 
 
 <!-- At the same time, we all know that JavaScript is quite a funny language with tricky parts. Some of them can quickly turn our everyday job into hell, and some of them can make us laugh out loud. -->
 و در عین حال، هممون میدونیم که جاوا اسکریپت خیلی زبون جالب با بخش های نکته‌داری هست. بعضی از اونها میتونن خیلی سریع کار هر روزمون رو به جهنم تبدیل کنن و بعضی از اونها میتونن باعث بشن با صدای بلند بخندیم.  
