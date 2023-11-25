@@ -1790,6 +1790,24 @@ true;
 - [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 - [An in-depth explanation](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274)
 
+
+## Comparing `undefined` to `undefined`
+
+`undefined` if equal to `undefined` but is not greater than or equal to `undefined`:
+
+```
+null == null; // true
+null >= null; // true
+undefined == undefined; // true
+undefined >= undefined; // false
+```
+
+### 💡 Explanation:
+
+- If at least one of the two values is not a string, JavaScript attempts to convert the non-numeric types into numeric values.
+- [`Number(undefined)` returns `NaN`](#undefined-and-number).
+- [`NaN` is not a `NaN`](#nan-is-not-a-nan).
+
 ## Same variable redeclaration
 
 JS allows to redeclare variables:
