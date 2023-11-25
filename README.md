@@ -1790,12 +1790,11 @@ true;
 - [**7.2.15** Abstract Equality Comparison](https://262.ecma-international.org/11.0/index.html#sec-abstract-equality-comparison)
 - [An in-depth explanation](https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274)
 
-
 ## Comparing `undefined` to `undefined`
 
-`undefined` if equal to `undefined` but is not greater than or equal to `undefined`:
+`undefined` is equal to `undefined` but is not greater than or equal to `undefined`:
 
-```
+```js
 null == null; // true
 null >= null; // true
 undefined == undefined; // true
