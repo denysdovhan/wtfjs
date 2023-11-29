@@ -2018,6 +2018,10 @@ JavaScript is a single-threaded language, executing code synchronously line by l
 
 JavaScript's event loop allows asynchronous tasks to be processed while the call stack is empty, providing a non-blocking environment.
 
+- [setTimeout - MDN](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
+- [A Brief Overview of Order of Execution in JavaScript - Medium](https://medium.com/@marcellamaki/a-brief-overview-of-order-of-execution-in-javascript-e28744aa9479)
+- [Will sentense - The Hard parts of Js](https://frontendmasters.com/courses/javascript-hard-parts-v2/)
+
 
 ## A `setTimeout` object
 
