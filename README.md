@@ -1962,6 +1962,25 @@ setTimeout(() => console.log("called"), Infinity); // -> <timeoutId>
 
 It will executed immediately instead of infinity delay.
 
+
+
+### 💡 Explanation:
+
+Usually, runtime stores the delay as a 32-bit signed integer internally. This causes an integer overflow, resulting in the timeout being executed immediately.
+
+For example, in Node.js we will get this warning:
+
+```
+(node:1731) TimeoutOverflowWarning: Infinity does not fit into a 32-bit signed integer.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+```
+
+- [WindowOrWorkerGlobalScope.setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) on MDN
+- [Node.js Documentation on Timers](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_args)
+- [Timers](https://www.w3.org/TR/2011/WD-html5-20110525/timers.html) on W3C
+
+
 ## setTimeout with 0 does not run immediately 
 
 What do u think, which line gets log first ?
@@ -1999,23 +2018,6 @@ JavaScript is a single-threaded language, executing code synchronously line by l
 
 JavaScript's event loop allows asynchronous tasks to be processed while the call stack is empty, providing a non-blocking environment.
 
-
-
-### 💡 Explanation:
-
-Usually, runtime stores the delay as a 32-bit signed integer internally. This causes an integer overflow, resulting in the timeout being executed immediately.
-
-For example, in Node.js we will get this warning:
-
-```
-(node:1731) TimeoutOverflowWarning: Infinity does not fit into a 32-bit signed integer.
-Timeout duration was set to 1.
-(Use `node --trace-warnings ...` to show where the warning was created)
-```
-
-- [WindowOrWorkerGlobalScope.setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) on MDN
-- [Node.js Documentation on Timers](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_args)
-- [Timers](https://www.w3.org/TR/2011/WD-html5-20110525/timers.html) on W3C
 
 ## A `setTimeout` object
 
