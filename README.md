@@ -2006,13 +2006,34 @@ JavaScript is a single-threaded language, executing code synchronously line by l
 
 1. `console.log("Hello")` is executed synchronously, logging "Hello" to the console.
 
+```console
+Hello
+
+```
+
 2. `setTimeout(() => console.log("let's see till the end"), 0)` sets a timer, but the callback is placed in the task queue after at least 0 milliseconds.
 
+```console
+Hello
+```
+
 3. `console.log("World!")` is executed synchronously, logging "World!" to the console.
+
+```console
+Hello
+World!
+```
+
 
 4. The event loop continually checks the call stack and the task queue. While the global code is running, the task queue is waiting.
 
 5. The callback from `setTimeout` is picked up from the task queue and placed in the call stack for execution when the call stack is empty.
+
+```console
+Hello
+World!
+let's see till the end
+```
 
 ### Lastly:
 
