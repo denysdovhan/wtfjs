@@ -115,6 +115,7 @@ Currently, there are these translations of **wtfjs**:
   - [`arguments` binding](#arguments-binding)
   - [An `alert` from hell](#an-alert-from-hell)
   - [An infinite timeout](#an-infinite-timeout)
+  - [setTimeout with 0 does not run immediately](#settimeout-with-0-does-not-run-immediately)
   - [A `setTimeout` object](#a-settimeout-object)
   - [Double dot](#double-dot)
   - [Extra Newness](#extra-newness)
@@ -1981,7 +1982,7 @@ Timeout duration was set to 1.
 - [Timers](https://www.w3.org/TR/2011/WD-html5-20110525/timers.html) on W3C
 
 
-## setTimeout with 0 does not run immediately 
+## `setTimeout` with 0 does not run immediately 
 
 What do u think, which line gets log first ?
 
@@ -2008,7 +2009,6 @@ JavaScript is a single-threaded language, executing code synchronously line by l
 
 ```console
 Hello
-
 ```
 
 2. `setTimeout(() => console.log("let's see till the end"), 0)` sets a timer, but the callback is placed in the task queue after at least 0 milliseconds.
