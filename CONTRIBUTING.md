@@ -4,6 +4,8 @@ This guide will help you to contribute to this project smoothly. Please, read ca
 
 Usually, this project has two types of contributions: _new examples_ and _translations_.
 
+These two types are these:
+
 ## New Examples
 
 **New examples will be accepted only if they have an explanation.** Preferably, the explanation should contain links to the specification, blog posts, forum publications.
