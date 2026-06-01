@@ -1944,7 +1944,7 @@ This on is literally from hell:
 
 This one is based on octal escape sequences and multiple strings.
 
-Any character with a character code lower than 256 (i.e. any character in the extended ASCII range) can be escaped using its octal-encoded character code, prefixed with `\`. An example above is basically and `alert` ecoded by octal escape sequances.
+Any character with a character code lower than 256 (i.e. any character in the extended ASCII range) can be escaped using its octal-encoded character code, prefixed with `\`. An example above is basically an `alert` encoded by octal escape sequences.
 
 - [Martin Kleppe tweet about it](https://twitter.com/aemkei/status/897172907222237185)
 - [JavaScript character escape sequences](https://mathiasbynens.be/notes/javascript-escapes#octal)
@@ -1979,7 +1979,7 @@ Timeout duration was set to 1.
 
 ## A `setTimeout` object
 
-Guess what would happen if we set an callback that's not a function to `setTimeout`?
+Guess what would happen if we set a callback that's not a function to `setTimeout`?
 
 ```js
 setTimeout(123, 100); // -> <timeoutId>
@@ -2153,8 +2153,8 @@ Let's quote the specification:
 > The substrings are determined by searching from left to right for occurrences of `separator`; these occurrences are not part of any String in the returned array, but serve to divide up the String value.
 
 - [**22.1.3.21** String.prototype.split](https://tc39.es/ecma262/#sec-string.prototype.split)
-- [An original tween with an example](https://twitter.com/SeaRyanC/status/1331656278104440833) by Ryan Cavanaugh
-- [A tween with an explanation](https://twitter.com/kl13nt/status/1331742810932916227?s=20) by Nabil Tharwat
+- [An original tweet with an example](https://twitter.com/SeaRyanC/status/1331656278104440833) by Ryan Cavanaugh
+- [A tweet with an explanation](https://twitter.com/kl13nt/status/1331742810932916227?s=20) by Nabil Tharwat
 
 ## A stringified string
 
