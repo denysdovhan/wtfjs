@@ -99,6 +99,8 @@ Atualmente, temos essas traduções disponíveis de **wtfjs**:
   - [Comparando `null` com `0`](#comparando-null-com-0)
   - [Redeclaração da mesma variável](#redeclara%C3%A7%C3%A3o-da-mesma-vari%C3%A1vel)
   - [Comportamento padrão Array.prototype.sort()](#comportamento-padr%C3%A3o-arrayprototypesort)
+  - [resolve() não retornará uma instância de Promise](#resolve-n%C3%A3o-retornar%C3%A1-uma-instancia-de-promise)
+
 - [📚 Outros recursos](#-outros-recursos)
 - [🎓 Licença](#-licen%C3%A7a)
 
@@ -1712,6 +1714,48 @@ Passe `comparefn` se você tentar ordenar algo que não seja string.
 ```
 [ 10, 1, 3 ].sort((a, b) => a - b) // -> [ 1, 3, 10 ]
 ```
+
+## resolve() não retornará uma instancia de Promise
+
+```js
+const theObject = {
+  a: 7
+};
+const thePromise = new Promise((resolve, reject) => {
+  resolve(theObject);
+}); // Promise instance object
+
+thePromise.then(value => {
+  console.log(value === theObject); // > true
+  console.log(value); // > { a: 7 }
+});
+```
+
+O `value` em que é resolvido de `thePromise` é exatamente `theObject`
+
+Que tal inserir outra `Promise` na função `resolve`?
+
+```js
+const theObject = new Promise((resolve, reject) => {
+  resolve(7);
+}); // Promise instance object
+const thePromise = new Promise((resolve, reject) => {
+  resolve(theObject);
+}); // Promise instance object
+
+thePromise.then(value => {
+  console.log(value === theObject); // > false
+  console.log(value); // > 7
+});
+```
+
+### 💡 Explicação:
+
+> Esta função nívela as camadas alinhadas de objetos promise-like (e.x uma promise que resolve para uma promise que resolve para alguma coisa) em uma camada única.
+
+- [Promise.resolve() na MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
+
+A especificação é [ECMAScript 25.6.1.3.2 Promise Resolve Functions](https://tc39.es/ecma262/#sec-promise-resolve-functions). Porém não é muito amigável de se ler.
 
 # 📚 Outros recursos
 
