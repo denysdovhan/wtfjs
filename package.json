@@ -2,6 +2,7 @@
   "name": "wtfjs",
   "version": "1.22.8",
   "description": "A list of funny and tricky JavaScript examples",
+  "type": "module",
   "bin": {
     "wtfjs": "wtfjs.js"
   },
