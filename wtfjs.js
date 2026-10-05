@@ -1,15 +1,21 @@
 #!/usr/bin/env node
 
-const fs = require("fs");
-const obj = require("through2").obj;
-const pager = require("default-pager");
-const msee = require("msee");
-const join = require("path").join;
-const boxen = require("boxen");
-const chalk = require("chalk");
-const updateNotifier = require("update-notifier");
+import fs from "node:fs";
+import { join } from "node:path";
+import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
+import through2 from "through2";
+import pager from "default-pager";
+import msee from "msee";
+import boxen from "boxen";
+import chalk from "chalk";
+import updateNotifier from "update-notifier";
+import meow from "meow";
+
+const require = createRequire(import.meta.url);
 const pkg = require("./package.json");
-const meow = require("meow");
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const { obj } = through2;
 
 const cli = meow(
   [
@@ -22,8 +28,9 @@ const cli = meow(
     "Examples",
     "  wtfjs",
     "  wtfjs --lang pt-br",
-  ],
+  ].join("\n"),
   {
+    importMeta: import.meta,
     flags: {
       lang: {
         type: "string",
