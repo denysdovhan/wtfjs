@@ -445,12 +445,9 @@ new Foo() instanceof null;
 संघात होता है। चरण-दर-चरण, ऐसा दिखता है:
 
 ```js
-[1, 2, 3] +
-  [4, 5, 6][
-    // call toString()
-    (1, 2, 3)
-  ].toString() +
-  [4, 5, 6].toString();
+[1, 2, 3] + [4, 5, 6];
+// call toString()
+[1, 2, 3].toString() + [4, 5, 6].toString();
 // concatenation
 "1,2,3" + "4,5,6";
 // ->
