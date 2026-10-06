@@ -581,12 +581,9 @@ TypeError: Super constructor null of Foo is not a constructor
 数组之间会发生串联。步骤如下：
 
 ```js
-[1, 2, 3] +
-  [4, 5, 6][
-    // 调用 toString()
-    (1, 2, 3)
-  ].toString() +
-  [4, 5, 6].toString();
+[1, 2, 3] + [4, 5, 6];
+// 调用 toString()
+[1, 2, 3].toString() + [4, 5, 6].toString();
 // 串联
 "1,2,3" + "4,5,6";
 // ->

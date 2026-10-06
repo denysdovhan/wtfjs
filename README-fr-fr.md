@@ -440,12 +440,9 @@ Et si vous essayiez d'additionner deux tableaux ?
 C'est la concaténation ! Etape par étape, ça ressemble à ceci :
 
 ```js
-[1, 2, 3] +
-  [4, 5, 6][
-    // appelle toString()
-    (1, 2, 3)
-  ].toString() +
-  [4, 5, 6].toString();
+[1, 2, 3] + [4, 5, 6];
+// appelle toString()
+[1, 2, 3].toString() + [4, 5, 6].toString();
 // concaténation
 "1,2,3" + "4,5,6";
 // ->

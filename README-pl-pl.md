@@ -448,12 +448,9 @@ Co jeśli spróbujesz dodać dwie tablice?
 Zachodzi konkatenacja. Krok po kroku wygląda to tak:
 
 ```js
-[1, 2, 3] +
-  [4, 5, 6][
-    // call toString()
-    (1, 2, 3)
-  ].toString() +
-  [4, 5, 6].toString();
+[1, 2, 3] + [4, 5, 6];
+// call toString()
+[1, 2, 3].toString() + [4, 5, 6].toString();
 // concatenation
 "1,2,3" + "4,5,6";
 // ->

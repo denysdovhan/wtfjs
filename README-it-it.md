@@ -450,12 +450,9 @@ E se provassimo a sommare due array?
 Viene svolta la concatenazione. il procedimento step-by-step è il seguente:
 
 ```js
-[1, 2, 3] +
-  [4, 5, 6][
-    // chiama toString()
-    (1, 2, 3)
-  ].toString() +
-  [4, 5, 6].toString();
+[1, 2, 3] + [4, 5, 6];
+// chiama toString()
+[1, 2, 3].toString() + [4, 5, 6].toString();
 // concatenazione
 "1,2,3" + "4,5,6";
 // ->

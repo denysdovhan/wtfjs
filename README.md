@@ -573,12 +573,9 @@ What if you try to add two arrays?
 The concatenation happens. Step-by-step, it looks like this:
 
 ```js
-[1, 2, 3] +
-  [4, 5, 6][
-    // call toString()
-    (1, 2, 3)
-  ].toString() +
-  [4, 5, 6].toString();
+[1, 2, 3] + [4, 5, 6];
+// call toString()
+[1, 2, 3].toString() + [4, 5, 6].toString();
 // concatenation
 "1,2,3" + "4,5,6";
 // ->
