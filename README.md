@@ -1527,8 +1527,7 @@ let f = function() {
 new f(); // -> f { 'a': 1 }
 ```
 
-Now, try do to the same with an arrow function:
-
+Now, try to do the same with an arrow function:
 ```js
 let f = () => {
   this.a = 1;
@@ -1551,7 +1550,7 @@ let f = function() {
 f("a"); // -> { '0': 'a' }
 ```
 
-Now, try do to the same with an arrow function:
+Now, try to do the same with an arrow function:
 
 ```js
 let f = () => arguments;
