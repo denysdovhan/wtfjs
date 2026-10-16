@@ -1370,28 +1370,6 @@ new class F extends (String, Array) {}(); // -> F []
 })()
   .next()
   .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
-
-    // 再一次
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
-  .next()
-  .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
-
-    // 再一次
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
   .next()
   .value()
   .next()
@@ -2263,5 +2241,5 @@ Boolean(1.1); // -> true
 [npm-image]: https://img.shields.io/npm/v/wtfjs.svg?style=flat-square
 [patreon-url]: https://patreon.com/denysdovhan
 [patreon-image]: https://img.shields.io/badge/support-patreon-F96854.svg?style=flat-square
-[bmc-url]: https://patreon.com/denysdovhan
+[bmc-url]: https://buymeacoffee.com/denysdovhan
 [bmc-image]: https://img.shields.io/badge/support-buymeacoffee-222222.svg?style=flat-square

@@ -1257,28 +1257,6 @@ Jak widać, zwrócona wartość jest obiektem wraz z nią `value` równa do `f`.
 })()
   .next()
   .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
-
-    // and again
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
-  .next()
-  .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
-
-    // and again
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
   .next()
   .value()
   .next()

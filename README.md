@@ -1363,28 +1363,6 @@ As you can see, the returned value is an object with its `value` equal to `f`. I
 })()
   .next()
   .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
-
-    // and again
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
-  .next()
-  .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
-
-    // and again
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
   .next()
   .value()
   .next()
@@ -2195,7 +2173,7 @@ According to the specification:
 
 > The comparison x == y, where x and y are values, produces true or false. Such a comparison is performed as follows:
 >
-> 4. If `Type(x)` is Number and `Type(y)` is String, return the result of the comparison `x == ! ToNumber(y)`.
+> 9. If `Type(y)` is Boolean, return the result of the comparison `x == ! ToNumber(y)`.
 
 So this comparison is performed like this:
 
@@ -2247,5 +2225,5 @@ Every single donation is important. Your donation is gonna make a clear statemen
 [npm-image]: https://img.shields.io/npm/v/wtfjs.svg?style=flat-square
 [patreon-url]: https://patreon.com/denysdovhan
 [patreon-image]: https://img.shields.io/badge/support-patreon-F96854.svg?style=flat-square
-[bmc-url]: https://patreon.com/denysdovhan
+[bmc-url]: https://buymeacoffee.com/denysdovhan
 [bmc-image]: https://img.shields.io/badge/support-buymeacoffee-222222.svg?style=flat-square

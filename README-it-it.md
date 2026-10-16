@@ -1259,28 +1259,6 @@ Come possiamo notare, il valore restituito è un oggetto con `value` uguale a `f
 })()
   .next()
   .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
-
-    // and again
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
-  .next()
-  .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
-
-    // and again
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
   .next()
   .value()
   .next()

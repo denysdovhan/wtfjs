@@ -1363,28 +1363,6 @@ new class F extends (String, Array) {}(); // -> F []
 })()
   .next()
   .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
-
-    // සහ නැවත
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
-  .next()
-  .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
-
-    // සහ නැවත
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
   .next()
   .value()
   .next()
@@ -3073,28 +3051,6 @@ new class F extends (String, Array) {}(); // -> F []
 (function* f() {
   yield f;
 })()
-  .next()
-  .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
-
-    // සහ නැවත
-    function* f() {
-      yield f;
-    }
-  )()
-  .next()
-  .value()
-  .next()
-  .value()
-  .next()(
-    // -> { value: [GeneratorFunction: f], done: false }
-
-    // සහ නැවත
-    function* f() {
-      yield f;
-    }
-  )()
   .next()
   .value()
   .next()
